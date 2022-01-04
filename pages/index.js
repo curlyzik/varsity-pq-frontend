@@ -1,26 +1,34 @@
-import axios from "axios";
 import Search from "../components/Search";
+import { Select } from "antd";
+import { useState } from "react";
+import { useGetUniversitiesQuery } from "../src/services/university";
+const { Option } = Select;
 
-export default function Home({ data: universityList }) {
+export default function Home() {
+  const { data, error, isLoading } = useGetUniversitiesQuery();
+  const [value, setValue] = useState("")
+
+  console.log(data);
+
+  const handleChange = (value) => {
+    console.log(value);
+    setValue(value)
+    console.log(value)
+  };
   return (
     <div className="flex flex-col gap-y-7">
-      <h1 className="text-4xl">Uni Past Questions</h1>
-      <div>
-        {universityList.map((university, index) => (
-          <h2 key={index}>{university.name}</h2>
-        ))}
+      <h1 className="text-4xl">Select Past Question</h1>
+      <div className="flex gap-3">
+        <Search handleChange={handleChange}>
+          {isLoading
+            ? "loading"
+            : data.map((university) => (
+                <Option key={university.id} value={university.name}>
+                  {university.name}
+                </Option>
+              ))}
+        </Search>
       </div>
-      <Search />
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const res = await axios.get("http://localhost:8000/universities/");
-  const data = res.data;
-  return {
-    props: {
-      data,
-    }, // will be passed to the page component as props
-  };
 }
