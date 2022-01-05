@@ -1,12 +1,12 @@
 import { Select } from "antd";
 
-const Search = ({ children, handleChange }) => {
+const Search = ({ children, handleChange, description }) => {
   return (
     <div>
       <Select
         showSearch
         style={{ width: 300 }}
-        placeholder="Search University to Select"
+        placeholder={description}
         optionFilterProp="children"
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0

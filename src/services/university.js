@@ -7,7 +7,10 @@ export const universityApi = createApi({
     getUniversities: builder.query({
       query: () => "",
     }),
+    getUniversityById: builder.query({
+      query: (id) => `${id}/`,
+    })
   }),
 });
 
-export const { useGetUniversitiesQuery } = universityApi;
+export const { useGetUniversitiesQuery, useGetUniversityByIdQuery } = universityApi;
