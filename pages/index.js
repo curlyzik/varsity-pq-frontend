@@ -10,35 +10,39 @@ const { Option } = Select;
 
 export default function Home() {
   const [universities, setUniversities] = useState();
+  const [faculties, setFaculties] = useState();
   const [departments, setDepartments] = useState();
   const [courses, setCourses] = useState();
   const [years, setYears] = useState();
   const [levels, setLevels] = useState();
   const [semesters, setSemesters] = useState();
 
-  const [name, setName] = useState()
+  const [name, setName] = useState("");
 
   useEffect(() => {
     const getUrls = async () => {
       const [
         universityRes,
+        facultyRes,
         departmentRes,
         courseRes,
         yearRes,
         levelRes,
         semesterRes,
       ] = await Promise.all([
-        fetch(`http://localhost:8000/universities/`),
-        fetch("http://localhost:8000/department/"),
+        fetch("http://localhost:8000/universities/"),
+        fetch(`http://localhost:8000/faculty/?university__name=${name}`),
+        fetch(`http://localhost:8000/department/?faculty__name=${name}`),
         fetch("http://localhost:8000/course/"),
         fetch("http://localhost:8000/year/"),
         fetch("http://localhost:8000/level/"),
         fetch("http://localhost:8000/semester/"),
       ]);
 
-      const [universities, departments, courses, years, levels, semesters] =
+      const [universities, faculties, departments, courses, years, levels, semesters] =
         await Promise.all([
           universityRes.json(),
+          facultyRes.json(),
           departmentRes.json(),
           courseRes.json(),
           yearRes.json(),
@@ -47,6 +51,7 @@ export default function Home() {
         ]);
 
       setUniversities(universities);
+      setFaculties(faculties)
       setDepartments(departments);
       setCourses(courses);
       setYears(years);
@@ -55,14 +60,13 @@ export default function Home() {
     };
 
     getUrls();
-  }, []);
-
-  console.log(universities)
+  }, [name]);
 
   const handleChange = (value) => {
-    setValue(name);
-    console.log(name, "Selected");
+    setName(value);
   };
+
+  console.log(name)
   return (
     <div className="flex flex-col gap-y-7">
       <h1 className="text-4xl">Select Past Question</h1>
@@ -71,6 +75,14 @@ export default function Home() {
           {universities?.map((university) => (
             <Option key={university.id} value={university.name}>
               {university.name}
+            </Option>
+          ))}
+        </Search>
+
+        <Search handleChange={handleChange} description={"Select Faculty"}>
+          {faculties?.map((faculty) => (
+            <Option key={faculty.id} value={faculty.name}>
+              {faculty.name}
             </Option>
           ))}
         </Search>
