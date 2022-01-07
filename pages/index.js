@@ -14,14 +14,17 @@ export default function Home() {
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
+  const [yearValue, setYearValue] = useState("");
+  const [levelValue, setLevelValue] = useState("");
+  const [semesterValue, setSemesterValue] = useState("");
 
   const { data: universities } = useGetUniversitiesQuery();
   const { data: faculties } = useGetFacultiesQuery(uniValue);
   const { data: departments } = useGetDepartmentsQuery(facultyValue);
-  const { data: courses } = useGetCoursesQuery(departmentValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
+  const { data: courses } = useGetCoursesQuery();
 
   const handleUniversityChange = (value) => {
     setUniValue(value);
@@ -33,6 +36,18 @@ export default function Home() {
 
   const handleDepartmentChange = (value) => {
     setDepartmentValue(value);
+  };
+
+  const handleLevelChange = (value) => {
+    setLevelValue(value);
+  };
+
+  const handleYearChange = (value) => {
+    setYearValue(value);
+  };
+
+  const handleSemesterChange = (value) => {
+    setSemesterValue(value);
   };
 
   return (
@@ -72,7 +87,7 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search description={"Select level"}>
+        <Search handleChange={handleLevelChange} description={"Select level"}>
           {levels?.map((level) => (
             <Option key={level.id} value={level.level}>
               {level.level}
@@ -80,7 +95,7 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search description={"Select Year"}>
+        <Search handleChange={handleYearChange} description={"Select Year"}>
           {years?.map((year) => (
             <Option key={year.id} value={year.year}>
               {year.year}
@@ -88,7 +103,10 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search description={"Select semester"}>
+        <Search
+          handleChange={handleSemesterChange}
+          description={"Select semester"}
+        >
           {semesters?.map((semester) => (
             <Option key={semester.id} value={semester.semester}>
               {semester.semester}
