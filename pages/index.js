@@ -1,72 +1,31 @@
 import Search from "../components/Search";
 import { Select } from "antd";
 import { useEffect, useState } from "react";
-import {
-  useGetUniversitiesQuery,
-  useGetUniversityByIdQuery,
-} from "../src/services/university";
-import axios from "axios";
+import { useGetUniversitiesQuery } from "../src/services/university";
+import { useGetFacultiesQuery } from "../src/services/faculty";
+import { useGetDepartmentsQuery } from "../src/services/department";
+import { useGetCoursesQuery } from "../src/services/course";
+import { useGetYearsQuery } from "../src/services/year";
+import { useGetLevelsQuery } from "../src/services/level";
+import { useGetSemesterQuery } from "../src/services/semester";
 const { Option } = Select;
 
 export default function Home() {
-  const [universities, setUniversities] = useState();
-  const [faculties, setFaculties] = useState();
-  const [departments, setDepartments] = useState();
-  const [courses, setCourses] = useState();
-  const [years, setYears] = useState();
-  const [levels, setLevels] = useState();
-  const [semesters, setSemesters] = useState();
+  const { data: universities } = useGetUniversitiesQuery();
+  const { data: faculties } = useGetFacultiesQuery();
+  const { data: departments } = useGetDepartmentsQuery();
+  const { data: courses } = useGetCoursesQuery();
+  const { data: years } = useGetYearsQuery();
+  const { data: levels } = useGetLevelsQuery();
+  const { data: semesters } = useGetSemesterQuery();
 
   const [name, setName] = useState("");
-
-  useEffect(() => {
-    const getUrls = async () => {
-      const [
-        universityRes,
-        facultyRes,
-        departmentRes,
-        courseRes,
-        yearRes,
-        levelRes,
-        semesterRes,
-      ] = await Promise.all([
-        fetch("http://localhost:8000/universities/"),
-        fetch(`http://localhost:8000/faculty/?university__name=${name}`),
-        fetch(`http://localhost:8000/department/?faculty__name=${name}`),
-        fetch("http://localhost:8000/course/"),
-        fetch("http://localhost:8000/year/"),
-        fetch("http://localhost:8000/level/"),
-        fetch("http://localhost:8000/semester/"),
-      ]);
-
-      const [universities, faculties, departments, courses, years, levels, semesters] =
-        await Promise.all([
-          universityRes.json(),
-          facultyRes.json(),
-          departmentRes.json(),
-          courseRes.json(),
-          yearRes.json(),
-          levelRes.json(),
-          semesterRes.json(),
-        ]);
-
-      setUniversities(universities);
-      setFaculties(faculties)
-      setDepartments(departments);
-      setCourses(courses);
-      setYears(years);
-      setLevels(levels);
-      setSemesters(semesters);
-    };
-
-    getUrls();
-  }, [name]);
 
   const handleChange = (value) => {
     setName(value);
   };
 
-  console.log(name)
+  console.log(name);
   return (
     <div className="flex flex-col gap-y-7">
       <h1 className="text-4xl">Select Past Question</h1>
@@ -129,44 +88,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps({ query }) {
-  console.log(query);
-  const [
-    universityRes,
-    departmentRes,
-    courseRes,
-    yearRes,
-    levelRes,
-    semesterRes,
-  ] = await Promise.all([
-    fetch("http://localhost:8000/universities/"),
-    fetch("http://localhost:8000/department/"),
-    fetch("http://localhost:8000/course/"),
-    fetch("http://localhost:8000/year/"),
-    fetch("http://localhost:8000/level/"),
-    fetch("http://localhost:8000/semester/"),
-  ]);
-
-  const [universities, departments, courses, years, levels, semesters] =
-    await Promise.all([
-      universityRes.json(),
-      departmentRes.json(),
-      courseRes.json(),
-      yearRes.json(),
-      levelRes.json(),
-      semesterRes.json(),
-    ]);
-
-  return {
-    props: {
-      universities,
-      departments,
-      courses,
-      years,
-      levels,
-      semesters,
-    },
-  };
 }
