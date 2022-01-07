@@ -11,26 +11,38 @@ import { useGetSemesterQuery } from "../src/services/semester";
 const { Option } = Select;
 
 export default function Home() {
+  const [uniValue, setUniValue] = useState("");
+  const [facultyValue, setFacultyValue] = useState("");
+  const [departmentValue, setDepartmentValue] = useState("");
+
   const { data: universities } = useGetUniversitiesQuery();
-  const { data: faculties } = useGetFacultiesQuery();
-  const { data: departments } = useGetDepartmentsQuery();
-  const { data: courses } = useGetCoursesQuery();
+  const { data: faculties } = useGetFacultiesQuery(uniValue);
+  const { data: departments } = useGetDepartmentsQuery(facultyValue);
+  const { data: courses } = useGetCoursesQuery(departmentValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const [name, setName] = useState("");
-
-  const handleChange = (value) => {
-    setName(value);
+  const handleUniversityChange = (value) => {
+    setUniValue(value);
   };
 
-  console.log(name);
+  const handleFacultyChange = (value) => {
+    setFacultyValue(value);
+  };
+
+  const handleDepartmentChange = (value) => {
+    setDepartmentValue(value);
+  };
+
   return (
     <div className="flex flex-col gap-y-7">
       <h1 className="text-4xl">Select Past Question</h1>
       <div className="grid grid-cols-3 gap-3">
-        <Search handleChange={handleChange} description={"Select University"}>
+        <Search
+          handleChange={handleUniversityChange}
+          description={"Select University"}
+        >
           {universities?.map((university) => (
             <Option key={university.id} value={university.name}>
               {university.name}
@@ -38,7 +50,10 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search handleChange={handleChange} description={"Select Faculty"}>
+        <Search
+          handleChange={handleFacultyChange}
+          description={"Select Faculty"}
+        >
           {faculties?.map((faculty) => (
             <Option key={faculty.id} value={faculty.name}>
               {faculty.name}
@@ -46,7 +61,10 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search handleChange={handleChange} description={"Select Department"}>
+        <Search
+          handleChange={handleDepartmentChange}
+          description={"Select Department"}
+        >
           {departments?.map((department) => (
             <Option key={department.id} value={department.name}>
               {department.name}
@@ -54,23 +72,7 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search handleChange={handleChange} description={"Select Courses"}>
-          {courses?.map((course) => (
-            <Option key={course.id} value={course.name}>
-              {course.name}
-            </Option>
-          ))}
-        </Search>
-
-        <Search handleChange={handleChange} description={"Select Year"}>
-          {years?.map((year) => (
-            <Option key={year.id} value={year.year}>
-              {year.year}
-            </Option>
-          ))}
-        </Search>
-
-        <Search handleChange={handleChange} description={"Select level"}>
+        <Search description={"Select level"}>
           {levels?.map((level) => (
             <Option key={level.id} value={level.level}>
               {level.level}
@@ -78,10 +80,26 @@ export default function Home() {
           ))}
         </Search>
 
-        <Search handleChange={handleChange} description={"Select semester"}>
+        <Search description={"Select Year"}>
+          {years?.map((year) => (
+            <Option key={year.id} value={year.year}>
+              {year.year}
+            </Option>
+          ))}
+        </Search>
+
+        <Search description={"Select semester"}>
           {semesters?.map((semester) => (
             <Option key={semester.id} value={semester.semester}>
               {semester.semester}
+            </Option>
+          ))}
+        </Search>
+
+        <Search description={"Select Courses"}>
+          {courses?.map((course) => (
+            <Option key={course.id} value={course.course_code}>
+              {course.course_code}
             </Option>
           ))}
         </Search>
