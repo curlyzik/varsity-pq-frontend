@@ -8,9 +8,14 @@ import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
 import axios from "axios";
+
+import { useRouter } from "next/router";
+
 const { Option } = Select;
 
-export default function Home() {
+export default function Home({ pqs }) {
+  const router = useRouter();
+
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
@@ -50,7 +55,7 @@ export default function Home() {
     setSemesterValue(value);
   };
 
-  // Using axios to get the list of course 
+  // Using axios to get the list of course
   // filtered by the parameters in the getCourse function
   const getCourse = async (
     university,
@@ -63,14 +68,8 @@ export default function Home() {
     const res = await axios.get(
       `http://localhost:8000/course/?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`
     );
-    console.log(res.data);
     setCourses(res.data);
   };
-
-  for (let course of courses) {
-    console.log(course.id)
-    console.log(course)
-  }
 
   useEffect(() => {
     getCourse(
@@ -89,6 +88,18 @@ export default function Home() {
     yearValue,
     semesterValue,
   ]);
+
+  for (let pq of pqs) {
+    for (let details of pq.pq_details) {
+      for (let course of courses) {
+        if (course.id === details.course_id) {
+          console.log(pq.id)
+        } else {
+          console.log("No past question found")
+        }
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col gap-y-7">
@@ -165,3 +176,13 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async (ctx) => {
+  const res = await fetch("http://localhost:8000/past_question/");
+  const data = await res.json();
+  return {
+    props: {
+      pqs: data,
+    },
+  };
+};
