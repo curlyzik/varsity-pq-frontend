@@ -1,6 +1,6 @@
 import { Select } from "antd";
 
-const Search = ({ children, handleChange, description }) => {
+const Search = ({ children, handleChange, description, disabled }) => {
   return (
     <div>
       <Select
@@ -17,6 +17,7 @@ const Search = ({ children, handleChange, description }) => {
             .localeCompare(optionB.children.toLowerCase())
         }
         onChange={handleChange}
+        disabled={disabled}
       >
         {children}
       </Select>

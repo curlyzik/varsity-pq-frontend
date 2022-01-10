@@ -31,26 +31,6 @@ export default function Home({ pqs }) {
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const handleUniversityChange = (value) => {
-    setUniValue(value);
-  };
-
-  const handleFacultyChange = (value) => {
-    setFacultyValue(value);
-  };
-
-  const handleDepartmentChange = (value) => {
-    setDepartmentValue(value);
-  };
-
-  const handleLevelChange = (value) => {
-    setLevelValue(value);
-  };
-
-  const handleYearChange = (value) => {
-    setYearValue(value);
-  };
-
   const handleSemesterChange = (value) => {
     setSemesterValue(value);
   };
@@ -93,9 +73,9 @@ export default function Home({ pqs }) {
     for (let details of pq.pq_details) {
       for (let course of courses) {
         if (course.id === details.course_id) {
-          console.log(pq.id)
+          console.log(pq.id);
         } else {
-          console.log("No past question found")
+          console.log("No past question found");
         }
       }
     }
@@ -106,7 +86,7 @@ export default function Home({ pqs }) {
       <h1 className="text-4xl">Select Past Question</h1>
       <div className="grid grid-cols-3 gap-3">
         <Search
-          handleChange={handleUniversityChange}
+          handleChange={(value) => setUniValue(value)}
           description={"Select University"}
         >
           {universities?.map((university) => (
@@ -117,7 +97,7 @@ export default function Home({ pqs }) {
         </Search>
 
         <Search
-          handleChange={handleFacultyChange}
+          handleChange={(value) => setFacultyValue(value)}
           description={"Select Faculty"}
         >
           {faculties?.map((faculty) => (
@@ -128,7 +108,7 @@ export default function Home({ pqs }) {
         </Search>
 
         <Search
-          handleChange={handleDepartmentChange}
+          handleChange={(value) => setDepartmentValue(value)}
           description={"Select Department"}
         >
           {departments?.map((department) => (
@@ -138,7 +118,10 @@ export default function Home({ pqs }) {
           ))}
         </Search>
 
-        <Search handleChange={handleLevelChange} description={"Select level"}>
+        <Search
+          handleChange={(value) => setLevelValue(value)}
+          description={"Select level"}
+        >
           {levels?.map((level) => (
             <Option key={level.id} value={level.level}>
               {level.level}
@@ -146,7 +129,10 @@ export default function Home({ pqs }) {
           ))}
         </Search>
 
-        <Search handleChange={handleYearChange} description={"Select Year"}>
+        <Search
+          handleChange={(value) => setYearValue(value)}
+          description={"Select Year"}
+        >
           {years?.map((year) => (
             <Option key={year.id} value={year.year}>
               {year.year}
@@ -155,7 +141,7 @@ export default function Home({ pqs }) {
         </Search>
 
         <Search
-          handleChange={handleSemesterChange}
+          handleChange={(value) => setSemesterValue(value)}
           description={"Select semester"}
         >
           {semesters?.map((semester) => (
