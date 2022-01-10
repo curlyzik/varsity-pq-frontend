@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useGetUniversitiesQuery } from "../src/services/university";
 import { useGetFacultiesQuery } from "../src/services/faculty";
 import { useGetDepartmentsQuery } from "../src/services/department";
-import { useGetCoursesQuery } from "../src/services/course";
 import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
+import axios from "axios";
 const { Option } = Select;
 
 export default function Home() {
@@ -17,6 +17,7 @@ export default function Home() {
   const [yearValue, setYearValue] = useState("");
   const [levelValue, setLevelValue] = useState("");
   const [semesterValue, setSemesterValue] = useState("");
+  const [courses, setCourses] = useState([]);
 
   const { data: universities } = useGetUniversitiesQuery();
   const { data: faculties } = useGetFacultiesQuery(uniValue);
@@ -24,7 +25,6 @@ export default function Home() {
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
-  const { data: courses } = useGetCoursesQuery();
 
   const handleUniversityChange = (value) => {
     setUniValue(value);
@@ -49,6 +49,46 @@ export default function Home() {
   const handleSemesterChange = (value) => {
     setSemesterValue(value);
   };
+
+  // Using axios to get the list of course 
+  // filtered by the parameters in the getCourse function
+  const getCourse = async (
+    university,
+    faculty,
+    department,
+    level,
+    year,
+    semester
+  ) => {
+    const res = await axios.get(
+      `http://localhost:8000/course/?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`
+    );
+    console.log(res.data);
+    setCourses(res.data);
+  };
+
+  for (let course of courses) {
+    console.log(course.id)
+    console.log(course)
+  }
+
+  useEffect(() => {
+    getCourse(
+      uniValue,
+      facultyValue,
+      departmentValue,
+      levelValue,
+      yearValue,
+      semesterValue
+    );
+  }, [
+    uniValue,
+    facultyValue,
+    departmentValue,
+    levelValue,
+    yearValue,
+    semesterValue,
+  ]);
 
   return (
     <div className="flex flex-col gap-y-7">

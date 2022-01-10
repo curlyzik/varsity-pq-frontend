@@ -5,7 +5,9 @@ export const courseApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/course/" }),
   endpoints: (builder) => ({
     getCourses: builder.query({
-      query: () => "",
+      // Setting default values to avoid undefined error
+      query: (university, faculty="", department='', level='', year='', semester='') =>
+        `?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`,
     }),
   }),
 });
