@@ -30,8 +30,8 @@ export default function Home({ pqs }) {
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  // Using axios to get the list of course
-  // filtered by the parameters in the getCourse function
+  // Get the list of course
+  // filtered by the parameters
   const getCourse = async (
     university,
     faculty,
