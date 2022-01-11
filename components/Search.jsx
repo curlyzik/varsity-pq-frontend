@@ -1,6 +1,6 @@
 import { Select } from "antd";
 
-const Search = ({ children, handleChange, description, disabled }) => {
+const Search = ({ children, handleChange, description, disabled, value }) => {
   return (
     <div>
       <Select
@@ -18,6 +18,7 @@ const Search = ({ children, handleChange, description, disabled }) => {
         }
         onChange={handleChange}
         disabled={disabled}
+        value={value}
       >
         {children}
       </Select>

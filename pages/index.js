@@ -1,5 +1,4 @@
 import Search from "../components/Search";
-import { Select } from "antd";
 import { useEffect, useState } from "react";
 import { useGetUniversitiesQuery } from "../src/services/university";
 import { useGetFacultiesQuery } from "../src/services/faculty";
@@ -7,21 +6,21 @@ import { useGetDepartmentsQuery } from "../src/services/department";
 import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
-import axios from "axios";
-
-import { useRouter } from "next/router";
+import { Select } from "antd";
 
 const { Option } = Select;
 
 export default function Home({ pqs }) {
-  const router = useRouter();
-
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
   const [yearValue, setYearValue] = useState("");
   const [levelValue, setLevelValue] = useState("");
   const [semesterValue, setSemesterValue] = useState("");
+  const [courseValue, setCourseValue] = useState("");
+
+  const [pqId, setPqId] = useState("");
+
   const [courses, setCourses] = useState([]);
 
   const { data: universities } = useGetUniversitiesQuery();
@@ -30,10 +29,6 @@ export default function Home({ pqs }) {
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
-
-  const handleSemesterChange = (value) => {
-    setSemesterValue(value);
-  };
 
   // Using axios to get the list of course
   // filtered by the parameters in the getCourse function
@@ -45,10 +40,28 @@ export default function Home({ pqs }) {
     year,
     semester
   ) => {
-    const res = await axios.get(
+    const res = await fetch(
       `http://localhost:8000/course/?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`
     );
-    setCourses(res.data);
+    const data = await res.json();
+    setCourses(data);
+  };
+
+  const setPq = (courseValue) => {
+    for (let pq of pqs) {
+      for (let details of pq.pq_details) {
+        for (let course of courses) {
+          if (
+            course.id === details.course_id &&
+            details.course_code === courseValue
+          ) {
+            setPqId(pq.id);
+          } else {
+            console.log("Not found");
+          }
+        }
+      }
+    }
   };
 
   useEffect(() => {
@@ -60,6 +73,24 @@ export default function Home({ pqs }) {
       yearValue,
       semesterValue
     );
+    // Call setPq function to set Course Code as value
+    setPq(courseValue);
+  }, [
+    uniValue,
+    facultyValue,
+    departmentValue,
+    levelValue,
+    yearValue,
+    semesterValue,
+    courseValue,
+    pqId,
+  ]);
+
+  console.log(pqId);
+
+  useEffect(() => {
+    setCourseValue(null);
+    setPqId(null)
   }, [
     uniValue,
     facultyValue,
@@ -68,18 +99,6 @@ export default function Home({ pqs }) {
     yearValue,
     semesterValue,
   ]);
-
-  for (let pq of pqs) {
-    for (let details of pq.pq_details) {
-      for (let course of courses) {
-        if (course.id === details.course_id) {
-          console.log(pq.id);
-        } else {
-          console.log("No past question found");
-        }
-      }
-    }
-  }
 
   return (
     <div className="flex flex-col gap-y-7">
@@ -151,7 +170,11 @@ export default function Home({ pqs }) {
           ))}
         </Search>
 
-        <Search description={"Select Courses"}>
+        <Search
+          description={"Select Courses"}
+          handleChange={(value) => setCourseValue(value)}
+          value={courseValue}
+        >
           {courses?.map((course) => (
             <Option key={course.id} value={course.course_code}>
               {course.course_code}
