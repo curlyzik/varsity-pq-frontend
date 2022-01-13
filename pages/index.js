@@ -118,6 +118,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setFacultyValue(value)}
           description={"Select Faculty"}
+          disabled={uniValue === ""}
         >
           {faculties?.map((faculty) => (
             <Option key={faculty.id} value={faculty.name}>
@@ -129,6 +130,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setDepartmentValue(value)}
           description={"Select Department"}
+          disabled={facultyValue === ""}
         >
           {departments?.map((department) => (
             <Option key={department.id} value={department.name}>
@@ -140,6 +142,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setLevelValue(value)}
           description={"Select level"}
+          disabled={departmentValue === ""}
         >
           {levels?.map((level) => (
             <Option key={level.id} value={level.level}>
@@ -151,6 +154,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setYearValue(value)}
           description={"Select Year"}
+          disabled={levelValue === ""}
         >
           {years?.map((year) => (
             <Option key={year.id} value={year.year}>
@@ -162,6 +166,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setSemesterValue(value)}
           description={"Select semester"}
+          disabled={yearValue === ""}
         >
           {semesters?.map((semester) => (
             <Option key={semester.id} value={semester.semester}>
@@ -174,6 +179,7 @@ export default function Home({ pqs }) {
           description={"Select Courses"}
           handleChange={(value) => setCourseValue(value)}
           value={courseValue}
+          disabled={semesterValue === ""}
         >
           {courses?.map((course) => (
             <Option key={course.id} value={course.course_code}>
