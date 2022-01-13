@@ -6,6 +6,7 @@ import { yearApi } from "../services/year";
 import { levelApi } from "../services/level";
 import { courseApi } from "../services/course";
 import { semesterApi } from "../services/semester";
+import { pastQuestionApi } from "../services/pastQuestion";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     [yearApi.reducerPath]: yearApi.reducer,
     [levelApi.reducerPath]: levelApi.reducer,
     [semesterApi.reducerPath]: semesterApi.reducer,
+    [pastQuestionApi.reducerPath]: pastQuestionApi.reducer,
   },
   
   middleware: (getDefaultMiddleware) =>
@@ -26,6 +28,7 @@ export const store = configureStore({
       courseApi.middleware,
       yearApi.middleware,
       levelApi.middleware,
-      semesterApi.middleware
+      semesterApi.middleware,
+      pastQuestionApi.middleware,
     ),
 });

@@ -20,7 +20,6 @@ export default function Home({ pqs }) {
   const [courseValue, setCourseValue] = useState("");
 
   const [pqId, setPqId] = useState("");
-
   const [courses, setCourses] = useState([]);
 
   const { data: universities } = useGetUniversitiesQuery();
@@ -73,8 +72,6 @@ export default function Home({ pqs }) {
       yearValue,
       semesterValue
     );
-    // Call setPq function to set Course Code as value
-    setPq(courseValue);
   }, [
     uniValue,
     facultyValue,
@@ -82,15 +79,15 @@ export default function Home({ pqs }) {
     levelValue,
     yearValue,
     semesterValue,
-    courseValue,
-    pqId,
   ]);
 
-  console.log(pqId);
+  useEffect(() => {
+    setPq(courseValue);
+  }, [courseValue])
 
   useEffect(() => {
     setCourseValue(null);
-    setPqId(null)
+    setPqId("")
   }, [
     uniValue,
     facultyValue,
@@ -99,6 +96,10 @@ export default function Home({ pqs }) {
     yearValue,
     semesterValue,
   ]);
+
+  useEffect(() => { 
+    setDepartmentValue(null);
+  }, [facultyValue])
 
   return (
     <div className="flex flex-col gap-y-7">
@@ -130,6 +131,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setDepartmentValue(value)}
           description={"Select Department"}
+          value={departmentValue}
           disabled={facultyValue === ""}
         >
           {departments?.map((department) => (
@@ -142,7 +144,7 @@ export default function Home({ pqs }) {
         <Search
           handleChange={(value) => setLevelValue(value)}
           description={"Select level"}
-          disabled={departmentValue === ""}
+          disabled={departmentValue === null}
         >
           {levels?.map((level) => (
             <Option key={level.id} value={level.level}>
@@ -179,7 +181,7 @@ export default function Home({ pqs }) {
           description={"Select Courses"}
           handleChange={(value) => setCourseValue(value)}
           value={courseValue}
-          disabled={semesterValue === ""}
+          disabled={courses.length === 0}
         >
           {courses?.map((course) => (
             <Option key={course.id} value={course.course_code}>
