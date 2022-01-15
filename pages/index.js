@@ -7,6 +7,7 @@ import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
 import { Select } from "antd";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -21,6 +22,7 @@ export default function Home({ pqs }) {
 
   const [pqId, setPqId] = useState("");
   const [courses, setCourses] = useState([]);
+  const [pastQuestion, setPastQuestion] = useState();
 
   const { data: universities } = useGetUniversitiesQuery();
   const { data: faculties } = useGetFacultiesQuery(uniValue);
@@ -46,6 +48,11 @@ export default function Home({ pqs }) {
     setCourses(data);
   };
 
+  const getPastQuestionById = async (id) => {
+    const data = await axios.get(`http://localhost:8000/past_question/${id}/`);
+    setPastQuestion(data.data);
+  };
+
   const setPq = (courseValue) => {
     for (let pq of pqs) {
       for (let details of pq.pq_details) {
@@ -62,6 +69,9 @@ export default function Home({ pqs }) {
       }
     }
   };
+
+  console.log(pastQuestion);
+  console.log(pqId);
 
   useEffect(() => {
     getCourse(
@@ -83,11 +93,11 @@ export default function Home({ pqs }) {
 
   useEffect(() => {
     setPq(courseValue);
-  }, [courseValue])
+  }, [courseValue]);
 
   useEffect(() => {
     setCourseValue(null);
-    setPqId("")
+    setPqId("");
   }, [
     uniValue,
     facultyValue,
@@ -97,9 +107,9 @@ export default function Home({ pqs }) {
     semesterValue,
   ]);
 
-  useEffect(() => { 
+  useEffect(() => {
     setDepartmentValue(null);
-  }, [facultyValue])
+  }, [facultyValue]);
 
   return (
     <div className="flex flex-col gap-y-7">
