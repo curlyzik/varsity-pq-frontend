@@ -12,6 +12,8 @@ const Search = ({ children, handleChange, description, disabled, value }) => {
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
         filterSort={(optionA, optionB) =>
+          optionA &&
+          optionA.toLowerCase &&
           optionA.children
             .toLowerCase()
             .localeCompare(optionB.children.toLowerCase())

@@ -6,12 +6,16 @@ import { useGetDepartmentsQuery } from "../src/services/department";
 import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
-import { Select } from "antd";
+import { Select, Button } from "antd";
 import axios from "axios";
+
+import { useRouter } from "next/router";
 
 const { Option } = Select;
 
 export default function Home({ pqs }) {
+  const router = useRouter();
+
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
@@ -71,7 +75,12 @@ export default function Home({ pqs }) {
   };
 
   console.log(pastQuestion);
-  console.log(pqId);
+
+  useEffect(() => {
+    if (pastQuestion !== undefined) {
+      router.push(pastQuestion.file);
+    }
+  }, [pastQuestion]);
 
   useEffect(() => {
     getCourse(
@@ -199,6 +208,24 @@ export default function Home({ pqs }) {
             </Option>
           ))}
         </Search>
+
+        {pqId !== "" ? (
+          <Button
+            type="primary"
+            className="bg-black border-0 hover:bg-white hover:text-black hover:border hover:border-black"
+            onClick={() => getPastQuestionById(pqId)}
+          >
+            Fetch Past Question
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            className="border-0 hover:bg-white hover:text-black hover:border hover:border-black"
+            disabled
+          >
+            Fetch Past Question
+          </Button>
+        )}
       </div>
     </div>
   );
