@@ -1,5 +1,6 @@
 import { Provider } from "react-redux";
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 import { store } from "../src/app/store";
 import "../styles/globals.css";
 
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <Header />
+        <Hero />
         <Component {...pageProps} />
       </Provider>
     </>
