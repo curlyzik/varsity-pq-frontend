@@ -3,10 +3,10 @@ import React from "react";
 const Header = () => {
   return (
     <div className="flex justify-between px-4 py-6 items-center">
-      <div>
+      <div className="">
         <div className="text-3xl font-semibold">Vartsity PQ</div>
       </div>
-      <div>
+      <div className="hidden lg:block">
         <ul className="flex space-x-5 text-base">
           <li>How it works API</li>
           <li>Feature</li>
