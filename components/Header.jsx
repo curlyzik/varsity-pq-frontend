@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="flex justify-between px-4 py-6 items-center">
+    <div className="flex justify-between px-4 py-4 border-b border-gray-400 items-center bg-heroBG text-white">
       <div className="">
         <div className="text-3xl font-semibold">Vartsity PQ</div>
       </div>

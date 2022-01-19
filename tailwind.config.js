@@ -4,7 +4,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "heroBG": "url('/Lawrencium2.png')",
+      }
+    },
     fontFamily: {
       'body': ['Josefin Sans', 'sans-serif']
     }

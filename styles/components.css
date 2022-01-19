@@ -1,0 +1,8 @@
+/* Glassmorphism effect for hero header */
+.glassmorphism {
+  background: #302b63;
+  backdrop-filter: blur(90px);
+  -webkit-backdrop-filter: blur(90px);
+  border-bottom: 1px solid #302b63;
+  opacity: 1;
+}
