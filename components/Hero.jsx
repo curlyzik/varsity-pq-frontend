@@ -5,7 +5,6 @@ import Header from "./Header";
 const Hero = () => {
   return (
     <div className="bg-heroBG bg-cover bg-no-repeat lg:pt-32">
-      {/* <Header /> */}
       <div className="px-5 lg:px-10 pt-20 lg:pt-0">
         <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:gap-x-8 justify-center">
           <div className="flex flex-col gap-y-4 lg:w-3/4">
@@ -16,7 +15,7 @@ const Hero = () => {
               Varsity PQ is the all in one storehouse where students from
               various universities could find past questions to different
               courses of their discipline online. Varsity PQ is made up of 300+
-              curated past questions from 230+ universites in Nigeria.
+              curated past questions from 170 universites in Nigeria.
             </p>
             <div className="flex gap-x-3">
               <a>
