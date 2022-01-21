@@ -107,7 +107,7 @@ export default function Home({ pqs }) {
   useEffect(() => {
     setCourseValue(null);
     setPqId("");
-  }, [
+  }, [ 
     uniValue,
     facultyValue,
     departmentValue,
@@ -197,7 +197,9 @@ export default function Home({ pqs }) {
         </Search>
 
         <Search
-          description={"Select Courses"}
+          description={
+            courses.length === 0 ? "No Avalable Course" : "Select Course"
+          }
           handleChange={(value) => setCourseValue(value)}
           value={courseValue}
           disabled={courses.length === 0}
