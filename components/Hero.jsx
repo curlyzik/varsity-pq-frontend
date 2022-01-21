@@ -78,7 +78,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="bg-heroBG bg-cover bg-no-repeat lg:pt-32">
+    <div className="bg-heroBG bg-cover bg-no-repeat lg:pt-32 pb-12">
       <div className="px-5 lg:px-10 pt-20 lg:pt-0">
         <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:gap-x-8 justify-center">
           <div className="flex flex-col gap-y-4 lg:w-3/4">
@@ -95,7 +95,7 @@ const Hero = () => {
               <a>
                 <Btn
                   classNames={
-                    "px-5 py-[10px] lg:text-lg text-black bg-blue-400"
+                    "px-5 py-[10px] text-base lg:text-lg text-black bg-blue-400"
                   }
                 >
                   Search Now
@@ -104,7 +104,7 @@ const Hero = () => {
               <a>
                 <Btn
                   classNames={
-                    "px-5 py-[10px] lg:text-lg text-black shadow-xl text-blue-500"
+                    "px-5 py-[10px] text-base lg:text-lg text-black shadow-xl text-blue-500"
                   }
                 >
                   Github Stars
@@ -118,8 +118,8 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="bg-[#0f0c2991] border border-blue-400 lg:px-10 px-5 mx-5 lg:mx-10 py-9 mt-20">
-        <div className="flex flex-col gap-y-10 lg:grid-cols-5 lg:gap-y-8 lg:gap-x-5 justify-center items-center">
+      <div className="bg-[#0e0b24e3] border border-blue-400 lg:px-10 px-5 mx-5 lg:mx-10 py-9 mt-20">
+        <div className="flex flex-col gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-12 lg:gap-x-5 justify-center items-center">
           {features.map((feature, index) => (
             <Features
               icon={feature.icon}

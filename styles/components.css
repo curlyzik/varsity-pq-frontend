@@ -1,8 +1,24 @@
-/* Glassmorphism effect for hero header */
-.glassmorphism {
-  background: #302b63;
-  backdrop-filter: blur(90px);
-  -webkit-backdrop-filter: blur(90px);
-  border-bottom: 1px solid #302b63;
-  opacity: 1;
+.border-style {
+  border-radius: 41% 59% 18% 82% / 76% 25% 75% 24%;
+}
+
+.bg-style {
+  background: linear-gradient(
+    31deg,
+    rgba(4, 177, 255, 1) 10%,
+    rgb(11, 199, 216) 53%,
+    rgba(2, 0, 36, 1) 100%
+  );
+}
+
+.text-gradient {
+  background: linear-gradient(
+    31deg,
+    rgba(4, 177, 255, 1) 10%,
+    rgb(11, 199, 216) 53%,
+    rgba(2, 0, 36, 1) 100%
+  );
+  -webkit-background-clip: text !important;
+  background-size: cover;
+  -webkit-text-fill-color: transparent;
 }
