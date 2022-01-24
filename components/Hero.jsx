@@ -81,7 +81,7 @@ const Hero = () => {
     <div className="bg-heroBG bg-cover bg-no-repeat lg:pt-32 pb-12">
       <div className="px-5 lg:px-10 pt-20 lg:pt-0">
         <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:gap-x-8 justify-center">
-          <div className="flex flex-col gap-y-4 lg:w-3/4">
+          <div className="flex flex-col gap-y-4 lg:w-3/4 animate__animated animate__fadeInLeft">
             <h1 className="capitalize text-5xl leading-[3.5rem] lg:text-[3.25rem] text-white font-medium lg:font-bold lg:leading-[3.45rem]">
               University biggest storehouse of past questions
             </h1>
@@ -112,14 +112,14 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="pt-12 lg:pt-0 lg:w-6/12">
+          <div className="pt-12 lg:pt-0 lg:w-6/12 animate__animated animate__fadeInRight">
             <img src="book-study-icon-16.png" />
           </div>
         </div>
       </div>
 
-      <div className="bg-[#0e0b24e3] border border-blue-400 lg:px-10 px-5 mx-5 lg:mx-10 py-9 mt-20">
-        <div className="flex flex-col gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-12 lg:gap-x-5 justify-center items-center">
+      <div className="bg-[#0e0b24e3] border border-blue-400 lg:px-10 px-5 mx-5 lg:mx-10 py-9 lg:py-16 mt-20">
+        <div className="flex flex-col gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5 justify-center items-center">
           {features.map((feature, index) => (
             <Features
               icon={feature.icon}
