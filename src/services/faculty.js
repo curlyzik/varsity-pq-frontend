@@ -7,9 +7,12 @@ export const facultyApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/faculty/" }),
   endpoints: (builder) => ({
     getFaculties: builder.query({
+      query: () => "",
+    }),
+    getFacultiesByDepartment: builder.query({
       query: (university) => `?university__name=${university}`,
     }),
   }),
 });
 
-export const { useGetFacultiesQuery } = facultyApi;
+export const { useGetFacultiesByDepartmentQuery, useGetFacultiesQuery } = facultyApi;

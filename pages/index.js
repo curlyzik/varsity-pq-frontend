@@ -1,7 +1,12 @@
-import Search from "../components/Search";
+import { Search, HideSelectedSearch } from "../components/Search";
 import { useEffect, useState } from "react";
 import { useGetUniversitiesQuery } from "../src/services/university";
-import { useGetFacultiesQuery } from "../src/services/faculty";
+
+import {
+  useGetFacultiesByDepartmentQuery,
+  useGetFacultiesQuery,
+} from "../src/services/faculty";
+
 import { useGetDepartmentsQuery } from "../src/services/department";
 import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
@@ -29,18 +34,21 @@ export default function Home({ pqs }) {
   const [pastQuestion, setPastQuestion] = useState();
 
   const { data: universities } = useGetUniversitiesQuery();
-  const { data: faculties } = useGetFacultiesQuery(uniValue);
+
+  const { data: faculties } = useGetFacultiesByDepartmentQuery(uniValue);
+  const { data: faculty, isLoading } = useGetFacultiesQuery();
+
   const { data: departments } = useGetDepartmentsQuery(facultyValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const dataaz = async () => {
-    for (let datz of data) {
+  const storeDataToDB = async () => {
+    for (let pqData of data) {
       const dataPost = await axios.post("http://localhost:8000/universities/", {
-        name: datz.name,
-        address: datz.address === "" ? "address" : datz.address,
-        type: datz.type.toLowerCase(),
+        name: pqData.name,
+        address: pqData.address === "" ? "address" : pqData.address,
+        type: pqData.type.toLowerCase(),
         faculty: [{ name: "New faculty" }],
       });
       console.log(dataPost);
@@ -132,9 +140,24 @@ export default function Home({ pqs }) {
     setDepartmentValue(null);
   }, [facultyValue]);
 
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleChange = (selectedItems) => {
+    setSelectedItems(selectedItems);
+  };
+
   return (
     <div className="flex flex-col gap-y-7">
       <h1 className="text-4xl">Select Past Question</h1>
+      {isLoading ? (
+        "Loading"
+      ) : (
+        <HideSelectedSearch
+          handleChange={handleChange}
+          options={faculty}
+          selectedItems={selectedItems}
+        />
+      )}
       <div className="grid grid-cols-3 gap-3">
         <Search
           handleChange={(value) => setUniValue(value)}
@@ -226,7 +249,7 @@ export default function Home({ pqs }) {
         <Button
           type="primary"
           className="bg-black border-0 hover:bg-white hover:text-black hover:border hover:border-black"
-          onClick={() => dataaz()}
+          onClick={() => storeDataToDB()}
         >
           Post Data
         </Button>
