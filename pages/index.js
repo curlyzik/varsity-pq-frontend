@@ -8,7 +8,7 @@ import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
 import { Select, Button } from "antd";
 import axios from "axios";
-
+import { data } from "../db";
 import { useRouter } from "next/router";
 
 const { Option } = Select;
@@ -34,6 +34,18 @@ export default function Home({ pqs }) {
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
+
+  const dataaz = async () => {
+    for (let datz of data) {
+      const dataPost = await axios.post("http://localhost:8000/universities/", {
+        name: datz.name,
+        address: datz.address === "" ? "address" : datz.address,
+        type: datz.type.toLowerCase(),
+        faculty: [{ name: "New faculty" }],
+      });
+      console.log(dataPost);
+    }
+  };
 
   // Get the list of course
   // filtered by the parameters
@@ -74,7 +86,7 @@ export default function Home({ pqs }) {
     }
   };
 
-  console.log(pastQuestion);
+  // console.log(pastQuestion);
 
   useEffect(() => {
     if (pastQuestion !== undefined) {
@@ -107,7 +119,7 @@ export default function Home({ pqs }) {
   useEffect(() => {
     setCourseValue(null);
     setPqId("");
-  }, [ 
+  }, [
     uniValue,
     facultyValue,
     departmentValue,
@@ -210,6 +222,14 @@ export default function Home({ pqs }) {
             </Option>
           ))}
         </Search>
+
+        <Button
+          type="primary"
+          className="bg-black border-0 hover:bg-white hover:text-black hover:border hover:border-black"
+          onClick={() => dataaz()}
+        >
+          Post Data
+        </Button>
 
         {pqId !== "" ? (
           <Button
