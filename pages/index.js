@@ -1,11 +1,8 @@
-import { Search, HideSelectedSearch } from "../components/Search";
+import { SearchFilter } from "../components/Search";
 import { useEffect, useState } from "react";
 import { useGetUniversitiesQuery } from "../src/services/university";
 
-import {
-  useGetFacultiesByDepartmentQuery,
-  useGetFacultiesQuery,
-} from "../src/services/faculty";
+import { useGetFacultiesByDepartmentQuery } from "../src/services/faculty";
 
 import { useGetDepartmentsQuery } from "../src/services/department";
 import { useGetYearsQuery } from "../src/services/year";
@@ -13,8 +10,9 @@ import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
 import { Select, Button } from "antd";
 import axios from "axios";
-import { data } from "../db";
+
 import { useRouter } from "next/router";
+import App from "../components/App";
 
 const { Option } = Select;
 
@@ -34,26 +32,23 @@ export default function Home({ pqs }) {
   const [pastQuestion, setPastQuestion] = useState();
 
   const { data: universities } = useGetUniversitiesQuery();
-
   const { data: faculties } = useGetFacultiesByDepartmentQuery(uniValue);
-  const { data: faculty, isLoading } = useGetFacultiesQuery();
-
   const { data: departments } = useGetDepartmentsQuery(facultyValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const storeDataToDB = async () => {
-    for (let pqData of data) {
-      const dataPost = await axios.post("http://localhost:8000/universities/", {
-        name: pqData.name,
-        address: pqData.address === "" ? "address" : pqData.address,
-        type: pqData.type.toLowerCase(),
-        faculty: [{ name: "New faculty" }],
-      });
-      console.log(dataPost);
-    }
-  };
+  // const storeDataToDB = async () => {
+  //   for (let pqData of data2) {
+  //     const dataPost = await axios.post("http://localhost:8000/universities/", {
+  //       name: pqData.name,
+  //       address: pqData.address === "" ? "address" : pqData.address,
+  //       type: pqData.type.toLowerCase(),
+  //       faculty: [],
+  //     });
+  //     console.log(dataPost);
+  //   }
+  // };
 
   // Get the list of course
   // filtered by the parameters
@@ -93,8 +88,6 @@ export default function Home({ pqs }) {
       }
     }
   };
-
-  // console.log(pastQuestion);
 
   useEffect(() => {
     if (pastQuestion !== undefined) {
@@ -140,26 +133,12 @@ export default function Home({ pqs }) {
     setDepartmentValue(null);
   }, [facultyValue]);
 
-  const [selectedItems, setSelectedItems] = useState([]);
-
-  const handleChange = (selectedItems) => {
-    setSelectedItems(selectedItems);
-  };
-
   return (
-    <div className="flex flex-col gap-y-7">
+    <div className="flex flex-col gap-y-7 text-base">
+      <App />
       <h1 className="text-4xl">Select Past Question</h1>
-      {isLoading ? (
-        "Loading"
-      ) : (
-        <HideSelectedSearch
-          handleChange={handleChange}
-          options={faculty}
-          selectedItems={selectedItems}
-        />
-      )}
       <div className="grid grid-cols-3 gap-3">
-        <Search
+        <SearchFilter
           handleChange={(value) => setUniValue(value)}
           description={"Select University"}
         >
@@ -168,9 +147,9 @@ export default function Home({ pqs }) {
               {university.name}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           handleChange={(value) => setFacultyValue(value)}
           description={"Select Faculty"}
           disabled={uniValue === ""}
@@ -180,9 +159,9 @@ export default function Home({ pqs }) {
               {faculty.name}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           handleChange={(value) => setDepartmentValue(value)}
           description={"Select Department"}
           value={departmentValue}
@@ -193,9 +172,9 @@ export default function Home({ pqs }) {
               {department.name}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           handleChange={(value) => setLevelValue(value)}
           description={"Select level"}
           disabled={departmentValue === null}
@@ -205,9 +184,9 @@ export default function Home({ pqs }) {
               {level.level}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           handleChange={(value) => setYearValue(value)}
           description={"Select Year"}
           disabled={levelValue === ""}
@@ -217,9 +196,9 @@ export default function Home({ pqs }) {
               {year.year}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           handleChange={(value) => setSemesterValue(value)}
           description={"Select semester"}
           disabled={yearValue === ""}
@@ -229,9 +208,9 @@ export default function Home({ pqs }) {
               {semester.semester}
             </Option>
           ))}
-        </Search>
+        </SearchFilter>
 
-        <Search
+        <SearchFilter
           description={
             courses.length === 0 ? "No Avalable Course" : "Select Course"
           }
@@ -244,15 +223,7 @@ export default function Home({ pqs }) {
               {course.course_code}
             </Option>
           ))}
-        </Search>
-
-        <Button
-          type="primary"
-          className="bg-black border-0 hover:bg-white hover:text-black hover:border hover:border-black"
-          onClick={() => storeDataToDB()}
-        >
-          Post Data
-        </Button>
+        </SearchFilter>
 
         {pqId !== "" ? (
           <Button
@@ -276,7 +247,7 @@ export default function Home({ pqs }) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async () => {
   const res = await fetch("http://localhost:8000/past_question/");
   const data = await res.json();
   return {

@@ -1,6 +1,9 @@
 import { Select } from "antd";
+import { Input, Space } from "antd";
 
-export const Search = ({
+const { Search } = Input;
+
+export const SearchFilter = ({
   children,
   handleChange,
   description,
@@ -42,8 +45,8 @@ export const HideSelectedSearch = ({
   const OPTIONS = options;
 
   const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
-  console.log(filteredOptions)
-  console.log(selectedItems)
+  console.log(filteredOptions);
+  console.log(selectedItems);
 
   return (
     <Select
@@ -59,5 +62,20 @@ export const HideSelectedSearch = ({
         </Select.Option>
       ))}
     </Select>
+  );
+};
+
+export const SearchBar = () => {
+  const onSearch = (value) => console.log(value);
+  return (
+    <div>
+      <Search
+        placeholder="input search text"
+        allowClear
+        onSearch={onSearch}
+        style={{ width: 300 }}
+        size="large"
+      />
+    </div>
   );
 };

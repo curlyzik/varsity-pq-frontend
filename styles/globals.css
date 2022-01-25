@@ -4,8 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~antd/dist/antd.css';
-
 @layer base {
     body {
         @apply font-body

@@ -1,11 +1,5 @@
 export const data2 = [
   {
-    name: "Atiba University Oyo",
-    address: "Km 5, Oyo-Iseyin Road PMB 1077 Oyo town",
-    type: "Private",
-    // website: "https://www.atibauniversity.edu.ng/",
-  },
-  {
     name: "Eko University of Medical and Health Sciences Ijanikin, Lagos",
     address: "Ijanikin, Lagos",
     type: "Private",
