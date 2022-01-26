@@ -2,6 +2,10 @@
   border-radius: 41% 59% 18% 82% / 76% 25% 75% 24%;
 }
 
+.border-style2 {
+  border-radius: 100% 0% 0% 0% / 100% 0% 100% 0% ;
+}
+
 .bg-style {
   background: linear-gradient(
     31deg,

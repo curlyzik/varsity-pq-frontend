@@ -5,7 +5,7 @@ import { useGetUniversitiesQuery } from "../src/services/university";
 import AppHeader from "./utils/AppHeader";
 
 const App = () => {
-  const { data: universities } = useGetUniversitiesQuery();
+  const { data } = useGetUniversitiesQuery();
 
   // sort universites alphabetically
   const compare = (a, b) => {
@@ -17,18 +17,18 @@ const App = () => {
     }
     return 0;
   };
-  const uniData = universities?.slice().sort(compare);
+  const universities = data?.slice().sort(compare);
 
   return (
     <div className="bg-[#ECF2F5] pt-6">
       <AppHeader />
 
-      <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-10 pt-6 lg:grid lg:px-20">
-        {uniData?.map((university) => (
+      <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
+        {universities?.map((university) => (
           <div
             key={university.id}
             data-aos="fade-left"
-            className={`cursor-pointer bg-white p-4 ${
+            className={`cursor-pointer bg-white p-6 ${
               university.type === "federal"
                 ? "border border-blue-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-blue-700"
                 : university.type === "state"
@@ -36,8 +36,23 @@ const App = () => {
                 : "border border-green-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-green-700"
             }`}
           >
-            <div className="flex flex-row">
-              <h2 className=" text-lg font-semibold">{university.name}</h2>
+            <div>
+              <span
+                className={` px-2 py-1 text-xs font-bold text-gray-600 ${
+                  university.type === "federal"
+                    ? "bg-blue-100"
+                    : university.type === "state"
+                    ? "bg-orange-100"
+                    : "bg-green-100"
+                }`}
+              >
+                {university.type}
+              </span>
+              <h2 className="mt-2 mb-2 text-xl font-bold">{university.name}</h2>
+              <p className="text-sm text-gray-600">
+                <span className="italic text-black">Address:</span>{" "}
+                {university.address}
+              </p>
             </div>
           </div>
         ))}

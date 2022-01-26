@@ -66,13 +66,13 @@ export const HideSelectedSearch = ({
 };
 
 export const SearchBar = () => {
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => console.log(value.target.value);
   return (
     <div>
       <Search
         placeholder="input search text"
         allowClear
-        onSearch={onSearch}
+        onChange={onSearch}
         style={{ width: 350 }}
         size="large"
       />
