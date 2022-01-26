@@ -73,7 +73,7 @@ export const SearchBar = () => {
         placeholder="input search text"
         allowClear
         onSearch={onSearch}
-        style={{ width: 300 }}
+        style={{ width: 350 }}
         size="large"
       />
     </div>

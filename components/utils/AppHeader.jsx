@@ -4,7 +4,7 @@ import { SearchBar } from "../Search";
 const AppHeader = () => {
   return (
     <div className="lg:mx-10">
-      <div className="bg-white px-4 py-4 flex justify-between items-center">
+      <div className="flex items-center justify-between bg-white px-4 py-4">
         <SearchBar />
         <div className="">
           <ul className="flex items-center justify-center gap-x-5 !text-lg">

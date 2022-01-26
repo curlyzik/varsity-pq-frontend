@@ -3,7 +3,7 @@ import Ripples from "react-ripples";
 
 const Btn = ({ children, classNames }) => {
   return (
-    <Ripples className={`capitalize font-semibold ${classNames}`}>
+    <Ripples className={`font-semibold capitalize ${classNames}`}>
       {children}
     </Ripples>
   );

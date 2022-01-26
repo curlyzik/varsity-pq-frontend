@@ -228,7 +228,7 @@ export default function Home({ pqs }) {
         {pqId !== "" ? (
           <Button
             type="primary"
-            className="bg-black border-0 hover:bg-white hover:text-black hover:border hover:border-black"
+            className="border-0 bg-black hover:border hover:border-black hover:bg-white hover:text-black"
             onClick={() => getPastQuestionById(pqId)}
           >
             Fetch Past Question
@@ -236,7 +236,7 @@ export default function Home({ pqs }) {
         ) : (
           <Button
             type="primary"
-            className="border-0 hover:bg-white hover:text-black hover:border hover:border-black"
+            className="border-0 hover:border hover:border-black hover:bg-white hover:text-black"
             disabled
           >
             Fetch Past Question

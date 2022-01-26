@@ -5,14 +5,14 @@ import Features from "./utils/Features";
 
 const Hero = () => {
   return (
-    <div className="bg-heroBG bg-cover bg-no-repeat lg:pt-32 pb-12">
-      <div className="px-5 lg:px-10 pt-20 lg:pt-0">
-        <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:gap-x-8 justify-center">
-          <div className="flex flex-col gap-y-4 lg:w-3/4 animate__animated animate__fadeInLeft">
-            <h1 className="capitalize text-5xl leading-[3.5rem] lg:text-[3.25rem] text-white font-medium lg:font-bold lg:leading-[3.45rem]">
+    <div className="bg-heroBG bg-cover bg-no-repeat pb-12 lg:pt-32">
+      <div className="px-5 pt-20 lg:px-10 lg:pt-0">
+        <div className="flex flex-col justify-center lg:flex lg:flex-row lg:items-center lg:gap-x-8">
+          <div className="animate__animated animate__fadeInLeft flex flex-col gap-y-4 lg:w-3/4">
+            <h1 className="text-5xl font-medium capitalize leading-[3.5rem] text-white lg:text-[3.25rem] lg:font-bold lg:leading-[3.45rem]">
               University biggest storehouse of past questions
             </h1>
-            <p className="text-gray-400 text-base">
+            <p className="text-base text-gray-400">
               Varsity PQ is the all in one storehouse where students from
               various universities could find past questions to different
               courses of their discipline online. Varsity PQ is made up of 300+
@@ -39,14 +39,14 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="pt-12 lg:pt-0 lg:w-6/12 animate__animated animate__fadeInRight">
+          <div className="animate__animated animate__fadeInRight pt-12 lg:w-6/12 lg:pt-0">
             <img src="book-study-icon-16.png" />
           </div>
         </div>
       </div>
 
-      <div className="bg-[#0e0b24e3] border border-blue-400 lg:px-10 px-5 mx-5 lg:mx-10 py-9 lg:py-16 mt-20">
-        <div className="flex flex-col gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5 justify-center items-center">
+      <div className="mx-5 mt-20 border border-blue-400 bg-[#0e0b24e3] px-5 py-9 lg:mx-10 lg:px-10 lg:py-16">
+        <div className="flex flex-col items-center justify-center gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5">
           {features.map((feature, index) => (
             <Features
               icon={feature.icon}
