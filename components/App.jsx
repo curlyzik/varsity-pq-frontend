@@ -6,6 +6,7 @@ import AppHeader from "./utils/AppHeader";
 
 const App = () => {
   const { data } = useGetUniversitiesQuery();
+  const [keyword, setKeyword] = useState("");
 
   // sort universites alphabetically
   const compare = (a, b) => {
@@ -19,12 +20,20 @@ const App = () => {
   };
   const universities = data?.slice().sort(compare);
 
+  const filteredUniversity = universities?.filter((university) => {
+    if (keyword === "") {
+      return universities;
+    } else {
+      return university.name.toLowerCase().includes(keyword);
+    }
+  });
+
   return (
     <div className="bg-[#ECF2F5] pt-6">
-      <AppHeader />
+      <AppHeader setKeyword={setKeyword} />
 
       <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
-        {universities?.map((university) => (
+        {filteredUniversity?.map((university) => (
           <div
             key={university.id}
             data-aos="fade-left"

@@ -65,8 +65,8 @@ export const HideSelectedSearch = ({
   );
 };
 
-export const SearchBar = () => {
-  const onSearch = (value) => console.log(value.target.value);
+export const SearchBar = ({ setKeyword }) => {
+  const onSearch = (value) => setKeyword(value.target.value);
   return (
     <div>
       <Search
