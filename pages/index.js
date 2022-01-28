@@ -134,7 +134,7 @@ export default function Home({ pqs }) {
   }, [facultyValue]);
 
   return (
-    <div className="flex flex-col gap-y-7 text-base">
+    <div className="flex flex-col gap-y-7 text-base font-body">
       <App />
       <h1 className="text-4xl">Select Past Question</h1>
       <div className="grid grid-cols-3 gap-3">
