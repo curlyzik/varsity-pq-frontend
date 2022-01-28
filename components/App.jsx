@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useGetUniSearchQuery } from "../src/services/searchServices/uniSearchApi";
+import React, { useState } from "react";
 import { useGetUniversitiesQuery } from "../src/services/university";
 import AppHeader from "./utils/AppHeader";
 
 const App = () => {
   const { data } = useGetUniversitiesQuery();
   const [keyword, setKeyword] = useState("");
+  const [sort, setSort] = useState("");
 
   // sort universites alphabetically
   const compare = (a, b) => {
@@ -20,6 +20,7 @@ const App = () => {
   };
   const universities = data?.slice().sort(compare);
 
+  // filter university by keyword search
   const filteredUniversity = universities?.filter((university) => {
     if (keyword === "") {
       return universities;
@@ -28,21 +29,42 @@ const App = () => {
     }
   });
 
+  // filter university by sort
+  const handleUniTypeFiltering = () => {
+    if (sort === "federal") {
+      return filteredUniversity?.filter(
+        (university) => university.type === "federal"
+      );
+    } else if (sort === "private") {
+      return filteredUniversity?.filter(
+        (university) => university.type === "private"
+      );
+    } else if (sort === "state") {
+      return filteredUniversity?.filter(
+        (university) => university.type === "state"
+      );
+    } else {
+      return filteredUniversity;
+    }
+  };
+
+  const orderBy = handleUniTypeFiltering();
+
   return (
     <div className="bg-[#ECF2F5] pt-6">
-      <AppHeader setKeyword={setKeyword} />
+      <AppHeader setKeyword={setKeyword} sort={sort} setSort={setSort} />
 
       <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
-        {filteredUniversity?.map((university) => (
+        {orderBy?.map((university) => (
           <div
             key={university.id}
             data-aos="fade-left"
             className={`cursor-pointer bg-white p-6 ${
               university.type === "federal"
-                ? "border border-blue-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-blue-700"
+                ? "border-2 border-blue-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-blue-700"
                 : university.type === "state"
-                ? "border border-orange-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-orange-700"
-                : "border border-green-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-green-700"
+                ? "border-2 border-orange-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-orange-700"
+                : "border-2 border-green-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-green-700"
             }`}
           >
             <div>
