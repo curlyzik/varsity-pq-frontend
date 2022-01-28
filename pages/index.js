@@ -39,21 +39,6 @@ export default function Home({ pqs }) {
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const storeDataToDB = async () => {
-    for (let pqData of data) {
-      const dataPost = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/universities/`,
-        {
-          name: pqData.name,
-          address: pqData.address === "" ? "address" : pqData.address,
-          type: pqData.type.toLowerCase(),
-          faculty: [],
-        }
-      );
-      console.log(dataPost);
-    }
-  };
-
   // Get the list of course
   // filtered by the parameters
   const getCourse = async (

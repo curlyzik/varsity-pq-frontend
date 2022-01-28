@@ -5,7 +5,7 @@ import Features from "./utils/Features";
 
 const Hero = () => {
   return (
-    <div className="bg-heroBG bg-cover bg-no-repeat pb-12 lg:pt-32 font-body">
+    <div className="bg-heroBG bg-cover bg-no-repeat pb-12 lg:pt-32 font-body overflow-hidden">
       <div className="px-5 pt-20 lg:px-10 lg:pt-0">
         <div className="flex flex-col justify-center lg:flex lg:flex-row lg:items-center lg:gap-x-8">
           <div className="animate__animated animate__fadeInLeft flex flex-col gap-y-4 lg:w-3/4">
