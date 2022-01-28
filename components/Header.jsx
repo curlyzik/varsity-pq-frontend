@@ -3,10 +3,10 @@ import Btn from "./utils/Btn";
 
 const Header = () => {
   return (
-    <div className="bg-heroBG font-body">
-      <div className="lg:flex items-center justify-between border-b border-gray-600 bg-[#ffffff20] bg-opacity-70 px-4 py-3 text-white backdrop-blur-3xl backdrop-filter">
+    <div className="bg-heroBG font-body py-4 px-4">
+      <div className="flex items-center justify-between text-white mx-4">
         <div className="text-3xl font-bold">Vartsity PQ</div>
-        <ul className="hidden lg:flex items-center space-x-5 text-base font-bold">
+        <ul className="hidden items-center justify-center space-x-5 text-base lg:flex">
           <li>How it works API</li>
           <li>Feature</li>
           <li>Requests</li>
@@ -14,14 +14,17 @@ const Header = () => {
           <li>On Review</li>
           <li>Collections</li>
           <li>Bookmarks</li>
-          <li></li>
-          <a>
-            <Btn
-              classNames={"border px-2 py-[4px] text-blue-400 border-blue-400"}
-            >
-              New Past Question
-            </Btn>
-          </a>
+          <li>
+            <a>
+              <Btn
+                classNames={
+                  "border px-2 py-[4px] text-blue-400 border-blue-400"
+                }
+              >
+                New Past Question
+              </Btn>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

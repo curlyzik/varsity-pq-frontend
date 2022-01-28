@@ -38,17 +38,17 @@ export default function Home({ pqs }) {
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  // const storeDataToDB = async () => {
-  //   for (let pqData of data2) {
-  //     const dataPost = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/universities/`, {
-  //       name: pqData.name,
-  //       address: pqData.address === "" ? "address" : pqData.address,
-  //       type: pqData.type.toLowerCase(),
-  //       faculty: [],
-  //     });
-  //     console.log(dataPost);
-  //   }
-  // };
+  const storeDataToDB = async () => {
+    for (let pqData of data2) {
+      const dataPost = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/universities/`, {
+        name: pqData.name,
+        address: pqData.address === "" ? "address" : pqData.address,
+        type: pqData.type.toLowerCase(),
+        faculty: [],
+      });
+      console.log(dataPost);
+    }
+  };
 
   // Get the list of course
   // filtered by the parameters
@@ -137,7 +137,7 @@ export default function Home({ pqs }) {
     <div className="flex flex-col gap-y-7 text-base">
       <App />
       <h1 className="text-4xl">Select Past Question</h1>
-      <div className="flex flex-col lg:grid grid-cols-3 gap-3">
+      <div className="flex grid-cols-3 flex-col gap-3 lg:grid">
         <SearchFilter
           handleChange={(value) => setUniValue(value)}
           description={"Select University"}
@@ -224,6 +224,14 @@ export default function Home({ pqs }) {
             </Option>
           ))}
         </SearchFilter>
+
+        <Button
+          type="primary"
+          className="border-0 bg-black hover:border hover:border-black hover:bg-white hover:text-black"
+          onClick={() => storeDataToDB()}
+        >
+          Store data to DB
+        </Button>
 
         {pqId !== "" ? (
           <Button
