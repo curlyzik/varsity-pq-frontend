@@ -1,9 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
 .border-style {
   border-radius: 41% 59% 18% 82% / 76% 25% 75% 24%;
 }
 
 .border-style2 {
-  border-radius: 100% 0% 0% 0% / 100% 0% 100% 0% ;
+  border-radius: 100% 0% 0% 0% / 100% 0% 100% 0%;
 }
 
 .bg-style {
@@ -26,4 +31,3 @@
   background-size: cover;
   -webkit-text-fill-color: transparent;
 }
-
