@@ -40,7 +40,7 @@ export default function Home({ pqs }) {
 
   // const storeDataToDB = async () => {
   //   for (let pqData of data2) {
-  //     const dataPost = await axios.post("http://localhost:8000/universities/", {
+  //     const dataPost = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/universities/`, {
   //       name: pqData.name,
   //       address: pqData.address === "" ? "address" : pqData.address,
   //       type: pqData.type.toLowerCase(),
@@ -61,7 +61,7 @@ export default function Home({ pqs }) {
     semester
   ) => {
     const res = await fetch(
-      `http://localhost:8000/course/?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`
+      `${process.env.NEXT_PUBLIC_API_URL}/course/?university__name=${university}&faculty__name=${faculty}&department__name=${department}&level__level=${level}&year__year=${year}&semester__semester=${semester}`
     );
     const data = await res.json();
     setCourses(data);
@@ -218,7 +218,7 @@ export default function Home({ pqs }) {
           value={courseValue}
           disabled={courses.length === 0}
         >
-          {courses?.map((course) => (
+          {courses.map((course) => (
             <Option key={course.id} value={course.course_code}>
               {course.course_code}
             </Option>
@@ -248,7 +248,7 @@ export default function Home({ pqs }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:8000/past_question/");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/past_question/`);
   const data = await res.json();
   return {
     props: {

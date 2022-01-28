@@ -4,7 +4,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const facultyApi = createApi({
   reducerPath: "facultyApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/faculty/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/faculty/`,
+  }),
   endpoints: (builder) => ({
     getFaculties: builder.query({
       query: () => "",
@@ -15,4 +17,5 @@ export const facultyApi = createApi({
   }),
 });
 
-export const { useGetFacultiesByDepartmentQuery, useGetFacultiesQuery } = facultyApi;
+export const { useGetFacultiesByDepartmentQuery, useGetFacultiesQuery } =
+  facultyApi;
