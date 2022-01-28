@@ -137,7 +137,7 @@ export default function Home({ pqs }) {
     <div className="flex flex-col gap-y-7 text-base">
       <App />
       <h1 className="text-4xl">Select Past Question</h1>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="flex flex-col lg:grid grid-cols-3 gap-3">
         <SearchFilter
           handleChange={(value) => setUniValue(value)}
           description={"Select University"}
