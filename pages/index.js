@@ -13,6 +13,7 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 import App from "../components/App";
+import { data } from "../db";
 
 const { Option } = Select;
 
@@ -39,13 +40,16 @@ export default function Home({ pqs }) {
   const { data: semesters } = useGetSemesterQuery();
 
   const storeDataToDB = async () => {
-    for (let pqData of data2) {
-      const dataPost = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/universities/`, {
-        name: pqData.name,
-        address: pqData.address === "" ? "address" : pqData.address,
-        type: pqData.type.toLowerCase(),
-        faculty: [],
-      });
+    for (let pqData of data) {
+      const dataPost = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/universities/`,
+        {
+          name: pqData.name,
+          address: pqData.address === "" ? "address" : pqData.address,
+          type: pqData.type.toLowerCase(),
+          faculty: [],
+        }
+      );
       console.log(dataPost);
     }
   };
