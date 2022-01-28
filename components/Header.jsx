@@ -3,12 +3,10 @@ import Btn from "./utils/Btn";
 
 const Header = () => {
   return (
-    <div className="bg-heroBG shadow-2xl font-body">
+    <div className="bg-heroBG font-body">
       <div className="flex items-center justify-between border-b border-gray-600 bg-[#ffffff20] bg-opacity-70 px-4 py-3 text-white backdrop-blur-3xl backdrop-filter">
-        <div className="">
-          <div className="text-3xl font-bold">Vartsity PQ</div>
-        </div>
-        <div className="hidden lg:block">
+        <div className="text-3xl font-bold">Vartsity PQ</div>
+        <div className="hidden items-center justify-center lg:flex">
           <ul className="flex items-center space-x-5 text-base font-bold">
             <li>How it works API</li>
             <li>Feature</li>
