@@ -214,14 +214,6 @@ export default function Home({ pqs }) {
           ))}
         </SearchFilter>
 
-        <Button
-          type="primary"
-          className="border-0 bg-black hover:border hover:border-black hover:bg-white hover:text-black"
-          onClick={() => storeDataToDB()}
-        >
-          Store data to DB
-        </Button>
-
         {pqId !== "" ? (
           <Button
             type="primary"
