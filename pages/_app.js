@@ -17,13 +17,13 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <>
+    <div className="font-body">
       <Provider store={store}>
         <Header />
         <Hero />
         <Component {...pageProps} />
       </Provider>
-    </>
+    </div>
   );
 }
 

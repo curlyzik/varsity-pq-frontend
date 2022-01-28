@@ -3,7 +3,7 @@ import Btn from "./utils/Btn";
 
 const Header = () => {
   return (
-    <div className="bg-heroBG shadow-2xl ">
+    <div className="bg-heroBG shadow-2xl font-body">
       <div className="flex items-center justify-between border-b border-gray-600 bg-[#ffffff20] bg-opacity-70 px-4 py-3 text-white backdrop-blur-3xl backdrop-filter">
         <div className="">
           <div className="text-3xl font-bold">Vartsity PQ</div>
