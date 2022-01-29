@@ -13,7 +13,6 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 import App from "../components/App";
-import { data } from "../db";
 
 const { Option } = Select;
 

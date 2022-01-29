@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="px-5 pt-20 lg:px-10 lg:pt-0">
         <div className="flex flex-col justify-center lg:flex lg:flex-row lg:items-center lg:gap-x-8">
           <div className="animate__animated animate__fadeInLeft flex flex-col gap-y-4 lg:w-3/4">
-            <h1 className="text-5xl font-medium capitalize leading-[3.5rem] text-white lg:text-[3.25rem] lg:font-bold lg:leading-[3.45rem]">
+          <h1 className="text-5xl capitalize leading-[3.5rem] text-white lg:text-[3.25rem] font-bold lg:leading-[3.45rem]">
               University biggest storehouse of past questions
             </h1>
             <p className="text-base text-gray-400">
