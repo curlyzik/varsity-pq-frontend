@@ -13,6 +13,7 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 import App from "../components/App";
+import Hero from "../components/Hero";
 
 const { Option } = Select;
 
@@ -123,6 +124,7 @@ export default function Home({ pqs }) {
 
   return (
     <div className="flex flex-col gap-y-7 text-base">
+      <Hero />
       <App />
       <h1 className="text-4xl">Select Past Question</h1>
       <div className="flex grid-cols-3 flex-col gap-3 lg:grid">
