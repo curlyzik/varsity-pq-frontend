@@ -1,5 +1,4 @@
 import React from "react";
-import { Btn } from "..";
 import { SearchBar } from "./Search";
 
 const AppHeader = ({ setKeyword, sort, setSort }) => {
@@ -9,11 +8,9 @@ const AppHeader = ({ setKeyword, sort, setSort }) => {
         <SearchBar setKeyword={setKeyword} />
         <div className="">
           <ul className="flex items-center justify-center gap-x-5 lg:!text-lg">
-            <Btn classNames={"cursor-pointer"}>
-              <li onClick={() => setSort("all")} className="">
-                All
-              </li>
-            </Btn>
+            <li onClick={() => setSort("")} className="cursor-pointer">
+              All
+            </li>
             <li
               onClick={() => setSort("federal")}
               className={`${

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppHeader, Btn, Item, Loader } from ".";
 import { useGetUniversitiesQuery } from "../src/services/university";
 
