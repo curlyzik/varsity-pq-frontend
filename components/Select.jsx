@@ -12,16 +12,10 @@ import { useGetDepartmentsQuery } from "../src/services/department";
 import { useGetYearsQuery } from "../src/services/year";
 import { useGetLevelsQuery } from "../src/services/level";
 import { useGetSemesterQuery } from "../src/services/semester";
+
 import { SearchFilter } from "./utils/Search";
 
-const Select = ({ pqData }) => {
-  const { data: universities } = useGetUniversitiesQuery();
-  const { data: faculties } = useGetFacultiesByDepartmentQuery(uniValue);
-  const { data: departments } = useGetDepartmentsQuery(facultyValue);
-  const { data: years } = useGetYearsQuery();
-  const { data: levels } = useGetLevelsQuery();
-  const { data: semesters } = useGetSemesterQuery();
-
+const Select = ({ pqData, uniData }) => {
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
@@ -29,6 +23,13 @@ const Select = ({ pqData }) => {
   const [levelValue, setLevelValue] = useState("");
   const [semesterValue, setSemesterValue] = useState("");
   const [courseValue, setCourseValue] = useState("");
+
+  const { data: universities } = useGetUniversitiesQuery();
+  const { data: faculties } = useGetFacultiesByDepartmentQuery(uniValue);
+  const { data: departments } = useGetDepartmentsQuery(facultyValue);
+  const { data: years } = useGetYearsQuery();
+  const { data: levels } = useGetLevelsQuery();
+  const { data: semesters } = useGetSemesterQuery();
 
   const [pqId, setPqId] = useState("");
   const [courses, setCourses] = useState([]);
@@ -117,17 +118,30 @@ const Select = ({ pqData }) => {
     setDepartmentValue(null);
   }, [facultyValue]);
 
+  useEffect(() => {
+    if (uniData) {
+      setUniValue(uniData.name);
+    }
+  }, [uniData]);
+
   return (
     <div className="flex grid-cols-3 flex-col gap-3 lg:grid">
       <SearchFilter
-        handleChange={(value) => setUniValue(value)}
+        handleChange={(value) => !uniData && setUniValue(value)}
         description={"Select University"}
+        value={uniData && uniData.name}
       >
-        {universities?.map((university) => (
-          <Option key={university.id} value={university.name}>
-            {university.name}
+        {uniData ? (
+          <Option key={uniData.id} value={uniData.name}>
+            {uniData.name}
           </Option>
-        ))}
+        ) : (
+          universities?.map((university) => (
+            <Option key={university.id} value={university.name}>
+              {university.name}
+            </Option>
+          ))
+        )}
       </SearchFilter>
 
       <SearchFilter
