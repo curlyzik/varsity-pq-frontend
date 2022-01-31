@@ -7,7 +7,7 @@ import { useGetYearsQuery } from "../../../src/services/year";
 import { useGetLevelsQuery } from "../../../src/services/level";
 import { useGetSemesterQuery } from "../../../src/services/semester";
 import axios from "axios";
-import { SearchFilter } from "../../../components/Search";
+import { SearchFilter } from "../../../components/utils/Search";
 import { Select, Button } from "antd";
 
 const { Option } = Select;

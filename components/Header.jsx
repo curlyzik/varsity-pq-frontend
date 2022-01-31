@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import Btn from "./utils/Btn";
+import { Btn } from ".";
+
+
 
 const Header = () => {
   return (

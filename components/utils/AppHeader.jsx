@@ -1,6 +1,6 @@
 import React from "react";
-import { SearchBar } from "../Search";
-import Btn from "./Btn";
+import { Btn } from "..";
+import { SearchBar } from "./Search";
 
 const AppHeader = ({ setKeyword, sort, setSort }) => {
   return (
@@ -17,7 +17,7 @@ const AppHeader = ({ setKeyword, sort, setSort }) => {
             <li
               onClick={() => setSort("federal")}
               className={`${
-                sort === "federal" && "text-blue-400 font-semibold"
+                sort === "federal" && "font-semibold text-blue-400"
               } cursor-pointer`}
             >
               Federal
@@ -25,7 +25,7 @@ const AppHeader = ({ setKeyword, sort, setSort }) => {
             <li
               onClick={() => setSort("private")}
               className={`${
-                sort === "private" && "text-green-400 font-semibold"
+                sort === "private" && "font-semibold text-green-400"
               } cursor-pointer`}
             >
               Private
@@ -33,7 +33,7 @@ const AppHeader = ({ setKeyword, sort, setSort }) => {
             <li
               onClick={() => setSort("state")}
               className={`${
-                sort === "state" && "text-orange-400 font-semibold"
+                sort === "state" && "font-semibold text-orange-400"
               } cursor-pointer`}
             >
               State
