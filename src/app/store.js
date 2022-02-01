@@ -5,6 +5,7 @@ import { universityApi } from "../services/university";
 import { yearApi } from "../services/year";
 import { levelApi } from "../services/level";
 import { semesterApi } from "../services/semester";
+import { uniSearchApi } from "../services/searchServices/uniSearchApi";
 
 export const store = configureStore({
   reducer: {
@@ -14,8 +15,9 @@ export const store = configureStore({
     [yearApi.reducerPath]: yearApi.reducer,
     [levelApi.reducerPath]: levelApi.reducer,
     [semesterApi.reducerPath]: semesterApi.reducer,
+    [uniSearchApi.reducerPath]: uniSearchApi.reducer,
   },
-  
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       universityApi.middleware,
@@ -24,5 +26,6 @@ export const store = configureStore({
       yearApi.middleware,
       levelApi.middleware,
       semesterApi.middleware,
+      uniSearchApi.middleware,
     ),
 });

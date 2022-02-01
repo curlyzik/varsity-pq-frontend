@@ -125,7 +125,7 @@ const Select = ({ pqData, uniData }) => {
   }, [uniData]);
 
   return (
-    <div className="flex grid-cols-3 flex-col gap-3 lg:grid">
+    <>
       <SearchFilter
         handleChange={(value) => !uniData && setUniValue(value)}
         description={"Select University"}
@@ -237,7 +237,7 @@ const Select = ({ pqData, uniData }) => {
           Fetch Past Question
         </Button>
       )}
-    </div>
+    </>
   );
 };
 

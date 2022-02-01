@@ -11,7 +11,7 @@ export const SearchFilter = ({
   value,
 }) => {
   return (
-    <div>
+    <>
       <Select
         showSearch
         style={{ width: 300 }}
@@ -33,7 +33,7 @@ export const SearchFilter = ({
       >
         {children}
       </Select>
-    </div>
+    </>
   );
 };
 
