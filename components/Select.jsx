@@ -225,6 +225,7 @@ const Select = ({ pqData, uniData }) => {
           type="primary"
           className="border-0 bg-black hover:border hover:border-black hover:bg-white hover:text-black"
           onClick={() => getPastQuestionById(pqId)}
+          style={{ width: 420 }}
         >
           Fetch Past Question
         </Button>
@@ -233,8 +234,9 @@ const Select = ({ pqData, uniData }) => {
           type="primary"
           className="border-0 hover:border hover:border-black hover:bg-white hover:text-black"
           disabled
+          style={{ width: 420 }}
         >
-          Fetch Past Question
+          No Available Past Question
         </Button>
       )}
     </>

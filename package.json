@@ -8,7 +8,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
     "animate.css": "^4.1.1",
-    "antd": "^4.18.3",
+    "antd": "^4.18.5",
     "aos": "^2.3.4",
     "axios": "^0.24.0",
     "next": "latest",

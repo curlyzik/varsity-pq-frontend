@@ -9,14 +9,17 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const createRequest = (url) => ({ url, headers: uniSearchApiHeaders });
 
-export const uniSearchApi = createApi({
-  reducerPath: "uniSearchApi",
+export const uniDetailApi = createApi({
+  reducerPath: "uniDetailApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getUniSearch: builder.query({
       query: (query) => createRequest(`/search/q=${query}`),
     }),
+    getUniNews: builder.query({
+      query: (query) => createRequest(`/news/q=${query}`),
+    }),
   }),
 });
 
-export const { useGetUniSearchQuery } = uniSearchApi;
+export const { useGetUniSearchQuery, useGetUniNewsQuery } = uniDetailApi;

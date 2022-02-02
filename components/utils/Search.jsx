@@ -14,7 +14,7 @@ export const SearchFilter = ({
     <>
       <Select
         showSearch
-        style={{ width: 300 }}
+        style={{ width: 420 }}
         placeholder={description}
         optionFilterProp="children"
         filterOption={(input, option) =>
@@ -30,6 +30,7 @@ export const SearchFilter = ({
         onChange={handleChange}
         disabled={disabled}
         value={value}
+        className=" text-base"
       >
         {children}
       </Select>

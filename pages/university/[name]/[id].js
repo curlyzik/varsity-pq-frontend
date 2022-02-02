@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { Select as PQSelect } from "../../../components/index";
-import { useGetUniSearchQuery } from "../../../src/services/searchServices/uniSearchApi";
+import {
+  useGetUniSearchQuery,
+  useGetUniNewsQuery,
+} from "../../../src/services/searchServices/uniDetailApi";
+
+import { SecButton } from "../../../components/index";
 
 const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
   const { data: searchData } = useGetUniSearchQuery(searchTerm);
+  const { data: searchNews } = useGetUniNewsQuery(searchTerm);
   const [link, setLink] = useState("");
 
   // get university link
@@ -15,46 +21,63 @@ const University = ({ pqs, uniData }) => {
       setLink(searchData?.results[0].link);
     }
 
-    if (searchData?.results[0].link.includes("wikipedia")) {
-      setLink(searchData?.results[1].link);
-    } else {
-      setLink(searchData?.results[0].link);
-    }
+    // if (searchData?.results[0].link.includes("wikipedia")) {
+    //   setLink(searchData?.results[1].link);
+    // } else {
+    //   setLink(searchData?.results[0].link);
+    // }
   };
   useEffect(() => {
     getUniLink();
   });
 
-  // get university description
-  const description = !searchData?.results[0].description
-    ? searchData?.results[1].description
-    : searchData?.results[0].description;
-  
-  console.log(searchData)
+  console.log(searchData);
 
   return (
     <div className="bg-[#ECF2F5] p-10">
-      <div className="flex bg-white p-6">
-        <div className="w-3/4">
-          <div>
+      <div className="flex gap-x-4 bg-white p-6">
+        <div className="flex w-3/5 flex-col gap-y-7">
+          <div className="border-b border-b-gray-300 pb-4">
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
               {link}
             </a>
-            <h2 className="text-4xl font-bold">{uniData.name}</h2>
+            <h2 className="mt-1 mb-1 text-4xl font-bold">{uniData.name}</h2>
             <p className="text-base text-gray-400">{uniData.address}</p>
-            <a
-              href={link}
-              target={"_blank"}
-              className="mt-4 inline-block border border-blue-400 px-4 py-2 text-lg font-bold text-blue-600 transition-all duration-300 hover:bg-blue-400 hover:text-white"
-            >
-              Visit Website
-            </a>
+            <div className="mt-1 flex space-x-2">
+              <SecButton link={link}>Visit Website</SecButton>
+              <SecButton link={link}>Select Past Question</SecButton>
+            </div>
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-x-4 gap-y-2">
+
+          <div className=" flex flex-col gap-y-2">
+            <h3 className="text-2xl text-gray-400">
+              Frequently Asked Questions
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
+              {searchData?.answers?.slice(0, 4).map((answer) => (
+                <a
+                  href={`https://www.google.com/search?q=${answer}`}
+                  className="w-full border py-1 px-3"
+                >
+                  {answer}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-2xl text-gray-400">News</h3>
+          </div>
+        </div>
+
+        <div className="w-2/5 p-4">
+          <div className="pt-4 text-4xl font-semibold">
+            Select Past Question
+          </div>
+          <div className="items-cnter mt-6 flex flex-col justify-center gap-y-4">
             <PQSelect pqData={pqs} uniData={uniData} />
           </div>
         </div>
-        <div className="w-1/4">Data</div>
       </div>
     </div>
   );
