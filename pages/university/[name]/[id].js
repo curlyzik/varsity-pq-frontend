@@ -9,7 +9,8 @@ import { SecButton } from "../../../components/index";
 
 const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
-  const { data: searchData } = useGetUniSearchQuery(searchTerm);
+  const { data: searchData, isLoading: dataLoading } =
+    useGetUniSearchQuery(searchTerm);
   const { data: searchNews } = useGetUniNewsQuery(searchTerm);
   const [link, setLink] = useState("");
 
@@ -39,7 +40,7 @@ const University = ({ pqs, uniData }) => {
         <div className="flex flex-col gap-y-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
-              {link?.split("https://www.")[1].split("/")[0]}
+              {dataLoading ? "" : link?.split("https://www.")[1].split("/")[0]}
             </a>
             <h2 className="mb-1 text-2xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
@@ -49,7 +50,9 @@ const University = ({ pqs, uniData }) => {
             </p>
             <div className="mt-1 flex space-x-2">
               <SecButton link={link}>Visit Website</SecButton>
-              <SecButton className={"hidden lg:flex"} link={link}>Select Past Question</SecButton>
+              <SecButton className={"hidden lg:flex"} link={link}>
+                Select Past Question
+              </SecButton>
             </div>
           </div>
 
@@ -78,7 +81,7 @@ const University = ({ pqs, uniData }) => {
                   key={entry.id}
                   className="flex flex-col rounded-md border px-3 pt-3 pb-4"
                 >
-                  <h3 className="mb-2 font-semibold text-base">
+                  <h3 className="mb-2 text-base font-semibold">
                     {entry.title.substr(0, 50)}...
                   </h3>
                   <p className="mb-7 italic text-gray-500">{entry.published}</p>
