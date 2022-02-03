@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AppHeader, Btn, Item, Loader } from ".";
 import { useGetUniversitiesQuery } from "../src/services/university";
-
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScrolling from "./index";
 
 const App = () => {
   const { data, isLoading } = useGetUniversitiesQuery();
@@ -78,20 +77,19 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <InfiniteScroll
-          dataLength={count}
+        <InfiniteScrolling
           next={() => {
             setCount(count + 10);
           }}
-          hasMore={count >= orderBy?.length ? false : true}
-          loader={<Loader />}
+          count={count}
+          data={orderBy}
         >
           <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
             {orderBy?.slice(0, count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
           </div>
-        </InfiniteScroll>
+        </InfiniteScrolling>
       )}
     </div>
   );

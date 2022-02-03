@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Loader, Select as PQSelect } from "../../../components/index";
+import { Btn, Loader, Select as PQSelect } from "../../../components/index";
 import {
   useGetUniSearchQuery,
   useGetUniNewsQuery,
 } from "../../../src/services/searchServices/uniDetailApi";
 
-import { SecButton } from "../../../components/index";
+import { InfiniteScrolling, SecButton } from "././../../../components/index";
 
 const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
@@ -14,6 +14,8 @@ const University = ({ pqs, uniData }) => {
   const { data: searchNews, isLoading: newsLoading } =
     useGetUniNewsQuery(searchTerm);
   const [link, setLink] = useState("");
+
+  const [count, setCount] = useState(12);
 
   // get university link
   const getUniLink = () => {
@@ -82,31 +84,77 @@ const University = ({ pqs, uniData }) => {
               <div className="grid place-items-center pt-4">
                 <Loader />
               </div>
-            ) : (
-              <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
-                {searchNews?.entries?.map((entry) => (
-                  <div
-                    key={entry.id}
-                    className="flex flex-col rounded-md border px-3 pt-3 pb-4"
-                  >
-                    <h3 className="mb-2 text-lg font-semibold lg:text-base">
-                      {entry.title.substr(0, 50)}...
-                    </h3>
-                    <p className="mb-7 text-base italic text-gray-500">
-                      {entry.published}
-                    </p>
-                    <div>
-                      <a
-                        href={entry.link}
-                        target={"_blank"}
-                        className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
-                      >
-                        Read More
-                      </a>
+            ) : count <= 12 ? (
+              <div>
+                <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
+                  {searchNews?.entries?.slice(0, count).map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="flex flex-col rounded-md border px-3 pt-3 pb-4"
+                    >
+                      <h3 className="mb-2 text-lg font-semibold lg:text-base">
+                        {entry.title.substr(0, 50)}...
+                      </h3>
+                      <p className="mb-7 text-base italic text-gray-500">
+                        {entry.published}
+                      </p>
+                      <div>
+                        <a
+                          href={entry.link}
+                          target={"_blank"}
+                          className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
+                        >
+                          Read More
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                <div className="grid place-items-center">
+                  <Btn classNames={"my-12 cursor-pointer"}>
+                    <div
+                      onClick={() => setCount(count + 12)}
+                      className="bg-blue-400 px-5 py-[10px] text-base font-semibold capitalize text-black lg:text-lg "
+                    >
+                      Load More
+                    </div>
+                  </Btn>
+                </div>
               </div>
+            ) : (
+              <InfiniteScrolling
+                count={count}
+                next={() => {
+                  setCount(count + 12);
+                }}
+                data={searchNews}
+              >
+                <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
+                  {searchNews?.entries?.map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="flex flex-col rounded-md border px-3 pt-3 pb-4"
+                    >
+                      <h3 className="mb-2 text-lg font-semibold lg:text-base">
+                        {entry.title.substr(0, 50)}...
+                      </h3>
+                      <p className="mb-7 text-base italic text-gray-500">
+                        {entry.published}
+                      </p>
+                      <div>
+                        <a
+                          href={entry.link}
+                          target={"_blank"}
+                          className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
+                        >
+                          Read More
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </InfiniteScrolling>
             )}
           </div>
         </div>
