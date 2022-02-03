@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Select as PQSelect } from "../../../components/index";
+import { Loader, Select as PQSelect } from "../../../components/index";
 import {
   useGetUniSearchQuery,
   useGetUniNewsQuery,
@@ -42,6 +42,7 @@ const University = ({ pqs, uniData }) => {
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
               {link?.split("https://www.")[1]?.split("/")[0] ||
                 link?.split("http://www.")[1]?.split("/")[0] ||
+                link?.split("https://")[1]?.split("/")[0] ||
                 link?.split("http://")[1]?.split("/")[0]}
             </a>
             <h2 className="mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
@@ -60,17 +61,22 @@ const University = ({ pqs, uniData }) => {
             <h3 className="text-xl text-gray-400 lg:text-2xl">
               Frequently Asked Questions
             </h3>
-            <div className="grid gap-3 lg:grid-cols-2">
-              {searchData?.answers?.slice(0, 4).map((answer) => (
-                <a
-                  href={`https://www.google.com/search?q=${answer}`}
-                  className="w-full border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
-                  key={answer}
-                >
-                  {answer}
-                </a>
-              ))}
-            </div>
+
+            {dataLoading ? (
+              <div className=" text-5xl">Loading</div>
+            ) : (
+              <div className="grid gap-3 lg:grid-cols-2">
+                {searchData?.answers?.slice(0, 4).map((answer) => (
+                  <a
+                    href={`https://www.google.com/search?q=${answer}`}
+                    className="w-full border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
+                    key={answer}
+                  >
+                    {answer}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-y-2 pt-3">
@@ -91,7 +97,7 @@ const University = ({ pqs, uniData }) => {
                     <a
                       href={entry.link}
                       target={"_blank"}
-                      className="grid place-items-center rounded border py-2 px-3 hover:text-blue-500"
+                      className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
                     >
                       Read More
                     </a>
