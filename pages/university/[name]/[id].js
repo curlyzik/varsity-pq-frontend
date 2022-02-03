@@ -42,12 +42,10 @@ const University = ({ pqs, uniData }) => {
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
               {link?.split("https://www.")[1]?.split("/")[0]}
             </a>
-            <h2 className="mb-1 text-2xl font-bold lg:mt-1 lg:text-4xl">
+            <h2 className="mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
             </h2>
-            <p className="text-sm text-gray-400 lg:text-base">
-              {uniData.address}
-            </p>
+            <p className="text-base text-gray-400">{uniData.address}</p>
             <div className="mt-1 flex space-x-2">
               <SecButton link={link}>Visit Website</SecButton>
               <SecButton className={"hidden lg:flex"} link={link}>
@@ -57,14 +55,14 @@ const University = ({ pqs, uniData }) => {
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="text-lg text-gray-400 lg:text-2xl">
+            <h3 className="text-xl text-gray-400 lg:text-2xl">
               Frequently Asked Questions
             </h3>
             <div className="grid gap-3 lg:grid-cols-2">
               {searchData?.answers?.slice(0, 4).map((answer) => (
                 <a
                   href={`https://www.google.com/search?q=${answer}`}
-                  className="w-full border-b py-1 px-3 text-black lg:border"
+                  className="w-full border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
                   key={answer}
                 >
                   {answer}
@@ -74,17 +72,19 @@ const University = ({ pqs, uniData }) => {
           </div>
 
           <div className="flex flex-col gap-y-2 pt-3">
-            <h3 className="text-lg text-gray-400 lg:text-2xl">News</h3>
+            <h3 className="text-xl text-gray-400 lg:text-2xl">News</h3>
             <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
               {searchNews?.entries?.map((entry) => (
                 <div
                   key={entry.id}
                   className="flex flex-col rounded-md border px-3 pt-3 pb-4"
                 >
-                  <h3 className="mb-2 text-base font-semibold">
+                  <h3 className="mb-2 text-lg font-semibold lg:text-base">
                     {entry.title.substr(0, 50)}...
                   </h3>
-                  <p className="mb-7 italic text-gray-500">{entry.published}</p>
+                  <p className="mb-7 text-base italic text-gray-500">
+                    {entry.published}
+                  </p>
                   <div>
                     <a
                       href={entry.link}
