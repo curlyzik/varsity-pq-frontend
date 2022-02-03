@@ -11,7 +11,8 @@ const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
   const { data: searchData, isLoading: dataLoading } =
     useGetUniSearchQuery(searchTerm);
-  const { data: searchNews } = useGetUniNewsQuery(searchTerm);
+  const { data: searchNews, isLoading: newsLoading } =
+    useGetUniNewsQuery(searchTerm);
   const [link, setLink] = useState("");
 
   // get university link
@@ -21,12 +22,6 @@ const University = ({ pqs, uniData }) => {
     } else {
       setLink(searchData?.results[0].link);
     }
-
-    // if (searchData?.results[0].link.includes("wikipedia")) {
-    //   setLink(searchData?.results[1].link);
-    // } else {
-    //   setLink(searchData?.results[0].link);
-    // }
   };
   useEffect(() => {
     getUniLink();
@@ -51,19 +46,21 @@ const University = ({ pqs, uniData }) => {
             <p className="text-base text-gray-400">{uniData.address}</p>
             <div className="mt-1 flex space-x-2">
               <SecButton link={link}>Visit Website</SecButton>
-              <SecButton className={"hidden lg:flex"} link={link}>
+              <SecButton className={"flex lg:hidden"} link={link}>
                 Select Past Question
               </SecButton>
             </div>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="text-xl text-gray-400 lg:text-2xl">
+            <h3 className="text-2xl font-semibold text-gray-400">
               Frequently Asked Questions
             </h3>
 
             {dataLoading ? (
-              <div className=" text-5xl">Loading</div>
+              <div className="grid place-items-center pt-4">
+                <Loader />
+              </div>
             ) : (
               <div className="grid gap-3 lg:grid-cols-2">
                 {searchData?.answers?.slice(0, 4).map((answer) => (
@@ -79,32 +76,38 @@ const University = ({ pqs, uniData }) => {
             )}
           </div>
 
-          <div className="flex flex-col gap-y-2 pt-3">
-            <h3 className="text-xl text-gray-400 lg:text-2xl">News</h3>
-            <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
-              {searchNews?.entries?.map((entry) => (
-                <div
-                  key={entry.id}
-                  className="flex flex-col rounded-md border px-3 pt-3 pb-4"
-                >
-                  <h3 className="mb-2 text-lg font-semibold lg:text-base">
-                    {entry.title.substr(0, 50)}...
-                  </h3>
-                  <p className="mb-7 text-base italic text-gray-500">
-                    {entry.published}
-                  </p>
-                  <div>
-                    <a
-                      href={entry.link}
-                      target={"_blank"}
-                      className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
-                    >
-                      Read More
-                    </a>
+          <div className="mt-3 flex flex-col gap-y-2 pt-3">
+            <h3 className="text-2xl font-semibold text-gray-400">News</h3>
+            {newsLoading ? (
+              <div className="grid place-items-center pt-4">
+                <Loader />
+              </div>
+            ) : (
+              <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
+                {searchNews?.entries?.map((entry) => (
+                  <div
+                    key={entry.id}
+                    className="flex flex-col rounded-md border px-3 pt-3 pb-4"
+                  >
+                    <h3 className="mb-2 text-lg font-semibold lg:text-base">
+                      {entry.title.substr(0, 50)}...
+                    </h3>
+                    <p className="mb-7 text-base italic text-gray-500">
+                      {entry.published}
+                    </p>
+                    <div>
+                      <a
+                        href={entry.link}
+                        target={"_blank"}
+                        className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
+                      >
+                        Read More
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

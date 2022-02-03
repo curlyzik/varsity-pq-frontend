@@ -8,7 +8,7 @@ const App = () => {
   const { data, isLoading } = useGetUniversitiesQuery();
   const [keyword, setKeyword] = useState("");
   const [sort, setSort] = useState("");
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(20);
 
   // sort universites alphabetically
   const compare = (a, b) => {
