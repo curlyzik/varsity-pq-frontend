@@ -40,9 +40,7 @@ const University = ({ pqs, uniData }) => {
         <div className="flex flex-col gap-y-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
-              {dataLoading && link === undefined
-                ? ""
-                : link?.split("https://www.")[1].split("/")[0]}
+              {link.split("https://www.")[1].split("/")[0]}
             </a>
             <h2 className="mb-1 text-2xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
