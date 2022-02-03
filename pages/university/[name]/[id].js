@@ -31,33 +31,38 @@ const University = ({ pqs, uniData }) => {
     getUniLink();
   });
 
-  console.log(searchData);
+  console.log(searchNews);
 
   return (
-    <div className="bg-[#ECF2F5] p-10">
-      <div className="flex gap-x-4 bg-white p-6">
-        <div className="flex w-3/5 flex-col gap-y-7">
-          <div className="border-b border-b-gray-300 pb-4">
+    <div className="bg-[#ECF2F5] p-6">
+      <div className="flex flex-col gap-x-4 rounded-md bg-white p-7 lg:flex-row">
+        <div className="flex flex-col gap-y-7 lg:w-3/5">
+          <div className="border-b border-b-gray-300 pb-5">
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
-              {link}
+              {link.split("https://www.")[1].split("/")[0]}
             </a>
-            <h2 className="mt-1 mb-1 text-4xl font-bold">{uniData.name}</h2>
-            <p className="text-base text-gray-400">{uniData.address}</p>
+            <h2 className="mb-1 text-2xl font-bold lg:mt-1 lg:text-4xl">
+              {uniData.name}
+            </h2>
+            <p className="text-sm text-gray-400 lg:text-base">
+              {uniData.address}
+            </p>
             <div className="mt-1 flex space-x-2">
               <SecButton link={link}>Visit Website</SecButton>
-              <SecButton link={link}>Select Past Question</SecButton>
+              <SecButton className={"hidden lg:flex"} link={link}>Select Past Question</SecButton>
             </div>
           </div>
 
-          <div className=" flex flex-col gap-y-2">
-            <h3 className="text-2xl text-gray-400">
+          <div className="flex flex-col gap-y-2">
+            <h3 className="text-lg text-gray-400 lg:text-2xl">
               Frequently Asked Questions
             </h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid gap-3 lg:grid-cols-2">
               {searchData?.answers?.slice(0, 4).map((answer) => (
                 <a
                   href={`https://www.google.com/search?q=${answer}`}
-                  className="w-full border py-1 px-3"
+                  className="w-full border-b py-1 px-3 text-black lg:border"
+                  key={answer}
                 >
                   {answer}
                 </a>
@@ -65,12 +70,34 @@ const University = ({ pqs, uniData }) => {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-2xl text-gray-400">News</h3>
+          <div className="flex flex-col gap-y-2 pt-3">
+            <h3 className="text-lg text-gray-400 lg:text-2xl">News</h3>
+            <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
+              {searchNews?.entries?.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="flex flex-col rounded-md border px-3 pt-3 pb-4"
+                >
+                  <h3 className="mb-2 font-semibold text-base">
+                    {entry.title.substr(0, 50)}...
+                  </h3>
+                  <p className="mb-7 italic text-gray-500">{entry.published}</p>
+                  <div>
+                    <a
+                      href={entry.link}
+                      target={"_blank"}
+                      className="grid place-items-center rounded border py-2 px-3 hover:text-blue-500"
+                    >
+                      Read More
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="w-2/5 p-4">
+        <div className="hidden p-4 lg:block lg:w-2/5">
           <div className="pt-4 text-4xl font-semibold">
             Select Past Question
           </div>
