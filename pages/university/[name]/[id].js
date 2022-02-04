@@ -32,7 +32,7 @@ const University = ({ pqs, uniData }) => {
   console.log(searchNews);
 
   return (
-    <div className="bg-image p-6">
+    <div className="bg-image p-6 overflow-hidden">
       <div className="flex flex-col gap-x-4 lg:flex-row">
         <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
