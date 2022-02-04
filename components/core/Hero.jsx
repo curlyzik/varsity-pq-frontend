@@ -1,6 +1,6 @@
 import React from "react";
-import { Features, Btn } from ".";
-import { features } from "../helpers/features";
+import { Features, Btn } from "../index";
+import { features } from "../../helpers/features"
 
 const Hero = () => {
   return (
@@ -39,7 +39,7 @@ const Hero = () => {
             </div>
           </div>
           <div className="animate__animated animate__fadeInRight pt-12 lg:w-6/12 lg:pt-0">
-            <img src="book-study-icon-16.png" />
+            <img src="varsity-side-image.png" />
           </div>
         </div>
       </div>

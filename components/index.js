@@ -1,9 +1,10 @@
 // core components
-export { default as App } from "./App";
-export { default as Hero } from "./Hero";
-export { default as Header } from "./Header";
-export { default as Select } from "./Select";
-export { default as InfiniteScrolling } from "./InfiniteScrolling";
+export { default as App } from "./core/App";
+export { default as Hero } from "./core/Hero";
+export { default as Header } from "./core/Header";
+export { default as Select } from "./core/Select";
+export { default as InfiniteScrolling } from "./core/InfiniteScrolling";
+export { default as MetaTags } from "./core/MetaTags";
 
 // utils components
 export { default as Btn } from "./utils/Btn";

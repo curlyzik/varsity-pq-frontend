@@ -6,14 +6,14 @@ import { Button } from "antd";
 import { Select as AntSelect } from "antd";
 const { Option } = AntSelect;
 
-import { useGetUniversitiesQuery } from "../src/services/university";
-import { useGetFacultiesByDepartmentQuery } from "../src/services/faculty";
-import { useGetDepartmentsQuery } from "../src/services/department";
-import { useGetYearsQuery } from "../src/services/year";
-import { useGetLevelsQuery } from "../src/services/level";
-import { useGetSemesterQuery } from "../src/services/semester";
+import { useGetUniversitiesQuery } from "../../src/services/university";
+import { useGetFacultiesByDepartmentQuery } from "../../src/services/faculty";
+import { useGetDepartmentsQuery } from "../../src/services/department";
+import { useGetYearsQuery } from "../../src/services/year";
+import { useGetLevelsQuery } from "../../src/services/level";
+import { useGetSemesterQuery } from "../../src/services/semester";
 
-import { SearchFilter } from "./utils/Search";
+import { SearchFilter } from "./../utils/Search";
 
 const Select = ({ pqData, uniData }) => {
   const [uniValue, setUniValue] = useState("");

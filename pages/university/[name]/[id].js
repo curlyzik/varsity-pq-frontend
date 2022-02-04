@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Btn, Loader, Select as PQSelect } from "../../../components/index";
 import {
   useGetUniSearchQuery,
@@ -6,6 +7,8 @@ import {
 } from "../../../src/services/searchServices/uniDetailApi";
 
 import { InfiniteScrolling, SecButton } from "././../../../components/index";
+
+import Head from 'next/head'
 
 const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
@@ -33,6 +36,11 @@ const University = ({ pqs, uniData }) => {
 
   return (
     <div className="bg-image p-6 overflow-hidden">
+      <Head>
+        <title>
+          {uniData.name} - Varsity PQ
+        </title>
+    </Head>
       <div className="flex flex-col gap-x-4 lg:flex-row">
         <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">

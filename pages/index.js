@@ -1,5 +1,4 @@
-import App from "../components/App";
-import Hero from "../components/Hero";
+import { App, Hero } from "../components/index";
 
 export default function Home() {
   return (

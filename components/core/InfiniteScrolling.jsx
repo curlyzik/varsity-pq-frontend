@@ -1,6 +1,5 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Loader } from ".";
 
 const InfiniteScrolling = ({ next, count, data, children }) => {
   return (
