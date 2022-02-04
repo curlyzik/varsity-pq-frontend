@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
-import { Btn, Loader, Select as PQSelect } from "../../../components/index";
+import {
+  Btn,
+  Loader,
+  Select as PQSelect,
+  InfiniteScrolling,
+  SecButton,
+  Modal,
+} from "../../../components/index";
+
 import {
   useGetUniSearchQuery,
   useGetUniNewsQuery,
 } from "../../../src/services/searchServices/uniDetailApi";
-
-import { InfiniteScrolling, SecButton } from "././../../../components/index";
-
-import Head from 'next/head'
 
 const University = ({ pqs, uniData }) => {
   const searchTerm = uniData.name.split(",")[0];
@@ -19,6 +24,7 @@ const University = ({ pqs, uniData }) => {
   const [link, setLink] = useState("");
 
   const [count, setCount] = useState(12);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   // get university link
   const getUniLink = () => {
@@ -35,12 +41,10 @@ const University = ({ pqs, uniData }) => {
   console.log(searchNews);
 
   return (
-    <div className="bg-image p-6 overflow-hidden">
+    <div className="bg-image overflow-hidden p-6">
       <Head>
-        <title>
-          {uniData.name} - Varsity PQ
-        </title>
-    </Head>
+        <title>{uniData.name} - Varsity PQ</title>
+      </Head>
       <div className="flex flex-col gap-x-4 lg:flex-row">
         <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
@@ -57,10 +61,15 @@ const University = ({ pqs, uniData }) => {
               {uniData.address}
             </p>
             <div className="animate__animated animate__fadeInUp mt-1 flex space-x-2">
-              <SecButton link={link}>Visit Website</SecButton>
-              <SecButton className={"flex lg:hidden"} link={link}>
+              <a>
+                <SecButton link={link}>Visit Website</SecButton>
+              </a>
+              <button
+                onClick={() => setIsModalVisible(true)}
+                className="lg:hidden mt-4 inline-block rounded-md border border-blue-400 px-2 py-2 text-base font-bold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white lg:px-4 lg:text-lg"
+              >
                 Select Past Question
-              </SecButton>
+              </button>
             </div>
           </div>
 
@@ -180,6 +189,18 @@ const University = ({ pqs, uniData }) => {
             <PQSelect pqData={pqs} uniData={uniData} />
           </div>
         </div>
+      </div>
+
+      <div className="lg:hidden">
+        <Modal
+          isModalVisible={isModalVisible}
+          handleOk={() => setIsModalVisible(false)}
+          handleCancel={() => setIsModalVisible(false)}
+        >
+          <div className="mt-6 flex flex-col justify-center gap-y-4">
+            <PQSelect pqData={pqs} uniData={uniData} />
+          </div>
+        </Modal>
       </div>
     </div>
   );

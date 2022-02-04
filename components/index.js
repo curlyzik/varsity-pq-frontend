@@ -5,6 +5,7 @@ export { default as Header } from "./core/Header";
 export { default as Select } from "./core/Select";
 export { default as InfiniteScrolling } from "./core/InfiniteScrolling";
 export { default as MetaTags } from "./core/MetaTags";
+export { default as Modal } from "./core/Modal";
 
 // utils components
 export { default as Btn } from "./utils/Btn";
