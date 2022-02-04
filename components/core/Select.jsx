@@ -15,7 +15,7 @@ import { useGetSemesterQuery } from "../../src/services/semester";
 
 import { SearchFilter } from "./../utils/Search";
 
-const Select = ({ pqData, uniData }) => {
+const Select = ({ pqData, uniData, width }) => {
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
@@ -130,6 +130,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => !uniData && setUniValue(value)}
         description={"Select University"}
         value={uniData && uniData.name}
+        width={width}
       >
         {uniData ? (
           <Option key={uniData.id} value={uniData.name}>
@@ -148,6 +149,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => setFacultyValue(value)}
         description={"Select Faculty"}
         disabled={uniValue === ""}
+        width={width}
       >
         {faculties?.map((faculty) => (
           <Option key={faculty.id} value={faculty.name}>
@@ -161,6 +163,7 @@ const Select = ({ pqData, uniData }) => {
         description={"Select Department"}
         value={departmentValue}
         disabled={facultyValue === ""}
+        width={width}
       >
         {departments?.map((department) => (
           <Option key={department.id} value={department.name}>
@@ -173,6 +176,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => setLevelValue(value)}
         description={"Select level"}
         disabled={departmentValue === null}
+        width={width}
       >
         {levels?.map((level) => (
           <Option key={level.id} value={level.level}>
@@ -185,6 +189,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => setYearValue(value)}
         description={"Select Year"}
         disabled={levelValue === ""}
+        width={width}
       >
         {years?.map((year) => (
           <Option key={year.id} value={year.year}>
@@ -197,6 +202,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => setSemesterValue(value)}
         description={"Select semester"}
         disabled={yearValue === ""}
+        width={width}
       >
         {semesters?.map((semester) => (
           <Option key={semester.id} value={semester.semester}>
@@ -212,6 +218,7 @@ const Select = ({ pqData, uniData }) => {
         handleChange={(value) => setCourseValue(value)}
         value={courseValue}
         disabled={courses.length === 0}
+        width={width}
       >
         {courses.map((course) => (
           <Option key={course.id} value={course.course_code}>
@@ -225,7 +232,7 @@ const Select = ({ pqData, uniData }) => {
           type="primary"
           className="border-0 bg-black hover:border hover:border-black hover:bg-white hover:text-black"
           onClick={() => getPastQuestionById(pqId)}
-          style={{ width: 420 }}
+          style={{ width: width }}
         >
           Fetch Past Question
         </Button>
@@ -234,7 +241,7 @@ const Select = ({ pqData, uniData }) => {
           type="primary"
           className="border-0 hover:border hover:border-black hover:bg-white hover:text-black"
           disabled
-          style={{ width: 420 }}
+          style={{ width: width }}
         >
           No Available Past Question
         </Button>

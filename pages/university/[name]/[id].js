@@ -8,6 +8,7 @@ import {
   InfiniteScrolling,
   SecButton,
   Modal,
+  NewsCard,
 } from "../../../components/index";
 
 import {
@@ -45,6 +46,20 @@ const University = ({ pqs, uniData }) => {
       <Head>
         <title>{uniData.name} - Varsity PQ</title>
       </Head>
+
+      {/* modal to select past question for moblie view */}
+      <div className="lg:hidden">
+        <Modal
+          isModalVisible={isModalVisible}
+          handleOk={() => setIsModalVisible(false)}
+          handleCancel={() => setIsModalVisible(false)}
+        >
+          <div className="mt-6 flex flex-col justify-center gap-y-4">
+            <PQSelect pqData={pqs} uniData={uniData} width={326} />
+          </div>
+        </Modal>
+      </div>
+
       <div className="flex flex-col gap-x-4 lg:flex-row">
         <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
@@ -66,7 +81,7 @@ const University = ({ pqs, uniData }) => {
               </a>
               <button
                 onClick={() => setIsModalVisible(true)}
-                className="lg:hidden mt-4 inline-block rounded-md border border-blue-400 px-2 py-2 text-base font-bold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white lg:px-4 lg:text-lg"
+                className="mt-4 inline-block rounded-md border border-blue-400 px-2 py-2 text-base font-bold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white lg:hidden lg:px-4 lg:text-lg"
               >
                 Select Past Question
               </button>
@@ -109,27 +124,7 @@ const University = ({ pqs, uniData }) => {
               <div>
                 <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
                   {searchNews?.entries?.slice(0, count).map((entry) => (
-                    <div
-                      key={entry.id}
-                      className="flex flex-col rounded-md border px-3 pt-3 pb-4"
-                      data-aos="fade-left"
-                    >
-                      <h3 className="mb-2 text-lg font-semibold lg:text-base">
-                        {entry.title.substr(0, 50)}...
-                      </h3>
-                      <p className="mb-7 text-base italic text-gray-500">
-                        {entry.published}
-                      </p>
-                      <div>
-                        <a
-                          href={entry.link}
-                          target={"_blank"}
-                          className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
-                        >
-                          Read More
-                        </a>
-                      </div>
-                    </div>
+                    <NewsCard data={entry} />
                   ))}
                 </div>
 
@@ -154,26 +149,7 @@ const University = ({ pqs, uniData }) => {
               >
                 <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
                   {searchNews?.entries?.map((entry) => (
-                    <div
-                      key={entry.id}
-                      className="flex flex-col rounded-md border px-3 pt-3 pb-4"
-                    >
-                      <h3 className="mb-2 text-lg font-semibold lg:text-base">
-                        {entry.title.substr(0, 50)}...
-                      </h3>
-                      <p className="mb-7 text-base italic text-gray-500">
-                        {entry.published}
-                      </p>
-                      <div>
-                        <a
-                          href={entry.link}
-                          target={"_blank"}
-                          className="grid place-items-center rounded border py-2 px-3 text-black duration-200 hover:text-blue-500"
-                        >
-                          Read More
-                        </a>
-                      </div>
-                    </div>
+                    <NewsCard data={entry} />
                   ))}
                 </div>
               </InfiniteScrolling>
@@ -189,18 +165,6 @@ const University = ({ pqs, uniData }) => {
             <PQSelect pqData={pqs} uniData={uniData} />
           </div>
         </div>
-      </div>
-
-      <div className="lg:hidden">
-        <Modal
-          isModalVisible={isModalVisible}
-          handleOk={() => setIsModalVisible(false)}
-          handleCancel={() => setIsModalVisible(false)}
-        >
-          <div className="mt-6 flex flex-col justify-center gap-y-4">
-            <PQSelect pqData={pqs} uniData={uniData} />
-          </div>
-        </Modal>
       </div>
     </div>
   );

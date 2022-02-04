@@ -9,12 +9,13 @@ export const SearchFilter = ({
   description,
   disabled,
   value,
+  width = 420,
 }) => {
   return (
     <>
       <Select
         showSearch
-        style={{ width: 420 }}
+        style={{ width: width }}
         placeholder={description}
         optionFilterProp="children"
         filterOption={(input, option) =>
