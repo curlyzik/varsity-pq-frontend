@@ -4,7 +4,7 @@ import { features } from "../helpers/features";
 
 const Hero = () => {
   return (
-    <div className="bg-heroBG font-body overflow-hidden bg-cover bg-no-repeat pb-12 lg:pt-32">
+    <div className="bg-image font-body overflow-hidden bg-cover bg-no-repeat pb-12 lg:pt-32">
       <div className="px-5 pt-20 lg:px-10 lg:pt-0">
         <div className="flex flex-col justify-center lg:flex lg:flex-row lg:items-center lg:gap-x-8">
           <div className="animate__animated animate__fadeInLeft flex flex-col gap-y-4 lg:w-3/4">
@@ -44,7 +44,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="mx-5 mt-20 border border-blue-400 bg-[#0e0b24e3] px-5 py-9 lg:mx-10 lg:px-10 lg:py-16">
+      <div className="mx-5 mt-20 border border-blue-400 bg-[#000] bg-opacity-30 px-5 py-9 lg:mx-10 lg:px-10 lg:py-16">
         <div className="flex flex-col items-center justify-center gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5">
           {features.map((feature, index) => (
             <Features

@@ -9,7 +9,7 @@ const Item = ({ university }) => {
     >
       <div
         data-aos="fade-left"
-        className={`cursor-pointer bg-white p-6 ${
+        className={`cursor-pointer bg-white p-6 rounded-md ${
           university.type === "federal"
             ? "border-2 border-blue-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-blue-700"
             : university.type === "state"

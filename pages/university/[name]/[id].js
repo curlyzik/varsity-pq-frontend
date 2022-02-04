@@ -32,9 +32,9 @@ const University = ({ pqs, uniData }) => {
   console.log(searchNews);
 
   return (
-    <div className="bg-[#ECF2F5] p-6">
-      <div className="flex flex-col gap-x-4 rounded-md bg-white p-7 lg:flex-row">
-        <div className="flex flex-col gap-y-7 lg:w-3/5">
+    <div className="bg-image p-6">
+      <div className="flex flex-col gap-x-4 lg:flex-row">
+        <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
             <a className="text-lg text-blue-400" href={link} target={"_blank"}>
               {link?.split("https://www.")[1]?.split("/")[0] ||
@@ -42,11 +42,13 @@ const University = ({ pqs, uniData }) => {
                 link?.split("https://")[1]?.split("/")[0] ||
                 link?.split("http://")[1]?.split("/")[0]}
             </a>
-            <h2 className="mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
+            <h2 className="animate__animated animate__fadeInUp mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
             </h2>
-            <p className="text-base text-gray-400">{uniData.address}</p>
-            <div className="mt-1 flex space-x-2">
+            <p className="animate__animated animate__fadeInUp text-base text-gray-400">
+              {uniData.address}
+            </p>
+            <div className="animate__animated animate__fadeInUp mt-1 flex space-x-2">
               <SecButton link={link}>Visit Website</SecButton>
               <SecButton className={"flex lg:hidden"} link={link}>
                 Select Past Question
@@ -68,9 +70,10 @@ const University = ({ pqs, uniData }) => {
                 {searchData?.answers?.slice(0, 4).map((answer) => (
                   <a
                     href={`https://www.google.com/search?q=${answer}`}
-                    className="w-full border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
+                    className="w-full rounded-md border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
                     key={answer}
                     target={"_blank"}
+                    data-aos="fade-left"
                   >
                     {answer}
                   </a>
@@ -92,6 +95,7 @@ const University = ({ pqs, uniData }) => {
                     <div
                       key={entry.id}
                       className="flex flex-col rounded-md border px-3 pt-3 pb-4"
+                      data-aos="fade-left"
                     >
                       <h3 className="mb-2 text-lg font-semibold lg:text-base">
                         {entry.title.substr(0, 50)}...
@@ -160,11 +164,11 @@ const University = ({ pqs, uniData }) => {
           </div>
         </div>
 
-        <div className="hidden p-4 lg:block lg:w-2/5">
+        <div className="hidden self-start rounded-md bg-white p-7 pt-9 lg:block lg:w-2/5">
           <div className="pt-4 text-4xl font-semibold">
             Select Past Question
           </div>
-          <div className="items-cnter mt-6 flex flex-col justify-center gap-y-4">
+          <div className="mt-6 flex flex-col justify-center gap-y-4">
             <PQSelect pqData={pqs} uniData={uniData} />
           </div>
         </div>
