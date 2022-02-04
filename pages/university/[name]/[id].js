@@ -17,29 +17,29 @@ import {
 } from "../../../src/services/searchServices/uniDetailApi";
 
 const University = ({ pqs, uniData }) => {
-  const searchTerm = uniData.name.split(",")[0];
-  const { data: searchData, isLoading: dataLoading } =
-    useGetUniSearchQuery(searchTerm);
-  const { data: searchNews, isLoading: newsLoading } =
-    useGetUniNewsQuery(searchTerm);
-  const [link, setLink] = useState("");
+  // const searchTerm = uniData.name.split(",")[0];
+  // const { data: searchData, isLoading: dataLoading } =
+  //   useGetUniSearchQuery(searchTerm);
+  // const { data: searchNews, isLoading: newsLoading } =
+  //   useGetUniNewsQuery(searchTerm);
+  // const [link, setLink] = useState("");
 
-  const [count, setCount] = useState(12);
+  // const [count, setCount] = useState(12);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   // get university link
-  const getUniLink = () => {
-    if (!searchData?.results[0].link) {
-      setLink(searchData?.results[1].link);
-    } else {
-      setLink(searchData?.results[0].link);
-    }
-  };
-  useEffect(() => {
-    getUniLink();
-  });
+  // const getUniLink = () => {
+  //   if (!searchData?.results[0].link) {
+  //     setLink(searchData?.results[1].link);
+  //   } else {
+  //     setLink(searchData?.results[0].link);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getUniLink();
+  // });
 
-  console.log(searchNews);
+  console.log(uniData.website);
 
   return (
     <div className="bg-image overflow-hidden p-6">
@@ -63,11 +63,17 @@ const University = ({ pqs, uniData }) => {
       <div className="flex flex-col gap-x-4 lg:flex-row">
         <div className="flex flex-col gap-y-7 rounded-md bg-white p-7 lg:w-3/5">
           <div className="border-b border-b-gray-300 pb-5">
-            <a className="text-lg text-blue-400" href={link} target={"_blank"}>
-              {link?.split("https://www.")[1]?.split("/")[0] ||
-                link?.split("http://www.")[1]?.split("/")[0] ||
-                link?.split("https://")[1]?.split("/")[0] ||
-                link?.split("http://")[1]?.split("/")[0]}
+            <a
+              className="text-lg text-blue-400"
+              href={uniData.website}
+              target={"_blank"}
+            >
+              {uniData.website?.split("https://www.")[1]?.split("/")[0] ||
+                uniData.website?.split("https://www.")[1] ||
+                uniData.website?.split("http://www.")[1] ||
+                uniData.webiste?.split("http://www.")[1]?.split("/")[0] ||
+                uniData.webiste?.split("https://")[1]?.split("/")[0] ||
+                uniData.webiste?.split("http://")[1]?.split("/")[0]}
             </a>
             <h2 className="animate__animated animate__fadeInUp mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
@@ -76,9 +82,7 @@ const University = ({ pqs, uniData }) => {
               {uniData.address}
             </p>
             <div className="animate__animated animate__fadeInUp mt-1 flex space-x-2">
-              <a>
-                <SecButton link={link}>Visit Website</SecButton>
-              </a>
+              <SecButton link={uniData.website}>Visit Website</SecButton>
               <button
                 onClick={() => setIsModalVisible(true)}
                 className="mt-4 inline-block rounded-md border border-blue-400 px-2 py-2 text-base font-bold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white lg:hidden lg:px-4 lg:text-lg"
@@ -92,8 +96,9 @@ const University = ({ pqs, uniData }) => {
             <h3 className="text-2xl font-semibold text-gray-400">
               Frequently Asked Questions
             </h3>
+            <p>Coming Soon</p>
 
-            {dataLoading ? (
+            {/* {dataLoading ? (
               <div className="grid place-items-center pt-4">
                 <Loader />
               </div>
@@ -111,12 +116,13 @@ const University = ({ pqs, uniData }) => {
                   </a>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
 
           <div className="mt-3 flex flex-col gap-y-2 pt-3">
             <h3 className="text-2xl font-semibold text-gray-400">News</h3>
-            {newsLoading ? (
+            <p>Coming Soon</p>
+            {/* {newsLoading ? (
               <div className="grid place-items-center pt-4">
                 <Loader />
               </div>
@@ -124,7 +130,7 @@ const University = ({ pqs, uniData }) => {
               <div>
                 <div className="grid items-stretch justify-center gap-x-5 gap-y-6 lg:grid-cols-3">
                   {searchNews?.entries?.slice(0, count).map((entry) => (
-                    <NewsCard data={entry} />
+                    <NewsCard data={entry} key={entry.id} />
                   ))}
                 </div>
 
@@ -153,7 +159,7 @@ const University = ({ pqs, uniData }) => {
                   ))}
                 </div>
               </InfiniteScrolling>
-            )}
+            )} */}
           </div>
         </div>
 

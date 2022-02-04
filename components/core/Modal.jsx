@@ -3,9 +3,9 @@ import { Modal as AntModal, Button } from "antd";
 
 const Modal = ({ children, isModalVisible, handleOk, handleCancel }) => {
   return (
-    <>
+    <div>
       <AntModal
-        title="Basic Modal"
+        title="Select Past Question"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -20,7 +20,7 @@ const Modal = ({ children, isModalVisible, handleOk, handleCancel }) => {
       >
         {children}
       </AntModal>
-    </>
+    </div>
   );
 };
 
