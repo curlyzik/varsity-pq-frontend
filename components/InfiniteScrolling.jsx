@@ -8,7 +8,7 @@ const InfiniteScrolling = ({ next, count, data, children }) => {
       dataLength={count}
       next={next}
       hasMore={count >= data?.length ? false : true}
-    //   loader={<Loader />}
+      //   loader={<Loader />}
     >
       {children}
     </InfiniteScroll>

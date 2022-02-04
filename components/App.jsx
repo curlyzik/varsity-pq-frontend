@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { AppHeader, Btn, Item, Loader } from ".";
+import { AppHeader, Btn, Item, Loader, InfiniteScrolling } from ".";
 import { useGetUniversitiesQuery } from "../src/services/university";
-import InfiniteScrolling from "./index";
 
 const App = () => {
   const { data, isLoading } = useGetUniversitiesQuery();

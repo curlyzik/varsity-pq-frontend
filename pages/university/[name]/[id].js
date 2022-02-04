@@ -70,6 +70,7 @@ const University = ({ pqs, uniData }) => {
                     href={`https://www.google.com/search?q=${answer}`}
                     className="w-full border-b py-1 px-3 text-lg text-black lg:border lg:text-base"
                     key={answer}
+                    target={"_blank"}
                   >
                     {answer}
                   </a>
