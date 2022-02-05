@@ -6,6 +6,7 @@ import { yearApi } from "../services/year";
 import { levelApi } from "../services/level";
 import { semesterApi } from "../services/semester";
 import { uniDetailApi } from "../services/searchServices/uniDetailApi";
+import { gitHubRepoApi } from "../services/gitHubRepoApi";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     [levelApi.reducerPath]: levelApi.reducer,
     [semesterApi.reducerPath]: semesterApi.reducer,
     [uniDetailApi.reducerPath]: uniDetailApi.reducer,
+    [gitHubRepoApi.reducerPath]: gitHubRepoApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -26,6 +28,7 @@ export const store = configureStore({
       yearApi.middleware,
       levelApi.middleware,
       semesterApi.middleware,
-      uniDetailApi.middleware
+      uniDetailApi.middleware,
+      gitHubRepoApi.middleware
     ),
 });

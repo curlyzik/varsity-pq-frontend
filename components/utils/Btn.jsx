@@ -1,11 +1,11 @@
 import React from "react";
 import Ripples from "react-ripples";
 
-const Btn = ({ children, classNames }) => {
+const Btn = ({ children, onClick, classNames }) => {
   return (
-    <Ripples className={`font-semibold capitalize ${classNames}`}>
-      {children}
-    </Ripples>
+    <div className={`font-semibold overflow-hidden cursor-pointer capitalize ${classNames}`} onClick={onClick}>
+      <Ripples>{children}</Ripples>
+    </div>
   );
 };
 

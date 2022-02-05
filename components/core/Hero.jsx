@@ -1,8 +1,16 @@
 import React from "react";
+import Link from "next/link";
+import { BsLightning } from "react-icons/bs";
+import { FiGithub } from "react-icons/fi";
+
 import { Features, Btn } from "../index";
-import { features } from "../../helpers/features"
+import { features } from "../../helpers/features";
+import { useGetGitHubRepoQuery } from "../../src/services/gitHubRepoApi";
 
 const Hero = () => {
+  const { data } = useGetGitHubRepoQuery();
+  const starCount = data?.stargazers_count;
+
   return (
     <div className="bg-image font-body overflow-hidden bg-cover bg-no-repeat pb-12 lg:pt-32">
       <div className="px-5 pt-20 lg:px-10 lg:pt-0">
@@ -18,24 +26,25 @@ const Hero = () => {
               curated past questions from 170 universites in Nigeria.
             </p>
             <div className="flex gap-x-3">
-              <a>
-                <Btn
-                  classNames={
-                    "px-5 py-[10px] text-base lg:text-lg text-black bg-blue-400"
-                  }
+              <Btn>
+                <Link href={"/app"}>
+                  <a className="flex items-center justify-center rounded-md bg-blue-400 px-5 py-[10px] text-base text-black hover:text-black lg:text-lg">
+                    <span>Search Now</span>
+                    <BsLightning className="ml-1" />
+                  </a>
+                </Link>
+              </Btn>
+
+              <Btn>
+                <a
+                  target={"_blank"}
+                  href="https://github.com/curlyzik/varsity-pq-frontend"
+                  className="flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base text-blue-200 lg:text-lg"
                 >
-                  Search Now
-                </Btn>
-              </a>
-              <a>
-                <Btn
-                  classNames={
-                    "px-5 py-[10px] text-base lg:text-lg text-black shadow-xl text-blue-500"
-                  }
-                >
-                  Github Stars
-                </Btn>
-              </a>
+                  <span>Github Stars {starCount}</span>
+                  <FiGithub className="ml-1" />
+                </a>
+              </Btn>
             </div>
           </div>
           <div className="animate__animated animate__fadeInRight pt-12 lg:w-6/12 lg:pt-0">
@@ -44,7 +53,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="mx-5 mt-20 border border-blue-400 bg-[#000] bg-opacity-30 px-5 py-9 lg:mx-10 lg:px-10 lg:py-16">
+      <div className="mx-5 mt-20 rounded-md border border-blue-400 bg-[#000] bg-opacity-30 px-5 py-9 lg:mx-10 lg:px-10 lg:py-16">
         <div className="flex flex-col items-center justify-center gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5">
           {features.map((feature, index) => (
             <Features
