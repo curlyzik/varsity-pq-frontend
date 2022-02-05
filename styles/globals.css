@@ -11,6 +11,6 @@
     @apply font-body;
   }
   ul {
-    @apply mb-0;
+    @apply !mb-0;
   }
 }
