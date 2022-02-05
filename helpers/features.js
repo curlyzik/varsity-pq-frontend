@@ -15,49 +15,49 @@ import {
 
 export const features = [
   {
-    name: "300+ Cheatsheets",
+    name: "300+ Past Questions",
     description:
-      "Code house is super huge enough and have more than 300+ cheatsheets",
+      "Varsity PQ is huge enough to have more than 300+ past questions",
     icon: <FiPackage className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Category Filter",
+    name: "Filter by Private University",
     description:
-      "Feel free to filter using categories, it can help you find the best one.",
+      "Feel free to filter down private universities",
     icon: <FiLayers className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Filter By Source",
+    name: "Filter by Federal Univesity",
     description:
-      "You can filter cheatsheets by source, eg: medium.com or overapi.com",
+      "You can filter down federal universities",
     icon: <FiRss className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Bookmark Favorites",
-    description: "You can bookmark cheatsheets for you to have a look later.",
+    name: "Filter by State Univesity",
+    description: "You can also filter down state universities",
     icon: <FiBookmark className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Request Features",
+    name: "Become one of our Administrators",
     description:
-      "You can help us become code house better by adding your feature requests.",
+      "We can't do it alone. You can help Varsity PQ become better by adding new past questions for us.",
     icon: <FiCloudLightning className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Contributors Page",
+    name: "Developer Contributors Page",
     description:
-      "We proudly show our contributors, there is a dedicated contributors page.",
+      "We proudly show developers who contributes to this project, there is a dedicated contributors page.",
     icon: <FiUsers className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Add new Cheatsheet",
+    name: "Add new Past Question",
     description:
-      "You can add a new cheatsheet to code house, without even leaving the browser",
+      "You can add a new past question to Varsity PQ",
     icon: <FiFolderPlus className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Report Cheatsheet",
-    description: "You can report a cheatsheet if you find it suspicious. ",
+    name: "Report Past Question",
+    description: "You can report a past question if you find it unhelpful",
     icon: <FiFlag className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
@@ -67,7 +67,7 @@ export const features = [
   },
   {
     name: "Dark Mode",
-    description: "Coders love dark mode, so you can enjoy it here too.",
+    description: "You might like dark mode, so you can enjoy it here too.",
     icon: <FiMoon className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
 ];

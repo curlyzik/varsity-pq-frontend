@@ -4,9 +4,9 @@ import { Btn } from "../index";
 
 const Header = () => {
   return (
-    <div className="bg-black border-b border-b-gray-600">
+    <div className="border-b border-b-gray-600 bg-black">
       <div className="font-body overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4">
-        <div className="mx-4 flex grid-cols-[30%,70%] justify-between text-white lg:grid">
+        <div className="mx-4 flex grid-cols-[30%,70%] items-center justify-between text-white lg:grid">
           <Link href="/">
             <a>
               <div className="text-3xl font-bold">Vartsity PQ</div>
