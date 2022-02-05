@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { Btn } from "../index";
-import { storeUniDataToDB } from "../../helpers/storeDataToDB";
-import { data } from "../../db";
 
 const Header = () => {
   return (
@@ -28,7 +26,6 @@ const Header = () => {
                   classNames={
                     "border px-2 py-[4px] text-blue-400 border-blue-400"
                   }
-                  onClick={() => storeUniDataToDB(data)}
                 >
                   New Past Question
                 </Btn>

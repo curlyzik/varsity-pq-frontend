@@ -73,7 +73,8 @@ const University = ({ pqs, uniData }) => {
                 uniData.website?.split("http://www.")[1] ||
                 uniData.webiste?.split("http://www.")[1]?.split("/")[0] ||
                 uniData.webiste?.split("https://")[1]?.split("/")[0] ||
-                uniData.webiste?.split("http://")[1]?.split("/")[0]}
+                uniData.webiste?.split("http://")[1]?.split("/")[0] ||
+                uniData.webiste}
             </a>
             <h2 className="animate__animated animate__fadeInUp mb-1 text-3xl font-bold lg:mt-1 lg:text-4xl">
               {uniData.name}
