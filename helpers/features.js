@@ -40,7 +40,7 @@ export const features = [
   {
     name: "Become one of our Administrators",
     description:
-      "We can't do it alone. You can help Varsity PQ become better by adding new past questions for us.",
+      "We can't do it alone. You can help Varsity PQ become better by volunteering to add new past questions for us.",
     icon: <FiCloudLightning className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
@@ -61,8 +61,8 @@ export const features = [
     icon: <FiFlag className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "GraphQL Playground",
-    description: "A dedicated Graphql playground to access code house API",
+    name: "API",
+    description: "API endpoints to access code house API",
     icon: <FiDatabase className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {

@@ -1,42 +1,65 @@
 import React from "react";
 import Link from "next/link";
+import { SecButton } from "..";
 
 const Item = ({ university }) => {
   return (
-    <Link
-      href={`/university/${university.name}/${university.id}`}
-      key={university.id}
+    <div
+      data-aos="fade-left"
+      className={`flex flex-col rounded-md border bg-white p-6 transition-all duration-500 hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset  ${
+        university.type === "federal"
+          ? "border-blue-300 hover:ring-blue-500"
+          : university.type === "state"
+          ? "border-orange-300 hover:ring-orange-500"
+          : "border-green-300 hover:ring-green-500"
+      }`}
     >
-      <div
-        data-aos="fade-left"
-        className={`cursor-pointer bg-white p-6 rounded-md ${
-          university.type === "federal"
-            ? "border-2 border-blue-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-blue-700"
-            : university.type === "state"
-            ? "border-2 border-orange-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-orange-700"
-            : "border-2 border-green-300 transition-all hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset hover:ring-green-700"
-        }`}
-      >
-        <div>
-          <span
-            className={` px-2 py-1 text-xs font-bold text-gray-600 ${
+      <div>
+        <span
+          className={` px-2 py-1 text-xs font-bold text-gray-600 ${
+            university.type === "federal"
+              ? "bg-blue-100"
+              : university.type === "state"
+              ? "bg-orange-100"
+              : "bg-green-100"
+          }`}
+        >
+          {university.type}
+        </span>
+        <h2 className="mt-2 mb-2 text-xl font-bold">{university.name}</h2>
+        <p className="mb-3 text-sm text-gray-600">
+          <span className="italic text-black">Address:</span>{" "}
+          {university.address}
+        </p>
+
+        <div className="grid grid-cols-[auto,auto] gap-x-3 lg:flex lg:flex-col lg:gap-y-2">
+          <Link href={`/university/${university.name}/${university.id}`}>
+            <a
+              className={`grid place-items-center rounded-md border px-1 py-2 text-sm font-bold ${
+                university.type === "federal"
+                  ? "border-blue-400 hover:text-blue-400"
+                  : university.type === "state"
+                  ? "border-orange-400 hover:text-orange-400"
+                  : "border-green-400 hover:text-green-400"
+              }`}
+            >
+              View Details
+            </a>
+          </Link>
+          <a
+            className={`grid place-items-center rounded-md border px-1 py-2 text-sm font-bold text-white transition-all duration-300 hover:text-white ${
               university.type === "federal"
-                ? "bg-blue-100"
+                ? "bg-blue-400 hover:bg-blue-600"
                 : university.type === "state"
-                ? "bg-orange-100"
-                : "bg-green-100"
+                ? "bg-orange-400 hover:bg-orange-600"
+                : "bg-green-400 hover:bg-green-600"
             }`}
           >
-            {university.type}
-          </span>
-          <h2 className="mt-2 mb-2 text-xl font-bold">{university.name}</h2>
-          <p className="text-sm text-gray-600">
-            <span className="italic text-black">Address:</span>{" "}
-            {university.address}
-          </p>
+            Select Past Question
+          </a>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

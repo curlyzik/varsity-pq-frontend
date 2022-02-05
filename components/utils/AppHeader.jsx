@@ -4,7 +4,7 @@ import { SearchBar } from "./Search";
 const AppHeader = ({ setKeyword, sort, setSort }) => {
   return (
     <div className="px-5 lg:mx-10 lg:px-0">
-      <div className="flex flex-col-reverse items-center justify-between gap-y-3 bg-white px-4 py-4 lg:flex-row">
+      <div className="flex flex-col-reverse items-center justify-between gap-y-3 bg-white px-4 py-4 lg:flex-row rounded-md">
         <SearchBar setKeyword={setKeyword} />
         <div className="">
           <ul className="flex items-center justify-center gap-x-5 lg:!text-lg">
