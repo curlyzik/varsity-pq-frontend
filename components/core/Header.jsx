@@ -20,7 +20,9 @@ const Header = () => {
               <a>API</a>
             </li>
             <li>
-              <a>Admin/Volunteer Request</a>
+              <Link href={"/volunteer/volunteer-request"}>
+                <a>Admin/Volunteer Request</a>
+              </Link>
             </li>
             <li>
               <a>Contributors</a>
