@@ -12,14 +12,17 @@ const AdminRequest = () => {
       </Head>
       <MainHeader />
 
-      <div className="bg-white pb-10 p-14">
-        <div className="animate__animated animate__fadeInUp flex w-full flex-col items-center justify-center gap-x-10 lg:flex-row">
+      <div className="bg-white px-6 pt-14 pb-10 lg:px-0">
+        <div className="animate__animated animate__fadeInUp flex w-full flex-col items-center justify-center gap-y-8 gap-x-10 text-center lg:flex-row lg:text-left">
           <img src="/others/admin-req.svg" className="h-[230px]" />
           <div>
-            <h1 className="text-4xl font-bold">Admin/ Volunteer Request</h1>
-            <p className=" mb-3">
+            <h1 className="text-3xl font-bold lg:text-4xl">
+              Volunteer Request
+            </h1>
+            <p className="mb-3 lg:w-[600px] text-gray-500 text-base">
               You can help Varsity PQ become better by volunteering to add new
-              past questions.
+              past questions for the course and the institution you currently
+              study in.
             </p>
             <Btn>
               <a className="flex items-center justify-center gap-4 rounded-md bg-blue-500 py-2 px-3 text-base text-white transition-all duration-300 hover:bg-blue-600 hover:text-white">
