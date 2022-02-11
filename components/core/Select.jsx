@@ -7,8 +7,8 @@ import { Select as AntSelect } from "antd";
 const { Option } = AntSelect;
 
 import { useGetUniversitiesQuery } from "../../src/services/university";
-import { useGetFacultiesByDepartmentQuery } from "../../src/services/faculty";
-import { useGetDepartmentsQuery } from "../../src/services/department";
+import { useGetFacultiesByUniversityQuery } from "../../src/services/faculty";
+import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetYearsQuery } from "../../src/services/year";
 import { useGetLevelsQuery } from "../../src/services/level";
 import { useGetSemesterQuery } from "../../src/services/semester";
@@ -25,8 +25,8 @@ const Select = ({ pqData, uniData, width }) => {
   const [courseValue, setCourseValue] = useState("");
 
   const { data: universities } = useGetUniversitiesQuery();
-  const { data: faculties } = useGetFacultiesByDepartmentQuery(uniValue);
-  const { data: departments } = useGetDepartmentsQuery(facultyValue);
+  const { data: faculties } = useGetFacultiesByUniversityQuery(uniValue);
+  const { data: departments } = useGetDepartmentsByFacultyQuery(facultyValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();

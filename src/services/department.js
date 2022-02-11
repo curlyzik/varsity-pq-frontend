@@ -7,9 +7,13 @@ export const departmentApi = createApi({
   }),
   endpoints: (builder) => ({
     getDepartments: builder.query({
+      query: () => "",
+    }),
+    getDepartmentsByFaculty: builder.query({
       query: (faculty) => `?faculty__name=${faculty}`,
     }),
   }),
 });
 
-export const { useGetDepartmentsQuery } = departmentApi;
+export const { useGetDepartmentsByFacultyQuery, useGetDepartmentsQuery } =
+  departmentApi;
