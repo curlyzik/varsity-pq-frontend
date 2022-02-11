@@ -31,7 +31,7 @@ export const SearchFilter = ({
         onChange={handleChange}
         disabled={disabled}
         value={value}
-        className=" text-base"
+        className="text-base"
       >
         {children}
       </Select>

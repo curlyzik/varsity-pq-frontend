@@ -16,6 +16,10 @@
   );
 }
 
+.ant-input {
+  font-size: 16px !important;
+}
+
 .border-style {
   border-radius: 41% 59% 18% 82% / 76% 25% 75% 24%;
 }
