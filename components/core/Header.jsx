@@ -11,11 +11,18 @@ const Header = () => {
     <div className="relative border-b border-b-gray-600 bg-black text-white">
       <div className="font-body  overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4">
         <div className="mx-4 flex items-center justify-between text-white">
-          <Link href="/">
-            <a>
-              <div className="text-3xl font-bold text-white">Vartsity PQ</div>
-            </a>
-          </Link>
+          <div>
+            <Link href="/">
+              <a>
+                <div
+                  className="text-3xl font-bold text-white"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Vartsity PQ
+                </div>
+              </a>
+            </Link>
+          </div>
           <ul className="hidden items-center justify-center gap-x-4 text-base lg:flex">
             <li>
               <a>How it works</a>
@@ -68,30 +75,51 @@ const Header = () => {
           <div className="absolute inset-0 z-20 mt-16 border-t border-t-gray-500 text-white">
             <div className="bg-black">
               <div className="w-full bg-[#00044e] bg-opacity-60 py-8 px-4">
-                <ul className="animate__animated animate__zoomIn flex flex-col items-start justify-center gap-y-7 gap-x-4 text-lg text-white">
+                <ul className="flex flex-col items-start justify-center gap-y-7 gap-x-4 text-lg text-white">
                   <Link href={"/"}>
-                    <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                    <li
+                      className="w-full border-b border-b-gray-400 pb-1 text-white"
+                      onClick={() => setIsOpen(false)}
+                    >
                       <a>How it works</a>
                     </li>
                   </Link>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <a>API</a>
                   </li>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Link href={"/volunteer/volunteer-request"}>
                       <a>Admin/Volunteer Request</a>
                     </Link>
                   </li>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <a>Contributors</a>
                   </li>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <a>Past Questions</a>
                   </li>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <a>Collections</a>
                   </li>
-                  <li className="w-full border-b border-b-gray-400 pb-1 text-white hover:text-white">
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1 text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <a>New Past Question</a>
                   </li>
                 </ul>
