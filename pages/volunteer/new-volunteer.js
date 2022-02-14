@@ -51,17 +51,21 @@ const NewVolunteer = () => {
             <Form layout="vertical" onFinish={onFinish} form={form}>
               <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
                 <Form.Item
-                  name="first_name"
-                  label="First Name"
+                  name="name"
+                  label="Full Name"
                   rules={[
-                    { required: true, message: "Please input first name!" },
+                    { required: true, message: "Please input fullname!" },
                   ]}
                 >
-                  <Input placeholder="first name" />
+                  <Input placeholder="full name" />
                 </Form.Item>
 
-                <Form.Item name="last_name" label="Last Name">
-                  <Input placeholder="last name" />
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, message: "Please input email!" }]}
+                >
+                  <Input placeholder="email" type={"email"} />
                 </Form.Item>
 
                 <Form.Item

@@ -72,10 +72,10 @@ const Header = () => {
           </div>
         </div>
         {isOpen && (
-          <div className="absolute inset-0 z-20 mt-16 border-t border-t-gray-500 text-white">
+          <div className="absolute inset-0 z-20 mt-16 border-t border-t-gray-500 !text-white lg:hidden">
             <div className="bg-black">
               <div className="w-full bg-[#00044e] bg-opacity-60 py-8 px-4">
-                <ul className="flex flex-col items-start justify-center gap-y-7 gap-x-4 text-lg text-white">
+                <ul className="flex flex-col items-start justify-center gap-y-7 gap-x-4 text-lg !text-white">
                   <Link href={"/"}>
                     <li
                       className="w-full border-b border-b-gray-400 pb-1 text-white"
