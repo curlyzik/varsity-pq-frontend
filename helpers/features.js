@@ -62,7 +62,7 @@ export const features = [
   },
   {
     name: "API",
-    description: "API endpoints to access code house API",
+    description: "API endpoints to access Varsity PQ API",
     icon: <FiDatabase className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {

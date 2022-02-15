@@ -88,7 +88,7 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1 text-white"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a>API</a>
+                    <a href="http://varsity-pq.herokuapp.com/">API</a>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1 text-white"

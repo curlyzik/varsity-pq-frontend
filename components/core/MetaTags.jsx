@@ -51,7 +51,7 @@ const MetaTags = () => {
       />
       <meta
         property="og:image"
-        content="https://codehouse.vercel.app/assets/codehouse-banner.png"
+        content="https://varsity-pq-frontend.vercel.app/varsity-pq-banner.png"
       />
 
       {/* Twitter */}
@@ -70,7 +70,7 @@ const MetaTags = () => {
       />
       <meta
         property="twitter:image"
-        content="https://codehouse.vercel.app/assets/codehouse-banner.png"
+        content="https://varsity-pq-frontend.vercel.app/varsity-pq-banner.png"
       />
 
       {/* Buy Me A Coffee
