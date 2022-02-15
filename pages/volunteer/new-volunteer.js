@@ -8,6 +8,7 @@ import { useGetUniversitiesQuery } from "../../src/services/university";
 import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetFacultiesQuery } from "../../src/services/faculty";
 import { Btn } from "../../components";
+import axios from "axios";
 
 const NewVolunteer = () => {
   const [form] = Form.useForm();
@@ -16,6 +17,7 @@ const NewVolunteer = () => {
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
   const [yearValue, setYearValue] = useState();
+  const [volunteerDetails, setVolunteerDetails] = useState();
   const [years, setYears] = useState([]);
 
   const { data: universities } = useGetUniversitiesQuery();
@@ -31,8 +33,17 @@ const NewVolunteer = () => {
     }
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    try {
+      const data = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/new-volunteer/`,
+        values
+      );
+      setVolunteerDetails(data.data.data);
+      console.log("Success:", volunteerDetails);
+    } catch (error) {
+      console.log(error.message.data);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +62,7 @@ const NewVolunteer = () => {
             <Form layout="vertical" onFinish={onFinish} form={form}>
               <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
                 <Form.Item
-                  name="name"
+                  name="full_name"
                   label="Full Name"
                   rules={[
                     { required: true, message: "Please input fullname!" },
