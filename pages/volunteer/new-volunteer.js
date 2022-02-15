@@ -24,11 +24,10 @@ const NewVolunteer = () => {
   const { data: faculties } = useGetFacultiesQuery();
   const { data: departments } = useGetDepartmentsByFacultyQuery(facultyValue);
 
-  // get the the range of years from 2000 to the current year
-
+  // get the the range of years from 2010 to the current year
   const getYears = () => {
     const currentYear = new Date().getFullYear();
-    for (let i = 2000; i <= currentYear; i++) {
+    for (let i = 2010; i <= currentYear; i++) {
       setYears((years) => [...years, i]);
     }
   };
