@@ -55,12 +55,6 @@ const NewVolunteer = () => {
     }
   };
 
-  const onCancel = () => {
-    setSuccess(false);
-    setIsModalVisible(false);
-    router.push("/");
-  };
-
   const messageError = () => {
     message.error("Email already exists", 5, () => setError(false));
   };
@@ -88,8 +82,8 @@ const NewVolunteer = () => {
         <Modal
           visible={isModalVisible}
           footer={[]}
-          onCancel={onCancel}
           className="!px-8 md:px-0"
+          closable={false}
         >
           <Success volunteer={volunteerDetails} />
         </Modal>
