@@ -47,10 +47,10 @@ const Header = () => {
               <a className="!text-white">Contributors</a>
             </li>
             <li>
-              <a className="!text-white">Past Questions</a>
+              <a className="!text-white">Volunteers</a>
             </li>
             <li>
-              <a className="!text-white">Collections</a>
+              <a className="!text-white">Past Questions</a>
             </li>
             <li>
               <a className="!text-white">
@@ -122,13 +122,13 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a className="!text-white">Past Questions</a>
+                    <a className="!text-white">Volunteers</a>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a className="!text-white">Collections</a>
+                    <a className="!text-white">Past Questions</a>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1"
