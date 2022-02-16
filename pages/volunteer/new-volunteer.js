@@ -34,14 +34,14 @@ const NewVolunteer = () => {
 
   const onFinish = async (values) => {
     try {
-      const data = await axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/users/new-volunteer/`,
         values
       );
-      setVolunteerDetails(data.data.data);
-      console.log("Success:", volunteerDetails);
+      const { data } = await res;
+      setVolunteerDetails(data);
     } catch (error) {
-      console.log(error.message.data);
+      console.log(error);
     }
   };
 

@@ -25,10 +25,16 @@ const Header = () => {
           </div>
           <ul className="hidden items-center justify-center gap-x-4 text-base lg:flex">
             <li>
-              <a className="!text-white">How it works</a>
+              <Link href={"/"}>
+                <a className="!text-white">How it works</a>
+              </Link>
             </li>
             <li>
-              <a className="!text-white" href="http://varsity-pq.herokuapp.com/" target={"_blank"}>
+              <a
+                className="!text-white"
+                href="http://varsity-pq.herokuapp.com/"
+                target={"_blank"}
+              >
                 API
               </a>
             </li>
@@ -90,7 +96,13 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1 text-white"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a className="!text-white" href="http://varsity-pq.herokuapp.com/">API</a>
+                    <a
+                      className="!text-white"
+                      target={"_blank"}
+                      href="http://varsity-pq.herokuapp.com/"
+                    >
+                      API
+                    </a>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1"
