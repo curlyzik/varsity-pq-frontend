@@ -7,13 +7,10 @@ import { SearchFilter } from "../../components/utils/Search";
 import { useGetUniversitiesQuery } from "../../src/services/university";
 import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetFacultiesQuery } from "../../src/services/faculty";
-import { Btn } from "../../components";
+import { Btn, Success } from "../../components";
 import axios from "axios";
-import Success from "../../components/utils/Success";
-import { useRouter } from "next/router";
 
 const NewVolunteer = () => {
-  const router = useRouter();
   const [form] = Form.useForm();
 
   const [uniValue, setUniValue] = useState("");

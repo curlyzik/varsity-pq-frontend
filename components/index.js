@@ -17,3 +17,4 @@ export { default as Item } from "./utils/Item";
 export { default as Features } from "./utils/Features";
 export { default as Loader } from "./utils/Loader";
 export { default as TwitterBtn } from "./utils/TwitterBtn";
+export { default as Success } from "./utils/Success";
