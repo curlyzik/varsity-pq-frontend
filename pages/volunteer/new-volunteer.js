@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Select } from "antd";
+import { Form, Input, Select, message, Modal } from "antd";
 const { Option } = Select;
 
 import { SearchFilter } from "../../components/utils/Search";
@@ -9,16 +9,24 @@ import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetFacultiesQuery } from "../../src/services/faculty";
 import { Btn } from "../../components";
 import axios from "axios";
+import Success from "../../components/utils/Success";
+import { useRouter } from "next/router";
 
 const NewVolunteer = () => {
+  const router = useRouter();
   const [form] = Form.useForm();
 
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
   const [yearValue, setYearValue] = useState();
-  const [volunteerDetails, setVolunteerDetails] = useState();
   const [years, setYears] = useState([]);
+
+  const [volunteerDetails, setVolunteerDetails] = useState();
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { data: universities } = useGetUniversitiesQuery();
   const { data: faculties } = useGetFacultiesQuery();
@@ -40,17 +48,52 @@ const NewVolunteer = () => {
       );
       const { data } = await res;
       setVolunteerDetails(data);
+      setSuccess(true);
     } catch (error) {
-      console.log(error);
+      setError(true);
+      // console.log(error);
     }
+  };
+
+  const onCancel = () => {
+    setSuccess(false);
+    setIsModalVisible(false);
+    router.push("/");
+  };
+
+  const messageError = () => {
+    message.error("Email already exists", 5, () => setError(false));
   };
 
   useEffect(() => {
     getYears();
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      messageError();
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (success) {
+      setIsModalVisible(true);
+      form.resetFields();
+    }
+  }, [success]);
+
   return (
     <div>
+      <div>
+        <Modal
+          visible={isModalVisible}
+          footer={[]}
+          onCancel={onCancel}
+          className="!px-8 md:px-0"
+        >
+          <Success volunteer={volunteerDetails} />
+        </Modal>
+      </div>
       <div className="px-6 pt-10 lg:px-40 lg:pt-20">
         <div>
           <h2 className=" grid place-items-center text-3xl font-bold lg:text-5xl">
