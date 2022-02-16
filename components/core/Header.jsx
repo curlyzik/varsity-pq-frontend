@@ -8,9 +8,9 @@ import { Btn } from "../index";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="relative border-b border-b-gray-600 bg-black text-white">
+    <div className="relative border-b border-b-gray-600 bg-black !text-white">
       <div className="font-body  overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4">
-        <div className="mx-4 flex items-center justify-between text-white">
+        <div className="mx-4 flex items-center justify-between !text-white">
           <div>
             <Link href="/">
               <a>
@@ -23,12 +23,14 @@ const Header = () => {
               </a>
             </Link>
           </div>
-          <ul className="hidden items-center justify-center gap-x-4 text-base lg:flex">
+          <ul className="hidden items-center justify-center gap-x-4 text-base !text-white lg:flex">
             <li>
               <a>How it works</a>
             </li>
             <li>
-              <a>API</a>
+              <a href="http://varsity-pq.herokuapp.com/" target={"_blank"}>
+                API
+              </a>
             </li>
             <li>
               <Link href={"/volunteer/volunteer-request"}>
@@ -88,7 +90,7 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1 text-white"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a href="http://varsity-pq.herokuapp.com/">API</a>
+                    <a href="http://varsity-pq.herokuapp.com/">PI</a>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1 text-white"
