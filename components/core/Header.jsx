@@ -54,9 +54,18 @@ const Header = () => {
             </li>
             <li>
               <Btn>
-                <a className="!text-white border px-2 py-1 border-blue-400 hover:border-blue-800 transition-all duration-300">
+                <a className="rounded-md border border-blue-400 px-2 py-1 !text-white transition-all duration-300 hover:border-blue-800">
                   New Past Question
                 </a>
+              </Btn>
+            </li>
+            <li>
+              <Btn>
+                <Link href={"/login"}>
+                  <a className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
+                    Sign In
+                  </a>
+                </Link>
               </Btn>
             </li>
           </ul>
