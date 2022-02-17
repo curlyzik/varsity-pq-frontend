@@ -9,7 +9,6 @@ const Modal = ({ children, isModalVisible, handleOk, handleCancel }) => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        className="!px-6 md:px-0"
         footer={[
           <Button key="back" onClick={handleCancel}>
             Cancel

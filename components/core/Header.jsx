@@ -53,15 +53,11 @@ const Header = () => {
               <a className="!text-white">Past Questions</a>
             </li>
             <li>
-              <a className="!text-white">
-                <Btn
-                  classNames={
-                    "border px-2 py-[4px] text-blue-400 border-blue-400"
-                  }
-                >
+              <Btn>
+                <a className="!text-white border px-2 py-1 border-blue-400 hover:border-blue-800 transition-all duration-300">
                   New Past Question
-                </Btn>
-              </a>
+                </a>
+              </Btn>
             </li>
           </ul>
           <div className="lg:hidden">
@@ -79,6 +75,8 @@ const Header = () => {
             )}
           </div>
         </div>
+
+        {/* Mobile Navigation */}
         {isOpen && (
           <div className="absolute inset-0 z-20 mt-16 border-t border-t-gray-500 !text-white lg:hidden">
             <div className="bg-black">
