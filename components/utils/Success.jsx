@@ -7,6 +7,7 @@ const Success = ({ volunteer }) => {
   return (
     <Result
       status="success"
+      key={volunteer.data.email}
       title="Successfully Sent Volunteer Request!!! "
       //   subTitle={`Thank you for your interest in volunteering with us. We will send you an email (${volunteer.data.email}) once we have reviewed your request.`}
       extra={[

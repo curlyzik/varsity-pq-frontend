@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button } from "antd";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
+import axios from "axios";
+import { setAuthToken, setAccount } from "../src/features/users/authSlice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const Login = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      router.push("/");
+    }
+  });
+
+  const dispatch = useDispatch();
+  const onFinish = async (values) => {
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/login/`,
+        values
+      );
+      const { data } = await res;
+      dispatch(
+        setAuthToken({
+          access_token: data.access_token,
+          refresh_token: data.refresh_token,
+        })
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -19,19 +47,20 @@ const Login = () => {
         onFinish={onFinish}
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "Please input your email!",
             },
           ]}
         >
           <Input
             prefix={<AiOutlineUser className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="Email"
           />
         </Form.Item>
+
         <Form.Item
           name="password"
           rules={[

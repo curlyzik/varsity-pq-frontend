@@ -77,12 +77,16 @@ const NewVolunteer = () => {
     <div>
       <div>
         <Modal
+          key={volunteerDetails && volunteerDetails.data.email}
           visible={isModalVisible}
           footer={[]}
           className="!px-8 md:px-0"
           closable={false}
         >
-          <Success volunteer={volunteerDetails} />
+          <Success
+            key={volunteerDetails && volunteerDetails.data.email}
+            volunteer={volunteerDetails}
+          />
         </Modal>
       </div>
       <div className="px-6 pt-10 lg:px-40 lg:pt-20">
