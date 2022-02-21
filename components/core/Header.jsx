@@ -1,12 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Btn } from "../index";
+import { useDispatch } from "react-redux";
+import { logout } from "../../src/features/users/authSlice";
+
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [tokens, setTokens] = useState();
+  const [account, setAccount] = useState();
+  console.log(account);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    const user = localStorage.getItem("account");
+
+    if (token) {
+      setTokens(token);
+      setAccount(JSON.parse(user));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/");
+  };
   return (
     <div className="relative border-b border-b-gray-600 bg-black">
       <div className="font-body  overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4">
@@ -60,13 +84,24 @@ const Header = () => {
               </Btn>
             </li>
             <li>
-              <Btn>
-                <Link href={"/login"}>
-                  <a className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
-                    Sign In
-                  </a>
-                </Link>
-              </Btn>
+              {tokens ? (
+                <Btn>
+                  <button
+                    onClick={() => handleLogout()}
+                    className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
+                  >
+                    {account.email.toLowerCase()}
+                  </button>
+                </Btn>
+              ) : (
+                <Btn>
+                  <Link href={"/login"}>
+                    <a className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
+                      Sign In
+                    </a>
+                  </Link>
+                </Btn>
+              )}
             </li>
           </ul>
           <div className="lg:hidden">
@@ -142,6 +177,26 @@ const Header = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <a className="!text-white">New Past Question</a>
+                  </li>
+                  <li>
+                    {tokens ? (
+                      <Btn>
+                        <button
+                          onClick={() => handleLogout()}
+                          className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
+                        >
+                          {account.email.toLowerCase()}
+                        </button>
+                      </Btn>
+                    ) : (
+                      <Btn>
+                        <Link href={"/login"}>
+                          <a className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
+                            Sign In
+                          </a>
+                        </Link>
+                      </Btn>
+                    )}
                   </li>
                 </ul>
               </div>

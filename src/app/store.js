@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { departmentApi } from "../services/department";
 import { facultyApi } from "../services/faculty";
 import { universityApi } from "../services/university";
@@ -9,7 +9,32 @@ import { uniDetailApi } from "../services/searchServices/uniDetailApi";
 import { gitHubRepoApi } from "../services/gitHubRepoApi";
 import authSliceReducer from "../features/users/authSlice";
 
-export const store = configureStore({
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const rootReducer = combineReducers({
+  auth: authSliceReducer,
+});
+
+const persistedReducer = persistReducer(
+  {
+    key: "root",
+    version: 1,
+    storage: storage,
+  },
+  rootReducer
+);
+
+const store = configureStore({
   reducer: {
     [universityApi.reducerPath]: universityApi.reducer,
     [facultyApi.reducerPath]: facultyApi.reducer,
@@ -19,18 +44,37 @@ export const store = configureStore({
     [semesterApi.reducerPath]: semesterApi.reducer,
     [uniDetailApi.reducerPath]: uniDetailApi.reducer,
     [gitHubRepoApi.reducerPath]: gitHubRepoApi.reducer,
-    auth: authSliceReducer,
+    persistedReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      universityApi.middleware,
-      facultyApi.middleware,
-      departmentApi.middleware,
-      yearApi.middleware,
-      levelApi.middleware,
-      semesterApi.middleware,
-      uniDetailApi.middleware,
-      gitHubRepoApi.middleware
-    ),
+    // getDefaultMiddleware().concat(
+    //   universityApi.middleware,
+    //   facultyApi.middleware,
+    //   departmentApi.middleware,
+    //   yearApi.middleware,
+    //   levelApi.middleware,
+    //   semesterApi.middleware,
+    //   uniDetailApi.middleware,
+    //   gitHubRepoApi.middleware,
+    //   ),
+
+    getDefaultMiddleware({
+      thunk: [
+        universityApi.middleware,
+        facultyApi.middleware,
+        departmentApi.middleware,
+        yearApi.middleware,
+        levelApi.middleware,
+        semesterApi.middleware,
+        uniDetailApi.middleware,
+        gitHubRepoApi.middleware,
+      ],
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
+export default store;

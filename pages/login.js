@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button } from "antd";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import axios from "axios";
+
 import { setAuthToken, setAccount } from "../src/features/users/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
       router.push("/");
     }
-  });
+  }, []);
 
-  const dispatch = useDispatch();
   const onFinish = async (values) => {
     try {
       const res = await axios.post(
@@ -30,6 +31,9 @@ const Login = () => {
           refresh_token: data.refresh_token,
         })
       );
+      dispatch(setAccount(data.user));
+      console.log(data);
+      router.push("/");
     } catch (error) {
       console.log(error.message);
     }

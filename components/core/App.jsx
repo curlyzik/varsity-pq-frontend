@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <div className="bg-[#ECF2F5] pt-6">
-      <AppHeader setKeyword={setKeyword} sort={sort} setSort={setSort} />
+      <AppHeader setKeyword={setKeyword} sort={sort} setSort={setSort} placeholder={`search over ${data?.length} universities`} />
       {isLoading ? (
         <div className="grid place-items-center p-8">
           <Loader />

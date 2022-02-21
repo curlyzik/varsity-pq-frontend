@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { store } from "../src/app/store";
+import store, { persistor } from "../src/app/store";
 import "../styles/globals.css";
 
 import { Header, MetaTags } from "../components/index";
@@ -20,9 +21,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="font-body">
       <Provider store={store}>
-        <MetaTags />
-        <Header />
-        <Component {...pageProps} />
+        <PersistGate loading={null} persistor={persistor}>
+          <MetaTags />
+          <Header />
+          <Component {...pageProps} />
+        </PersistGate>
       </Provider>
     </div>
   );
