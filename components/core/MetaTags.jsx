@@ -22,7 +22,7 @@ const MetaTags = () => {
         content="past questions, jamb, university, past question, admission, universities, Varsity PQ by Isaac Nzekwe, Varsity PQ by Isaac Nzekwe"
       />
       <link rel="canonical" href="http://varsity-pq-frontend.vercel.app/" />
-      <link rel="apple-touch-icon" href="/icons/logo192.png" />
+      <link rel="apple-touch-icon" href="/favicon.png" />
       <link rel="icon" href="/favicon.png" />
 
       {/* Primary Meta Tags */}

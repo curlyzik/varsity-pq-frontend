@@ -11,11 +11,7 @@ export const facultyApi = createApi({
     getFaculties: builder.query({
       query: () => "",
     }),
-    getFacultiesByUniversity: builder.query({
-      query: (university) => `?university__name=${university}`,
-    }),
   }),
 });
 
-export const { useGetFacultiesByUniversityQuery, useGetFacultiesQuery } =
-  facultyApi;
+export const { useGetFacultiesQuery } = facultyApi;

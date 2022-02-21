@@ -15,7 +15,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { auth } = useSelector((state) => state.persistedReducer);
-  console.log(auth)
 
   const handleLogout = () => {
     dispatch(logout());

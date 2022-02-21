@@ -7,7 +7,7 @@ import { Select as AntSelect } from "antd";
 const { Option } = AntSelect;
 
 import { useGetUniversitiesQuery } from "../../src/services/university";
-import { useGetFacultiesByUniversityQuery } from "../../src/services/faculty";
+import { useGetFacultiesQuery } from "../../src/services/faculty";
 import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetYearsQuery } from "../../src/services/year";
 import { useGetLevelsQuery } from "../../src/services/level";
@@ -25,7 +25,7 @@ const Select = ({ pqData, uniData, width }) => {
   const [courseValue, setCourseValue] = useState("");
 
   const { data: universities } = useGetUniversitiesQuery();
-  const { data: faculties } = useGetFacultiesByUniversityQuery(uniValue);
+  const { data: faculties } = useGetFacultiesQuery();
   const { data: departments } = useGetDepartmentsByFacultyQuery(facultyValue);
   const { data: years } = useGetYearsQuery();
   const { data: levels } = useGetLevelsQuery();
@@ -57,6 +57,7 @@ const Select = ({ pqData, uniData, width }) => {
     setPastQuestion(data.data);
   };
 
+  // Get past question  by course ID
   const setPq = (courseValue) => {
     for (let pq of pqData) {
       for (let details of pq.pq_details) {
