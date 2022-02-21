@@ -13,7 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!auth) {
+    if (auth.accessToken) {
       router.push("/");
     }
   }, []);
