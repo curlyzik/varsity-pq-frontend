@@ -3,17 +3,17 @@ import { Form, Input, Button } from "antd";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import axios from "axios";
 
-import { setAuthToken, setAccount } from "../src/features/users/authSlice";
-import { useDispatch } from "react-redux";
+import { setAuth } from "../src/features/users/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 const Login = () => {
   const router = useRouter();
+  const { auth } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
+    if (!auth) {
       router.push("/");
     }
   }, []);
@@ -25,14 +25,14 @@ const Login = () => {
         values
       );
       const { data } = await res;
+      console.log(data);
       dispatch(
-        setAuthToken({
+        setAuth({
           access_token: data.access_token,
           refresh_token: data.refresh_token,
+          account: data.user,
         })
       );
-      dispatch(setAccount(data.user));
-      console.log(data);
       router.push("/");
     } catch (error) {
       console.log(error.message);

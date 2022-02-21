@@ -48,32 +48,20 @@ const store = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    // getDefaultMiddleware().concat(
-    //   universityApi.middleware,
-    //   facultyApi.middleware,
-    //   departmentApi.middleware,
-    //   yearApi.middleware,
-    //   levelApi.middleware,
-    //   semesterApi.middleware,
-    //   uniDetailApi.middleware,
-    //   gitHubRepoApi.middleware,
-    //   ),
-
     getDefaultMiddleware({
-      thunk: [
-        universityApi.middleware,
-        facultyApi.middleware,
-        departmentApi.middleware,
-        yearApi.middleware,
-        levelApi.middleware,
-        semesterApi.middleware,
-        uniDetailApi.middleware,
-        gitHubRepoApi.middleware,
-      ],
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(
+      universityApi.middleware,
+      facultyApi.middleware,
+      departmentApi.middleware,
+      yearApi.middleware,
+      levelApi.middleware,
+      semesterApi.middleware,
+      uniDetailApi.middleware,
+      gitHubRepoApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);

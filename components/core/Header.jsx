@@ -4,7 +4,7 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Btn } from "../index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../src/features/users/authSlice";
 
 import { useRouter } from "next/router";
@@ -13,19 +13,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [tokens, setTokens] = useState();
-  const [account, setAccount] = useState();
-  console.log(account);
 
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    const user = localStorage.getItem("account");
-
-    if (token) {
-      setTokens(token);
-      setAccount(JSON.parse(user));
-    }
-  }, []);
+  const { auth } = useSelector((state) => state.persistedReducer);
+  console.log(auth)
 
   const handleLogout = () => {
     dispatch(logout());
@@ -84,13 +74,13 @@ const Header = () => {
               </Btn>
             </li>
             <li>
-              {tokens ? (
+              {auth.accessToken ? (
                 <Btn>
                   <button
                     onClick={() => handleLogout()}
                     className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
                   >
-                    {account.email.toLowerCase()}
+                    {auth.account.email}
                   </button>
                 </Btn>
               ) : (
@@ -179,13 +169,13 @@ const Header = () => {
                     <a className="!text-white">New Past Question</a>
                   </li>
                   <li>
-                    {tokens ? (
+                    {auth.accessToken ? (
                       <Btn>
                         <button
                           onClick={() => handleLogout()}
                           className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
                         >
-                          {account.email.toLowerCase()}
+                          Welcome
                         </button>
                       </Btn>
                     ) : (
