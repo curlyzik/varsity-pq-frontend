@@ -1,16 +1,46 @@
 import axios from "axios";
-export const storeUniDataToDB = async (uniData) => {
-  for (let pqData of uniData) {
+import { agric } from "./departmentData";
+
+export const storeUniDataToDB = async (backendData) => {
+  for (let data of backendData) {
     const dataPost = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/universities/`,
       {
-        name: pqData.name,
-        address: pqData.address === "" ? "address" : pqData.address,
-        website: pqData.website === "" ? "http://example" : pqData.website,
-        type: pqData.type.toLowerCase(),
+        name: data.name,
+        address: data.address === "" ? "address" : data.address,
+        website: data.website === "" ? "http://example" : data.website,
+        type: data.type.toLowerCase(),
         faculty: [],
       }
     );
-    console.log(dataPost);
+    console.log(dataPost.data.name);
   }
+  console.log("created successfully");
+};
+
+export const storeFacultyDataToDB = async (backendData) => {
+  for (let data of backendData) {
+    const dataPost = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/faculty/`,
+      {
+        name: data.name,
+      }
+    );
+    console.log(dataPost.data.name);
+  }
+  console.log("created successfully");
+};
+
+export const storeDepartmentDataToDB = async (backendData, faculty) => {
+  for (let data of backendData) {
+    const dataPost = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/department-create/`,
+      {
+        department_name: data.name,
+        faculty: faculty,
+      }
+    );
+    console.log(dataPost.data.name);
+  }
+  console.log("created successfully");
 };

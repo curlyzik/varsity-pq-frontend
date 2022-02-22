@@ -31,7 +31,7 @@ const Header = () => {
                   className="text-3xl font-bold text-white"
                   onClick={() => setIsOpen(false)}
                 >
-                  Vartsity PQ
+                  Varsity PQ
                 </div>
               </a>
             </Link>

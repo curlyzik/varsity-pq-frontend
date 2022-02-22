@@ -4,7 +4,7 @@ import { BsLightning } from "react-icons/bs";
 import { FiGithub } from "react-icons/fi";
 
 import { Features, Btn } from "../index";
-import { features } from "../../helpers/features";
+import { features } from "../features";
 import { useGetGitHubRepoQuery } from "../../src/services/gitHubRepoApi";
 
 const Hero = () => {
