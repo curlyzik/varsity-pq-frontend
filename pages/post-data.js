@@ -30,7 +30,7 @@ const PostData = () => {
   };
 
   const createDepartments = async () => {
-    await storeDepartmentDataToDB(veterinary, "Faculty of Veterinary Medicine");
+    await storeDepartmentDataToDB(agric, "Faculty of Agricultural studies");
   };
 
   return (
@@ -42,3 +42,18 @@ const PostData = () => {
 };
 
 export default PostData;
+
+// Faculty of Veterinary Medicine
+// 	Faculty of Physical Sciences
+// 	Faculty of Pharmaceutical Sciences
+// 	Faculty of Social Sciences
+// 	Faculty of Medical Sciences
+// 	Faculty of Law
+// 	Faculty of Health Sciences & Technology
+// 	Faculty of Engineering
+// 	Faculty of Education
+// 	Faculty of Dentistry
+// 	Faculty of Management Studies
+// 	Faculty of Biological Sciences
+// 	Faculty of Arts
+// 	Faculty of Agricultural studies

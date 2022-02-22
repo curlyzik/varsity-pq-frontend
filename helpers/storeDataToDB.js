@@ -1,5 +1,4 @@
 import axios from "axios";
-import { agric } from "./departmentData";
 
 export const storeUniDataToDB = async (backendData) => {
   for (let data of backendData) {
@@ -21,7 +20,8 @@ export const storeUniDataToDB = async (backendData) => {
 export const storeFacultyDataToDB = async (backendData) => {
   for (let data of backendData) {
     const dataPost = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/faculty/`,
+      // `${process.env.NEXT_PUBLIC_API_URL}/faculty/`,
+      "https://varsity-pq.herokuapp.com/faculty/",
       {
         name: data.name,
       }
@@ -34,7 +34,8 @@ export const storeFacultyDataToDB = async (backendData) => {
 export const storeDepartmentDataToDB = async (backendData, faculty) => {
   for (let data of backendData) {
     const dataPost = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/department-create/`,
+      // `${process.env.NEXT_PUBLIC_API_URL}/department-create/`,
+      "https://varsity-pq.herokuapp.com/department-create/",
       {
         department_name: data.name,
         faculty: faculty,

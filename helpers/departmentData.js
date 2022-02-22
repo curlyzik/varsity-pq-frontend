@@ -27,7 +27,7 @@ export const arts = [
   { name: "Foreign Languages and Literature" },
   { name: "History and International Studies" },
   { name: "Linguistics and Nigerian Languages" },
-  { name: "Mass Communication (Communication and Language Arts)" },
+  { name: "Mass Communication" },
   { name: "Music" },
   { name: "Theatre and Film Studies" },
 ];
@@ -86,7 +86,7 @@ export const education = [
   { name: "Science Education" },
   { name: "Social Sciences Education" },
   { name: "Vocational Teacher Education (Technical Education)" },
-  { name: "s" },
+  { name: "Religions" },
   { name: "Igbo Linguistics" },
 ];
 
@@ -155,7 +155,7 @@ export const social = [
   { name: "Political Science" },
   { name: "Psychology" },
   { name: "Public Administration and Local Government" },
-  { name: "Religions" },
+  { name: "Religion" },
   { name: "Social Work" },
   { name: "Sociology/Anthropology" },
 ];
