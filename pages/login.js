@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button } from "antd";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import axios from "axios";
+import { message } from "antd";
 
 import { setAuth } from "../src/features/users/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,7 @@ const Login = () => {
   const router = useRouter();
   const { auth } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
+  const [loginError, setLoginError] = useState(false);
 
   useEffect(() => {
     if (auth.accessToken) {
@@ -35,8 +37,21 @@ const Login = () => {
       router.push("/");
     } catch (error) {
       console.log(error.message);
+      setLoginError(true);
     }
   };
+
+  const messageError = () => {
+    message.error("Email or password is incorrect", 5, () =>
+      setLoginError(false)
+    );
+  };
+
+  useEffect(() => {
+    if (loginError) {
+      messageError();
+    }
+  });
 
   return (
     <div className="grid items-center justify-center gap-y-5 pt-24">
@@ -102,7 +117,7 @@ const Login = () => {
             Or{" "}
             <span>
               <a href="" className="inline-block font-semibold text-black">
-                register now!
+                become a volunteer!
               </a>
             </span>
           </p>
