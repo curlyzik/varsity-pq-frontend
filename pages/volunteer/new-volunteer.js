@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Select, message, Modal } from "antd";
+import { Form, Input, Select, message, Modal, Button } from "antd";
 const { Option } = Select;
 import emailjs from "@emailjs/browser";
 
@@ -23,6 +23,7 @@ const NewVolunteer = () => {
   const [volunteerDetails, setVolunteerDetails] = useState();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -39,6 +40,7 @@ const NewVolunteer = () => {
   };
 
   const onFinish = async (values) => {
+    setLoading(true);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/users/new-volunteer/`,
@@ -46,10 +48,11 @@ const NewVolunteer = () => {
       );
       const { data } = await res;
       setVolunteerDetails(data);
-      console.log(volunteerDetails);
       setSuccess(true);
+      setLoading(false);
     } catch (error) {
       setError(true);
+      setLoading(false);
       // console.log(error);
     }
   };
@@ -80,7 +83,7 @@ const NewVolunteer = () => {
     const templateParams = {
       to_email: volunteerDetails.data.email,
       to_name: volunteerDetails.data.full_name,
-      from_name: 'Varsity PQ',
+      from_name: "Varsity PQ",
       message: `Email: ${volunteerDetails.data.email} Password: ${volunteerDetails.password}`,
     };
     emailjs
@@ -242,14 +245,23 @@ const NewVolunteer = () => {
                 </Form.Item>
               </div>
 
-              <Btn className={"inline-block"}>
+              {/* <Btn className={"inline-block disabled:bg-black"}>
                 <button
                   type="submit"
                   className="rounded-md bg-blue-500 py-2 px-7 text-base font-bold text-white transition-all duration-300 hover:bg-blue-600"
                 >
                   Submit Request
                 </button>
-              </Btn>
+              </Btn> */}
+
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+                className="text-black"
+              >
+                Submit Request
+              </Button>
             </Form>
           </div>
         </div>

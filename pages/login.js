@@ -13,6 +13,7 @@ const Login = () => {
   const { auth } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (auth.accessToken) {
@@ -22,6 +23,7 @@ const Login = () => {
 
   const onFinish = async (values) => {
     try {
+      setLoading(true);
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/login/`,
         values
@@ -38,11 +40,12 @@ const Login = () => {
     } catch (error) {
       console.log(error.message);
       setLoginError(true);
+      setLoading(false);
     }
   };
 
   const messageError = () => {
-    message.error("Email or password is incorrect", 5, () =>
+    message.error("Email or password is incorrect", 2, () =>
       setLoginError(false)
     );
   };
@@ -109,6 +112,7 @@ const Login = () => {
           <Button
             type="primary"
             htmlType="submit"
+            loading={loading}
             className="login-form-button w-full text-black"
           >
             Log in
