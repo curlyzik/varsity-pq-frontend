@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.4.0",
     "@reduxjs/toolkit": "^1.7.1",
     "animate.css": "^4.1.1",
     "antd": "^4.18.5",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input, Select, message, Modal } from "antd";
 const { Option } = Select;
+import emailjs from "@emailjs/browser";
 
 import { SearchFilter } from "../../components/utils/Search";
 
@@ -45,6 +46,7 @@ const NewVolunteer = () => {
       );
       const { data } = await res;
       setVolunteerDetails(data);
+      console.log(volunteerDetails);
       setSuccess(true);
     } catch (error) {
       setError(true);
@@ -70,6 +72,38 @@ const NewVolunteer = () => {
     if (success) {
       setIsModalVisible(true);
       form.resetFields();
+    }
+  }, [success]);
+
+  // SEND EMAIL TO VOLUNTEER WITH LOGIN CREDENTIALS
+  const sendVolunteerCredentials = () => {
+    const templateParams = {
+      to_email: volunteerDetails.data.email,
+      to_name: volunteerDetails.data.full_name,
+      from_name: 'Varsity PQ',
+      message: `Email: ${volunteerDetails.data.email} Password: ${volunteerDetails.password}`,
+    };
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
+  useEffect(() => {
+    if (success) {
+      // SEND EMAIL TO VOLUNTEER WITH LOGIN CREDENTIALS
+      sendVolunteerCredentials();
     }
   }, [success]);
 
