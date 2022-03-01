@@ -13,18 +13,31 @@ import "aos/dist/aos.css";
 // for smooth animation
 import "animate.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, ...appProps }) {
   useEffect(() => {
     AOS.init();
   });
+
+  // exclude navbar from dashboard
+  const getContent = () => {
+    if (["/dashboard"].includes(appProps.router.pathname)) {
+      return <Component {...pageProps} />;
+    }
+
+    return (
+      <>
+        <Header />;
+        <Component {...pageProps} />
+      </>
+    );
+  };
 
   return (
     <div className="font-body">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <MetaTags />
-          <Header />
-          <Component {...pageProps} />
+          {getContent()}
         </PersistGate>
       </Provider>
     </div>

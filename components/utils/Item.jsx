@@ -35,12 +35,12 @@ const Item = ({ university }) => {
         <div className="grid grid-cols-[auto,auto] gap-x-3 lg:flex lg:flex-col lg:gap-y-2">
           <Link href={`/university/${university.name}/${university.id}`}>
             <a
-              className={`grid place-items-center rounded-md border px-1 py-2 text-sm text-black font-bold ${
+              className={`grid place-items-center rounded-md border px-1 py-2 text-sm font-bold text-black ${
                 university.type === "federal"
-                  ? "border-blue-400 hover:text-blue-400"
+                  ? "border-blue-400 hover:bg-blue-400 hover:text-white"
                   : university.type === "state"
-                  ? "border-orange-400 hover:text-orange-400"
-                  : "border-green-400 hover:text-green-400"
+                  ? "border-orange-400 hover:bg-orange-400 hover:text-white"
+                  : "border-green-400 hover:bg-green-400 hover:text-white"
               }`}
             >
               View Details

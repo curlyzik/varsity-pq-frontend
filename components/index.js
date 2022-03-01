@@ -7,6 +7,7 @@ export { default as InfiniteScrolling } from "./core/InfiniteScrolling";
 export { default as MetaTags } from "./core/MetaTags";
 export { default as Modal } from "./core/Modal";
 export { default as MainHeader } from "./core/MainHeader";
+export { default as UserDashboard } from "./core/UserDashboard";
 
 // utils components
 export { default as NewsCard } from "./utils/NewsCard";
@@ -18,3 +19,4 @@ export { default as Features } from "./utils/Features";
 export { default as Loader } from "./utils/Loader";
 export { default as TwitterBtn } from "./utils/TwitterBtn";
 export { default as Success } from "./utils/Success";
+export { default as Layout } from "./utils/Layout";
