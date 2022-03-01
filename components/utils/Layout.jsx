@@ -26,9 +26,9 @@ const DashboardLayout = ({ children }) => {
             console.log(collapsed, type);
             setCollapsed(collapsed);
           }}
-          className="fixed top-0 bottom-0 left-0 h-screen"
+          className="!fixed top-0 bottom-0 left-0 !h-screen"
         >
-          <div className="m-4 h-8 text-center text-3xl font-bold text-white">
+          <div className="!m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
           </div>
           <Menu
@@ -48,8 +48,8 @@ const DashboardLayout = ({ children }) => {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className={`${!collapsed ? "ml-[200px]" : "ml-0"}`}>
-          <Header className=" fixed w-full p-0">
+        <Layout className={`${!collapsed ? "!ml-[200px]" : "!ml-0"}`}>
+          {/* <Header className=" fixed w-full p-0">
             <Menu
               theme="dark"
               mode="horizontal"
@@ -68,8 +68,8 @@ const DashboardLayout = ({ children }) => {
               <Menu.Item key="2">nav 2</Menu.Item>
               <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
-          </Header>
-          <Content className="mx-4 mt-20 h-full">
+          </Header> */}
+          <Content className="mx-4 mt-6 !h-full">
             <div className="bg-white p-7">{children}</div>
           </Content>
           <Footer className="text-center">
