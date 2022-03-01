@@ -12,6 +12,7 @@
     "antd": "^4.18.5",
     "aos": "^2.3.4",
     "axios": "^0.24.0",
+    "axios-auth-refresh": "^3.2.2",
     "next": "latest",
     "parallax-js": "^3.1.0",
     "react": "^17.0.2",
@@ -22,7 +23,8 @@
     "react-redux": "^7.2.6",
     "react-ripples": "^2.2.1",
     "redux-persist": "^6.0.0",
-    "simple-parallax-js": "^5.6.2"
+    "simple-parallax-js": "^5.6.2",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

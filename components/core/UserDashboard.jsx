@@ -1,7 +1,8 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, } from "react-redux";
 import { Layout } from "..";
+import { fetcher } from "../../utils/axios";
+import useSWR from "swr";
 import { useRouter } from "next/router";
 
 const UserDashboard = () => {
@@ -14,34 +15,10 @@ const UserDashboard = () => {
     }
   });
 
-  const fetchUserDetails = async () => {
-    try {
-      const data = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/user/`,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.accessToken}`,
-          },
-        }
-      );
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchNewToken = async () => {
-    const data = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/token/refresh/`,
-      { refresh: auth.refreshToken }
-    );
-    console.log(data);
-  };
-
-  useEffect(() => {
-    // fetchUserDetails();
-    fetchNewToken();
-  }, []);
+  const user = useSWR("/dj-rest-auth/user/", fetcher);
+  
+  console.log(auth)
+  console.log(user.data)
   return (
     <div>
       <Layout>
@@ -55,3 +32,44 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
+
+// const fetchUserDetails = async () => {
+//   try {
+//     const data = await axios.get(
+//       `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/user/`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${auth.accessToken}`,
+//         },
+//       }
+//     );
+//     console.log(data);
+//   } catch (error) {
+//     console.log(error);
+//     setFetchUserDetailsError(true);
+//   }
+// };
+
+// const fetchNewToken = async () => {
+//   try {
+//     const { data } = await axios.post(
+//       `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/token/refresh/`,
+//       { refresh: auth.refreshToken }
+//     );
+//     console.log(data);
+//     dispatch(
+//       setAuth({
+//         access_token: data.access,
+//       })
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// useEffect(() => {
+//   fetchUserDetails();
+//   if (fetchUserDetailsError) {
+//     fetchNewToken();
+//   }
+// }, [fetchUserDetailsError]);
