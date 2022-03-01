@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps, ...appProps }) {
 
     return (
       <>
-        <Header />;
+        <Header />
         <Component {...pageProps} />
       </>
     );

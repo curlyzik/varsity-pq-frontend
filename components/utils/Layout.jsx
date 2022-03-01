@@ -5,12 +5,14 @@ const { Header, Content, Footer, Sider } = Layout;
 import {
   AiOutlineUpload,
   AiOutlineUser,
-  AiOutlineVideoCamera,
+  AiOutlineSetting,
+  AiOutlineHome,
 } from "react-icons/ai";
+import Link from "next/link";
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = React.useState(false);
-  console.log(collapsed);
+
   return (
     <div>
       <Layout hasSider className="relative">
@@ -29,133 +31,45 @@ const DashboardLayout = () => {
           <div className="m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
           </div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            className="border-t border-t-gray-900 pt-2"
+          >
             <Menu.Item key="1" icon={<AiOutlineUser />}>
-              nav 1
+              Profile
             </Menu.Item>
-            <Menu.Item key="2" icon={<AiOutlineVideoCamera />}>
-              nav 2
+            <Menu.Item key="2" icon={<AiOutlineUpload />}>
+              Upload PQ
             </Menu.Item>
-            <Menu.Item key="3" icon={<AiOutlineUpload />}>
-              nav 3
-            </Menu.Item>
-            <Menu.Item key="4" icon={<AiOutlineUser />}>
-              nav 4
+            <Menu.Item key="4" icon={<AiOutlineSetting />}>
+              Settings
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className={`${!collapsed ? "ml-[200px]" : "ml-0"}`}>
-          <Header className=" border-l border-blue-900 bg-white p-0 w-full fixed">
+          <Header className=" fixed w-full p-0">
             <Menu
               theme="dark"
               mode="horizontal"
               defaultSelectedKeys={["2"]}
+              className="!flex"
             >
-              <Menu.Item key="1">nav 1</Menu.Item>
+              <Menu.Item key="1" icon={<AiOutlineUser />} className="!flex items-center justify-center">
+                <Link href={"/"}>
+                  <a>Home</a>
+                </Link>
+              </Menu.Item>
               <Menu.Item key="2">nav 2</Menu.Item>
               <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
           </Header>
-          <Content className="mx-4 mt-6">
-            <div className="bg-white p-7">
-              <br />
-              Really
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              long
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              content
-            </div>
+          <Content className="mx-4 mt-20">
+            <div className="h-screen bg-white p-7">{children}</div>
           </Content>
           <Footer className="text-center">
-            Ant Design ©2018 Created by Ant UED
+            Varsity PQ ©2018 Created by Isaac Nzekwe
           </Footer>
         </Layout>
       </Layout>
