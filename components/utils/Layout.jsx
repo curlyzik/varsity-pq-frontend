@@ -49,7 +49,7 @@ const DashboardLayout = ({ children }) => {
           </Menu>
         </Sider>
         <Layout className={`${!collapsed ? "!ml-[200px]" : "!ml-0"}`}>
-          {/* <Header className=" fixed w-full p-0">
+          <Header className="!fixed w-full p-0">
             <Menu
               theme="dark"
               mode="horizontal"
@@ -68,8 +68,8 @@ const DashboardLayout = ({ children }) => {
               <Menu.Item key="2">nav 2</Menu.Item>
               <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
-          </Header> */}
-          <Content className="mx-4 mt-6 !h-full">
+          </Header>
+          <Content className="!mx-4 !mt-20 !h-screen">
             <div className="bg-white p-7">{children}</div>
           </Content>
           <Footer className="text-center">
