@@ -36,7 +36,7 @@ const Login = () => {
           account: data.user,
         })
       );
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.log(error.message);
       setLoginError(true);

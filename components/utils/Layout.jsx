@@ -56,7 +56,11 @@ const DashboardLayout = ({ children }) => {
               defaultSelectedKeys={["2"]}
               className="!flex"
             >
-              <Menu.Item key="1" icon={<AiOutlineUser />} className="!flex items-center justify-center">
+              <Menu.Item
+                key="1"
+                icon={<AiOutlineUser />}
+                className="!flex items-center justify-center"
+              >
                 <Link href={"/"}>
                   <a>Home</a>
                 </Link>
@@ -65,8 +69,8 @@ const DashboardLayout = ({ children }) => {
               <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
           </Header>
-          <Content className="mx-4 mt-20">
-            <div className="h-screen bg-white p-7">{children}</div>
+          <Content className="mx-4 mt-20 h-full">
+            <div className="bg-white p-7">{children}</div>
           </Content>
           <Footer className="text-center">
             Varsity PQ ©2018 Created by Isaac Nzekwe
