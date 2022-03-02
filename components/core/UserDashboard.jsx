@@ -17,18 +17,6 @@ const UserDashboard = () => {
 
   const user = useSWR("/dj-rest-auth/user/", fetcher);
 
-  console.log(auth);
-  console.log(user.data);
-  const {
-    full_name,
-    university,
-    faculty,
-    department,
-    year,
-    email,
-    is_vounteer,
-  } = user.data;
-
   return (
     <div>
       <Layout>
@@ -36,13 +24,13 @@ const UserDashboard = () => {
           <h2 className="border-b pb-2 text-4xl font-bold">Profile Details</h2>
         </div>
         <div className="grid grid-cols-3">
-          <div>{full_name || 'name'}</div>
-          <div>{university}</div>
-          <div>{faculty}</div>
-          <div>{department}</div>
-          <div>{year}</div>
-          <div>{email}</div>
-          <div>{is_vounteer}</div>
+          <div>{user.data.full_name || 'name'}</div>
+          <div>{user.data.university}</div>
+          <div>{user.data.faculty}</div>
+          <div>{user.data.department}</div>
+          <div>{user.data.year}</div>
+          <div>{user.data.email}</div>
+          <div>{user.data.is_vounteer}</div>
         </div>
       </Layout>
     </div>
@@ -50,44 +38,3 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
-
-// const fetchUserDetails = async () => {
-//   try {
-//     const data = await axios.get(
-//       `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/user/`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${auth.accessToken}`,
-//         },
-//       }
-//     );
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//     setFetchUserDetailsError(true);
-//   }
-// };
-
-// const fetchNewToken = async () => {
-//   try {
-//     const { data } = await axios.post(
-//       `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/token/refresh/`,
-//       { refresh: auth.refreshToken }
-//     );
-//     console.log(data);
-//     dispatch(
-//       setAuth({
-//         access_token: data.access,
-//       })
-//     );
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// useEffect(() => {
-//   fetchUserDetails();
-//   if (fetchUserDetailsError) {
-//     fetchNewToken();
-//   }
-// }, [fetchUserDetailsError]);
