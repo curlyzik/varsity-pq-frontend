@@ -7,11 +7,15 @@ import {
   AiOutlineUser,
   AiOutlineSetting,
   AiOutlineHome,
+  AiOutlineLogout,
 } from "react-icons/ai";
 import Link from "next/link";
+import { logout } from "../../src/features/users/authSlice";
+import { useDispatch } from "react-redux";
 
 const DashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = React.useState(false);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -50,27 +54,28 @@ const DashboardLayout = ({ children }) => {
         </Sider>
         <Layout className={`${!collapsed ? "!ml-[200px]" : "!ml-0"}`}>
           <Header className="!fixed w-full p-0">
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={["2"]}
-              className="!flex"
-            >
+            <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
               <Menu.Item
                 key="1"
-                icon={<AiOutlineUser />}
+                icon={<AiOutlineHome />}
                 className="!flex items-center justify-center"
               >
                 <Link href={"/"}>
                   <a>Home</a>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="2">nav 2</Menu.Item>
-              <Menu.Item key="3">nav 3</Menu.Item>
+              <Menu.Item
+                key="2"
+                className="!flex items-center justify-center"
+                icon={<AiOutlineLogout />}
+                onClick={() => dispatch(logout())}
+              >
+                Sign out
+              </Menu.Item>
             </Menu>
           </Header>
-          <Content className="!mx-4 !mt-20 !h-screen">
-            <div className="bg-white p-7">{children}</div>
+          <Content className="!mx-4 !mt-20">
+            <div className="!h-screen bg-white p-7">{children}</div>
           </Content>
           <Footer className="text-center">
             Varsity PQ ©2018 Created by Isaac Nzekwe

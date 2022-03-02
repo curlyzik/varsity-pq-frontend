@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, } from "react-redux";
+import { useSelector } from "react-redux";
 import { Layout } from "..";
 import { fetcher } from "../../utils/axios";
 import useSWR from "swr";
@@ -13,19 +13,37 @@ const UserDashboard = () => {
     if (!auth.accessToken) {
       router.push("/login");
     }
-  });
+  }, []);
 
   const user = useSWR("/dj-rest-auth/user/", fetcher);
-  
-  console.log(auth)
-  console.log(user.data)
+
+  console.log(auth);
+  console.log(user.data);
+  const {
+    full_name,
+    university,
+    faculty,
+    department,
+    year,
+    email,
+    is_vounteer,
+  } = user.data;
+
   return (
     <div>
       <Layout>
         <div>
           <h2 className="border-b pb-2 text-4xl font-bold">Profile Details</h2>
         </div>
-        <div className="grid grid-cols-3"></div>
+        <div className="grid grid-cols-3">
+          <div>{full_name || 'name'}</div>
+          <div>{university}</div>
+          <div>{faculty}</div>
+          <div>{department}</div>
+          <div>{year}</div>
+          <div>{email}</div>
+          <div>{is_vounteer}</div>
+        </div>
       </Layout>
     </div>
   );

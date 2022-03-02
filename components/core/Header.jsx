@@ -66,20 +66,13 @@ const Header = () => {
               <a className="!text-white">Past Questions</a>
             </li>
             <li>
-              <Btn>
-                <a className="rounded-md border border-blue-400 px-2 py-1 !text-white transition-all duration-300 hover:border-blue-800">
-                  New Past Question
-                </a>
-              </Btn>
-            </li>
-            <li>
               {auth.accessToken ? (
                 <Btn>
                   <button
-                    onClick={() => handleLogout()}
+                    onClick={() => router.push("/dashboard")}
                     className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
                   >
-                    {auth.account.email}
+                    Go to Dashboard
                   </button>
                 </Btn>
               ) : (
@@ -161,26 +154,23 @@ const Header = () => {
                   >
                     <a className="!text-white">Past Questions</a>
                   </li>
-                  <li
-                    className="w-full border-b border-b-gray-400 pb-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <a className="!text-white">New Past Question</a>
-                  </li>
                   <li>
                     {auth.accessToken ? (
                       <Btn>
                         <button
-                          onClick={() => handleLogout()}
+                          onClick={() => {
+                            router.push("/dashboard");
+                            setIsOpen(false);
+                          }}
                           className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
                         >
-                          Welcome
+                          Go to Dashboard
                         </button>
                       </Btn>
                     ) : (
                       <Btn>
                         <Link href={"/login"}>
-                          <a className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
+                          <a onClick={() => setIsOpen(false)} className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
                             Sign In
                           </a>
                         </Link>
