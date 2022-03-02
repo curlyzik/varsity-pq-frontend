@@ -16,7 +16,7 @@ const UserDashboard = () => {
   }, []);
 
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
-  if (!error && !user) return <div>...loading</div>;
+  // if (!error && !user) return <div>...loading</div>;
   console.log(user)
 
   return (
