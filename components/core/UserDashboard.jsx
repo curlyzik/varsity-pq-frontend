@@ -15,8 +15,8 @@ const UserDashboard = () => {
     }
   }, []);
 
-  const { data, error } = useSWR("/dj-rest-auth/user/", fetcher);
-  if(!error && !data) return <div>...loading</div>
+  const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
+  if (!error && !user) return <div>...loading</div>;
 
   return (
     <div>
@@ -25,13 +25,13 @@ const UserDashboard = () => {
           <h2 className="border-b pb-2 text-4xl font-bold">Profile Details</h2>
         </div>
         <div className="grid grid-cols-3">
-          <div>{user.data.full_name || 'name'}</div>
-          <div>{user.data.university}</div>
-          <div>{user.data.faculty}</div>
-          <div>{user.data.department}</div>
-          <div>{user.data.year}</div>
-          <div>{user.data.email}</div>
-          <div>{user.data.is_vounteer}</div>
+          <div>{user.full_name || "name"}</div>
+          <div>{user.university}</div>
+          <div>{user.faculty}</div>
+          <div>{user.department}</div>
+          <div>{user.year}</div>
+          <div>{user.email}</div>
+          <div>{user.is_vounteer}</div>
         </div>
       </Layout>
     </div>
