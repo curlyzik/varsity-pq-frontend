@@ -11,15 +11,13 @@ import {
 } from "react-icons/ai";
 import Link from "next/link";
 import { logout } from "../../src/features/users/authSlice";
-import { useDispatch } from "react-redux";
 
 const DashboardLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = React.useState(false);
-  const dispatch = useDispatch();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div>
-      <Layout hasSider className="relative">
+      <Layout>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -30,7 +28,7 @@ const DashboardLayout = ({ children }) => {
             console.log(collapsed, type);
             setCollapsed(collapsed);
           }}
-          className="!fixed top-0 bottom-0 left-0 !h-screen"
+          className="!fixed top-0 bottom-0 left-0 z-50 !h-screen"
         >
           <div className="!m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
@@ -68,17 +66,25 @@ const DashboardLayout = ({ children }) => {
                 key="2"
                 className="!flex items-center justify-center"
                 icon={<AiOutlineLogout />}
-                onClick={() => dispatch(logout())}
+                onClick={() => {
+                  dispatch(logout());
+                  router.push("/login");
+                }}
               >
                 Sign out
               </Menu.Item>
             </Menu>
           </Header>
           <Content className="!mx-4 !mt-20">
-            <div className="!h-screen bg-white p-7">{children}</div>
+            <div className="!min-h-full bg-white p-7">{children}</div>
           </Content>
-          <Footer className="text-center">
-            Varsity PQ ©2018 Created by Isaac Nzekwe
+          <Footer className="fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
+            <p className="flex justify-center gap-x-2">
+              <span className="font-bold">Varsity PQ ©2022 </span>{" "}
+              <span>
+                Created by <b>Isaac Nzekwe</b>
+              </span>
+            </p>
           </Footer>
         </Layout>
       </Layout>

@@ -4,6 +4,7 @@ import { Layout } from "..";
 import { fetcher } from "../../utils/axios";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import { AiFillCheckCircle, AiOutlineVerified } from "react-icons/ai";
 
 const UserDashboard = () => {
   const router = useRouter();
@@ -16,8 +17,6 @@ const UserDashboard = () => {
   }, []);
 
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
-  // if (!error && !user) return <div>...loading</div>;
-  console.log(user)
 
   return (
     <div>
@@ -25,14 +24,50 @@ const UserDashboard = () => {
         <div>
           <h2 className="border-b pb-2 text-4xl font-bold">Profile Details</h2>
         </div>
-        <div className="grid grid-cols-3">
-          {/* <div>{user.full_name || "name"}</div>
-          <div>{user.university}</div>
-          <div>{user.faculty}</div>
-          <div>{user.department}</div>
-          <div>{user.year}</div>
-          <div>{user.email}</div>
-          <div>{user.is_vounteer}</div> */}
+        <div className="mt-6 flex grid-cols-3 flex-col gap-y-6 lg:grid">
+          {!error && !user ? (
+            <div></div>
+          ) : (
+            <>
+              <div>
+                <h3 className="text-xl font-extrabold">Full Name</h3>
+                <p className=" text-base">{user.full_name}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">University</h3>
+                <p className=" text-base">{user.university}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">Faculty</h3>
+                <p className=" text-base">{user.faculty}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">Department</h3>
+                <p className=" text-base">{user.department}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">Year of Admission</h3>
+                <p className=" text-base">{user.year}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">Email</h3>
+                <p className=" text-base">{user.email}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-extrabold">Volunteer</h3>
+                <p className=" text-base">
+                  {user.is_volunteer ? (
+                      <span className="flex items-center gap-x-2">
+                        verified volunteer
+                        <AiFillCheckCircle fill="green" />
+                    </span>
+                  ) : (
+                    "not verified"
+                  )}
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </Layout>
     </div>

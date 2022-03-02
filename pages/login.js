@@ -7,6 +7,7 @@ import { message } from "antd";
 import { setAuth } from "../src/features/users/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const Login = () => {
         values
       );
       const { data } = await res;
-      console.log(data)
+      console.log(data);
       dispatch(
         setAuth({
           access_token: data.access_token,
@@ -121,9 +122,11 @@ const Login = () => {
           <p>
             Or{" "}
             <span>
-              <a href="" className="inline-block font-semibold text-black">
-                become a volunteer!
-              </a>
+              <Link href={"/volunteer/volunteer-request"}>
+                <a className="inline-block font-semibold text-black">
+                  become a volunteer!
+                </a>
+              </Link>
             </span>
           </p>
         </Form.Item>
