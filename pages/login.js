@@ -29,6 +29,7 @@ const Login = () => {
         values
       );
       const { data } = await res;
+      console.log(data)
       dispatch(
         setAuth({
           access_token: data.access_token,
