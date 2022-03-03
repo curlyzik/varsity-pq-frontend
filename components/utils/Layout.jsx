@@ -54,18 +54,23 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
                 <a>Create Course</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="3" icon={<AiOutlineUpload />}>
+            <Menu.Item key="3" icon={<AiOutlineBook />}>
+              <Link href={"/dashboard/courses"}>
+                <a>My Courses</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<AiOutlineUpload />}>
               <Link href={"/dashboard/create-pastquestion"}>
                 <a>Upload PQ</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="4" icon={<AiOutlineSetting />}>
+            <Menu.Item key="5" icon={<AiOutlineSetting />}>
               Settings
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className={`${!collapsed ? "!ml-[200px]" : "!ml-0"}`}>
-          <Header className="!fixed w-full p-0">
+          <Header className="!fixed z-50 w-full p-0">
             <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
               <Menu.Item
                 key="1"
@@ -90,16 +95,16 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu>
           </Header>
           <Content className="!mx-4 !mt-20">
-            <div className="!min-h-full bg-white p-7">{children}</div>
+            <div className="!h-full bg-white p-7">{children}</div>
           </Content>
-          <Footer className="fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
+          {/* <Footer className="!fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
             <p className="flex justify-center gap-x-2">
               <span className="font-bold">Varsity PQ ©2022 </span>{" "}
               <span>
                 Created by <b>Isaac Nzekwe</b>
               </span>
             </p>
-          </Footer>
+          </Footer> */}
         </Layout>
       </Layout>
     </div>

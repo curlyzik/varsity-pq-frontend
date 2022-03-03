@@ -10,8 +10,19 @@ import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetFacultiesQuery } from "../../src/services/faculty";
 import { Btn, Success } from "../../components";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 const NewVolunteer = () => {
+  const { auth } = useSelector((state) => state.persistedReducer);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (auth.accessToken) {
+      router.push("/dashboard");
+    }
+  }, []);
+
   const [form] = Form.useForm();
 
   const [uniValue, setUniValue] = useState("");
@@ -81,7 +92,7 @@ const NewVolunteer = () => {
   // Set department value to null when faculty value changes
   useEffect(() => {
     form.setFieldsValue({ department: null });
-  }, [facultyValue])
+  }, [facultyValue]);
 
   // SEND EMAIL TO VOLUNTEER WITH LOGIN CREDENTIALS
   const sendVolunteerCredentials = () => {

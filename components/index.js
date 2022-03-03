@@ -20,3 +20,4 @@ export { default as Loader } from "./utils/Loader";
 export { default as TwitterBtn } from "./utils/TwitterBtn";
 export { default as Success } from "./utils/Success";
 export { default as Layout } from "./utils/Layout";
+export { default as Table } from "./utils/Table";

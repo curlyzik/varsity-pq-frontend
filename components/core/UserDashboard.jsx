@@ -24,7 +24,7 @@ const UserDashboard = () => {
         <div>
           <h2 className="border-b pb-2 text-4xl font-bold">Profile Details</h2>
         </div>
-        <div className="mt-6 flex grid-cols-3 flex-col gap-y-6 lg:grid">
+        <div className="mt-6 flex grid-cols-3 flex-col gap-y-8 lg:grid">
           {!error && !user ? (
             <div></div>
           ) : (
