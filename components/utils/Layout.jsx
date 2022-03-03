@@ -8,12 +8,17 @@ import {
   AiOutlineSetting,
   AiOutlineHome,
   AiOutlineLogout,
+  AiOutlineBook,
 } from "react-icons/ai";
 import Link from "next/link";
 import { logout } from "../../src/features/users/authSlice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   return (
     <div>
@@ -36,14 +41,23 @@ const DashboardLayout = ({ children }) => {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={[defaultSelectedKeys]}
             className="border-t border-t-gray-900 pt-2"
           >
             <Menu.Item key="1" icon={<AiOutlineUser />}>
-              Profile
+              <Link href={"/dashboard"}>
+                <a>Profile</a>
+              </Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<AiOutlineUpload />}>
-              Upload PQ
+            <Menu.Item key="2" icon={<AiOutlineBook />}>
+              <Link href={"/dashboard/create-course"}>
+                <a>Create Course</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<AiOutlineUpload />}>
+              <Link href={"/dashboard/create-pastquestion"}>
+                <a>Upload PQ</a>
+              </Link>
             </Menu.Item>
             <Menu.Item key="4" icon={<AiOutlineSetting />}>
               Settings
@@ -68,7 +82,7 @@ const DashboardLayout = ({ children }) => {
                 icon={<AiOutlineLogout />}
                 onClick={() => {
                   dispatch(logout());
-                  router.push("/login");
+                  router.push("/");
                 }}
               >
                 Sign out

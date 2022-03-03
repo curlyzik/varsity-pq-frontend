@@ -4,7 +4,7 @@ import { Layout } from "..";
 import { fetcher } from "../../utils/axios";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import { AiFillCheckCircle, AiOutlineVerified } from "react-icons/ai";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 const UserDashboard = () => {
   const router = useRouter();
@@ -57,9 +57,9 @@ const UserDashboard = () => {
                 <h3 className="text-xl font-extrabold">Volunteer</h3>
                 <p className=" text-base">
                   {user.is_volunteer ? (
-                      <span className="flex items-center gap-x-2">
-                        verified volunteer
-                        <AiFillCheckCircle fill="green" />
+                    <span className="flex items-center gap-x-2">
+                      verified volunteer
+                      <AiFillCheckCircle fill="green" />
                     </span>
                   ) : (
                     "not verified"

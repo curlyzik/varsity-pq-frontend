@@ -78,6 +78,11 @@ const NewVolunteer = () => {
     }
   }, [success]);
 
+  // Set department value to null when faculty value changes
+  useEffect(() => {
+    form.setFieldsValue({ department: null });
+  }, [facultyValue])
+
   // SEND EMAIL TO VOLUNTEER WITH LOGIN CREDENTIALS
   const sendVolunteerCredentials = () => {
     const templateParams = {
@@ -188,7 +193,6 @@ const NewVolunteer = () => {
                       setFacultyValue(value);
                     }}
                     description="faculty"
-                    value={facultyValue}
                     width
                   >
                     {faculties?.map((faculty) => (

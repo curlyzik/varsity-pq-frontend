@@ -1,5 +1,6 @@
 import React from "react";
-import { UserDashboard } from "../components";
+import { UserDashboard } from "../../components";
+
 const Dashboard = () => {
   return (
     <div>

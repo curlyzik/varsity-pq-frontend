@@ -20,7 +20,13 @@ function MyApp({ Component, pageProps, ...appProps }) {
 
   // exclude navbar from dashboard
   const getContent = () => {
-    if (["/dashboard"].includes(appProps.router.pathname)) {
+    if (
+      [
+        "/dashboard",
+        "/dashboard/create-course",
+        "/dashboard/create-pastquestion",
+      ].includes(appProps.router.pathname)
+    ) {
       return <Component {...pageProps} />;
     }
 
