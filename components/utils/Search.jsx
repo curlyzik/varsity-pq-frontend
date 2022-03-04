@@ -10,6 +10,7 @@ export const SearchFilter = ({
   disabled,
   value,
   width = 420,
+  defaultValue,
 }) => {
   return (
     <>
@@ -32,6 +33,7 @@ export const SearchFilter = ({
         disabled={disabled}
         value={value}
         className="text-base"
+        defaultValue={defaultValue}
       >
         {children}
       </Select>

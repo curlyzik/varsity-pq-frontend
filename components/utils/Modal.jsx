@@ -1,14 +1,23 @@
 import React from "react";
 import { Modal as AntModal, Button } from "antd";
 
-const Modal = ({ children, isModalVisible, handleOk, handleCancel }) => {
+const Modal = ({
+  title = "Select Past Question",
+  children,
+  isModalVisible,
+  handleOk,
+  handleCancel,
+  confirmLoading,
+  loading,
+}) => {
   return (
     <div>
       <AntModal
-        title="Select Past Question"
+        title={title}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        confirmLoading={confirmLoading}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Cancel
@@ -17,6 +26,7 @@ const Modal = ({ children, isModalVisible, handleOk, handleCancel }) => {
             key="cancel"
             type="primary"
             onClick={handleOk}
+            loading={loading}
             className="text-black"
           >
             OK

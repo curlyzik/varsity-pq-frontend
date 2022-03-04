@@ -1,13 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Layout, Table } from "../../components";
+import {
+  Layout,
+  Courses as CourseComponent,
+} from "../../components";
 import { Card } from "antd";
-import { AiOutlineEdit, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
+import { useRouter } from "next/router";
 
 const Courses = () => {
   const { auth } = useSelector((state) => state.persistedReducer);
+
   const [courses, setCourses] = useState();
+  const [courseId, setCourseId] = useState(null);
+  const [courseDetails, setCourseDetails] = useState();
+
+  const [visible, setVisible] = useState(false);
+
+  const router = useRouter();
+
+  const showModal = () => {
+    setVisible(true);
+  };
 
   useEffect(() => {
     if (!auth.accessToken) {
@@ -27,57 +42,26 @@ const Courses = () => {
     setCourses(data);
   };
 
+  // Fetch all courses
   useEffect(() => {
     fetchCourses();
   }, []);
 
-  console.log(courses);
-
-  const columns = [
-    {
-      title: "Course Code",
-      dataIndex: "course_code",
-      key: "course_code",
-      fixed: "left",
-      width: 50,
-    },
-    {
-      title: "Course Name",
-      dataIndex: "course_name",
-      key: "name",
-      width: 100,
-    },
-    {
-      title: "Year",
-      dataIndex: "year",
-      key: "year",
-      width: 50,
-    },
-    {
-      title: "Level",
-      dataIndex: "level",
-      key: "level",
-      width: 50,
-    },
-    {
-      title: "Semester",
-      dataIndex: "semester",
-      key: "semester",
-      width: 50,
-    },
-    {
-      title: "Faculty",
-      dataIndex: "faculty",
-      key: "faculty",
-      width: 100,
-    },
-    {
-      title: "Department",
-      dataIndex: "department",
-      key: "department",
-      width: 100,
-    },
-  ];
+  const fetchCourse = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+        }
+      );
+      setCourseDetails(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const mappedData = courses?.map((course) => {
     return {
@@ -89,8 +73,26 @@ const Courses = () => {
       semester: course.course_details[0].semester,
       faculty: course.course_details[0].faculty,
       department: course.course_details[0].department,
+      action: (
+        <div
+          onClick={() => {
+            showModal();
+            setCourseId(course.id);
+          }}
+          className="flex cursor-pointer items-center justify-center gap-x-3"
+        >
+          <AiOutlineEdit fill="green" />
+          <span>Update</span>
+        </div>
+      ),
     };
-  });
+  })
+
+  useEffect(() => {
+    if (courseId !== null) {
+      fetchCourse(courseId);
+    }
+  }, [courseId]);
 
   return (
     <div>
@@ -100,10 +102,13 @@ const Courses = () => {
         </div>
         {/* For desktop  view */}
         <div className="hidden md:block">
-          <Table
-            columns={columns}
+          <CourseComponent
+            visible={visible}
+            setVisible={setVisible}
             data={mappedData}
-            scroll={{ x: 1500, y: 300 }}
+            setCourseId={setCourseId}
+            courseDetails={courseDetails}
+            setCourseDetails={setCourseDetails}
           />
         </div>
 
@@ -111,7 +116,7 @@ const Courses = () => {
         <div className="block md:hidden">
           <div className="!flex !flex-col !gap-y-6">
             {courses?.map((course) => (
-              <Card className="!border-2">
+              <Card className="!border-2" key={course.id}>
                 <h3 className=" text-2xl font-bold">{course.name}</h3>
                 <p className=" mb-2 text-lg italic">{course.course_code}</p>
                 <div className="text-base">

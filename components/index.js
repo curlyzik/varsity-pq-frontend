@@ -5,11 +5,12 @@ export { default as Header } from "./core/Header";
 export { default as Select } from "./core/Select";
 export { default as InfiniteScrolling } from "./core/InfiniteScrolling";
 export { default as MetaTags } from "./core/MetaTags";
-export { default as Modal } from "./core/Modal";
 export { default as MainHeader } from "./core/MainHeader";
 export { default as UserDashboard } from "./core/UserDashboard";
+export { default as Courses } from "./core/Courses";
 
 // utils components
+export { default as Modal } from "./utils/Modal";
 export { default as NewsCard } from "./utils/NewsCard";
 export { default as Btn } from "./utils/Btn";
 export { default as SecButton } from "./utils/SecButton";
