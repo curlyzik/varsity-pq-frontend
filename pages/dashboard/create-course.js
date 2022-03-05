@@ -94,7 +94,15 @@ const CreateCourse = () => {
                   { required: true, message: "Please input course code!" },
                 ]}
               >
-                <Input placeholder="course code" type={"text"} />
+                <Input
+                  placeholder="course code"
+                  type={"text"}
+                  onChange={(e) => {
+                    form.setFieldsValue({
+                      course_code: e.target.value.toUpperCase(),
+                    });
+                  }}
+                />
               </Form.Item>
 
               <Form.Item

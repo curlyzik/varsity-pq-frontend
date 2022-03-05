@@ -48,7 +48,7 @@ const Courses = () => {
   useEffect(() => {
     fetchCourses();
   }, [courseDetail]);
-  
+
   // fetch single course
   const fetchCourse = async (id) => {
     try {
@@ -129,7 +129,7 @@ const Courses = () => {
         </div>
 
         {/* For mobile view */}
-        <div className="block md:hidden">
+        <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
             {courses?.map((course) => (
               <Card className="!border-2" key={course.id}>
@@ -148,12 +148,14 @@ const Courses = () => {
                   </p>
                   <Button
                     key="button"
+                    className="mt-4 flex cursor-pointer items-center justify-center gap-x-3 text-lg"
                     onClick={() => {
                       setCourseId(course.id);
                       showModal();
                     }}
                   >
-                    Edit
+                    <AiOutlineEdit fill="green" />
+                    <span>Update</span>
                   </Button>
                 </div>
               </Card>

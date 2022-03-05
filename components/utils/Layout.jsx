@@ -22,7 +22,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
 
   return (
     <div>
-      <Layout>
+      <Layout hasSider className="!overflow-hidden">
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -33,7 +33,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             console.log(collapsed, type);
             setCollapsed(collapsed);
           }}
-          className="!fixed top-0 bottom-0 left-0 z-50 !h-screen"
+          className="!fixed !top-0 !bottom-0 !left-0 z-50 !h-screen"
         >
           <div className="!m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
@@ -69,7 +69,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className={`${!collapsed ? "!ml-[200px]" : "!ml-0"}`}>
+        <Layout className={`${!collapsed ? "lg:ml-[200px]" : "!ml-0"}`}>
           <Header className="!fixed z-50 w-full p-0">
             <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
               <Menu.Item
@@ -95,7 +95,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu>
           </Header>
           <Content className="!mx-4 !mt-20">
-            <div className="!h-full bg-white p-7">{children}</div>
+            <div className="h-full bg-white p-7">{children}</div>
           </Content>
           {/* <Footer className="!fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
             <p className="flex justify-center gap-x-2">
