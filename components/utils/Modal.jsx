@@ -9,6 +9,7 @@ const Modal = ({
   handleCancel,
   confirmLoading,
   loading,
+  formSubmit
 }) => {
   return (
     <div>
@@ -25,7 +26,7 @@ const Modal = ({
           <Button
             key="cancel"
             type="primary"
-            onClick={handleOk}
+            onClick={formSubmit}
             loading={loading}
             className="text-black"
           >

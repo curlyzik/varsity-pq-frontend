@@ -1,20 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import {
-  Layout,
-  Courses as CourseComponent,
-} from "../../components";
-import { Card } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { Layout, Courses as CourseComponent } from "../../components";
+import { Button, Card } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { setCourseDetails } from "../../src/features/courses/courseDetailSlice";
 
 const Courses = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+  const dispatch = useDispatch();
 
   const [courses, setCourses] = useState();
   const [courseId, setCourseId] = useState(null);
-  const [courseDetails, setCourseDetails] = useState();
 
   const [visible, setVisible] = useState(false);
 
@@ -47,6 +45,11 @@ const Courses = () => {
     fetchCourses();
   }, []);
 
+  useEffect(() => {
+    fetchCourses();
+  }, [courseDetail]);
+  
+  // fetch single course
   const fetchCourse = async (id) => {
     try {
       const { data } = await axios.get(
@@ -57,11 +60,31 @@ const Courses = () => {
           },
         }
       );
-      setCourseDetails(data);
+      dispatch(
+        setCourseDetails({
+          course_id: data.id,
+          course_name: data.name,
+          course_code: data.course_code,
+          course_university: data.course_details[0].university,
+          course_department: data.course_details[0].department,
+          course_faculty: data.course_details[0].faculty,
+          course_year: data.course_details[0].year,
+          course_level: data.course_details[0].level,
+          course_semester: data.course_details[0].semester,
+          author_name: data.author.full_name,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
   };
+
+  // set course id
+  useEffect(() => {
+    if (courseId !== null) {
+      fetchCourse(courseId);
+    }
+  }, [courseId]);
 
   const mappedData = courses?.map((course) => {
     return {
@@ -76,8 +99,8 @@ const Courses = () => {
       action: (
         <div
           onClick={() => {
-            showModal();
             setCourseId(course.id);
+            showModal();
           }}
           className="flex cursor-pointer items-center justify-center gap-x-3"
         >
@@ -86,13 +109,7 @@ const Courses = () => {
         </div>
       ),
     };
-  })
-
-  useEffect(() => {
-    if (courseId !== null) {
-      fetchCourse(courseId);
-    }
-  }, [courseId]);
+  });
 
   return (
     <div>
@@ -106,9 +123,8 @@ const Courses = () => {
             visible={visible}
             setVisible={setVisible}
             data={mappedData}
+            courseId={courseId}
             setCourseId={setCourseId}
-            courseDetails={courseDetails}
-            setCourseDetails={setCourseDetails}
           />
         </div>
 
@@ -130,6 +146,15 @@ const Courses = () => {
                     <b>Semester:</b>{" "}
                     {course.course_details[0].semester === "2" ? "2nd" : "1st"}
                   </p>
+                  <Button
+                    key="button"
+                    onClick={() => {
+                      setCourseId(course.id);
+                      showModal();
+                    }}
+                  >
+                    Edit
+                  </Button>
                 </div>
               </Card>
             ))}

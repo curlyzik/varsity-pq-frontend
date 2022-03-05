@@ -1,34 +1,78 @@
-import { Input, Form } from "antd";
+import { Input, Form, Select, Button } from "antd";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Table, Modal } from "..";
+import { removeCourseDetails } from "../../src/features/courses/courseDetailSlice";
+import { useGetLevelsQuery } from "../../src/services/level";
+import { useGetSemesterQuery } from "../../src/services/semester";
 import { SearchFilter } from "../utils/Search";
 
-const Courses = ({
-  data,
-  visible,
-  setVisible,
-  setCourseId,
-  setCourseDetails,
-  courseDetails,
-}) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
+const { Option } = Select;
 
+const Courses = ({ data, visible, setVisible, setCourseId, courseId }) => {
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-  const onFinish = () => {
+  const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
+  console.log(courseDetail);
+  const dispatch = useDispatch();
+
+  const { data: levels } = useGetLevelsQuery();
+  const { data: semesters } = useGetSemesterQuery();
+
+  const updateCourse = async (values, id) => {
     setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
+    try {
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}/`,
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+        }
+      );
+      console.log(data);
       setConfirmLoading(false);
+      dispatch(removeCourseDetails());
+      setVisible(false);
       setCourseId(null);
-      setCourseDetails(null);
-    }, 2000);
+      form.resetFields();
+    } catch (error) {
+      console.log(error);
+      setConfirmLoading(false);
+    }
+  };
+
+  const onFinish = (values) => {
+    console.log(values);
+    updateCourse(values, courseId);
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
+    dispatch(removeCourseDetails());
+    setConfirmLoading(false);
+    setCourseId(null);
     setVisible(false);
+    form.resetFields();
   };
+
+  // set initial course values
+  useEffect(() => {
+    if (visible) {
+      form.setFieldsValue({
+        name: courseDetail.course_name,
+        course_code: courseDetail.course_code,
+        year: courseDetail.course_year,
+        level: courseDetail.course_level,
+        semester: courseDetail.course_semester,
+        university: courseDetail.course_university,
+        faculty: courseDetail.course_faculty,
+        department: courseDetail.course_department,
+      });
+    }
+  }, [courseDetail, visible]);
 
   const columns = [
     {
@@ -87,13 +131,28 @@ const Courses = ({
     <div>
       <Modal
         isModalVisible={visible}
-        title="Update Course"
+        title={<h3 className="text-2xl font-extrabold">Update Course</h3>}
         handleCancel={handleCancel}
         handleOk={onFinish}
         confirmLoading={confirmLoading}
         loading={confirmLoading}
+        formSubmit={() => form.submit()}
       >
-        {/* <Form layout="vertical" onFinish={onFinish} form={form}>
+        <Form
+          layout="vertical"
+          onFinish={onFinish}
+          form={form}
+          initialValues={{
+            name: courseDetail.course_name,
+            course_code: courseDetail.course_code,
+            year: courseDetail.course_year,
+            level: courseDetail.course_level,
+            semester: courseDetail.course_semester,
+            university: courseDetail.course_university,
+            faculty: courseDetail.course_faculty,
+            department: courseDetail.course_department,
+          }}
+        >
           <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
             <Form.Item
               name="name"
@@ -158,8 +217,21 @@ const Courses = ({
                 ))}
               </SearchFilter>
             </Form.Item>
+
+            {/* Hidden Fields */}
+            <Form.Item label="University" name="university" hidden>
+              <Input placeholder="university" type={"text"} />
+            </Form.Item>
+
+            <Form.Item label="Faculty" name="faculty" hidden>
+              <Input placeholder="faculty" type={"text"} />
+            </Form.Item>
+
+            <Form.Item label="Department" name="department" hidden>
+              <Input placeholder="department" type={"text"} />
+            </Form.Item>
           </div>
-        </Form> */}
+        </Form>
       </Modal>
 
       <Table columns={columns} data={data} scroll={{ x: 1500, y: 300 }} />

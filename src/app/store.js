@@ -8,6 +8,7 @@ import { semesterApi } from "../services/semester";
 import { uniDetailApi } from "../services/searchServices/uniDetailApi";
 import { gitHubRepoApi } from "../services/gitHubRepoApi";
 import authSliceReducer from "../features/users/authSlice";
+import courseDetailSlice from "../features/courses/courseDetailSlice";
 
 import {
   FLUSH,
@@ -23,6 +24,7 @@ import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   auth: authSliceReducer,
+  courseDetail: courseDetailSlice,
 });
 
 const persistedReducer = persistReducer(
