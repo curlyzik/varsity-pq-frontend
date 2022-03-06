@@ -11,7 +11,7 @@ const Courses = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
-  const [courses, setCourses] = useState();
+  const [courses, setCourses] = useState(null);
   const [courseId, setCourseId] = useState(null);
 
   const [visible, setVisible] = useState(false);
@@ -97,16 +97,17 @@ const Courses = () => {
       faculty: course.course_details[0].faculty,
       department: course.course_details[0].department,
       action: (
-        <div
+        <Button
+          key="button"
+          className="flex cursor-pointer items-center justify-center gap-x-3"
           onClick={() => {
             setCourseId(course.id);
             showModal();
           }}
-          className="flex cursor-pointer items-center justify-center gap-x-3"
         >
           <AiOutlineEdit fill="green" />
           <span>Update</span>
-        </div>
+        </Button>
       ),
     };
   });

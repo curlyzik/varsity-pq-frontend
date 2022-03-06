@@ -52,7 +52,7 @@ const CreateCourse = () => {
   };
 
   const messageError = () => {
-    message.error("Course already exists", 5, () => setCourseError(false));
+    message.error("You have already created this course", 5, () => setCourseError(false));
   };
 
   useEffect(() => {
