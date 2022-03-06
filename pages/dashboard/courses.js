@@ -30,7 +30,7 @@ const Courses = () => {
 
   const fetchCourses = async () => {
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/course-create/`,
+      `${process.env.NEXT_PUBLIC_API_URL}/courses/`,
       {
         headers: {
           Authorization: `Bearer ${auth.accessToken}`,

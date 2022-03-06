@@ -34,7 +34,7 @@ const CreateCourse = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/course-create/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/courses/`,
         values,
         {
           headers: {
