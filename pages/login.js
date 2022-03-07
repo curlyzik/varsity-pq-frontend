@@ -47,16 +47,16 @@ const Login = () => {
   };
 
   const messageError = () => {
-    message.error("Email or password is incorrect", 2, () =>
-      setLoginError(false)
-    );
+    message.error("Email or password is incorrect", 4, () => {
+      return setLoginError(false);
+    });
   };
 
   useEffect(() => {
     if (loginError) {
       messageError();
     }
-  },[]);
+  }, [loginError]);
 
   return (
     <div className="grid items-center justify-center gap-y-5 pt-24">

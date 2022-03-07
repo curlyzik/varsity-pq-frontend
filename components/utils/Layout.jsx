@@ -65,7 +65,9 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               </Link>
             </Menu.Item>
             <Menu.Item key="5" icon={<AiOutlineSetting />}>
-              Settings
+              <Link href={"/dashboard/settings"}>
+                <a>Settings</a>
+              </Link>
             </Menu.Item>
           </Menu>
         </Sider>

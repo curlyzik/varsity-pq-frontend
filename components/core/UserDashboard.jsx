@@ -26,7 +26,7 @@ const UserDashboard = () => {
         </div>
         <div className="mt-6 flex grid-cols-3 flex-col gap-y-8 lg:grid">
           {!error && !user ? (
-            <div></div>
+            <div>....loading</div>
           ) : (
             <>
               <div>
