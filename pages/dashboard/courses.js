@@ -88,7 +88,7 @@ const Courses = () => {
   const mappedData = courses?.map((course) => {
     return {
       key: course.id,
-      course_code: course.course_code,
+      course_code: <h3 className="font-bold">{course.course_code}</h3>,
       course_name: course.name,
       year: course.course_details[0].year,
       level: course.course_details[0].level,

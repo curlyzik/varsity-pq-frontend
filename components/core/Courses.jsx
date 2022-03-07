@@ -1,4 +1,4 @@
-import { Input, Form, Select, Button } from "antd";
+import { Input, InputNumber, Form, Select, Button } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,7 +90,7 @@ const Courses = ({
 
   const columns = [
     {
-      title: <h3 className="font-bold">Course Code</h3>,
+      title: <h3 className="font-extrabold">Course Code</h3>,
       dataIndex: "course_code",
       key: "course_code",
       fixed: "left",
@@ -219,7 +219,7 @@ const Courses = ({
                 name="course_year"
                 rules={[{ required: true, message: "Please input year!" }]}
               >
-                <Input placeholder="year" type={"text"} />
+                <Input placeholder="year" type="number" />
               </Form.Item>
 
               <Form.Item

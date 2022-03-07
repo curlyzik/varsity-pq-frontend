@@ -52,7 +52,9 @@ const CreateCourse = () => {
   };
 
   const messageError = () => {
-    message.error("You have already created this course", 5, () => setCourseError(false));
+    message.error("You have already created this course", 5, () =>
+      setCourseError(false)
+    );
   };
 
   useEffect(() => {
@@ -159,7 +161,7 @@ const CreateCourse = () => {
                 name="year"
                 rules={[{ required: true, message: "Please input year!" }]}
               >
-                <Input placeholder="year" type={"text"} />
+                <Input type={"number"} placeholder="input year" />
               </Form.Item>
 
               <Form.Item
