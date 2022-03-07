@@ -33,7 +33,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             console.log(collapsed, type);
             setCollapsed(collapsed);
           }}
-          className="!fixed !top-0 !bottom-0 !left-0 z-50 !h-screen"
+          className="!fixed !top-0 !bottom-0 !left-0 !z-50 !h-screen"
         >
           <div className="!m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
@@ -70,7 +70,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
           </Menu>
         </Sider>
         <Layout className={`${!collapsed ? "lg:ml-[200px]" : "!ml-0"}`}>
-          <Header className="!fixed z-50 w-full p-0">
+          <Header className="!fixed z-10 !w-full !p-0">
             <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
               <Menu.Item
                 key="1"

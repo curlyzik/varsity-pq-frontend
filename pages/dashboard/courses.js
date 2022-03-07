@@ -98,7 +98,7 @@ const Courses = () => {
       action: (
         <Button
           key="button"
-          className="flex cursor-pointer items-center justify-center gap-x-3"
+          className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
           onClick={() => {
             setCourseId(course.id);
             showUpdateModal();
@@ -114,7 +114,7 @@ const Courses = () => {
   return (
     <div>
       <Layout defaultSelectedKeys="3">
-        <div className="mb-4 border-b pb-2">
+        <div className="!mb-4 border-b !pb-2">
           <h2 className="text-4xl font-bold">Courses</h2>
         </div>
 
@@ -134,8 +134,8 @@ const Courses = () => {
           <div className="!flex !flex-col !gap-y-6">
             {courses?.map((course) => (
               <Card className="!border-2" key={course.id}>
-                <h3 className=" text-2xl font-bold">{course.name}</h3>
-                <p className=" mb-2 text-lg italic">{course.course_code}</p>
+                <h3 className="!text-2xl font-bold">{course.name}</h3>
+                <p className="!mb-2 text-lg italic">{course.course_code}</p>
                 <div className="text-base">
                   <p>
                     <b>Year:</b> {course.course_details[0].year}
@@ -149,7 +149,7 @@ const Courses = () => {
                   </p>
                   <Button
                     key="button"
-                    className="mt-4 flex cursor-pointer items-center justify-center gap-x-3 text-lg"
+                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
                     onClick={() => {
                       setCourseId(course.id);
                       showUpdateModal();

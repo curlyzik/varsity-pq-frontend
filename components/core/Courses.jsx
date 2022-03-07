@@ -185,7 +185,7 @@ const Courses = ({
               course_department: courseDetail.course_department,
             }}
           >
-            <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
+            <div className="!mb-2 !flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
               <Form.Item
                 name="course_name"
                 label="Course Name"
