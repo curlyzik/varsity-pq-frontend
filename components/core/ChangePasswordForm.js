@@ -15,13 +15,7 @@ const ChangePasswordForm = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    if (!auth.accessToken) {
-      router.push("/login");
-    }
-  }, []);
-
+  
   // UPDATE PROFILE LOGIC
   const onChangePasswordFinish = async (values) => {
     setLoading(true);
@@ -39,7 +33,6 @@ const ChangePasswordForm = () => {
       setSuccess(true);
       form.resetFields();
     } catch (error) {
-      console.log(error.response.data);
       if (error.response.data.old_password) {
         setErrorMessage(error.response.data.old_password[0]);
       } else {

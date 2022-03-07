@@ -7,17 +7,8 @@ import { useRouter } from "next/router";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const UserDashboard = () => {
-  const router = useRouter();
-  const { auth } = useSelector((state) => state.persistedReducer);
-
-  useEffect(() => {
-    if (!auth.accessToken) {
-      router.push("/login");
-    }
-  }, []);
-
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
-  console.log(user)
+  console.log(user);
 
   return (
     <div>
