@@ -15,7 +15,7 @@ const ChangePasswordForm = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
+
   // UPDATE PROFILE LOGIC
   const onChangePasswordFinish = async (values) => {
     setLoading(true);
@@ -95,7 +95,7 @@ const ChangePasswordForm = () => {
             label="Old Password"
             rules={[{ required: true, message: "Please input old password!" }]}
           >
-            <Input placeholder="old password" />
+            <Input.Password placeholder="old password" />
           </Form.Item>
 
           <Form.Item

@@ -1,7 +1,17 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Layout } from "../../components";
 
 const CreatePastQuestion = () => {
+  const { auth } = useSelector((state) => state.persistedReducer);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!auth.accessToken) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <div>
       <Layout defaultSelectedKeys="4">
