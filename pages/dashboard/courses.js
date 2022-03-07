@@ -27,10 +27,6 @@ const Courses = () => {
     setUpdateVisible(true);
   };
 
-  const showCreateModal = () => {
-    setCreateVisible(true);
-  };
-
   // FETCH ALL COURSES
   const fetchCourses = async () => {
     const { data } = await axios.get(
