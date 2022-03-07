@@ -17,12 +17,6 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (auth.accessToken) {
-      router.push("/");
-    }
-  }, []);
-
   const onFinish = async (values) => {
     try {
       setLoading(true);
@@ -41,8 +35,10 @@ const Login = () => {
       );
       router.push("/dashboard");
     } catch (error) {
+      if (error.response.data) {
+        setLoginErrorMessage(error.response.data.non_field_errors[0]);
+      }
       setLoginError(true);
-      setLoginErrorMessage(error.response.data.non_field_errors[0]);
       setLoading(false);
     }
   };
@@ -95,7 +91,7 @@ const Login = () => {
           ]}
           className="!mb-0"
         >
-          <Input
+          <Input.Password
             prefix={<AiOutlineLock className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
@@ -120,7 +116,7 @@ const Login = () => {
           >
             Log in
           </Button>
-          <p>
+          <p className="!mt-2">
             Or{" "}
             <span>
               <Link href={"/volunteer/volunteer-request"}>

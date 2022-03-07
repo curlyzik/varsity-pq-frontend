@@ -17,6 +17,7 @@ const UserDashboard = () => {
   }, []);
 
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
+  console.log(user)
 
   return (
     <div>
