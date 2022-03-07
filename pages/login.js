@@ -13,6 +13,7 @@ const Login = () => {
   const router = useRouter();
   const { auth } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -40,14 +41,14 @@ const Login = () => {
       );
       router.push("/dashboard");
     } catch (error) {
-      console.log(error.message);
       setLoginError(true);
+      setLoginErrorMessage(error.response.data.non_field_errors[0]);
       setLoading(false);
     }
   };
 
   const messageError = () => {
-    message.error("Email or password is incorrect", 4, () => {
+    message.error(loginErrorMessage, 4, () => {
       return setLoginError(false);
     });
   };
