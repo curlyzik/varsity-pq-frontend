@@ -56,7 +56,7 @@ const Login = () => {
     if (loginError) {
       messageError();
     }
-  });
+  },[]);
 
   return (
     <div className="grid items-center justify-center gap-y-5 pt-24">

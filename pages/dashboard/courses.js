@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout, Courses as CourseComponent } from "../../components";
 import { Button, Card } from "antd";
-import { AiOutlineEdit, AiFillPlusSquare} from "react-icons/ai";
+import { AiOutlineEdit, AiOutlinePlusSquare } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { setCourseDetails } from "../../src/features/courses/courseDetailSlice";
 
@@ -13,14 +13,9 @@ const Courses = () => {
 
   const [courses, setCourses] = useState(null);
   const [courseId, setCourseId] = useState(null);
-
-  const [visible, setVisible] = useState(false);
+  const [updateVisible, setUpdateVisible] = useState(false);
 
   const router = useRouter();
-
-  const showModal = () => {
-    setVisible(true);
-  };
 
   useEffect(() => {
     if (!auth.accessToken) {
@@ -28,6 +23,15 @@ const Courses = () => {
     }
   }, []);
 
+  const showUpdateModal = () => {
+    setUpdateVisible(true);
+  };
+
+  const showCreateModal = () => {
+    setCreateVisible(true);
+  };
+
+  // FETCH ALL COURSES
   const fetchCourses = async () => {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/courses/`,
@@ -40,7 +44,6 @@ const Courses = () => {
     setCourses(data);
   };
 
-  // Fetch all courses
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -49,7 +52,7 @@ const Courses = () => {
     fetchCourses();
   }, [courseDetail]);
 
-  // fetch single course
+  // FETCH SINGLE COURSE
   const fetchCourse = async (id) => {
     try {
       const { data } = await axios.get(
@@ -102,7 +105,7 @@ const Courses = () => {
           className="flex cursor-pointer items-center justify-center gap-x-3"
           onClick={() => {
             setCourseId(course.id);
-            showModal();
+            showUpdateModal();
           }}
         >
           <AiOutlineEdit fill="green" />
@@ -115,26 +118,15 @@ const Courses = () => {
   return (
     <div>
       <Layout defaultSelectedKeys="3">
-        <div className="!flex !items-center justify-between mb-4 pb-4 border-b">
+        <div className="mb-4 border-b pb-2">
           <h2 className="text-4xl font-bold">Courses</h2>
-          <Button
-            key="button"
-            className="!flex cursor-pointer items-center justify-center gap-x-3"
-            onClick={() => {
-              setCourseId(course.id);
-              showModal();
-            }}
-          >
-            <AiFillPlusSquare fill="green" />
-            <span>Add Course</span>
-          </Button>
         </div>
 
         {/* For desktop  view */}
         <div className="hidden md:block">
           <CourseComponent
-            visible={visible}
-            setVisible={setVisible}
+            updateVisible={updateVisible}
+            updateSetVisible={setUpdateVisible}
             data={mappedData}
             courseId={courseId}
             setCourseId={setCourseId}
@@ -164,7 +156,7 @@ const Courses = () => {
                     className="mt-4 flex cursor-pointer items-center justify-center gap-x-3 text-lg"
                     onClick={() => {
                       setCourseId(course.id);
-                      showModal();
+                      showUpdateModal();
                     }}
                   >
                     <AiOutlineEdit fill="green" />

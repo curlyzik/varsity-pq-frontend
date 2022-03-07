@@ -8,8 +8,7 @@ const Modal = ({
   handleOk,
   handleCancel,
   confirmLoading,
-  loading,
-  formSubmit
+  footer,
 }) => {
   return (
     <div>
@@ -19,20 +18,7 @@ const Modal = ({
         onOk={handleOk}
         onCancel={handleCancel}
         confirmLoading={confirmLoading}
-        footer={[
-          <Button key="back" onClick={handleCancel}>
-            Cancel
-          </Button>,
-          <Button
-            key="cancel"
-            type="primary"
-            onClick={formSubmit}
-            loading={loading}
-            className="text-black"
-          >
-            OK
-          </Button>,
-        ]}
+        footer={footer}
       >
         {children}
       </AntModal>

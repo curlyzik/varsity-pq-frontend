@@ -10,33 +10,48 @@ import { SearchFilter } from "../utils/Search";
 
 const { Option } = Select;
 
-const Courses = ({ data, visible, setVisible, setCourseId, courseId }) => {
+const Courses = ({
+  data,
+  updateVisible,
+  updateSetVisible,
+  setCourseId,
+  courseId,
+}) => {
+  const dispatch = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
   const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
   console.log(courseDetail);
-  const dispatch = useDispatch();
 
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
+  // UPDATE COURSE
   const updateCourse = async (values, id) => {
     setConfirmLoading(true);
     try {
       const { data } = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}/`,
-        values,
+        {
+          name: values.course_name,
+          course_code: values.course_course_code,
+          year: values.course_year,
+          level: values.course_level,
+          semester: values.course_semester,
+          university: values.course_university,
+          faculty: values.course_faculty,
+          department: values.course_department,
+        },
         {
           headers: {
             Authorization: `Bearer ${auth.accessToken}`,
           },
         }
       );
-      console.log(data);
       setConfirmLoading(false);
       dispatch(removeCourseDetails());
-      setVisible(false);
+      updateSetVisible(false);
       setCourseId(null);
       form.resetFields();
     } catch (error) {
@@ -45,34 +60,33 @@ const Courses = ({ data, visible, setVisible, setCourseId, courseId }) => {
     }
   };
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onUpdateFinish = (values) => {
     updateCourse(values, courseId);
+    console.log(values);
   };
 
-  const handleCancel = () => {
+  const handleUpdateCancel = () => {
     dispatch(removeCourseDetails());
     setConfirmLoading(false);
     setCourseId(null);
-    setVisible(false);
-    form.resetFields();
+    updateSetVisible(false);
   };
 
-  // set initial course values
+  // SET PREVIOUS VALUES TO FORM FIELDS
   useEffect(() => {
-    if (visible) {
+    if (updateVisible) {
       form.setFieldsValue({
-        name: courseDetail.course_name,
-        course_code: courseDetail.course_code,
-        year: courseDetail.course_year,
-        level: courseDetail.course_level,
-        semester: courseDetail.course_semester,
-        university: courseDetail.course_university,
-        faculty: courseDetail.course_faculty,
-        department: courseDetail.course_department,
+        course_name: courseDetail.course_name,
+        course_course_code: courseDetail.course_code,
+        course_year: courseDetail.course_year,
+        course_level: courseDetail.course_level,
+        course_semester: courseDetail.course_semester,
+        course_university: courseDetail.course_university,
+        course_faculty: courseDetail.course_faculty,
+        course_department: courseDetail.course_department,
       });
     }
-  }, [courseDetail, visible]);
+  }, [courseDetail, updateVisible]);
 
   const columns = [
     {
@@ -129,112 +143,141 @@ const Courses = ({ data, visible, setVisible, setCourseId, courseId }) => {
 
   return (
     <div>
-      <Modal
-        isModalVisible={visible}
-        title={<h3 className="text-2xl font-extrabold">Update Course</h3>}
-        handleCancel={handleCancel}
-        handleOk={onFinish}
-        confirmLoading={confirmLoading}
-        loading={confirmLoading}
-        formSubmit={() => form.submit()}
-      >
-        <Form
-          layout="vertical"
-          onFinish={onFinish}
-          form={form}
-          initialValues={{
-            name: courseDetail.course_name,
-            course_code: courseDetail.course_code,
-            year: courseDetail.course_year,
-            level: courseDetail.course_level,
-            semester: courseDetail.course_semester,
-            university: courseDetail.course_university,
-            faculty: courseDetail.course_faculty,
-            department: courseDetail.course_department,
-          }}
-        >
-          <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
-            <Form.Item
-              name="name"
-              label="Course Name"
-              rules={[{ required: true, message: "Please input course name!" }]}
-            >
-              <Input placeholder="course name" />
-            </Form.Item>
-
-            <Form.Item
-              name="course_code"
-              label="Course Code"
-              rules={[{ required: true, message: "Please input course code!" }]}
-            >
-              <Input placeholder="course code" type={"text"} />
-            </Form.Item>
-
-            <Form.Item
-              label="Year"
-              name="year"
-              rules={[{ required: true, message: "Please input year!" }]}
-            >
-              <Input placeholder="year" type={"text"} />
-            </Form.Item>
-
-            <Form.Item
-              label="Level"
-              name="level"
-              rules={[{ required: true, message: "Please input level!" }]}
-            >
-              <SearchFilter
-                handleChange={(value) => {
-                  form.setFieldsValue({ level: value });
-                }}
-                description="level"
-                width
-              >
-                {levels?.map((level) => (
-                  <Option key={level.id} value={level.level}>
-                    {level.level}
-                  </Option>
-                ))}
-              </SearchFilter>
-            </Form.Item>
-
-            <Form.Item
-              label="Semester"
-              name="semester"
-              rules={[{ required: true, message: "Please input semester!" }]}
-            >
-              <SearchFilter
-                handleChange={(value) => {
-                  form.setFieldsValue({ semester: value });
-                }}
-                description="semester"
-                width
-              >
-                {semesters?.map((semester) => (
-                  <Option key={semester.id} value={semester.name}>
-                    {semester.name}
-                  </Option>
-                ))}
-              </SearchFilter>
-            </Form.Item>
-
-            {/* Hidden Fields */}
-            <Form.Item label="University" name="university" hidden>
-              <Input placeholder="university" type={"text"} />
-            </Form.Item>
-
-            <Form.Item label="Faculty" name="faculty" hidden>
-              <Input placeholder="faculty" type={"text"} />
-            </Form.Item>
-
-            <Form.Item label="Department" name="department" hidden>
-              <Input placeholder="department" type={"text"} />
-            </Form.Item>
-          </div>
-        </Form>
-      </Modal>
-
+      {/* COURSE DATA */}
       <Table columns={columns} data={data} scroll={{ x: 1500, y: 300 }} />
+
+      {/* UPDATE COURSE MODAL */}
+      <Form form={form}>
+        <Modal
+          isModalVisible={updateVisible}
+          title={<h3 className="text-2xl font-extrabold">Update Course</h3>}
+          handleCancel={handleUpdateCancel}
+          handleOk={onUpdateFinish}
+          confirmLoading={confirmLoading}
+          loading={confirmLoading}
+          footer={[
+            <Button key="back" onClick={handleUpdateCancel}>
+              Cancel
+            </Button>,
+            <Button
+              key="cancel"
+              type="primary"
+              onClick={() => form.submit()}
+              loading={confirmLoading}
+              className="text-black"
+            >
+              OK
+            </Button>,
+          ]}
+        >
+          <Form
+            layout="vertical"
+            onFinish={onUpdateFinish}
+            form={form}
+            initialValues={{
+              course_name: courseDetail.course_name,
+              course_course_code: courseDetail.course_code,
+              course_year: courseDetail.course_year,
+              course_level: courseDetail.course_level,
+              course_semester: courseDetail.course_semester,
+              course_university: courseDetail.course_university,
+              course_faculty: courseDetail.course_faculty,
+              course_department: courseDetail.course_department,
+            }}
+          >
+            <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
+              <Form.Item
+                name="course_name"
+                label="Course Name"
+                rules={[
+                  { required: true, message: "Please input course name!" },
+                ]}
+              >
+                <Input placeholder="course name" />
+              </Form.Item>
+
+              <Form.Item
+                name="course_course_code"
+                label="Course Code"
+                rules={[
+                  { required: true, message: "Please input course code!" },
+                ]}
+              >
+                <Input
+                  placeholder="course code"
+                  type={"text"}
+                  onChange={(e) => {
+                    form.setFieldsValue({
+                      course_course_code: e.target.value.toUpperCase(),
+                    });
+                  }}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Year"
+                name="course_year"
+                rules={[{ required: true, message: "Please input year!" }]}
+              >
+                <Input placeholder="year" type={"text"} />
+              </Form.Item>
+
+              <Form.Item
+                label="Level"
+                name="course_level"
+                rules={[{ required: true, message: "Please input level!" }]}
+              >
+                <SearchFilter
+                  handleChange={(value) => {
+                    form.setFieldsValue({ level: value });
+                  }}
+                  description="level"
+                  width
+                >
+                  {levels?.map((level) => (
+                    <Option key={level.id} value={level.level}>
+                      {level.level}
+                    </Option>
+                  ))}
+                </SearchFilter>
+              </Form.Item>
+
+              <Form.Item
+                label="Semester"
+                name="course_semester"
+                rules={[{ required: true, message: "Please input semester!" }]}
+              >
+                <SearchFilter
+                  handleChange={(value) => {
+                    form.setFieldsValue({ semester: value });
+                  }}
+                  description="semester"
+                  width
+                >
+                  {semesters?.map((semester) => (
+                    <Option key={semester.id} value={semester.name}>
+                      {semester.name}
+                    </Option>
+                  ))}
+                </SearchFilter>
+              </Form.Item>
+
+              {/* Hidden Fields */}
+              <Form.Item label="University" name="course_university" hidden>
+                <Input placeholder="university" type={"text"} />
+              </Form.Item>
+
+              <Form.Item label="Faculty" name="course_faculty" hidden>
+                <Input placeholder="faculty" type={"text"} />
+              </Form.Item>
+
+              <Form.Item label="Department" name="course_department" hidden>
+                <Input placeholder="department" type={"text"} />
+              </Form.Item>
+            </div>
+          </Form>
+        </Modal>
+      </Form>
     </div>
   );
 };
