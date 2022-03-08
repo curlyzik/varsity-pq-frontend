@@ -62,7 +62,6 @@ const ProfileUpdateForm = () => {
     if (!error && user) {
       form.setFieldsValue({
         full_name: user.full_name,
-        email: user.email,
         year: user.year,
       });
     }
@@ -93,14 +92,6 @@ const ProfileUpdateForm = () => {
             rules={[{ required: true, message: "Please input year!" }]}
           >
             <Input placeholder="year of admission" type="number" />
-          </Form.Item>
-
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[{ required: true, message: "Please input email!" }]}
-          >
-            <Input placeholder="input email" type="email" />
           </Form.Item>
         </div>
         <Button htmlType="submit" loading={loading}>
