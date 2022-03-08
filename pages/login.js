@@ -99,12 +99,11 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item className="!mb-3">
-          <a
-            className="login-form-forgot inline-block font-semibold text-black"
-            href=""
-          >
-            Forgot password?
-          </a>
+          <Link href={"/password-reset"}>
+            <a className="login-form-forgot !mt-1 inline-block font-semibold text-black">
+              Forgot password?
+            </a>
+          </Link>
         </Form.Item>
 
         <Form.Item className="">

@@ -8,7 +8,7 @@ import { SearchFilter } from "../../components/utils/Search";
 import { useGetUniversitiesQuery } from "../../src/services/university";
 import { useGetDepartmentsByFacultyQuery } from "../../src/services/department";
 import { useGetFacultiesQuery } from "../../src/services/faculty";
-import { Btn, Success } from "../../components";
+import { Success } from "../../components";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -64,7 +64,6 @@ const NewVolunteer = () => {
     } catch (error) {
       setError(true);
       setLoading(false);
-      // console.log(error);
     }
   };
 
@@ -137,8 +136,24 @@ const NewVolunteer = () => {
           closable={false}
         >
           <Success
-            key={volunteerDetails && volunteerDetails.data.email}
-            volunteer={volunteerDetails}
+            title="Successfully Sent Volunteer Request!!!"
+            extra={[
+              <p className="mb-4 text-sm text-gray-500" key={"text"}>
+                Thank you for your interest in volunteering with us. We will
+                send you an email{" "}
+                <span className="font-bold text-black">
+                </span>{" "}
+                once we have reviewed your request.
+              </p>,
+              <Button
+                type="primary"
+                key="console"
+                className="font-bold !text-black"
+                onClick={() => router.push("/")}
+              >
+                Go Home
+              </Button>,
+            ]}
           />
         </Modal>
       </div>

@@ -9,6 +9,7 @@ import {
   AiOutlineHome,
   AiOutlineLogout,
   AiOutlineBook,
+  AiOutlinePlusSquare,
 } from "react-icons/ai";
 import Link from "next/link";
 import { logout } from "../../src/features/users/authSlice";
@@ -49,7 +50,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
                 <a>Profile</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<AiOutlineBook />}>
+            <Menu.Item key="2" icon={<AiOutlinePlusSquare />}>
               <Link href={"/dashboard/create-course"}>
                 <a>Create Course</a>
               </Link>

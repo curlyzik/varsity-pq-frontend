@@ -9,6 +9,7 @@ const Modal = ({
   handleCancel,
   confirmLoading,
   footer,
+  closable,
 }) => {
   return (
     <div>
@@ -19,6 +20,7 @@ const Modal = ({
         onCancel={handleCancel}
         confirmLoading={confirmLoading}
         footer={footer}
+        closable={closable}
       >
         {children}
       </AntModal>
