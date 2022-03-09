@@ -26,8 +26,8 @@ const Item = ({ university }) => {
         >
           {university.type}
         </span>
-        <h2 className="mt-2 mb-2 text-xl font-bold">{university.name}</h2>
-        <p className="mb-3 text-sm text-gray-600">
+        <h2 className="!mt-2 !mb-2 text-xl font-bold">{university.name}</h2>
+        <p className="!mb-3 text-sm text-gray-600">
           <span className="italic text-black">Address:</span>{" "}
           {university.address}
         </p>
@@ -35,7 +35,7 @@ const Item = ({ university }) => {
         <div className="grid grid-cols-[auto,auto] gap-x-3 lg:flex lg:flex-col lg:gap-y-2">
           <Link href={`/university/${university.name}/${university.id}`}>
             <a
-              className={`grid place-items-center rounded-md border px-1 py-2 text-sm font-bold text-black ${
+              className={`grid place-items-center rounded-md border !px-1 py-2 text-sm font-bold text-black ${
                 university.type === "federal"
                   ? "border-blue-400 hover:bg-blue-400 hover:text-white"
                   : university.type === "state"
