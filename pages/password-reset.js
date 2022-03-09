@@ -36,6 +36,7 @@ const PasswordReset = () => {
   const handleCancel = () => {
     setVisible(false);
   };
+
   return (
     <>
       <Modal
