@@ -21,7 +21,12 @@ const PasswordReset = () => {
       setLoading(true);
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/password/reset/`,
-        { email: values.email }
+        { email: values.email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       setLoading(false);
