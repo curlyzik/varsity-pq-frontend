@@ -16,11 +16,12 @@ const PasswordReset = () => {
   };
 
   const onPasswordResetFinish = async (values) => {
+    console.log(values.email);
     try {
       setLoading(true);
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/password/reset/`,
-        values
+        { email: values.email }
       );
 
       setLoading(false);
