@@ -140,9 +140,7 @@ const NewVolunteer = () => {
             extra={[
               <p className="mb-4 text-sm text-gray-500" key={"text"}>
                 Thank you for your interest in volunteering with us. We will
-                send you an email{" "}
-                <span className="font-bold text-black">
-                </span>{" "}
+                send you an email <span className="font-bold text-black"></span>{" "}
                 once we have reviewed your request.
               </p>,
               <Button
@@ -267,8 +265,8 @@ const NewVolunteer = () => {
                     width
                   >
                     {years.map((year, index) => (
-                      <Option key={index} value={year}>
-                        {year}
+                      <Option key={index} value={year.toString()}>
+                        {year.toString()}
                       </Option>
                     ))}
                   </SearchFilter>
