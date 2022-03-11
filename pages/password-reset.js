@@ -20,7 +20,7 @@ const PasswordReset = () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/dj-rest-auth/password/reset/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/users/reset_password/`,
         { email: values.email },
         {
           headers: {
