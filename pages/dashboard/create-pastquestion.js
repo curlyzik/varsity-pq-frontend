@@ -6,13 +6,15 @@ import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate, PastQuestionUpdate } from "../../components";
 import axios from "axios";
 import { Button } from "antd";
+import { setCourseId } from "../../src/features/courses/courseDetailSlice";
 
 const CreatePastQuestion = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+  const { courseId } = courseDetail;
+
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [courseId, setCourseId] = useState(null);
   const [courses, setCourses] = useState(null);
 
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -103,7 +105,7 @@ const CreatePastQuestion = () => {
               key="button"
               className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
               onClick={() => {
-                setCourseId(course.id);
+                dispatch(setCourseId(course.id));
                 setShowCreateModal(true);
               }}
             >
@@ -115,7 +117,7 @@ const CreatePastQuestion = () => {
             key="button"
             className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
             onClick={() => {
-              setCourseId(course.id);
+              dispatch(setCourseId(course.id));
               setShowUpdateModal(true);
             }}
           >
@@ -145,15 +147,11 @@ const CreatePastQuestion = () => {
           <PastQuestionCreate
             showCreateModal={showCreateModal}
             setShowCreateModal={setShowCreateModal}
-            courseId={courseId}
-            setCourseId={setCourseId}
           />
 
           <PastQuestionUpdate
             showUpdateModal={showUpdateModal}
             setShowUpdateModal={setShowUpdateModal}
-            courseId={courseId}
-            setCourseId={setCourseId}
           />
         </div>
       </Layout>

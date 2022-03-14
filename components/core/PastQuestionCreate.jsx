@@ -1,17 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCourseId } from "../../src/features/courses/courseDetailSlice.js";
 import { Modal } from "../index.js";
-const PastQuestionCreate = ({
-  courseId,
-  setCourseId,
-  showCreateModal,
-  setShowCreateModal,
-}) => {
+
+const PastQuestionCreate = ({ showCreateModal, setShowCreateModal }) => {
+  const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+  const { courseId } = courseDetail;
   console.log(courseId);
+
+  const dispatch = useDispatch();
 
   const handleCancel = () => {
     setShowCreateModal(false);
-    setCourseId(null);
+    dispatch(removeCourseId());
   };
+
   return (
     <div>
       <Modal
@@ -20,9 +23,7 @@ const PastQuestionCreate = ({
         handleCancel={handleCancel}
         centered={true}
         width={1000}
-      >
-        
-      </Modal>
+      ></Modal>
       <div></div>
     </div>
   );

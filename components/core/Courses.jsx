@@ -21,8 +21,6 @@ const Courses = ({ data, updateVisible, updateSetVisible }) => {
   const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
   const { courseId } = courseDetail;
 
-  console.log(courseDetail);
-
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
@@ -228,7 +226,7 @@ const Courses = ({ data, updateVisible, updateSetVisible }) => {
               >
                 <SearchFilter
                   handleChange={(value) => {
-                    form.setFieldsValue({ level: value });
+                    form.setFieldsValue({ course_level: value });
                   }}
                   description="level"
                   width
@@ -248,7 +246,7 @@ const Courses = ({ data, updateVisible, updateSetVisible }) => {
               >
                 <SearchFilter
                   handleChange={(value) => {
-                    form.setFieldsValue({ semester: value });
+                    form.setFieldsValue({ course_semester: value });
                   }}
                   description="semester"
                   width
