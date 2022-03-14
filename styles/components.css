@@ -52,3 +52,9 @@
 .ant-result-extra {
   margin-top: 0;
 }
+
+.ant-upload-list-item-actions {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}

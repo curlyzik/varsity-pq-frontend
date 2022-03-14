@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Layout } from "../../components";
+import PicturesWall from "../../components/utils/PictureWall";
 
 const CreatePastQuestion = () => {
   const { auth } = useSelector((state) => state.persistedReducer);
@@ -20,6 +21,8 @@ const CreatePastQuestion = () => {
             Create Past Question
           </h2>
         </div>
+
+        <PicturesWall />
       </Layout>
     </div>
   );

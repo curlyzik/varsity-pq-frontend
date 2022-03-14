@@ -5,6 +5,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "../src/app/store";
 import "../styles/globals.css";
 
+// for cropper js
+import "cropperjs/dist/cropper.css";
+
 import { Header, MetaTags } from "../components/index";
 
 import AOS from "aos";

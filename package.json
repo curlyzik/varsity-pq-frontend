@@ -17,6 +17,7 @@
     "parallax-js": "^3.1.0",
     "react": "^17.0.2",
     "react-awesome-spinners": "^1.3.1",
+    "react-cropper": "^2.1.8",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-infinite-scroll-component": "^6.1.0",
