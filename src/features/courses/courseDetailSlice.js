@@ -11,12 +11,22 @@ const initialState = {
   course_level: null,
   course_semester: null,
   author_name: null,
+
+  courseId: null,
 };
 
 export const courseDetailSlice = createSlice({
   name: "courseDetailSlice",
   initialState,
   reducers: {
+    setCourseId: (state, action) => {
+      state.courseId = action.payload;
+    },
+
+    removeCourseId: (state) => {
+      state.courseId = null;
+    },
+
     setCourseDetails: (state, action) => {
       state.course_id = action.payload.course_id;
       state.course_name = action.payload.course_name;
@@ -45,7 +55,11 @@ export const courseDetailSlice = createSlice({
   },
 });
 
-export const { setCourseDetails, removeCourseDetails } =
-  courseDetailSlice.actions;
+export const {
+  setCourseDetails,
+  removeCourseDetails,
+  setCourseId,
+  removeCourseId,
+} = courseDetailSlice.actions;
 
 export default courseDetailSlice.reducer;

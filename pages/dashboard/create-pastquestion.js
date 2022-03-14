@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Layout, Table } from "../../components";
 import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate, PastQuestionUpdate } from "../../components";
 import axios from "axios";
-import { Button, Popconfirm } from "antd";
+import { Button } from "antd";
 
 const CreatePastQuestion = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [courseId, setCourseId] = useState(null);
   const [courses, setCourses] = useState(null);
@@ -140,6 +141,7 @@ const CreatePastQuestion = () => {
             data={mappedData}
             scroll={{ x: 900, y: 300 }}
           />
+
           <PastQuestionCreate
             showCreateModal={showCreateModal}
             setShowCreateModal={setShowCreateModal}

@@ -10,6 +10,8 @@ const Modal = ({
   confirmLoading,
   footer,
   closable,
+  width,
+  centered,
 }) => {
   return (
     <div>
@@ -21,6 +23,8 @@ const Modal = ({
         confirmLoading={confirmLoading}
         footer={footer}
         closable={closable}
+        width={width}
+        centered={centered}
       >
         {children}
       </AntModal>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout, Courses as CourseComponent } from "../../components";
 import { Button, Card } from "antd";
-import { AiOutlineEdit, AiOutlinePlusSquare } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { setCourseDetails } from "../../src/features/courses/courseDetailSlice";
 

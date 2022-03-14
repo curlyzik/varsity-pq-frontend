@@ -1,7 +1,6 @@
 import React from "react";
-import { Table } from "..";
 
-const PastQuestionUpdate = ({ data, courseId, setCourseId }) => {
+const PastQuestionUpdate = ({ courseId, setCourseId }) => {
   console.log(courseId);
 
   return (
