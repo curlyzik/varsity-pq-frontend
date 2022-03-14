@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Layout } from "../../components";
-import { AiOutlineEdit, AiOutlinePlus, AiOutlineUpload } from "react-icons/ai";
-import { CreatePastQuestion as CreatePastQuestionComponent } from "../../components";
+import { Layout, Table } from "../../components";
+import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
+import { PastQuestionCreate, PastQuestionUpdate } from "../../components";
 import axios from "axios";
 import { Button, Popconfirm } from "antd";
 
@@ -13,6 +13,9 @@ const CreatePastQuestion = () => {
 
   const [courseId, setCourseId] = useState(null);
   const [courses, setCourses] = useState(null);
+
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   useEffect(() => {
     if (!auth.accessToken) {
@@ -41,6 +44,48 @@ const CreatePastQuestion = () => {
     fetchCourses();
   }, [courseDetail]);
 
+  // table columns
+  const columns = [
+    {
+      title: <h3 className="font-extrabold">Course Code</h3>,
+      dataIndex: "course_code",
+      key: "course_code",
+      fixed: "left",
+      width: 50,
+    },
+    {
+      title: "Course Name",
+      dataIndex: "course_name",
+      key: "name",
+      width: 100,
+    },
+    {
+      title: "Year",
+      dataIndex: "year",
+      key: "year",
+      width: 50,
+    },
+    {
+      title: "Level",
+      dataIndex: "level",
+      key: "level",
+      width: 50,
+    },
+    {
+      title: "Semester",
+      dataIndex: "semester",
+      key: "semester",
+      width: 50,
+    },
+    {
+      title: "Actions",
+      dataIndex: "action",
+      key: "action",
+      width: 100,
+      fixed: "right",
+    },
+  ];
+
   // get the mapped data
   const mappedData = courses?.map((course) => {
     return {
@@ -53,25 +98,24 @@ const CreatePastQuestion = () => {
       action: (
         <div className="!flex gap-x-2">
           <div>
-            <Popconfirm
-              title="Select file format you want to upload"
-              icon={<AiOutlineUpload />}
+            <Button
+              key="button"
+              className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
+              onClick={() => {
+                setCourseId(course.id);
+                setShowCreateModal(true);
+              }}
             >
-              <Button
-                key="button"
-                className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
-              >
-                <AiOutlinePlus fill="green" />
-                <a href="#">Create</a>
-              </Button>
-            </Popconfirm>
+              <AiOutlinePlus fill="green" />
+              <span>Create</span>
+            </Button>
           </div>
           <Button
             key="button"
             className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
             onClick={() => {
               setCourseId(course.id);
-              showUpdateModal();
+              setShowUpdateModal(true);
             }}
           >
             <AiOutlineEdit fill="green" />
@@ -91,8 +135,21 @@ const CreatePastQuestion = () => {
           </h2>
         </div>
         <div className="hidden md:block">
-          <CreatePastQuestionComponent
+          <Table
+            columns={columns}
             data={mappedData}
+            scroll={{ x: 900, y: 300 }}
+          />
+          <PastQuestionCreate
+            showCreateModal={showCreateModal}
+            setShowCreateModal={setShowCreateModal}
+            courseId={courseId}
+            setCourseId={setCourseId}
+          />
+
+          <PastQuestionUpdate
+            showUpdateModal={showUpdateModal}
+            setShowUpdateModal={setShowUpdateModal}
             courseId={courseId}
             setCourseId={setCourseId}
           />

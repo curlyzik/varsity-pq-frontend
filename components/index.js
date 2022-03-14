@@ -10,7 +10,8 @@ export { default as UserDashboard } from "./core/UserDashboard";
 export { default as Courses } from "./core/Courses";
 export { default as ProfileUpdateForm } from "./core/ProfileUpdateForm";
 export { default as ChangePasswordForm } from "./core/ChangePasswordForm";
-export { default as CreatePastQuestion } from "./core/CreatePastQuestion";
+export { default as PastQuestionCreate } from "./core/PastQuestionCreate";
+export { default as PastQuestionUpdate } from "./core/PastQuestionUpdate";
 
 // utils components
 export { default as Modal } from "./utils/Modal";
