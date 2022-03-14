@@ -18,7 +18,6 @@ const PicturesWall = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
-  const [viewImage, setViewImage] = useState();
 
   // states for cropper js
   const [cropper, setCropper] = useState();
@@ -47,12 +46,8 @@ const PicturesWall = () => {
     );
   };
 
-  const handleChange = async ({ fileList, file }) => {
-    const newFile = await getBase64(file.originFileObj);
-    file.preview = newFile;
-    console.log(file);
+  const handleChange = async ({ fileList }) => {
     setFileList(fileList);
-    setViewImage(newFile);
   };
 
   const uploadButton = (
@@ -70,10 +65,6 @@ const PicturesWall = () => {
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
-        showUploadList={{
-          showPreviewIcon: true,
-          showRemoveIcon: true,
-        }}
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
@@ -84,7 +75,7 @@ const PicturesWall = () => {
         onCancel={handleCancel}
       >
         <Cropper
-          src={viewImage}
+          src={previewImage}
           scalable={false}
           zoomable={false}
           onInitialized={(instance) => setCropper(instance)}

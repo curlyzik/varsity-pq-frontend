@@ -58,3 +58,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.ant-popover-message {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
