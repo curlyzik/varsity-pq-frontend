@@ -3,25 +3,24 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Modal } from "..";
-import { removeCourseDetails } from "../../src/features/courses/courseDetailSlice";
+import {
+  removeCourseDetails,
+  removeCourseId,
+} from "../../src/features/courses/courseDetailSlice";
 import { useGetLevelsQuery } from "../../src/services/level";
 import { useGetSemesterQuery } from "../../src/services/semester";
 import { SearchFilter } from "../utils/Search";
 
 const { Option } = Select;
 
-const Courses = ({
-  data,
-  updateVisible,
-  updateSetVisible,
-  setCourseId,
-  courseId,
-}) => {
+const Courses = ({ data, updateVisible, updateSetVisible }) => {
   const dispatch = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
   const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
+  const { courseId } = courseDetail;
+
   console.log(courseDetail);
 
   const { data: levels } = useGetLevelsQuery();
@@ -52,7 +51,7 @@ const Courses = ({
       setConfirmLoading(false);
       dispatch(removeCourseDetails());
       updateSetVisible(false);
-      setCourseId(null);
+      dispatch(removeCourseId());
       form.resetFields();
     } catch (error) {
       console.log(error);
@@ -68,7 +67,7 @@ const Courses = ({
   const handleUpdateCancel = () => {
     dispatch(removeCourseDetails());
     setConfirmLoading(false);
-    setCourseId(null);
+    dispatch(removeCourseId());
     updateSetVisible(false);
   };
 

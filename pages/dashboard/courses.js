@@ -5,14 +5,18 @@ import { Layout, Courses as CourseComponent } from "../../components";
 import { Button, Card } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { setCourseDetails } from "../../src/features/courses/courseDetailSlice";
+import {
+  setCourseDetails,
+  setCourseId,
+} from "../../src/features/courses/courseDetailSlice";
 
 const Courses = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+  const { courseId } = courseDetail;
   const dispatch = useDispatch();
 
   const [courses, setCourses] = useState(null);
-  const [courseId, setCourseId] = useState(null);
+  // const [courseId, setCourseId] = useState(null);
   const [updateVisible, setUpdateVisible] = useState(false);
 
   const router = useRouter();
@@ -100,7 +104,7 @@ const Courses = () => {
           key="button"
           className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
           onClick={() => {
-            setCourseId(course.id);
+            dispatch(setCourseId(course.id));
             showUpdateModal();
           }}
         >
@@ -124,8 +128,6 @@ const Courses = () => {
             updateVisible={updateVisible}
             updateSetVisible={setUpdateVisible}
             data={mappedData}
-            courseId={courseId}
-            setCourseId={setCourseId}
           />
         </div>
 
