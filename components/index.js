@@ -12,6 +12,8 @@ export { default as ProfileUpdateForm } from "./core/ProfileUpdateForm";
 export { default as ChangePasswordForm } from "./core/ChangePasswordForm";
 export { default as PastQuestionCreate } from "./core/PastQuestionCreate";
 export { default as PastQuestionUpdate } from "./core/PastQuestionUpdate";
+export { default as UploadImage } from "./core/UploadImage";
+export { default as UploadPdf } from "./core/UploadPdf";
 
 // utils components
 export { default as Modal } from "./utils/Modal";

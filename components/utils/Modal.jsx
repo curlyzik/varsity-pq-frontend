@@ -12,6 +12,7 @@ const Modal = ({
   closable,
   width,
   centered,
+  key
 }) => {
   return (
     <div>
@@ -25,6 +26,7 @@ const Modal = ({
         closable={closable}
         width={width}
         centered={centered}
+        key={key}
       >
         {children}
       </AntModal>

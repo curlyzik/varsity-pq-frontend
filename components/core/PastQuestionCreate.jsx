@@ -1,30 +1,52 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeCourseId } from "../../src/features/courses/courseDetailSlice.js";
-import { Modal } from "../index.js";
+import { Modal, UploadPdf } from "../index.js";
 
-const PastQuestionCreate = ({ showCreateModal, setShowCreateModal }) => {
-  const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
-  const { courseId } = courseDetail;
-  console.log(courseId);
-
-  const dispatch = useDispatch();
-
-  const handleCancel = () => {
+const PastQuestionCreate = ({
+  showCreateModal,
+  setShowCreateModal,
+  setCourseDetails,
+  courseDetails,
+}) => {
+  const handleCreateModalCancel = () => {
     setShowCreateModal(false);
-    dispatch(removeCourseId());
+    setCourseDetails({});
   };
 
   return (
     <div>
       <Modal
-        title={`Create Past Question for ${courseId}`}
+        title={
+          <div className="!text-2xl">
+            Create Past Question for{" "}
+            <span className="!font-bold">{courseDetails.code}</span>
+          </div>
+        }
         isModalVisible={showCreateModal}
-        handleCancel={handleCancel}
-        centered={true}
+        handleCancel={handleCreateModalCancel}
         width={1000}
-      ></Modal>
-      <div></div>
+        footer={null}
+      >
+        <div className="!flex flex-col gap-y-6">
+          <div>
+            <h3 className="!mb-3 !text-lg font-bold">Course Details</h3>
+            <div className="!grid grid-cols-4 gap-y-3 text-base">
+              <div>Name: {courseDetails.name}</div>
+              <div>Course Code: {courseDetails.code}</div>
+              <div>Session: {courseDetails.year}</div>
+              <div>Level: {courseDetails.level}</div>
+              <div>Semester: {courseDetails.semester}</div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
+            <div>
+              {/* <UploadImage /> */}
+              <UploadPdf />
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -6,17 +6,15 @@ import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate, PastQuestionUpdate } from "../../components";
 import axios from "axios";
 import { Button } from "antd";
-import { setCourseId } from "../../src/features/courses/courseDetailSlice";
 
 const CreatePastQuestion = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
-  const { courseId } = courseDetail;
 
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const [courses, setCourses] = useState(null);
 
+  const [courseDetails, setCourseDetails] = useState({});
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
@@ -105,7 +103,14 @@ const CreatePastQuestion = () => {
               key="button"
               className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
               onClick={() => {
-                dispatch(setCourseId(course.id));
+                setCourseDetails({
+                  id: course.id,
+                  name: course.name,
+                  code: course.course_code,
+                  year: course.course_details[0].year,
+                  level: course.course_details[0].level,
+                  semester: course.course_details[0].semester,
+                });
                 setShowCreateModal(true);
               }}
             >
@@ -117,7 +122,14 @@ const CreatePastQuestion = () => {
             key="button"
             className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
             onClick={() => {
-              dispatch(setCourseId(course.id));
+              setCourseDetails({
+                id: course.id,
+                name: course.name,
+                code: course.course_code,
+                year: course.course_details[0].year,
+                level: course.course_details[0].level,
+                semester: course.course_details[0].semester,
+              });
               setShowUpdateModal(true);
             }}
           >
@@ -145,11 +157,15 @@ const CreatePastQuestion = () => {
           />
 
           <PastQuestionCreate
+            setCourseDetails={setCourseDetails}
+            courseDetails={courseDetails}
             showCreateModal={showCreateModal}
             setShowCreateModal={setShowCreateModal}
           />
 
           <PastQuestionUpdate
+            setCourseDetails={setCourseDetails}
+            courseDetails={courseDetails}
             showUpdateModal={showUpdateModal}
             setShowUpdateModal={setShowUpdateModal}
           />
