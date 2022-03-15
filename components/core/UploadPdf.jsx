@@ -12,6 +12,8 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
 
   const handleChange = async ({ fileList, file }) => {
     setFile(file);
@@ -53,7 +55,10 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
       setFile(null);
       setLoading(false);
     } catch (error) {
-      console.log(error.response);
+      if (error.response.data) {
+        setErrorMessage(error.response.data.message);
+      }
+      setError(true);
       setSuccess(false);
       setLoading(false);
     }
@@ -69,11 +74,23 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
     );
   };
 
+  const messageError = () => {
+    message.error(errorMessage, 3, () => {
+      return setError(false);
+    });
+  };
+
   useEffect(() => {
     if (success) {
       messageSuccess();
     }
   }, [success]);
+
+  useEffect(() => {
+    if (error) {
+      messageError();
+    }
+  }, [error]);
 
   const uploadButton = (
     <div className="!flex flex-col items-center justify-center">
