@@ -42,7 +42,11 @@ const PastQuestionCreate = ({
             <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
             <div>
               {/* <UploadImage /> */}
-              <UploadPdf courseDetails={courseDetails} />
+              <UploadPdf
+                courseDetails={courseDetails}
+                setShowCreateModal={setShowCreateModal}
+                setCourseDetails={setCourseDetails}
+              />
             </div>
           </div>
         </div>
