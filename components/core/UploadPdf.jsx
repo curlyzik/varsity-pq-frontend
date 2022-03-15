@@ -8,7 +8,7 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
   const { auth } = useSelector((state) => state.persistedReducer);
 
   const [fileList, setFileList] = useState([]);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -49,6 +49,8 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
       setSuccess(true);
       setShowCreateModal(false);
       setCourseDetails({});
+      setFileList([]);
+      setFile(null);
       setLoading(false);
     } catch (error) {
       console.log(error.response);
