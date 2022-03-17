@@ -6,6 +6,7 @@ const PastQuestionCreate = ({
   setShowCreateModal,
   setCourseDetails,
   courseDetails,
+  fetchCourses,
 }) => {
   const handleCreateModalCancel = () => {
     setShowCreateModal(false);
@@ -43,6 +44,7 @@ const PastQuestionCreate = ({
             <div>
               {/* <UploadImage /> */}
               <UploadPdf
+                fetchCourses={fetchCourses}
                 courseDetails={courseDetails}
                 setShowCreateModal={setShowCreateModal}
                 setCourseDetails={setCourseDetails}

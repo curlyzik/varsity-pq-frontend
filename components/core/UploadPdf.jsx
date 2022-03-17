@@ -4,7 +4,12 @@ import { AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
+const UploadPdf = ({
+  courseDetails,
+  setShowCreateModal,
+  setCourseDetails,
+  fetchCourses,
+}) => {
   const { auth } = useSelector((state) => state.persistedReducer);
 
   const [fileList, setFileList] = useState([]);
@@ -83,6 +88,8 @@ const UploadPdf = ({ courseDetails, setShowCreateModal, setCourseDetails }) => {
   useEffect(() => {
     if (success) {
       messageSuccess();
+      // fetch courses again after creating past question
+      fetchCourses();
     }
   }, [success]);
 

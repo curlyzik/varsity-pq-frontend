@@ -41,10 +41,6 @@ const CreatePastQuestion = () => {
     fetchCourses();
   }, []);
 
-  useEffect(() => {
-    fetchCourses();
-  }, [courseDetail]);
-
   // table columns
   const columns = [
     {
@@ -95,7 +91,6 @@ const CreatePastQuestion = () => {
       }
     });
 
-  console.log(coursesHaveNoPQ());
   // get the mapped data
   const mappedData = coursesHaveNoPQ()?.map((course) => {
     return {
@@ -176,6 +171,7 @@ const CreatePastQuestion = () => {
             courseDetails={courseDetails}
             showCreateModal={showCreateModal}
             setShowCreateModal={setShowCreateModal}
+            fetchCourses={fetchCourses}
           />
 
           {/* <PastQuestionUpdate
