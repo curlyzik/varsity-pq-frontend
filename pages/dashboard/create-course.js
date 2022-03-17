@@ -1,4 +1,4 @@
-import { Form, Input, message, Button, Select } from "antd";
+import { Form, Input, InputNumber, message, Button, Select } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -117,7 +117,7 @@ const CreateCourse = () => {
                 <Input
                   placeholder="university"
                   onChange={form.setFieldsValue({
-                    university: account.university,
+                    university: account?.university,
                   })}
                   type={"text"}
                   disabled
@@ -132,7 +132,7 @@ const CreateCourse = () => {
                 <Input
                   placeholder="faculty"
                   onChange={form.setFieldsValue({
-                    faculty: account.faculty,
+                    faculty: account?.faculty,
                   })}
                   type={"text"}
                   disabled
@@ -149,7 +149,7 @@ const CreateCourse = () => {
                 <Input
                   placeholder="department"
                   onChange={form.setFieldsValue({
-                    department: account.department,
+                    department: account?.department,
                   })}
                   type={"text"}
                   disabled
@@ -161,7 +161,18 @@ const CreateCourse = () => {
                 name="year"
                 rules={[{ required: true, message: "Please input year!" }]}
               >
-                <Input type={"number"} placeholder="input year" />
+                <Input
+                  type="number"
+                  onChange={(e) => {
+                    if (e.target.value.length > e.target.maxLength) {
+                      form.setFieldsValue({
+                        year: e.target.value.slice(0, e.target.maxLength),
+                      });
+                    }
+                  }}
+                  maxLength="4"
+                  placeholder="input year"
+                />
               </Form.Item>
 
               <Form.Item
