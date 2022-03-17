@@ -87,8 +87,17 @@ const CreatePastQuestion = () => {
     },
   ];
 
+  // filter courses that has doesnt have past question yet
+  const coursesHaveNoPQ = () =>
+    courses?.filter((course) => {
+      if (course.has_pastquestion === false) {
+        return courses;
+      }
+    });
+
+  console.log(coursesHaveNoPQ());
   // get the mapped data
-  const mappedData = courses?.map((course) => {
+  const mappedData = coursesHaveNoPQ()?.map((course) => {
     return {
       key: course.id,
       course_code: <h3 className="font-bold">{course.course_code}</h3>,
@@ -115,10 +124,13 @@ const CreatePastQuestion = () => {
               }}
             >
               <AiOutlinePlus fill="green" />
-              <span>Create</span>
+              <span>
+                Create <span className="font-bold">{course.course_code}</span>{" "}
+                PQ
+              </span>
             </Button>
           </div>
-          <Button
+          {/* <Button
             key="button"
             className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
             onClick={() => {
@@ -135,7 +147,7 @@ const CreatePastQuestion = () => {
           >
             <AiOutlineEdit fill="green" />
             <span>Update</span>
-          </Button>
+          </Button> */}
         </div>
       ),
     };
@@ -147,6 +159,9 @@ const CreatePastQuestion = () => {
         <div>
           <h2 className="!mb-4 border-b pb-2 text-4xl font-bold">
             Create Past Question
+            <span className="block text-base text-gray-400">
+              These are list of courses that doesnt have past questions yet
+            </span>
           </h2>
         </div>
         <div className="hidden md:block">
@@ -163,12 +178,12 @@ const CreatePastQuestion = () => {
             setShowCreateModal={setShowCreateModal}
           />
 
-          <PastQuestionUpdate
+          {/* <PastQuestionUpdate
             setCourseDetails={setCourseDetails}
             courseDetails={courseDetails}
             showUpdateModal={showUpdateModal}
             setShowUpdateModal={setShowUpdateModal}
-          />
+          /> */}
         </div>
       </Layout>
     </div>
