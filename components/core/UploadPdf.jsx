@@ -40,6 +40,7 @@ const UploadPdf = ({
     formData.append("course", courseDetails.id);
     formData.append("file", fileList[0].originFileObj);
 
+    // create past question
     try {
       setLoading(true);
       const { data } = await axios.post(
@@ -116,7 +117,7 @@ const UploadPdf = ({
           maxCount={1}
           showUploadList={{ showPreviewIcon: false }}
         >
-          {fileList.length >= 1 ? null : uploadButton}
+          {uploadButton}
         </Upload>
 
         <Button
