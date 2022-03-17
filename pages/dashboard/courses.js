@@ -153,7 +153,7 @@ const Courses = () => {
                     key="button"
                     className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
                     onClick={() => {
-                      setCourseId(course.id);
+                      dispatch(setCourseId(course.id));
                       showUpdateModal();
                     }}
                   >
