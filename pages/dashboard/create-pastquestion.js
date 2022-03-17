@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Layout, Table } from "../../components";
 import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
-import { PastQuestionCreate, PastQuestionUpdate } from "../../components";
+import { PastQuestionCreate } from "../../components";
 import axios from "axios";
-import { Button } from "antd";
+import { Button, Card } from "antd";
 
 const CreatePastQuestion = () => {
-  const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state) => state.persistedReducer);
 
   const router = useRouter();
 
@@ -16,7 +16,6 @@ const CreatePastQuestion = () => {
 
   const [courseDetails, setCourseDetails] = useState({});
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   useEffect(() => {
     if (!auth.accessToken) {
@@ -125,24 +124,6 @@ const CreatePastQuestion = () => {
               </span>
             </Button>
           </div>
-          {/* <Button
-            key="button"
-            className="!flex cursor-pointer !items-center !justify-center !gap-x-3"
-            onClick={() => {
-              setCourseDetails({
-                id: course.id,
-                name: course.name,
-                code: course.course_code,
-                year: course.course_details[0].year,
-                level: course.course_details[0].level,
-                semester: course.course_details[0].semester,
-              });
-              setShowUpdateModal(true);
-            }}
-          >
-            <AiOutlineEdit fill="green" />
-            <span>Update</span>
-          </Button> */}
         </div>
       ),
     };
@@ -155,7 +136,8 @@ const CreatePastQuestion = () => {
           <h2 className="!mb-4 border-b pb-2 text-4xl font-bold">
             Create Past Question
             <span className="block text-base text-gray-400">
-              These are list of courses that doesnt have past questions yet
+              These are {coursesHaveNoPQ()?.length} courses that doesnt have
+              past questions yet
             </span>
           </h2>
         </div>
@@ -173,13 +155,48 @@ const CreatePastQuestion = () => {
             setShowCreateModal={setShowCreateModal}
             fetchCourses={fetchCourses}
           />
+        </div>
 
-          {/* <PastQuestionUpdate
-            setCourseDetails={setCourseDetails}
-            courseDetails={courseDetails}
-            showUpdateModal={showUpdateModal}
-            setShowUpdateModal={setShowUpdateModal}
-          /> */}
+        {/* For mobile view */}
+        <div className="md:hidden">
+          <div className="!flex !flex-col !gap-y-6">
+            {coursesHaveNoPQ()?.map((course) => (
+              <Card className="!border-2" key={course.id}>
+                <h3 className="!text-2xl font-bold">{course.name}</h3>
+                <p className="!mb-2 text-lg italic">{course.course_code}</p>
+                <div className="text-base">
+                  <p>
+                    <b>Year:</b> {course.course_details[0].year}
+                  </p>
+                  <p>
+                    <b>Level:</b> {course.course_details[0].level}
+                  </p>
+                  <p>
+                    <b>Semester:</b>{" "}
+                    {course.course_details[0].semester === "2" ? "2nd" : "1st"}
+                  </p>
+                  <Button
+                    key="button"
+                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
+                    onClick={() => {
+                      setCourseDetails({
+                        id: course.id,
+                        name: course.name,
+                        code: course.course_code,
+                        year: course.course_details[0].year,
+                        level: course.course_details[0].level,
+                        semester: course.course_details[0].semester,
+                      });
+                      setShowCreateModal(true);
+                    }}
+                  >
+                    <AiOutlineEdit fill="green" />
+                    <span>Create</span>
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </Layout>
     </div>
