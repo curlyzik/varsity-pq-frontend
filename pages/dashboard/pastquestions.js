@@ -18,6 +18,8 @@ const PastQuestions = () => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
+  const [tableLoading, setTableLoading] = useState(false);
+
   const [pqs, setPqs] = useState(null);
   const [updateVisible, setUpdateVisible] = useState(false);
   const router = useRouter();
@@ -34,6 +36,7 @@ const PastQuestions = () => {
 
   // FETCH ALL PAST QUESTIONS
   const fetchPastQuestions = async () => {
+    setTableLoading(true);
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/past-questions/`,
       {
@@ -43,6 +46,7 @@ const PastQuestions = () => {
       }
     );
     setPqs(data);
+    setTableLoading(false);
   };
 
   useEffect(() => {
@@ -118,6 +122,7 @@ const PastQuestions = () => {
             updateVisible={updateVisible}
             setUpdateVisible={setUpdateVisible}
             data={mappedData}
+            tableLoading={tableLoading}
           />
         </div>
 

@@ -13,7 +13,7 @@ import { SearchFilter } from "../utils/Search";
 
 const { Option } = Select;
 
-const Courses = ({ data, updateVisible, updateSetVisible }) => {
+const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
   const dispatch = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -141,7 +141,12 @@ const Courses = ({ data, updateVisible, updateSetVisible }) => {
   return (
     <div>
       {/* COURSE DATA */}
-      <Table columns={columns} data={data} scroll={{ x: 1500, y: 300 }} />
+      <Table
+        columns={columns}
+        loading={tableLoading}
+        data={data}
+        scroll={{ x: 1500, y: 300 }}
+      />
 
       {/* UPDATE COURSE MODAL */}
       <Form form={form}>

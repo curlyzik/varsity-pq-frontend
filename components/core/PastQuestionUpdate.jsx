@@ -6,7 +6,12 @@ import {
 } from "../../src/features/pastquestions/pastQuestionSlice.js";
 import { Modal, Table, PQUpdateByPdfUpload } from "../index.js";
 
-const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
+const PastQuestionUpdate = ({
+  updateVisible,
+  setUpdateVisible,
+  data,
+  tableLoading,
+}) => {
   const { pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
@@ -60,7 +65,12 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
 
   return (
     <div>
-      <Table columns={columns} data={data} scroll={{ x: 900, y: 300 }} />
+      <Table
+        columns={columns}
+        data={data}
+        scroll={{ x: 900, y: 300 }}
+        loading={tableLoading}
+      />
       <Modal
         title={
           <div className="text-xl lg:!text-2xl">

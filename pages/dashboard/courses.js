@@ -17,7 +17,7 @@ const Courses = () => {
   const dispatch = useDispatch();
 
   const [courses, setCourses] = useState(null);
-  // const [courseId, setCourseId] = useState(null);
+  const [tableLoading, setTableLoading] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
 
   const router = useRouter();
@@ -34,6 +34,7 @@ const Courses = () => {
 
   // FETCH ALL COURSES
   const fetchCourses = async () => {
+    setTableLoading(true);
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/courses/`,
       {
@@ -43,6 +44,7 @@ const Courses = () => {
       }
     );
     setCourses(data);
+    setTableLoading(false);
   };
 
   useEffect(() => {
@@ -140,6 +142,7 @@ const Courses = () => {
             updateVisible={updateVisible}
             updateSetVisible={setUpdateVisible}
             data={mappedData}
+            tableLoading={tableLoading}
           />
         </div>
 

@@ -12,6 +12,8 @@ const CreatePastQuestion = () => {
 
   const router = useRouter();
 
+  const [tableLoading, setTableLoading] = useState(false);
+
   const [courses, setCourses] = useState(null);
 
   const [courseDetails, setCourseDetails] = useState({});
@@ -25,6 +27,7 @@ const CreatePastQuestion = () => {
 
   // FETCH ALL COURSES
   const fetchCourses = async () => {
+    setTableLoading(true);
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/courses/`,
       {
@@ -34,6 +37,7 @@ const CreatePastQuestion = () => {
       }
     );
     setCourses(data);
+    setTableLoading(false);
   };
 
   useEffect(() => {
@@ -146,6 +150,7 @@ const CreatePastQuestion = () => {
             columns={columns}
             data={mappedData}
             scroll={{ x: 900, y: 300 }}
+            loading={tableLoading}
           />
 
           <PastQuestionCreate
