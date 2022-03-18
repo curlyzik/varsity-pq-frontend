@@ -48,7 +48,7 @@ const PastQuestions = () => {
 
   useEffect(() => {
     fetchPastQuestions();
-  }, [pastQuestion.file]);
+  }, [pastQuestion]);
 
   // FETCH SINGLE PAST QUESTION
   const fetchPastQuestion = async (id) => {
@@ -79,7 +79,6 @@ const PastQuestions = () => {
     }
   }, [pastQuestion.pqId]);
 
-  console.log(pqs);
   const mappedData = pqs?.map((pq) => {
     return {
       key: pq.id,

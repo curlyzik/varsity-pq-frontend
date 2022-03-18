@@ -13,7 +13,8 @@ export { default as ChangePasswordForm } from "./core/ChangePasswordForm";
 export { default as PastQuestionCreate } from "./core/PastQuestionCreate";
 export { default as PastQuestionUpdate } from "./core/PastQuestionUpdate";
 export { default as UploadImage } from "./core/UploadImage";
-export { default as UploadPdf } from "./core/UploadPdf";
+export { default as PQCreateByPdfUpload } from "./core/PQCreateByPdfUpload";
+export { default as PQUpdateByPdfUpload } from "./core/PQUpdateByPdfUpload";
 
 // utils components
 export { default as Modal } from "./utils/Modal";

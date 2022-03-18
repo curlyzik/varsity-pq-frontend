@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Upload, Button, message } from "antd";
 import { AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removePastQuestion,
+  removePqId,
+} from "../../src/features/pastquestions/pastQuestionSlice";
 
-const UploadPdf = ({
-  courseDetails,
-  setShowCreateModal,
-  setCourseDetails,
-  fetchCourses,
-}) => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+const UploadPdf = ({ setUpdateVisible }) => {
+  const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
+  const dispatch = useDispatch();
 
   const [fileList, setFileList] = useState([]);
   const [file, setFile] = useState(null);
@@ -37,14 +37,14 @@ const UploadPdf = ({
     }
 
     const formData = new FormData();
-    formData.append("course", courseDetails.id);
+    formData.append("course", pastQuestion.pqId);
     formData.append("file", fileList[0].originFileObj);
 
     // create past question
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/past-questions/`,
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/past-questions/${pastQuestion?.pqId}/`,
         formData,
         {
           headers: {
@@ -55,14 +55,15 @@ const UploadPdf = ({
       );
       console.log(data);
       setSuccess(true);
-      setShowCreateModal(false);
-      setCourseDetails({});
+      setUpdateVisible(false);
+      dispatch(removePastQuestion());
+      dispatch(removePqId());
       setFileList([]);
       setFile(null);
       setLoading(false);
     } catch (error) {
-      if (error.response.data) {
-        setErrorMessage(error.response.data.message);
+      if (error) {
+        setErrorMessage("Error updating past question");
       }
       setError(true);
       setSuccess(false);
@@ -72,7 +73,7 @@ const UploadPdf = ({
 
   const messageSuccess = () => {
     message.success(
-      `${courseDetails.code} past question uploaded successfully!`,
+      `${pastQuestion?.course_details?.course_code} past question updated successfully!`,
       3,
       () => {
         return setSuccess(false);
@@ -89,8 +90,6 @@ const UploadPdf = ({
   useEffect(() => {
     if (success) {
       messageSuccess();
-      // fetch courses again after creating past question
-      fetchCourses();
     }
   }, [success]);
 
@@ -103,7 +102,7 @@ const UploadPdf = ({
   const uploadButton = (
     <div className="!flex flex-col items-center justify-center">
       <AiOutlineUpload />
-      <div style={{ marginTop: 8 }}>Upload PDF</div>
+      <div style={{ marginTop: 8 }}>Change PQ PDF</div>
     </div>
   );
   return (
@@ -116,6 +115,13 @@ const UploadPdf = ({
           beforeUpload={() => false}
           maxCount={1}
           showUploadList={{ showPreviewIcon: false }}
+          defaultFileList={[
+            {
+              uid: 1,
+              url: pastQuestion?.file,
+              name: pastQuestion?.course_details?.course,
+            },
+          ]}
         >
           {uploadButton}
         </Upload>
@@ -125,7 +131,7 @@ const UploadPdf = ({
           disabled={fileList.length === 0}
           loading={loading}
         >
-          Upload {courseDetails.code} past question
+          Upload {pastQuestion?.course_details?.course_code} past question
         </Button>
       </>
     </div>

@@ -4,7 +4,7 @@ import {
   removePastQuestion,
   removePqId,
 } from "../../src/features/pastquestions/pastQuestionSlice.js";
-import { Modal, Table, UploadPdf } from "../index.js";
+import { Modal, Table, PQUpdateByPdfUpload } from "../index.js";
 
 const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
   const { pastQuestion } = useSelector((state) => state.persistedReducer);
@@ -92,12 +92,7 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
           <div>
             <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
             <div>
-              {/* <UploadPdf
-                fetchCourses={fetchCourses}
-                courseDetails={courseDetails}
-                setShowCreateModal={setShowCreateModal}
-                setCourseDetails={setCourseDetails}
-              /> */}
+              <PQUpdateByPdfUpload setUpdateVisible={setUpdateVisible} />
             </div>
           </div>
         </div>

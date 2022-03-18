@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, UploadPdf } from "../index.js";
+import { Modal, PQCreateByPdfUpload } from "../index.js";
 
 const PastQuestionCreate = ({
   showCreateModal,
@@ -43,7 +43,7 @@ const PastQuestionCreate = ({
             <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
             <div>
               {/* <UploadImage /> */}
-              <UploadPdf
+              <PQCreateByPdfUpload
                 fetchCourses={fetchCourses}
                 courseDetails={courseDetails}
                 setShowCreateModal={setShowCreateModal}
