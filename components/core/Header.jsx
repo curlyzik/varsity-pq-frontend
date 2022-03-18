@@ -22,7 +22,7 @@ const Header = () => {
   };
   return (
     <div className="relative border-b border-b-gray-600 bg-black">
-      <div className="font-body  overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4">
+      <div className="overflow-hidden  bg-[#00044e] bg-opacity-60 py-4 px-4 font-body">
         <div className="mx-4 flex items-center justify-between !text-white">
           <div>
             <Link href="/">
@@ -53,7 +53,7 @@ const Header = () => {
             </li>
             <li>
               <Link href={"/volunteer/volunteer-request"}>
-                <a className="!text-white">Admin/Volunteer Request</a>
+                <a className="!text-white">Volunteer Request</a>
               </Link>
             </li>
             <li>
@@ -133,7 +133,7 @@ const Header = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <Link href={"/volunteer/volunteer-request"}>
-                      <a className="!text-white">Admin/Volunteer Request</a>
+                      <a className="!text-white">Volunteer Request</a>
                     </Link>
                   </li>
                   <li
@@ -170,7 +170,10 @@ const Header = () => {
                     ) : (
                       <Btn>
                         <Link href={"/login"}>
-                          <a onClick={() => setIsOpen(false)} className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800">
+                          <a
+                            onClick={() => setIsOpen(false)}
+                            className="rounded-md border border-blue-400 px-3 py-1 !text-white transition-all duration-300 hover:border-blue-800"
+                          >
                             Sign In
                           </a>
                         </Link>
