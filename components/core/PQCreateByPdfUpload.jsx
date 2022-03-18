@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Upload, Button, message } from "antd";
 import { AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
+import { Document, Page, pdfjs } from "react-pdf";
 import { useSelector } from "react-redux";
 
 const UploadPdf = ({
@@ -22,9 +23,22 @@ const UploadPdf = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
 
+  const [pdfUrl, setPdfUrl] = useState();
+
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  /*When document gets loaded successfully*/
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   const handleChange = async ({ fileList, file }) => {
     setFile(file);
     setFileList(fileList);
+
+    setPdfUrl(fileList[0].originFileObj);
   };
 
   const handleSubmit = async () => {
@@ -108,8 +122,8 @@ const UploadPdf = ({
     </div>
   );
   return (
-    <div>
-      <>
+    <div className="block md:!flex md:flex-row">
+      <div>
         <Upload
           accept=".pdf"
           listType="picture-card"
@@ -128,7 +142,17 @@ const UploadPdf = ({
         >
           Upload {courseDetails.code} past question
         </Button>
-      </>
+      </div>
+
+      <div className="!mt-4 border p-4 md:!mt-0">
+        <Document
+          file={pdfUrl}
+          onLoadSuccess={onDocumentLoadSuccess}
+          renderMode="canvas"
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
+      </div>
     </div>
   );
 };

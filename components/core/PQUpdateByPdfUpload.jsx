@@ -155,7 +155,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
         </Button>
       </div>
 
-      <div className="!mt-4 border md:!mt-0">
+      <div className="!mt-4 border p-4 md:!mt-0">
         <Document
           file={pdfUrl}
           onLoadSuccess={onDocumentLoadSuccess}
