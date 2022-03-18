@@ -136,7 +136,7 @@ const CreatePastQuestion = () => {
           <h2 className="!mb-4 border-b pb-2 text-4xl font-bold">
             Create Past Question
             <span className="block text-base text-gray-400">
-              These are {coursesHaveNoPQ()?.length} courses that doesnt have
+              These are {coursesHaveNoPQ()?.length} course(s) that doesnt have
               past questions yet
             </span>
           </h2>

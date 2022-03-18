@@ -9,6 +9,7 @@ import {
   setCourseDetails,
   setCourseId,
 } from "../../src/features/courses/courseDetailSlice";
+import Link from "next/link";
 
 const Courses = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
@@ -120,6 +121,17 @@ const Courses = () => {
       <Layout defaultSelectedKeys="3">
         <div className="!mb-4 border-b !pb-2">
           <h2 className="text-4xl font-bold">Courses</h2>
+          {courses?.length === 0 && (
+            <div>
+              You have not created any course yet. Click{" "}
+              <>
+                <Link href={"/dashboard/create-course"}>
+                  <a>here</a>
+                </Link>
+              </>{" "}
+              to create
+            </div>
+          )}
         </div>
 
         {/* For desktop  view */}
