@@ -9,6 +9,7 @@ import { uniDetailApi } from "../services/searchServices/uniDetailApi";
 import { gitHubRepoApi } from "../services/gitHubRepoApi";
 import authSliceReducer from "../features/users/authSlice";
 import courseDetailSlice from "../features/courses/courseDetailSlice";
+import pastQuestionSlice from "../features/pastquestions/pastQuestionSlice";
 
 import {
   FLUSH,
@@ -25,6 +26,7 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
   auth: authSliceReducer,
   courseDetail: courseDetailSlice,
+  pastQuestion: pastQuestionSlice,
 });
 
 const persistedReducer = persistReducer(

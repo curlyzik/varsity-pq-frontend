@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps, ...appProps }) {
         "/dashboard/create-pastquestion",
         "/dashboard/courses",
         "/dashboard/settings",
+        "/dashboard/pastquestions",
       ].includes(appProps.router.pathname)
     ) {
       return <Component {...pageProps} />;

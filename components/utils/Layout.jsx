@@ -66,7 +66,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               </Link>
             </Menu.Item>
             <Menu.Item key="5" icon={<AiOutlineUpload />}>
-              <Link href={"/dashboard/create-pastquestion"}>
+              <Link href={"/dashboard/pastquestions"}>
                 <a>My PQs</a>
               </Link>
             </Menu.Item>
