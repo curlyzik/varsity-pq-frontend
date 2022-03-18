@@ -13,7 +13,13 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
-  const [pdfUrl, setPdfUrl] = useState(`${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`);
+  const [pdfUrl, setPdfUrl] = useState(
+    `${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`
+  );
+
+  useEffect(() => {
+    setPdfUrl(`${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`);
+  }, [pastQuestion]);
 
   const [fileList, setFileList] = useState([]);
   const [file, setFile] = useState(null);

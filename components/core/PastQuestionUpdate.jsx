@@ -74,6 +74,7 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
         handleCancel={handleUpdateModalCancel}
         width={1000}
         footer={null}
+        destroyOnClose={true}
       >
         <div className="!flex flex-col gap-y-6">
           <div>
