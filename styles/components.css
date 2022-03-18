@@ -64,3 +64,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 640px) {
+  .react-pdf__Page__canvas {
+    width: 300px !important;
+    height: 100% !important;
+  }
+}

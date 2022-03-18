@@ -16,7 +16,6 @@ import {
 
 const PastQuestions = () => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
-  console.log(pastQuestion);
   const dispatch = useDispatch();
 
   const [pqs, setPqs] = useState(null);

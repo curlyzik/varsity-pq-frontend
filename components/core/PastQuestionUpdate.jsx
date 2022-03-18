@@ -91,7 +91,7 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
 
           <div>
             <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
-            <div>
+            <div className="!overflow-hidden">
               <PQUpdateByPdfUpload setUpdateVisible={setUpdateVisible} />
             </div>
           </div>

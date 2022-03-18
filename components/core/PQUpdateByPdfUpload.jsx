@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Upload, Button, message } from "antd";
 import { AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
+import { Document, Page, pdfjs } from "react-pdf";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removePastQuestion,
@@ -12,6 +13,8 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
+  const [pdfUrl, setPdfUrl] = useState(`${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`);
+
   const [fileList, setFileList] = useState([]);
   const [file, setFile] = useState(null);
 
@@ -20,9 +23,20 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
 
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  /*When document gets loaded successfully*/
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   const handleChange = async ({ fileList, file }) => {
     setFile(file);
     setFileList(fileList);
+
+    setPdfUrl(fileList[0].originFileObj);
   };
 
   const handleSubmit = async () => {
@@ -106,8 +120,8 @@ const UploadPdf = ({ setUpdateVisible }) => {
     </div>
   );
   return (
-    <div>
-      <>
+    <div className="block md:!flex md:flex-row">
+      <div>
         <Upload
           accept=".pdf"
           listType="picture-card"
@@ -133,7 +147,17 @@ const UploadPdf = ({ setUpdateVisible }) => {
         >
           Upload {pastQuestion?.course_details?.course_code} past question
         </Button>
-      </>
+      </div>
+
+      <div className="!mt-4 border md:!mt-0">
+        <Document
+          file={pdfUrl}
+          onLoadSuccess={onDocumentLoadSuccess}
+          renderMode="canvas"
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
+      </div>
     </div>
   );
 };
