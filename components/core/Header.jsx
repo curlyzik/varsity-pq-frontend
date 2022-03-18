@@ -52,6 +52,9 @@ const Header = () => {
               </a>
             </li>
             <li>
+              <a className="!text-white">Past Questions</a>
+            </li>
+            <li>
               <Link href={"/volunteer/volunteer-request"}>
                 <a className="!text-white">Volunteer Request</a>
               </Link>
@@ -62,9 +65,7 @@ const Header = () => {
             <li>
               <a className="!text-white">Volunteers</a>
             </li>
-            <li>
-              <a className="!text-white">Past Questions</a>
-            </li>
+
             <li>
               {auth.accessToken ? (
                 <Btn>
@@ -132,6 +133,12 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1"
                     onClick={() => setIsOpen(false)}
                   >
+                    <a className="!text-white">Past Questions</a>
+                  </li>
+                  <li
+                    className="w-full border-b border-b-gray-400 pb-1"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Link href={"/volunteer/volunteer-request"}>
                       <a className="!text-white">Volunteer Request</a>
                     </Link>
@@ -148,12 +155,7 @@ const Header = () => {
                   >
                     <a className="!text-white">Volunteers</a>
                   </li>
-                  <li
-                    className="w-full border-b border-b-gray-400 pb-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <a className="!text-white">Past Questions</a>
-                  </li>
+
                   <li>
                     {auth.accessToken ? (
                       <Btn>

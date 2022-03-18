@@ -38,7 +38,7 @@ export const features = [
     icon: <FiBookmark className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Become one of our Administrators",
+    name: "Become a Volunteer",
     description:
       "We can't do it alone. You can help Varsity PQ become better by volunteering to add new past questions for us.",
     icon: <FiCloudLightning className="text-2xl lg:text-4xl xl:text-4xl" />,
