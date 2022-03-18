@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import { Layout } from "..";
 import { fetcher } from "../../utils/axios";
@@ -17,7 +18,9 @@ const UserDashboard = () => {
         </div>
         <div className="mt-6 flex grid-cols-3 flex-col gap-y-8 lg:grid">
           {!error && !user ? (
-            <div>....loading</div>
+            <div>
+              <Spin />
+            </div>
           ) : (
             <>
               <div>
