@@ -139,9 +139,12 @@ const NewVolunteer = () => {
             title="Successfully Sent Volunteer Request!!!"
             extra={[
               <p className="mb-4 text-sm text-gray-500" key={"text"}>
-                Thank you for your interest in volunteering with us. We will
-                send you an email <span className="font-bold text-black"></span>{" "}
-                once we have reviewed your request.
+                Thank you for your interest in volunteering for us. We have sent
+                an email to{" "}
+                <span className="font-bold text-black">
+                  {volunteerDetails?.data?.email}
+                </span>{" "}
+                Please check your mail for login credentials
               </p>,
               <Button
                 type="primary"
