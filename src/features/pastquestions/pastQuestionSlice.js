@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   file: null,
-  course_details: {
+  course_details: [{
     course_code: null,
     course: null,
     year: null,
@@ -10,7 +10,7 @@ const initialState = {
     semester: null,
     faculty: null,
     department: null,
-  },
+  },],
   pqId: null,
 };
 

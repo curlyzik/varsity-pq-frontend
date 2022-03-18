@@ -7,7 +7,7 @@ import {
 import { Modal, Table, UploadPdf } from "../index.js";
 
 const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
-  const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
+  const { pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
   const handleUpdateModalCancel = () => {
@@ -64,9 +64,9 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
       <Modal
         title={
           <div className="text-xl lg:!text-2xl">
-            Create Past Question for{" "}
+            Update Past Question for{" "}
             <span className="!font-bold">
-              {pastQuestion.course_details?.course_code}
+              {pastQuestion?.course_details?.course_code}
             </span>
           </div>
         }
@@ -79,11 +79,13 @@ const PastQuestionUpdate = ({ updateVisible, setUpdateVisible, data }) => {
           <div>
             <h3 className="!mb-3 !text-lg font-bold">Course Details</h3>
             <div className="!flex grid-cols-4 flex-col gap-y-3 text-base lg:!grid">
-              <div>Name: {pastQuestion.course_details?.course}</div>
-              <div>Course Code: {pastQuestion.course_details?.course_code}</div>
-              <div>Session: {pastQuestion.course_details?.year}</div>
-              <div>Level: {pastQuestion.course_details?.level}</div>
-              <div>Semester: {pastQuestion.course_details?.semester}</div>
+              <div>Name: {pastQuestion?.course_details?.course}</div>
+              <div>
+                Course Code: {pastQuestion?.course_details?.course_code}
+              </div>
+              <div>Session: {pastQuestion?.course_details?.year}</div>
+              <div>Level: {pastQuestion?.course_details?.level}</div>
+              <div>Semester: {pastQuestion?.course_details?.semester}</div>
             </div>
           </div>
 

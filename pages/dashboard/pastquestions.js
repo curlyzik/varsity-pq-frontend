@@ -16,11 +16,11 @@ import {
 
 const PastQuestions = () => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
+  console.log(pastQuestion);
   const dispatch = useDispatch();
 
   const [pqs, setPqs] = useState(null);
   const [updateVisible, setUpdateVisible] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const PastQuestions = () => {
       dispatch(
         setPastQuestion({
           file: data.file,
-          course_details: data.pq_details,
+          course_details: data.pq_details[0],
         })
       );
     } catch (error) {
@@ -74,7 +74,7 @@ const PastQuestions = () => {
 
   // set course id
   useEffect(() => {
-    if (pastQuestion.pqId !== undefined) {
+    if (pastQuestion.pqId !== null) {
       fetchPastQuestion(pastQuestion.pqId);
     }
   }, [pastQuestion.pqId]);
