@@ -1,6 +1,5 @@
 import { Input } from "antd";
 import React from "react";
-import { SearchBar } from "./Search";
 
 const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
   return (
@@ -13,8 +12,6 @@ const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
             size="large"
           />
         </div>
-
-        {/* <SearchBar setKeyword={setKeyword} placeholder={placeholder} /> */}
         <div className="">
           <ul className="flex items-center justify-center gap-x-5 lg:!text-lg">
             <li onClick={() => setSort("")} className="cursor-pointer">

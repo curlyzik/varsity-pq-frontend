@@ -94,6 +94,7 @@ const App = () => {
             {orderBy?.slice(0, count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
+            {orderBy?.length === 0 && <div>No results found</div>}
           </div>
         </InfiniteScrolling>
       )}
