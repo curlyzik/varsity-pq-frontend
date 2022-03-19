@@ -52,7 +52,7 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <Link href={"/all-pastquestions"}>
+              <Link href={"/past-questions"}>
                 <a className="!text-white">Past Questions</a>
               </Link>
             </li>
@@ -131,7 +131,7 @@ const Header = () => {
                       API
                     </a>
                   </li>
-                  <Link href={"/all-pastquestions"}>
+                  <Link href={"/past-questions"}>
                     <li
                       className="w-full border-b border-b-gray-400 pb-1"
                       onClick={() => setIsOpen(false)}

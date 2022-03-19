@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Spin } from "antd";
-import { useSelector } from "react-redux";
 import { Layout } from "..";
 import { fetcher } from "../../utils/axios";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const UserDashboard = () => {

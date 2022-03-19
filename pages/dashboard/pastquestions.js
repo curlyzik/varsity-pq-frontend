@@ -6,7 +6,7 @@ import {
   Courses as CourseComponent,
   PastQuestionUpdate,
 } from "../../components";
-import { Button, Card } from "antd";
+import { Button, Card , Spin} from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import {
@@ -129,6 +129,7 @@ const PastQuestions = () => {
         {/* For mobile view */}
         <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
+            {tableLoading && <Spin />}
             {pqs?.map((pq) => (
               <Card className="!border-2" key={pq.id}>
                 <h3 className="!text-2xl font-bold">

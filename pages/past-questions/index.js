@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PQItems } from "../components";
+import { PQItems } from "../../components";
 import { Input, Spin } from "antd";
-import { useGetPastQuestionsQuery } from "../src/services/pastquestion";
+import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
 
 const AllPastQuestions = () => {
   const { data, isFetching } = useGetPastQuestionsQuery();

@@ -5,7 +5,7 @@ import { Layout, Table } from "../../components";
 import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate } from "../../components";
 import axios from "axios";
-import { Button, Card } from "antd";
+import { Button, Card, Spin } from "antd";
 
 const CreatePastQuestion = () => {
   const { auth } = useSelector((state) => state.persistedReducer);
@@ -165,6 +165,7 @@ const CreatePastQuestion = () => {
         {/* For mobile view */}
         <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
+            {tableLoading && <Spin />}
             {coursesHaveNoPQ()?.map((course) => (
               <Card className="!border-2" key={course.id}>
                 <h3 className="!text-2xl font-bold">{course.name}</h3>

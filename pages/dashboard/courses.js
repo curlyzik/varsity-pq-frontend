@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout, Courses as CourseComponent } from "../../components";
-import { Button, Card } from "antd";
+import { Button, Card, Spin } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import {
@@ -149,6 +149,7 @@ const Courses = () => {
         {/* For mobile view */}
         <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
+            {tableLoading && <Spin />}
             {courses?.map((course) => (
               <Card className="!border-2" key={course.id}>
                 <h3 className="!text-2xl font-bold">{course.name}</h3>
