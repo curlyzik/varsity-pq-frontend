@@ -22,14 +22,12 @@ export const features = [
   },
   {
     name: "Filter by Private University",
-    description:
-      "Feel free to filter down private universities",
+    description: "Feel free to filter down private universities",
     icon: <FiLayers className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
     name: "Filter by Federal Univesity",
-    description:
-      "You can filter down federal universities",
+    description: "You can filter down federal universities",
     icon: <FiRss className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
@@ -50,10 +48,10 @@ export const features = [
     icon: <FiUsers className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
-    name: "Add new Past Question",
+    name: "Volunteer Page",
     description:
-      "You can add a new past question to Varsity PQ",
-    icon: <FiFolderPlus className="text-2xl lg:text-4xl xl:text-4xl" />,
+      "We proudly show students who volunteers to upload past questions, there is a dedicated volunteers page.",
+    icon: <FiUsers className="text-2xl lg:text-4xl xl:text-4xl" />,
   },
   {
     name: "Report Past Question",
