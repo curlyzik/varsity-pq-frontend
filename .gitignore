@@ -5,6 +5,7 @@ departmentData.js
 facultyData.js
 uniData.js
 uniData2.js
+post-data.js
 
 # dependencies
 /node_modules
