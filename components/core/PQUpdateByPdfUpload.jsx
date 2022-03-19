@@ -14,12 +14,14 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const dispatch = useDispatch();
 
   const [pdfUrl, setPdfUrl] = useState(
-    `${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`
+    `${pastQuestion?.file}`
   );
 
   useEffect(() => {
-    setPdfUrl(`${process.env.NEXT_PUBLIC_API_URL}${pastQuestion?.file}/`);
+    setPdfUrl(`${pastQuestion?.file}`);
   }, [pastQuestion]);
+
+  console.log(pdfUrl);
 
   const [fileList, setFileList] = useState([]);
   const [file, setFile] = useState(null);
