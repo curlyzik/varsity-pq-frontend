@@ -14,8 +14,11 @@ import { useGetLevelsQuery } from "../../src/services/level";
 import { useGetSemesterQuery } from "../../src/services/semester";
 
 import { SearchFilter } from "./../utils/Search";
+import { useRouter } from "next/router";
 
 const Select = ({ pqData, uniData, width }) => {
+  const router = useRouter();
+
   const [uniValue, setUniValue] = useState("");
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
@@ -53,7 +56,9 @@ const Select = ({ pqData, uniData, width }) => {
   };
 
   const getPastQuestionById = async (id) => {
-    const data = await axios.get(`http://localhost:8000/past_question/${id}/`);
+    const data = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/past_question/${id}/`
+    );
     setPastQuestion(data.data);
   };
 
