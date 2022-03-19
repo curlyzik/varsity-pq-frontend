@@ -57,6 +57,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link href={"/app"}>
+                <a className="!text-white">Browse Universites</a>
+              </Link>
+            </li>
+            <li>
               <Link href={"/volunteer/volunteer-request"}>
                 <a className="!text-white">Volunteer Request</a>
               </Link>
@@ -137,6 +142,14 @@ const Header = () => {
                       onClick={() => setIsOpen(false)}
                     >
                       <a className="!text-white">Past Questions</a>
+                    </li>
+                  </Link>
+                  <Link href={"/app"}>
+                    <li
+                      className="w-full border-b border-b-gray-400 pb-1"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <a className="!text-white">Browse Universites</a>
                     </li>
                   </Link>
                   <Link href={"/volunteer/volunteer-request"}>

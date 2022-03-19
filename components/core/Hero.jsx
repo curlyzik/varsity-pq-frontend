@@ -12,7 +12,7 @@ const Hero = () => {
   const starCount = data?.stargazers_count;
 
   return (
-    <div className="bg-image font-body overflow-hidden bg-cover bg-no-repeat pb-12 lg:pt-32">
+    <div className="bg-image overflow-hidden bg-cover bg-no-repeat pb-12 font-body lg:pt-32">
       <div className="px-5 pt-20 lg:px-10 lg:pt-0">
         <div className="flex flex-col justify-center lg:flex lg:flex-row lg:items-center lg:gap-x-8">
           <div className="animate__animated animate__fadeInLeft flex flex-col gap-y-4 lg:w-3/4">
@@ -25,9 +25,9 @@ const Hero = () => {
               courses of their discipline online. Varsity PQ is made up of 300+
               curated past questions from 150+ universites in Nigeria.
             </p>
-            <div className="flex gap-x-3">
+            <div className="flex gap-x-3 !mb-2">
               <Btn>
-                <Link href={"/app"}>
+                <Link href={"/past-questions"}>
                   <a className="flex items-center justify-center rounded-md bg-blue-400 px-5 py-[10px] text-base text-black hover:text-black lg:text-lg">
                     <span>Search Now</span>
                     <BsLightning className="ml-1" />
@@ -46,8 +46,16 @@ const Hero = () => {
                 </a>
               </Btn>
             </div>
+            <span className="text-gray-600">
+              You want to upload a past question?{" "}
+              <Link href={"/volunteer/volunteer-request"}>
+                <a className="!text-gray-400 transition-all duration-200 hover:!text-white ">
+                  Click here to become a volunteer
+                </a>
+              </Link>
+            </span>
           </div>
-          <div className="animate__animated animate__fadeInRight pt-12 lg:w-6/12 lg:pt-0">
+          <div className="animate__animated animate__fadeInRight pt-14 lg:w-6/12 lg:pt-0">
             <img src="varsity-side-image.png" />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PQItems } from "../../components";
+import { MainHeader, PQItems } from "../../components";
 import { Input, Spin } from "antd";
 import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
 
@@ -26,8 +26,9 @@ const AllPastQuestions = () => {
   console.log(pastQuestions);
   return (
     <div>
-      <div className="px-8 pt-6 md:!w-[28rem] lg:px-20">
-        <span className=" text-xl">Search Course</span>
+      <MainHeader />
+      <div className="px-8 pt-6 md:!w-[40rem] lg:px-20">
+        <span className=" text-xl font-bold">Search Course</span>
         <Input
           placeholder="e.g, CSC 221"
           size="large"
