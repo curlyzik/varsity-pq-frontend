@@ -5,8 +5,10 @@ import { universityApi } from "../services/university";
 import { yearApi } from "../services/year";
 import { levelApi } from "../services/level";
 import { semesterApi } from "../services/semester";
+import { pastQuestionApi } from "../services/pastquestion";
 import { uniDetailApi } from "../services/searchServices/uniDetailApi";
 import { gitHubRepoApi } from "../services/gitHubRepoApi";
+
 import authSliceReducer from "../features/users/authSlice";
 import courseDetailSlice from "../features/courses/courseDetailSlice";
 import pastQuestionSlice from "../features/pastquestions/pastQuestionSlice";
@@ -48,6 +50,7 @@ const store = configureStore({
     [semesterApi.reducerPath]: semesterApi.reducer,
     [uniDetailApi.reducerPath]: uniDetailApi.reducer,
     [gitHubRepoApi.reducerPath]: gitHubRepoApi.reducer,
+    [pastQuestionApi.reducerPath]: pastQuestionApi.reducer,
     persistedReducer,
   },
 
@@ -64,7 +67,8 @@ const store = configureStore({
       levelApi.middleware,
       semesterApi.middleware,
       uniDetailApi.middleware,
-      gitHubRepoApi.middleware
+      gitHubRepoApi.middleware,
+      pastQuestionApi.middleware
     ),
 });
 

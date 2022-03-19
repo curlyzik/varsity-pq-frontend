@@ -29,3 +29,5 @@ export { default as TwitterBtn } from "./utils/TwitterBtn";
 export { default as Success } from "./utils/Success";
 export { default as Layout } from "./utils/Layout";
 export { default as Table } from "./utils/Table";
+export { default as PQItems } from "./utils/PQItems";
+

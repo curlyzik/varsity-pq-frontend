@@ -52,7 +52,9 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a className="!text-white">Past Questions</a>
+              <Link href={"/all-pastquestions"}>
+                <a className="!text-white">Past Questions</a>
+              </Link>
             </li>
             <li>
               <Link href={"/volunteer/volunteer-request"}>
@@ -133,7 +135,9 @@ const Header = () => {
                     className="w-full border-b border-b-gray-400 pb-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    <a className="!text-white">Past Questions</a>
+                    <Link href={"/all-pastquestions"}>
+                      <a className="!text-white">Past Questions</a>
+                    </Link>
                   </li>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1"

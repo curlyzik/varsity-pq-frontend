@@ -59,16 +59,16 @@ const App = () => {
         </div>
       ) : !keyword ? (
         <div>
-          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
+          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20 !pb-8">
             {orderBy?.slice(0, keyword ? 25 : count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
           </div>
-          <div className="grid place-items-center">
+          <div className="grid place-items-center !pb-10">
             <Btn classNames={"my-12 cursor-pointer"}>
               <div
                 onClick={() => setCount(count + 20)}
-                className="bg-blue-400 px-5 py-[10px] text-base font-semibold capitalize text-black lg:text-lg "
+                className="bg-blue-400 px-5 py-[10px] text-base font-semibold capitalize text-black lg:text-lg"
               >
                 Load More
               </div>
@@ -83,7 +83,7 @@ const App = () => {
           count={count}
           data={orderBy}
         >
-          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20">
+          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20 !pb-8">
             {orderBy?.slice(0, count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
