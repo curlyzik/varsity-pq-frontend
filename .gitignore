@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# local files
+departmentData.js
+facultyData.js
+uniData.js
+uniData2.js
+
 # dependencies
 /node_modules
 /.pnp
