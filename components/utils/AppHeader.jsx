@@ -5,12 +5,12 @@ const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
   return (
     <div className="px-5 lg:mx-10 lg:px-0">
       <div className="flex flex-col-reverse items-center justify-between gap-y-3 rounded-md bg-white px-4 py-4 lg:flex-row">
-        <div className="lg:!w-[28rem] w-full">
+        <div className="w-full lg:!w-[28rem]">
           <Input
             placeholder={placeholder}
             onChange={(e) => setKeyword(e.target.value)}
             size="large"
-            allowClear
+            allowClear={true}
           />
         </div>
         <div className="">
