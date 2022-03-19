@@ -131,22 +131,22 @@ const Header = () => {
                       API
                     </a>
                   </li>
-                  <li
-                    className="w-full border-b border-b-gray-400 pb-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Link href={"/all-pastquestions"}>
+                  <Link href={"/all-pastquestions"}>
+                    <li
+                      className="w-full border-b border-b-gray-400 pb-1"
+                      onClick={() => setIsOpen(false)}
+                    >
                       <a className="!text-white">Past Questions</a>
-                    </Link>
-                  </li>
-                  <li
-                    className="w-full border-b border-b-gray-400 pb-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Link href={"/volunteer/volunteer-request"}>
+                    </li>
+                  </Link>
+                  <Link href={"/volunteer/volunteer-request"}>
+                    <li
+                      className="w-full border-b border-b-gray-400 pb-1"
+                      onClick={() => setIsOpen(false)}
+                    >
                       <a className="!text-white">Volunteer Request</a>
-                    </Link>
-                  </li>
+                    </li>
+                  </Link>
                   <li
                     className="w-full border-b border-b-gray-400 pb-1"
                     onClick={() => setIsOpen(false)}
