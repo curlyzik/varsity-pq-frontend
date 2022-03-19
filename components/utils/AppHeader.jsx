@@ -10,6 +10,7 @@ const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
             placeholder={placeholder}
             onChange={(e) => setKeyword(e.target.value)}
             size="large"
+            allowClear
           />
         </div>
         <div className="">
