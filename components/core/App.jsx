@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppHeader, Btn, Item, Loader, InfiniteScrolling } from "../index";
 import { useGetUniversitiesQuery } from "../../src/services/university";
 
@@ -20,31 +20,33 @@ const App = () => {
   };
   const universities = data?.slice().sort(compare);
 
-  // filter university by keyword search
-  const filteredUniversity = universities?.filter((university) => {
-    if (keyword === "") {
-      return universities;
-    } else {
-      return university.name.toLowerCase().includes(keyword);
-    }
-  });
+  const filteredUniversity = () => {
+    const filteredData = universities?.filter((university) =>
+      university.name.toLowerCase().includes(keyword.toLowerCase())
+    );
+    return filteredData;
+  };
+
+  useEffect(() => {
+    filteredUniversity();
+  }, [keyword]);
 
   // filter university by sort
   const handleUniTypeFiltering = () => {
     if (sort === "federal") {
-      return filteredUniversity?.filter(
+      return filteredUniversity()?.filter(
         (university) => university.type === "federal"
       );
     } else if (sort === "private") {
-      return filteredUniversity?.filter(
+      return filteredUniversity()?.filter(
         (university) => university.type === "private"
       );
     } else if (sort === "state") {
-      return filteredUniversity?.filter(
+      return filteredUniversity()?.filter(
         (university) => university.type === "state"
       );
     } else {
-      return filteredUniversity;
+      return filteredUniversity();
     }
   };
 
@@ -52,14 +54,19 @@ const App = () => {
 
   return (
     <div className="bg-[#ECF2F5] pt-6">
-      <AppHeader setKeyword={setKeyword} sort={sort} setSort={setSort} placeholder={`search over ${data?.length} universities`} />
+      <AppHeader
+        setKeyword={setKeyword}
+        sort={sort}
+        setSort={setSort}
+        placeholder={`search over ${data?.length} universities`}
+      />
       {isLoading ? (
         <div className="grid place-items-center p-8">
           <Loader />
         </div>
       ) : !keyword ? (
         <div>
-          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20 !pb-8">
+          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 !pb-8 lg:grid lg:px-20">
             {orderBy?.slice(0, keyword ? 25 : count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
@@ -83,7 +90,7 @@ const App = () => {
           count={count}
           data={orderBy}
         >
-          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 lg:grid lg:px-20 !pb-8">
+          <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 !pb-8 lg:grid lg:px-20">
             {orderBy?.slice(0, count).map((university) => (
               <Item university={university} key={university.id} />
             ))}
