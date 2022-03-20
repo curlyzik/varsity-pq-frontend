@@ -25,10 +25,11 @@ const AllPastQuestions = () => {
 
   console.log(pastQuestions);
   return (
-    <div>
-      <MainHeader />
+    <div className="dark:bg-[#111]">
       <div className="px-8 pt-6 md:!w-[40rem] lg:px-20">
-        <span className=" text-xl font-bold">Search Course</span>
+        <span className=" text-xl font-bold dark:text-white">
+          Search Course
+        </span>
         <Input
           placeholder="e.g, CSC 221"
           size="large"

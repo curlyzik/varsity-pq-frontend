@@ -6,7 +6,7 @@ const PQItems = ({ pq }) => {
     return (
       <div
         data-aos="fade-left"
-        className={`flex flex-col rounded-md border bg-white p-6 transition-all duration-500 hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset  ${
+        className={`flex flex-col rounded-md border dark:bg-black bg-white p-6 transition-all duration-500 hover:!scale-105 hover:border-0 hover:ring-1 hover:ring-inset  ${
           pq?.pq_details[0]?.university_type === "federal"
             ? "border-blue-300 hover:ring-blue-500"
             : pq?.pq_details[0]?.university_type === "state"
@@ -16,7 +16,7 @@ const PQItems = ({ pq }) => {
       >
         <div>
           <span
-            className={` px-2 py-1 text-xs font-bold text-gray-600 ${
+            className={` px-2 py-1 text-xs font-bold text-gray-600 rounded-md ${
               pq?.pq_details[0]?.university_type === "federal"
                 ? "bg-blue-100"
                 : pq?.pq_details[0]?.university_type === "state"
@@ -26,16 +26,16 @@ const PQItems = ({ pq }) => {
           >
             {pq?.pq_details[0]?.university_type}
           </span>
-          <h2 className="!mt-3 !mb-2 text-xl font-bold">{pq?.pq_details[0]?.course_code}</h2>
+          <h2 className="!mt-3 !mb-2 text-xl font-bold dark:text-white">{pq?.pq_details[0]?.course_code}</h2>
           <p className="!mb-3 text-sm text-gray-600">
-            <span className="italic text-black">University:</span>{" "}
+            <span className="italic text-black dark:text-white font-semibold">University:</span>{" "}
             {pq?.pq_details[0]?.university}
           </p>
 
           <div className="grid grid-cols-[auto,auto] gap-x-3 lg:flex lg:flex-col lg:gap-y-2">
             <Link href={`/`}>
               <a
-                className={`grid place-items-center rounded-md border !px-1 py-2 text-sm font-bold text-black ${
+                className={`grid place-items-center dark:text-white rounded-md border !px-1 py-2 text-sm font-bold text-black ${
                   pq?.pq_details[0]?.university_type === "federal"
                     ? "border-blue-400 hover:bg-blue-400 hover:text-white"
                     : pq?.pq_details[0]?.university_type === "state"

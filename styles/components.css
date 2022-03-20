@@ -75,3 +75,21 @@
   }
 }
 
+.dark .ant-input {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.light .ant-input {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.dark .ant-input-affix-wrapper {
+  background-color: #000 !important;
+}
+
+.light .ant-input-affix-wrapper {
+  background-color: #fff !important;
+  color: #000 !important;
+}

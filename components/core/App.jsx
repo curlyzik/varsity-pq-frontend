@@ -53,7 +53,7 @@ const App = () => {
   const orderBy = handleUniTypeFiltering();
 
   return (
-    <div className="bg-[#ECF2F5] pt-6">
+    <div className="bg-[#ECF2F5] pt-8 dark:bg-[#111]">
       <AppHeader
         setKeyword={setKeyword}
         sort={sort}

@@ -8,7 +8,7 @@
 
 @layer base {
   body {
-    @apply !font-body;
+    @apply !font-body dark:bg-[#111];
   }
   ul,
   p,
