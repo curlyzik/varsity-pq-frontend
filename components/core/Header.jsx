@@ -3,18 +3,27 @@ import Link from "next/link";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
+import { BsFillMoonFill, BsFillBrightnessHighFill } from "react-icons/bs";
 import { Btn } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../src/features/users/authSlice";
+import { Switch } from "antd";
 
 import { useRouter } from "next/router";
 
-const Header = () => {
+const Header = ({ darkMode, setDarkMode }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const { auth } = useSelector((state) => state.persistedReducer);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    window.localStorage.setItem("darkMode", !darkMode);
+  };
+
+  console.log(darkMode);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -22,7 +31,7 @@ const Header = () => {
   };
   return (
     <div className="relative border-b border-b-gray-600 bg-black">
-      <div className="overflow-hidden  bg-[#00044e] bg-opacity-60 py-4 px-4 font-body">
+      <div className="overflow-hidden dark:bg-black bg-[#00044e] bg-opacity-60 py-4 px-4 font-body">
         <div className="mx-4 flex items-center justify-between !text-white">
           <div>
             <Link href="/">
@@ -92,6 +101,15 @@ const Header = () => {
                   </Link>
                 </Btn>
               )}
+            </li>
+            <li className="bg-black dark:bg-gray-700 rounded-full px-2 py-[2px]">
+              <Switch
+                className=" "
+                checkedChildren={<BsFillMoonFill className=" dark:text-black" />}
+                unCheckedChildren={<BsFillBrightnessHighFill />}
+                onClick={() => toggleDarkMode()}
+                checked={darkMode}
+              />
             </li>
           </ul>
           <div className="lg:hidden">

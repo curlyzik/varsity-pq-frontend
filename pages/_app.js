@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -17,6 +17,17 @@ import "aos/dist/aos.css";
 import "animate.css";
 
 function MyApp({ Component, pageProps, ...appProps }) {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("darkMode")) {
+      setDarkMode(JSON.parse(localStorage.getItem("darkMode")));
+    } else {
+      setDarkMode(false);
+      window.localStorage.setItem("darkMode", false);
+    }
+  }, []);
+
   useEffect(() => {
     AOS.init();
   });
@@ -38,14 +49,14 @@ function MyApp({ Component, pageProps, ...appProps }) {
 
     return (
       <>
-        <Header />
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
         <Component {...pageProps} />
       </>
     );
   };
 
   return (
-    <div className="font-body">
+    <div className={`font-body ${darkMode ? "dark" : "light"}`}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <MetaTags />
