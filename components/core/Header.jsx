@@ -4,19 +4,24 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Btn } from "../index";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
+import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
+import { Switch } from "antd";
 
 const Header = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const { auth } = useSelector((state) => state.persistedReducer);
 
+  const { theme, setTheme } = useTheme();
+  const handleDarkMode = theme === "dark" ? true : false;
+
   return (
     <div className="relative border-b border-b-gray-600 bg-black">
-      <div className="overflow-hidden dark:bg-black bg-[#00044e] bg-opacity-60 py-4 px-4 font-body">
+      <div className="overflow-hidden bg-[#00044e] bg-opacity-60 py-4 px-4 font-body dark:bg-black">
         <div className="mx-4 flex items-center justify-between !text-white">
           <div>
             <Link href="/">
@@ -87,8 +92,22 @@ const Header = () => {
                 </Btn>
               )}
             </li>
+
+            <li className="rounded-full bg-[#cfcece] px-2 py-[3px] dark:bg-gray-700">
+              <Switch
+                className=" "
+                checkedChildren={
+                  <BsFillMoonFill className=" dark:text-black" />
+                }
+                unCheckedChildren={
+                  <BsFillBrightnessHighFill className=" text-black" />
+                }
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                checked={handleDarkMode}
+              />
+            </li>
           </ul>
-          <div className="lg:hidden">
+          <div className="flex flex-row-reverse gap-x-4 lg:hidden">
             {!isOpen && (
               <GiHamburgerMenu
                 className="text-3xl text-white"
@@ -101,6 +120,20 @@ const Header = () => {
                 onClick={() => setIsOpen(false)}
               />
             )}
+
+            <div className="rounded-full bg-[#cfcece] px-2 py-[3px] dark:bg-gray-700">
+              <Switch
+                className=" "
+                checkedChildren={
+                  <BsFillMoonFill className=" dark:text-black" />
+                }
+                unCheckedChildren={
+                  <BsFillBrightnessHighFill className=" text-black" />
+                }
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                checked={handleDarkMode}
+              />
+            </div>
           </div>
         </div>
 
@@ -108,7 +141,7 @@ const Header = () => {
         {isOpen && (
           <div className="absolute inset-0 z-20 mt-16 border-t border-t-gray-500 !text-white lg:hidden">
             <div className="bg-black">
-              <div className="w-full bg-[#00044e] dark:bg-black bg-opacity-60 py-8 px-4">
+              <div className="w-full bg-[#00044e] bg-opacity-60 py-8 px-4 dark:bg-black">
                 <ul className="flex flex-col items-start justify-center gap-y-7 gap-x-4 text-lg">
                   <Link href={"/"}>
                     <li
