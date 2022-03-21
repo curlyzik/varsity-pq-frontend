@@ -150,3 +150,7 @@
 .dark .ant-menu-dark.ant-menu-horizontal {
   border-bottom: 1px solid rgb(53, 53, 53) !important;
 }
+
+.ant-btn {
+  background-color: transparent !important;
+}
