@@ -66,6 +66,15 @@ const Users = () => {
     }
   };
 
+  // logic to handle user active state
+  const handleActivePermission = (user) => {
+    if (user?.is_active) {
+      updateUser(user?.id, "deactivate_user");
+    } else {
+      updateUser(user?.id, "activate_user");
+    }
+  };
+
   // table columns
   const columns = [
     {
@@ -180,6 +189,7 @@ const Users = () => {
                 }
                 checked={user?.is_active}
                 loading={tableLoading}
+                onClick={() => handleActivePermission(user)}
               />
             </div>
           </div>
