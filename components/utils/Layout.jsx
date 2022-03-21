@@ -13,13 +13,17 @@ import {
 } from "react-icons/ai";
 import Link from "next/link";
 import { logout } from "../../src/features/users/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import { Switch } from "antd";
 
 const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
+  const {
+    auth: { account },
+  } = useSelector((state) => state.persistedReducer);
+
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -49,7 +53,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             theme="dark"
             mode="inline"
             defaultSelectedKeys={[defaultSelectedKeys]}
-            className="border-t-[rgb(53,53,53)] border-t pt-2 dark:bg-black"
+            className="border-t border-t-[rgb(53,53,53)] pt-2 dark:bg-black"
           >
             <Menu.Item key="1" icon={<AiOutlineUser />}>
               <Link href={"/dashboard"}>
@@ -76,7 +80,15 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
                 <a>My PQs</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="6" icon={<AiOutlineSetting />}>
+            {/* Show this item if the user is an admin */}
+            {account?.is_staff && (
+              <Menu.Item key="6" icon={<AiOutlineUpload />}>
+                <Link href={"/dashboard/users"}>
+                  <a>Users</a>
+                </Link>
+              </Menu.Item>
+            )}
+            <Menu.Item key="7" icon={<AiOutlineSetting />}>
               <Link href={"/dashboard/settings"}>
                 <a>Settings</a>
               </Link>
@@ -116,7 +128,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               </Menu.Item>
               <Menu.Item
                 key="3"
-                className="rounded-full hover:bg-transparent dark:hover:bg-transparent"
+                className="rounded-full hover:bg-transparent dark:hover:bg-transparent remove-bg"
               >
                 <Switch
                   className="bg-[#cfcece] dark:bg-gray-800"

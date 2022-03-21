@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { UserDashboard } from "../../components";
+import { Layout, UserDashboard } from "../../components";
 
 const Dashboard = () => {
   const { auth } = useSelector((state) => state.persistedReducer);

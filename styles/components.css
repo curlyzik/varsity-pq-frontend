@@ -154,3 +154,7 @@
 .ant-btn {
   background-color: transparent !important;
 }
+
+.remove-bg {
+  background-color: transparent !important;
+}

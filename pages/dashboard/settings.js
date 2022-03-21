@@ -18,7 +18,7 @@ const Settings = () => {
   }, []);
   return (
     <div>
-      <Layout defaultSelectedKeys="6">
+      <Layout defaultSelectedKeys="7">
         <div className="!mb-5">
           <h2 className="border-b !pb-1 text-4xl font-bold">Settings</h2>
         </div>

@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   const messageError = () => {
-    message.error(loginErrorMessage, 4, () => {
+    message.error(loginErrorMessage, 2, () => {
       return setLoginError(false);
     });
   };
