@@ -19,7 +19,7 @@ const MainHeader = () => {
           much more amazing! 🤟
         </p>
 
-        <div className="animate__animated animate__fadeInUp flex flex-wrap gap-y-2 gap-x-2 pb-4">
+        <div className="animate__animated animate__fadeInUp flex flex-wrap items-center gap-y-2 gap-x-2 pb-4">
           <Btn>
             <a
               className="flex items-center justify-center rounded-md border-2 border-blue-600 px-3 py-[6px] text-base font-semibold capitalize text-white hover:text-gray-200 lg:ml-2"
@@ -29,7 +29,7 @@ const MainHeader = () => {
               <span className="poppins mr-1">{starCount}</span> Github Stars
             </a>
           </Btn>
-          <div className="mt-2 lg:ml-1 lg:mt-0 xl:ml-1 xl:mt-0">
+          <div className="lg:ml-1 lg:mt-0 xl:ml-1 xl:mt-0">
             <TwitterBtn />
           </div>
         </div>
