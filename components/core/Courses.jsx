@@ -87,7 +87,7 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
 
   const columns = [
     {
-      title: <h3 className="font-extrabold">Course Code</h3>,
+      title: <h3 className="font-extrabold dark:text-black">Course Code</h3>,
       dataIndex: "course_code",
       key: "course_code",
       fixed: "left",
@@ -158,7 +158,11 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
           confirmLoading={confirmLoading}
           loading={confirmLoading}
           footer={[
-            <Button key="back" onClick={handleUpdateCancel}>
+            <Button
+              key="back"
+              className="dark:text-white"
+              onClick={handleUpdateCancel}
+            >
               Cancel
             </Button>,
             <Button
@@ -166,7 +170,7 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
               type="primary"
               onClick={() => form.submit()}
               loading={confirmLoading}
-              className="text-black"
+              className="text-black dark:text-white"
             >
               OK
             </Button>,

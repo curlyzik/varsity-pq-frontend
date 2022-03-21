@@ -24,7 +24,7 @@ const PastQuestionUpdate = ({
   // table columns
   const columns = [
     {
-      title: <h3 className="font-extrabold">Course Code</h3>,
+      title: <h3 className="font-extrabold dark:text-black">Course Code</h3>,
       dataIndex: "course_code",
       key: "course_code",
       fixed: "left",

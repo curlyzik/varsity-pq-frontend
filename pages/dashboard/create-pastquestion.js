@@ -136,72 +136,76 @@ const CreatePastQuestion = () => {
   return (
     <div>
       <Layout defaultSelectedKeys="4">
-        <div>
-          <h2 className="!mb-4 border-b pb-2 text-4xl font-bold">
-            Create Past Question
-            <span className="block text-base text-gray-400">
-              These are {coursesHaveNoPQ()?.length} course(s) that doesnt have
-              past questions yet
-            </span>
-          </h2>
-        </div>
-        <div className="hidden md:block">
-          <Table
-            columns={columns}
-            data={mappedData}
-            scroll={{ x: 900, y: 300 }}
-            loading={tableLoading}
-          />
+        <div className="h-screen">
+          <div>
+            <h2 className="!mb-4 border-b pb-2 text-4xl font-bold dark:text-white">
+              Create Past Question
+              <span className="block text-base text-gray-400">
+                These are {coursesHaveNoPQ()?.length} course(s) that doesnt have
+                past questions yet
+              </span>
+            </h2>
+          </div>
+          <div className="hidden md:block">
+            <Table
+              columns={columns}
+              data={mappedData}
+              scroll={{ x: 900, y: 300 }}
+              loading={tableLoading}
+            />
 
-          <PastQuestionCreate
-            setCourseDetails={setCourseDetails}
-            courseDetails={courseDetails}
-            showCreateModal={showCreateModal}
-            setShowCreateModal={setShowCreateModal}
-            fetchCourses={fetchCourses}
-          />
-        </div>
+            <PastQuestionCreate
+              setCourseDetails={setCourseDetails}
+              courseDetails={courseDetails}
+              showCreateModal={showCreateModal}
+              setShowCreateModal={setShowCreateModal}
+              fetchCourses={fetchCourses}
+            />
+          </div>
 
-        {/* For mobile view */}
-        <div className="md:hidden">
-          <div className="!flex !flex-col !gap-y-6">
-            {tableLoading && <Spin />}
-            {coursesHaveNoPQ()?.map((course) => (
-              <Card className="!border-2" key={course.id}>
-                <h3 className="!text-2xl font-bold">{course.name}</h3>
-                <p className="!mb-2 text-lg italic">{course.course_code}</p>
-                <div className="text-base">
-                  <p>
-                    <b>Year:</b> {course.course_details[0].year}
-                  </p>
-                  <p>
-                    <b>Level:</b> {course.course_details[0].level}
-                  </p>
-                  <p>
-                    <b>Semester:</b>{" "}
-                    {course.course_details[0].semester === "2" ? "2nd" : "1st"}
-                  </p>
-                  <Button
-                    key="button"
-                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
-                    onClick={() => {
-                      setCourseDetails({
-                        id: course.id,
-                        name: course.name,
-                        code: course.course_code,
-                        year: course.course_details[0].year,
-                        level: course.course_details[0].level,
-                        semester: course.course_details[0].semester,
-                      });
-                      setShowCreateModal(true);
-                    }}
-                  >
-                    <AiOutlineEdit fill="green" />
-                    <span>Create</span>
-                  </Button>
-                </div>
-              </Card>
-            ))}
+          {/* For mobile view */}
+          <div className="md:hidden">
+            <div className="!flex !flex-col !gap-y-6">
+              {tableLoading && <Spin />}
+              {coursesHaveNoPQ()?.map((course) => (
+                <Card className="!border dark:bg-black" key={course.id}>
+                  <h3 className="!text-2xl font-bold">{course.name}</h3>
+                  <p className="!mb-2 text-lg italic">{course.course_code}</p>
+                  <div className="text-base">
+                    <p>
+                      <b>Year:</b> {course.course_details[0].year}
+                    </p>
+                    <p>
+                      <b>Level:</b> {course.course_details[0].level}
+                    </p>
+                    <p>
+                      <b>Semester:</b>{" "}
+                      {course.course_details[0].semester === "2"
+                        ? "2nd"
+                        : "1st"}
+                    </p>
+                    <Button
+                      key="button"
+                      className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg dark:text-white dark:focus:bg-black"
+                      onClick={() => {
+                        setCourseDetails({
+                          id: course.id,
+                          name: course.name,
+                          code: course.course_code,
+                          year: course.course_details[0].year,
+                          level: course.course_details[0].level,
+                          semester: course.course_details[0].semester,
+                        });
+                        setShowCreateModal(true);
+                      }}
+                    >
+                      <AiOutlineEdit fill="green" />
+                      <span>Create</span>
+                    </Button>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </Layout>

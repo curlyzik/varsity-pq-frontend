@@ -152,6 +152,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
           onClick={handleSubmit}
           disabled={fileList.length === 0}
           loading={loading}
+          className="dark:text-white dark:hover:bg-black dark:focus:bg-black"
         >
           Upload {pastQuestion?.course_details?.course_code} past question
         </Button>

@@ -94,7 +94,11 @@ const ProfileUpdateForm = () => {
             <Input placeholder="year of admission" type="number" />
           </Form.Item>
         </div>
-        <Button htmlType="submit" loading={loading}>
+        <Button
+          htmlType="submit"
+          loading={loading}
+          className="dark:hover:bg-black dark:focus:bg-black dark:text-white"
+        >
           Update
         </Button>
       </Form>

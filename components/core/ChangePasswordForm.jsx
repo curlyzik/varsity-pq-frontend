@@ -116,7 +116,12 @@ const ChangePasswordForm = () => {
             <Input.Password placeholder="confirm password" type="text" />
           </Form.Item>
         </div>
-        <Button htmlType="submit" loading={loading} form="changePassword">
+        <Button
+          htmlType="submit"
+          className="dark:text-white dark:hover:bg-black dark:focus:bg-black"
+          loading={loading}
+          form="changePassword"
+        >
           Change
         </Button>
       </Form>

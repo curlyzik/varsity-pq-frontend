@@ -125,6 +125,11 @@
   color: #fff !important;
 }
 
+.dark .anticon.anticon-left,
+.dark .anticon.anticon-right {
+  color: #000 !important;
+}
+
 .dark .ant-modal-close-x {
   background-color: #111 !important;
 }
@@ -135,4 +140,9 @@
 
 .dark .ant-message-error .anticon {
   color: #ff4d4f !important;
+}
+
+.dark .ant-message-notice-content {
+  background-color: #111 !important;
+  color: #fff !important;
 }

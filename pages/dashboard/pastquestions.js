@@ -86,7 +86,7 @@ const PastQuestions = () => {
     return {
       key: pq.id,
       course_code: (
-        <h3 className="font-bold">{pq.pq_details[0].course_code}</h3>
+        <h3 className="font-bold dark:text-black">{pq.pq_details[0].course_code}</h3>
       ),
       course_name: pq.pq_details[0].course,
       year: pq.pq_details[0].year,
@@ -131,7 +131,7 @@ const PastQuestions = () => {
           <div className="!flex !flex-col !gap-y-6">
             {tableLoading && <Spin />}
             {pqs?.map((pq) => (
-              <Card className="!border-2" key={pq.id}>
+              <Card className="!border dark:bg-black" key={pq.id}>
                 <h3 className="!text-2xl font-bold">
                   {pq.pq_details[0].course}
                 </h3>
@@ -151,7 +151,7 @@ const PastQuestions = () => {
                   </p>
                   <Button
                     key="button"
-                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
+                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg dark:text-white dark:focus:bg-black"
                     onClick={() => {
                       dispatch(setPqId(pq.id));
                       showUpdateModal();

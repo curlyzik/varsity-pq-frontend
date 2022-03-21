@@ -73,10 +73,10 @@ const CreateCourse = () => {
     <div>
       <Layout defaultSelectedKeys="2">
         <div>
-          <h2 className="border-b pb-2 text-4xl font-bold">Create Course</h2>
+          <h2 className="border-b pb-2 text-4xl font-bold mb-6">Create Course</h2>
         </div>
 
-        <div className="rounded-md bg-white p-6 lg:p-10">
+        <div className="rounded-md bg-white p-6 lg:p-10 dark:bg-black border dark:border-gray-400">
           <Form layout="vertical" onFinish={onFinish} form={form}>
             <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
               <Form.Item
@@ -97,8 +97,8 @@ const CreateCourse = () => {
                 ]}
               >
                 <Input
-                  placeholder="course code"
-                  type={"text"}
+                  placeholder="course code, e.g MEC 441"
+                  type="text"
                   onChange={(e) => {
                     form.setFieldsValue({
                       course_code: e.target.value.toUpperCase(),
@@ -220,7 +220,7 @@ const CreateCourse = () => {
               type="primary"
               htmlType="submit"
               loading={loading}
-              className="text-black"
+              className="text-black dark:text-white border-white"
             >
               Submit Request
             </Button>

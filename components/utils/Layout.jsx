@@ -77,7 +77,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className={`${!collapsed ? "lg:ml-[200px]" : "!ml-0"}`}>
+        <Layout className={`${!collapsed ? "lg:ml-[200px]" : "!ml-0"} dark:bg-[#111] pb-9`}>
           <Header className="!fixed z-10 !w-full !p-0">
             <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
               <Menu.Item
@@ -103,7 +103,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu>
           </Header>
           <Content className="!mx-4 !mt-20">
-            <div className="h-full bg-white p-7">{children}</div>
+            <div className="h-full bg-white p-7 dark:bg-[#111] lg:dark:bg-black">{children}</div>
           </Content>
           {/* <Footer className="!fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
             <p className="flex justify-center gap-x-2">

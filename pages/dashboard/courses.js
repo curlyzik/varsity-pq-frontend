@@ -95,7 +95,9 @@ const Courses = () => {
   const mappedData = courses?.map((course) => {
     return {
       key: course.id,
-      course_code: <h3 className="font-bold">{course.course_code}</h3>,
+      course_code: (
+        <h3 className="font-bold dark:text-black">{course.course_code}</h3>
+      ),
       course_name: course.name,
       year: course.course_details[0].year,
       level: course.course_details[0].level,
@@ -151,7 +153,7 @@ const Courses = () => {
           <div className="!flex !flex-col !gap-y-6">
             {tableLoading && <Spin />}
             {courses?.map((course) => (
-              <Card className="!border-2" key={course.id}>
+              <Card className="!border dark:bg-black" key={course.id}>
                 <h3 className="!text-2xl font-bold">{course.name}</h3>
                 <p className="!mb-2 text-lg italic">{course.course_code}</p>
                 <div className="text-base">
@@ -167,7 +169,7 @@ const Courses = () => {
                   </p>
                   <Button
                     key="button"
-                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg"
+                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg dark:text-white dark:focus:bg-black"
                     onClick={() => {
                       dispatch(setCourseId(course.id));
                       showUpdateModal();
