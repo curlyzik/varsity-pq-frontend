@@ -18,7 +18,9 @@ const Modal = ({
   return (
     <div>
       <AntModal
-        title={title}
+        title={
+          <div className="text-xl font-semibold dark:text-white">{title}</div>
+        }
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -29,6 +31,7 @@ const Modal = ({
         centered={centered}
         key={key}
         destroyOnClose={destroyOnClose}
+        className="dark:bg-[#111]"
       >
         {children}
       </AntModal>

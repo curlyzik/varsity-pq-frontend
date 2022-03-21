@@ -87,9 +87,52 @@
 
 .dark .ant-input-affix-wrapper {
   background-color: #000 !important;
+  color: #fff !important;
 }
 
 .light .ant-input-affix-wrapper {
   background-color: #fff !important;
   color: #000 !important;
+}
+
+.dark .ant-select {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.light .ant-select {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.dark .ant-select-selector {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.dark .ant-modal-content {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}
+
+.dark .ant-modal-header {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.dark .anticon {
+  color: #fff !important;
+}
+
+.dark .ant-modal-close-x {
+  background-color: #111 !important;
+}
+
+.dark .ant-form-item-required {
+  color: #fff !important;
+}
+
+.dark .ant-message-error .anticon {
+  color: #ff4d4f !important;
 }

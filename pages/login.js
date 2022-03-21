@@ -57,76 +57,78 @@ const Login = () => {
 
   return (
     <div className="grid items-center justify-center gap-y-5 pt-24">
-      <h2 className="text-center text-4xl">Login</h2>
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-      >
-        <Form.Item
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Please input your email!",
-            },
-          ]}
+      <div className="dark:bg-black p-8 border rounded-md">
+        <h2 className="mb-4 text-center text-4xl dark:text-white">Login</h2>
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
         >
-          <Input
-            prefix={<AiOutlineUser className="site-form-item-icon" />}
-            placeholder="Email"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Password!",
-            },
-          ]}
-          className="!mb-0"
-        >
-          <Input.Password
-            prefix={<AiOutlineLock className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-
-        <Form.Item className="!mb-3">
-          <Link href={"/password-reset"}>
-            <a className="login-form-forgot !mt-1 inline-block font-semibold text-black">
-              Forgot password?
-            </a>
-          </Link>
-        </Form.Item>
-
-        <Form.Item className="">
-          <Button
-            type="primary"
-            htmlType="submit"
-            loading={loading}
-            className="login-form-button w-full text-black"
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email!",
+              },
+            ]}
           >
-            Log in
-          </Button>
-          <p className="!mt-2">
-            Or{" "}
-            <span>
-              <Link href={"/volunteer/volunteer-request"}>
-                <a className="inline-block font-semibold text-black">
-                  become a volunteer!
-                </a>
-              </Link>
-            </span>
-          </p>
-        </Form.Item>
-      </Form>
+            <Input
+              prefix={<AiOutlineUser className="site-form-item-icon" />}
+              placeholder="Email"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Password!",
+              },
+            ]}
+            className="!mb-0"
+          >
+            <Input.Password
+              prefix={<AiOutlineLock className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Item>
+
+          <Form.Item className="!mb-3">
+            <Link href={"/password-reset"}>
+              <a className="login-form-forgot !mt-1 inline-block font-semibold text-black dark:text-white">
+                Forgot password?
+              </a>
+            </Link>
+          </Form.Item>
+
+          <Form.Item className="">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              className="login-form-button w-full text-black dark:text-white"
+            >
+              Log in
+            </Button>
+            <p className="!mt-2 dark:text-white">
+              Or{" "}
+              <span>
+                <Link href={"/volunteer/volunteer-request"}>
+                  <a className="inline-block font-semibold text-black dark:text-white">
+                    become a volunteer!
+                  </a>
+                </Link>
+              </span>
+            </p>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

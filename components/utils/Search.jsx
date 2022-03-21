@@ -34,6 +34,7 @@ export const SearchFilter = ({
         value={value}
         className="text-base"
         defaultValue={defaultValue}
+        size="large"
       >
         {children}
       </Select>

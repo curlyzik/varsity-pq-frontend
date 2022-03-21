@@ -136,12 +136,12 @@ const NewVolunteer = () => {
           closable={false}
         >
           <Success
-            title="Successfully Sent Volunteer Request!!!"
+            title={<div className="dark:text-white font-semibold">"Successfully Sent Volunteer Request!!!"</div>}
             extra={[
               <p className="mb-4 text-sm text-gray-500" key={"text"}>
                 Thank you for your interest in volunteering for us. We have sent
                 an email to{" "}
-                <span className="font-bold text-black">
+                <span className="font-bold dark:text-white text-black">
                   {volunteerDetails?.data?.email}
                 </span>{" "}
                 Please check your mail for login credentials
@@ -149,7 +149,7 @@ const NewVolunteer = () => {
               <Button
                 type="primary"
                 key="console"
-                className="font-bold !text-black"
+                className="font-bold !text-black dark:text-white border-white"
                 onClick={() => router.push("/")}
               >
                 Go Home
@@ -158,13 +158,13 @@ const NewVolunteer = () => {
           />
         </Modal>
       </div>
-      <div className="px-6 pt-10 lg:px-40 lg:pt-20">
+      <div className="lg:pt-18 px-6 pt-10 pb-7 lg:px-40">
         <div>
-          <h2 className=" grid place-items-center text-3xl font-bold lg:text-5xl">
+          <h2 className=" grid place-items-center pb-5 text-3xl font-bold dark:text-white lg:text-5xl">
             New Volunteer Request
           </h2>
 
-          <div className="rounded-md bg-white p-6 lg:p-10">
+          <div className="rounded-md border bg-white p-6 dark:border dark:bg-black lg:p-10">
             <Form layout="vertical" onFinish={onFinish} form={form}>
               <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
                 <Form.Item
@@ -289,7 +289,7 @@ const NewVolunteer = () => {
                 type="primary"
                 htmlType="submit"
                 loading={loading}
-                className="text-black"
+                className="border text-black dark:border-white dark:text-white"
               >
                 Submit Request
               </Button>

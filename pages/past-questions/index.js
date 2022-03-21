@@ -45,7 +45,7 @@ const AllPastQuestions = () => {
           pastQuestions?.map((pq) => <PQItems key={pq.id} pq={pq} />)
         )}
 
-        {pastQuestions?.length === 0 && <div>No Past Question</div>}
+        {pastQuestions?.length === 0 && <div className="dark:text-white">No Past Question</div>}
       </div>
     </div>
   );
