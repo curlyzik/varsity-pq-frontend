@@ -18,8 +18,7 @@
   h4,
   h5,
   h6,
-  li,
-  span {
+  li {
     @apply !mb-0 dark:text-white;
   }
 }

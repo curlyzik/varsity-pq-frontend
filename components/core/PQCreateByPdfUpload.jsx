@@ -139,7 +139,9 @@ const UploadPdf = ({
           onClick={handleSubmit}
           disabled={fileList.length === 0}
           loading={loading}
-          className="dark:text-white dark:focus:bg-black dark:hover:bg-black"
+          className="dark:bg-white dark:text-black dark:hover:bg-black 
+                    dark:hover:text-white dark:focus:bg-black 
+                    dark:focus:text-white"
         >
           Upload {courseDetails.code} past question
         </Button>

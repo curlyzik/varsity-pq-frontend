@@ -176,7 +176,7 @@ const Courses = () => {
                     }}
                   >
                     <AiOutlineEdit fill="green" />
-                    <span>Update</span>
+                    <span>View & Update</span>
                   </Button>
                 </div>
               </Card>

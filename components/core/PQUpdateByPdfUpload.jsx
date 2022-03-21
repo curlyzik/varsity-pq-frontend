@@ -13,9 +13,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
   const dispatch = useDispatch();
 
-  const [pdfUrl, setPdfUrl] = useState(
-    `${pastQuestion?.file}`
-  );
+  const [pdfUrl, setPdfUrl] = useState(`${pastQuestion?.file}`);
 
   useEffect(() => {
     setPdfUrl(`${pastQuestion?.file}`);
@@ -124,7 +122,9 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const uploadButton = (
     <div className="!flex flex-col items-center justify-center">
       <AiOutlineUpload />
-      <div style={{ marginTop: 8 }}>Change PQ PDF</div>
+      <div style={{ marginTop: 8 }} className="text-black">
+        Change PQ PDF
+      </div>
     </div>
   );
   return (
@@ -136,7 +136,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
           onChange={handleChange}
           beforeUpload={() => false}
           maxCount={1}
-          showUploadList={{ showPreviewIcon: false }}
+          showUploadList={{ showPreviewIcon: false, showRemoveIcon: false }}
           defaultFileList={[
             {
               uid: 1,
@@ -152,9 +152,11 @@ const UploadPdf = ({ setUpdateVisible }) => {
           onClick={handleSubmit}
           disabled={fileList.length === 0}
           loading={loading}
-          className="dark:text-white dark:hover:bg-black dark:focus:bg-black"
+          className="dark:bg-white dark:text-black dark:hover:bg-black 
+                    dark:hover:text-white dark:focus:bg-black 
+                    dark:focus:text-white"
         >
-          Upload {pastQuestion?.course_details?.course_code} past question
+          Update {pastQuestion?.course_details?.course_code} past question
         </Button>
       </div>
 

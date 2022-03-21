@@ -47,7 +47,7 @@ const CreatePastQuestion = () => {
   // table columns
   const columns = [
     {
-      title: <h3 className="font-extrabold">Course Code</h3>,
+      title: <h3 className="font-extrabold dark:text-black">Course Code</h3>,
       dataIndex: "course_code",
       key: "course_code",
       fixed: "left",
@@ -98,7 +98,9 @@ const CreatePastQuestion = () => {
   const mappedData = coursesHaveNoPQ()?.map((course) => {
     return {
       key: course.id,
-      course_code: <h3 className="font-bold">{course.course_code}</h3>,
+      course_code: (
+        <h3 className="font-bold dark:text-black">{course.course_code}</h3>
+      ),
       course_name: course.name,
       year: course.course_details[0].year,
       level: course.course_details[0].level,

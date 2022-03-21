@@ -17,7 +17,7 @@ const UserDashboard = () => {
               Profile Details
             </h2>
           </div>
-          <div className="mt-6 flex grid-cols-3 flex-col gap-y-8 dark:text-white lg:grid">
+          <div className="mt-6 flex grid-cols-3 flex-col gap-y-8 dark:text-white lg:grid p-2 lg:p-4 rounded-md">
             {!error && !user ? (
               <div>
                 <Spin />

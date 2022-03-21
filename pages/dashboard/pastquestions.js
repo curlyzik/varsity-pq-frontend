@@ -6,7 +6,7 @@ import {
   Courses as CourseComponent,
   PastQuestionUpdate,
 } from "../../components";
-import { Button, Card , Spin} from "antd";
+import { Button, Card, Spin } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import {
@@ -86,7 +86,9 @@ const PastQuestions = () => {
     return {
       key: pq.id,
       course_code: (
-        <h3 className="font-bold dark:text-black">{pq.pq_details[0].course_code}</h3>
+        <h3 className="font-bold dark:text-black">
+          {pq.pq_details[0].course_code}
+        </h3>
       ),
       course_name: pq.pq_details[0].course,
       year: pq.pq_details[0].year,
@@ -102,7 +104,7 @@ const PastQuestions = () => {
           }}
         >
           <AiOutlineEdit fill="green" />
-          <span>Update</span>
+          <span>View & Update</span>
         </Button>
       ),
     };
@@ -113,7 +115,9 @@ const PastQuestions = () => {
       <Layout defaultSelectedKeys="5">
         <div className="!mb-4 border-b !pb-2">
           <h2 className="text-4xl font-bold">My Past Questions</h2>
-          <span>You have created {pqs?.length} past questions</span>
+          <span className="dark:text-white">
+            You have created {pqs?.length} past questions
+          </span>
         </div>
 
         {/* For desktop  view */}
@@ -158,7 +162,7 @@ const PastQuestions = () => {
                     }}
                   >
                     <AiOutlineEdit fill="green" />
-                    <span>Update</span>
+                    <span>View & Update</span>
                   </Button>
                 </div>
               </Card>

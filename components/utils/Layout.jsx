@@ -15,11 +15,17 @@ import Link from "next/link";
 import { logout } from "../../src/features/users/authSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
+import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
+import { Switch } from "antd";
 
 const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const { theme, setTheme } = useTheme();
+  const handleDarkMode = theme === "dark" ? true : false;
 
   return (
     <div>
@@ -34,7 +40,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             console.log(collapsed, type);
             setCollapsed(collapsed);
           }}
-          className="!fixed !top-0 !bottom-0 !left-0 !z-50 !h-screen"
+          className="!fixed !top-0 !bottom-0 !left-0 !z-50 !h-screen dark:bg-black"
         >
           <div className="!m-4 h-8 text-center text-3xl font-bold text-white">
             Varsity PQ
@@ -43,7 +49,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             theme="dark"
             mode="inline"
             defaultSelectedKeys={[defaultSelectedKeys]}
-            className="border-t border-t-gray-900 pt-2"
+            className="border-t-[rgb(53,53,53)] border-t pt-2 dark:bg-black"
           >
             <Menu.Item key="1" icon={<AiOutlineUser />}>
               <Link href={"/dashboard"}>
@@ -77,9 +83,17 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className={`${!collapsed ? "lg:ml-[200px]" : "!ml-0"} dark:bg-[#111] pb-9`}>
-          <Header className="!fixed z-10 !w-full !p-0">
-            <Menu theme="dark" mode="horizontal" className="!ml-6 !flex">
+        <Layout
+          className={`${
+            !collapsed ? "lg:ml-[200px]" : "!ml-0"
+          } pb-9 dark:bg-[#111]`}
+        >
+          <Header className="!fixed z-10 !w-full !p-0 dark:bg-black">
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              className="!flex !border-4 !pl-6 dark:bg-black"
+            >
               <Menu.Item
                 key="1"
                 icon={<AiOutlineHome />}
@@ -100,10 +114,28 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               >
                 Sign out
               </Menu.Item>
+              <Menu.Item
+                key="3"
+                className="rounded-full hover:bg-transparent dark:hover:bg-transparent"
+              >
+                <Switch
+                  className="bg-[#cfcece] dark:bg-gray-800"
+                  checkedChildren={
+                    <BsFillMoonFill className=" dark:text-black" />
+                  }
+                  unCheckedChildren={
+                    <BsFillBrightnessHighFill className=" text-black" />
+                  }
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  checked={handleDarkMode}
+                />
+              </Menu.Item>
             </Menu>
           </Header>
           <Content className="!mx-4 !mt-20">
-            <div className="h-full bg-white p-7 dark:bg-[#111] lg:dark:bg-black">{children}</div>
+            <div className="h-full bg-white p-5 dark:bg-[#111] lg:dark:bg-black">
+              {children}
+            </div>
           </Content>
           {/* <Footer className="!fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
             <p className="flex justify-center gap-x-2">
