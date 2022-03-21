@@ -132,7 +132,7 @@ const Users = () => {
     return {
       key: user.id,
       full_name: (
-        <h3 className="font-bold dark:text-black">{user.full_name}</h3>
+        <h3 className="ml-2 font-bold dark:text-black">{user.full_name}</h3>
       ),
       email: user.email,
       university: user.university,

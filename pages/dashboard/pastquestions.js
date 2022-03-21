@@ -86,7 +86,7 @@ const PastQuestions = () => {
     return {
       key: pq.id,
       course_code: (
-        <h3 className="font-bold dark:text-black">
+        <h3 className="ml-2 font-bold dark:text-black">
           {pq.pq_details[0].course_code}
         </h3>
       ),

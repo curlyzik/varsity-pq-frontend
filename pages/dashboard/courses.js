@@ -96,7 +96,7 @@ const Courses = () => {
     return {
       key: course.id,
       course_code: (
-        <h3 className="font-bold dark:text-black">{course.course_code}</h3>
+        <h3 className="ml-2 font-bold dark:text-black">{course.course_code}</h3>
       ),
       course_name: course.name,
       year: course.course_details[0].year,
