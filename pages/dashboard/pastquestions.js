@@ -155,7 +155,7 @@ const PastQuestions = () => {
                   </p>
                   <Button
                     key="button"
-                    className="!mt-4 !flex cursor-pointer !items-center !justify-center !gap-x-3 !text-lg dark:!text-white dark:focus:!bg-black"
+                    className="!mt-4 !flex bg-none cursor-pointer !items-center !justify-center !gap-x-3 !text-lg dark:!text-white dark:focus:!bg-black"
                     onClick={() => {
                       dispatch(setPqId(pq.id));
                       showUpdateModal();
