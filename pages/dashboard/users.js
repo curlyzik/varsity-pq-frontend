@@ -1,4 +1,4 @@
-import { Button, message, Switch } from "antd";
+import { Button, Input, message, Switch } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -13,6 +13,8 @@ const Users = () => {
   const [tableLoading, setTableLoading] = useState(false);
   const [users, setUsers] = useState(null);
   const [user, setUser] = useState(null);
+
+  const [keyWord, setKeyword] = useState("");
 
   const [success, setSuccess] = useState(false);
 
@@ -35,6 +37,23 @@ const Users = () => {
   useEffect(() => {
     fetchUsers();
   }, [user]);
+
+  // filter courses by keyword
+  const filterByKeyword = (keyword) => {
+    const filteredData = users?.filter(
+      (user) =>
+        user?.full_name?.toLowerCase().includes(keyword.toLowerCase()) ||
+        user?.email?.toLowerCase().includes(keyword.toLowerCase())
+    );
+    return filteredData;
+  };
+
+  // fetch new data when keyword changes
+  useEffect(() => {
+    filterByKeyword(keyWord);
+  }, [keyWord]);
+
+  const newUsers = filterByKeyword(keyWord);
 
   // FETCH SINGLE USERS
   const updateUser = async (id, action) => {
@@ -137,7 +156,7 @@ const Users = () => {
     },
   ];
 
-  const excludeLoggedInUserFromList = users?.filter((user) => {
+  const excludeLoggedInUserFromList = newUsers?.filter((user) => {
     return user.id !== auth?.account?.id;
   });
 
@@ -223,6 +242,15 @@ const Users = () => {
                 {users?.length} total volunteers
               </span>
             </h2>
+          </div>
+
+          <div className="mb-3 md:w-96">
+            <Input
+              placeholder="search by course code or name."
+              size="large"
+              allowClear
+              onChange={(e) => setKeyword(e.target.value)}
+            />
           </div>
 
           {/* For desktop View */}

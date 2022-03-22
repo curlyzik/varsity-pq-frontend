@@ -51,8 +51,7 @@ const CreatePastQuestion = () => {
     const filteredData = courses?.filter(
       (course) =>
         course?.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
-        course?.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        course.has_pastquestion === false
+        course?.name.toLowerCase().includes(keyword.toLowerCase())
     );
     return filteredData;
   };
@@ -60,12 +59,12 @@ const CreatePastQuestion = () => {
   const newCourses = filterByKeyword(keyWord);
 
   // filter courses that has doesnt have past question yet
-  // const coursesHaveNoPQ = () =>
-  //   courses?.filter((course) => {
-  //     if (course.has_pastquestion === false) {
-  //       return courses;
-  //     }
-  //   });
+  const coursesHaveNoPQ = () =>
+    newCourses?.filter((course) => {
+      if (course.has_pastquestion === false) {
+        return courses;
+      }
+    });
 
   // fetch new data when keyword changes
   useEffect(() => {
@@ -115,7 +114,7 @@ const CreatePastQuestion = () => {
   ];
 
   // get the mapped data
-  const mappedData = newCourses?.map((course) => {
+  const mappedData = coursesHaveNoPQ()?.map((course) => {
     return {
       key: course.id,
       course_code: (
@@ -163,8 +162,8 @@ const CreatePastQuestion = () => {
             <h2 className="!mb-4 border-b pb-2 text-4xl font-bold dark:text-white">
               Create Past Question
               <span className="block text-base text-gray-400">
-                These are {newCourses?.length} course(s) that doesnt have past
-                questions yet
+                These are {coursesHaveNoPQ()?.length} course(s) that doesnt have
+                past questions yet
               </span>
             </h2>
           </div>
@@ -197,7 +196,7 @@ const CreatePastQuestion = () => {
           <div className="md:hidden">
             <div className="!flex !flex-col !gap-y-6">
               {tableLoading && <Spin />}
-              {newCourses?.map((course) => (
+              {coursesHaveNoPQ()?.map((course) => (
                 <Card className="!border dark:bg-black" key={course.id}>
                   <h3 className="!text-2xl font-bold">{course.name}</h3>
                   <p className="!mb-2 text-lg italic">{course.course_code}</p>
