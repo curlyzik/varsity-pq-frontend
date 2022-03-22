@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout, Courses as CourseComponent } from "../../components";
-import { Button, Card, Spin } from "antd";
+import { Button, Card, Input, Spin } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import {
@@ -15,13 +15,15 @@ const Courses = () => {
   const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
   const { courseId } = courseDetail;
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [courses, setCourses] = useState(null);
   const [tableLoading, setTableLoading] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
+  const [keyWord, setKeyword] = useState("");
 
-  const router = useRouter();
-
+  // redirect user when they try this route without
+  // beign authenticated
   useEffect(() => {
     if (!auth.accessToken) {
       router.push("/login");
@@ -32,7 +34,7 @@ const Courses = () => {
     setUpdateVisible(true);
   };
 
-  // FETCH ALL COURSES
+  // fetch all courses
   const fetchCourses = async () => {
     setTableLoading(true);
     const { data } = await axios.get(
@@ -55,7 +57,22 @@ const Courses = () => {
     fetchCourses();
   }, [courseDetail]);
 
-  // FETCH SINGLE COURSE
+  // filter courses by keyword
+  const filterByKeyword = (keyword) => {
+    const filteredData = courses?.filter((course) =>
+      course?.course_code.toLowerCase().includes(keyword.toLowerCase())
+    );
+    return filteredData;
+  };
+
+  // fetch new data when keyword changes
+  useEffect(() => {
+    filterByKeyword(keyWord);
+  }, [keyWord]);
+
+  const newCourses = filterByKeyword(keyWord);
+
+  // fetch single courses
   const fetchCourse = async (id) => {
     try {
       const { data } = await axios.get(
@@ -85,14 +102,15 @@ const Courses = () => {
     }
   };
 
-  // set course id
+  // fetch course when course id is not null
   useEffect(() => {
     if (courseId !== null) {
       fetchCourse(courseId);
     }
   }, [courseId]);
 
-  const mappedData = courses?.map((course) => {
+  // course to be displayed in the table
+  const mappedData = newCourses?.map((course) => {
     return {
       key: course.id,
       course_code: (
@@ -137,7 +155,16 @@ const Courses = () => {
             </div>
           )}
         </div>
-
+        <div>
+          <div className="mb-3 md:w-96">
+            <Input
+              placeholder="search by course code. e.g,  CSC 221"
+              size="large"
+              allowClear
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+          </div>
+        </div>
         {/* For desktop  view */}
         <div className="hidden md:block">
           <CourseComponent
@@ -152,7 +179,7 @@ const Courses = () => {
         <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
             {tableLoading && <Spin />}
-            {courses?.map((course) => (
+            {newCourses?.map((course) => (
               <Card className="!border dark:bg-black" key={course.id}>
                 <h3 className="!text-2xl font-bold">{course.name}</h3>
                 <p className="!mb-2 text-lg italic">{course.course_code}</p>

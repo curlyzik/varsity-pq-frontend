@@ -8,6 +8,7 @@ const AllPastQuestions = () => {
 
   const [keyWord, setKeyword] = useState("");
 
+  // filter data by keyword
   const filterByKeyword = (keyword) => {
     const filteredData = data?.filter((pq) =>
       pq?.pq_details[0]?.course_code
