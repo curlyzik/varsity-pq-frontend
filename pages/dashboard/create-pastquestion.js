@@ -5,7 +5,7 @@ import { Layout, Table } from "../../components";
 import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate } from "../../components";
 import axios from "axios";
-import { Button, Card, Spin } from "antd";
+import { Button, Card, Input, Spin } from "antd";
 
 const CreatePastQuestion = () => {
   const { auth } = useSelector((state) => state.persistedReducer);
@@ -15,6 +15,8 @@ const CreatePastQuestion = () => {
   const [tableLoading, setTableLoading] = useState(false);
 
   const [courses, setCourses] = useState(null);
+
+  const [keyWord, setKeyword] = useState("");
 
   const [courseDetails, setCourseDetails] = useState({});
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -43,6 +45,32 @@ const CreatePastQuestion = () => {
   useEffect(() => {
     fetchCourses();
   }, []);
+
+  // filter courses by keyword
+  const filterByKeyword = (keyword) => {
+    const filteredData = courses?.filter(
+      (course) =>
+        course?.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
+        course?.name.toLowerCase().includes(keyword.toLowerCase()) ||
+        course.has_pastquestion === false
+    );
+    return filteredData;
+  };
+
+  const newCourses = filterByKeyword(keyWord);
+
+  // filter courses that has doesnt have past question yet
+  // const coursesHaveNoPQ = () =>
+  //   courses?.filter((course) => {
+  //     if (course.has_pastquestion === false) {
+  //       return courses;
+  //     }
+  //   });
+
+  // fetch new data when keyword changes
+  useEffect(() => {
+    filterByKeyword(keyWord);
+  }, [keyWord]);
 
   // table columns
   const columns = [
@@ -86,16 +114,8 @@ const CreatePastQuestion = () => {
     },
   ];
 
-  // filter courses that has doesnt have past question yet
-  const coursesHaveNoPQ = () =>
-    courses?.filter((course) => {
-      if (course.has_pastquestion === false) {
-        return courses;
-      }
-    });
-
   // get the mapped data
-  const mappedData = coursesHaveNoPQ()?.map((course) => {
+  const mappedData = newCourses?.map((course) => {
     return {
       key: course.id,
       course_code: (
@@ -143,10 +163,18 @@ const CreatePastQuestion = () => {
             <h2 className="!mb-4 border-b pb-2 text-4xl font-bold dark:text-white">
               Create Past Question
               <span className="block text-base text-gray-400">
-                These are {coursesHaveNoPQ()?.length} course(s) that doesnt have
-                past questions yet
+                These are {newCourses?.length} course(s) that doesnt have past
+                questions yet
               </span>
             </h2>
+          </div>
+          <div className="mb-3 md:w-96">
+            <Input
+              placeholder="search by course code or name."
+              size="large"
+              allowClear
+              onChange={(e) => setKeyword(e.target.value)}
+            />
           </div>
           <div className="hidden md:block">
             <Table
@@ -169,7 +197,7 @@ const CreatePastQuestion = () => {
           <div className="md:hidden">
             <div className="!flex !flex-col !gap-y-6">
               {tableLoading && <Spin />}
-              {coursesHaveNoPQ()?.map((course) => (
+              {newCourses?.map((course) => (
                 <Card className="!border dark:bg-black" key={course.id}>
                   <h3 className="!text-2xl font-bold">{course.name}</h3>
                   <p className="!mb-2 text-lg italic">{course.course_code}</p>

@@ -51,8 +51,6 @@ const PastQuestions = () => {
     setTableLoading(false);
   };
 
-  console.log(pqs);
-
   useEffect(() => {
     fetchPastQuestions();
   }, [pastQuestion]);
