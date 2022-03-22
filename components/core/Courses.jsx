@@ -1,4 +1,4 @@
-import { Input, Form, Select, Button } from "antd";
+import { Input, Form, Select, Button, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,7 @@ const { Option } = Select;
 const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
   const dispatch = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [form] = Form.useForm();
 
   const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
@@ -50,9 +51,11 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
       dispatch(removeCourseDetails());
       updateSetVisible(false);
       dispatch(removeCourseId());
+      setSuccess(true);
       form.resetFields();
     } catch (error) {
       console.log(error);
+      setSuccess(false);
       setConfirmLoading(false);
     }
   };
@@ -69,7 +72,19 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
     updateSetVisible(false);
   };
 
-  // SET PREVIOUS VALUES TO FORM FIELDS
+  const setSuccessMessage = () => {
+    message.success("Course Updated", 2, () => {
+      setSuccess(false);
+    });
+  };
+
+  useEffect(() => {
+    if (success) {
+      setSuccessMessage();
+    }
+  }, [success]);
+
+  // set previous values to form field
   useEffect(() => {
     if (updateVisible) {
       form.setFieldsValue({

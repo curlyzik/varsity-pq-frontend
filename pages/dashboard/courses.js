@@ -59,8 +59,10 @@ const Courses = () => {
 
   // filter courses by keyword
   const filterByKeyword = (keyword) => {
-    const filteredData = courses?.filter((course) =>
-      course?.course_code.toLowerCase().includes(keyword.toLowerCase())
+    const filteredData = courses?.filter(
+      (course) =>
+        course?.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
+        course?.name.toLowerCase().includes(keyword.toLowerCase())
     );
     return filteredData;
   };
@@ -158,7 +160,7 @@ const Courses = () => {
         <div>
           <div className="mb-3 md:w-96">
             <Input
-              placeholder="search by course code. e.g,  CSC 221"
+              placeholder="search by course code or name."
               size="large"
               allowClear
               onChange={(e) => setKeyword(e.target.value)}
