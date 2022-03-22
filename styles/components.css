@@ -142,6 +142,10 @@
   color: #ff4d4f !important;
 }
 
+.dark .ant-message-success .anticon {
+  color: green !important;
+}
+
 .dark .ant-message-notice-content {
   background-color: #111 !important;
   color: #fff !important;

@@ -1,4 +1,4 @@
-import { Button, Switch } from "antd";
+import { Button, message, Switch } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -13,6 +13,8 @@ const Users = () => {
   const [tableLoading, setTableLoading] = useState(false);
   const [users, setUsers] = useState(null);
   const [user, setUser] = useState(null);
+
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!auth?.accessToken || !auth?.account?.is_staff) {
@@ -49,13 +51,13 @@ const Users = () => {
       );
       setUser(data);
       setTableLoading(false);
+      setSuccess(true);
     } catch (error) {
       console.log(error);
       setTableLoading(false);
+      setSuccess(false);
     }
   };
-
-  console.log(user);
 
   // logic to handle user admin permission
   const handleAdminPermission = (user) => {
@@ -74,6 +76,18 @@ const Users = () => {
       updateUser(user?.id, "activate_user");
     }
   };
+
+  const successMessage = () => {
+    return message.success(user?.message, 1, () => {
+      setSuccess(false);
+    });
+  };
+
+  useEffect(() => {
+    if (success) {
+      successMessage();
+    }
+  }, [success]);
 
   // table columns
   const columns = [
