@@ -6,7 +6,7 @@ import {
   Courses as CourseComponent,
   PastQuestionUpdate,
 } from "../../components";
-import { Button, Card, Spin } from "antd";
+import { Button, Card, Input, Spin } from "antd";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import {
@@ -19,6 +19,8 @@ const PastQuestions = () => {
   const dispatch = useDispatch();
 
   const [tableLoading, setTableLoading] = useState(false);
+
+  const [keyWord, setKeyword] = useState("");
 
   const [pqs, setPqs] = useState(null);
   const [updateVisible, setUpdateVisible] = useState(false);
@@ -34,7 +36,7 @@ const PastQuestions = () => {
     setUpdateVisible(true);
   };
 
-  // FETCH ALL PAST QUESTIONS
+  // fetch all past questions
   const fetchPastQuestions = async () => {
     setTableLoading(true);
     const { data } = await axios.get(
@@ -49,11 +51,32 @@ const PastQuestions = () => {
     setTableLoading(false);
   };
 
+  console.log(pqs);
+
   useEffect(() => {
     fetchPastQuestions();
   }, [pastQuestion]);
 
-  // FETCH SINGLE PAST QUESTION
+  // filter courses by keyword
+  const filterByKeyword = (keyword) => {
+    const filteredData = pqs?.filter(
+      (pq) =>
+        pq?.pq_details[0]?.course_code
+          .toLowerCase()
+          .includes(keyword.toLowerCase()) ||
+        pq?.pq_details[0]?.course.toLowerCase().includes(keyword.toLowerCase())
+    );
+    return filteredData;
+  };
+
+  // fetch new data when keyword changes
+  useEffect(() => {
+    filterByKeyword(keyWord);
+  }, [keyWord]);
+
+  const newPqs = filterByKeyword(keyWord);
+
+  // fetch single past question
   const fetchPastQuestion = async (id) => {
     try {
       const { data } = await axios.get(
@@ -82,7 +105,7 @@ const PastQuestions = () => {
     }
   }, [pastQuestion.pqId]);
 
-  const mappedData = pqs?.map((pq) => {
+  const mappedData = newPqs?.map((pq) => {
     return {
       key: pq.id,
       course_code: (
@@ -118,6 +141,15 @@ const PastQuestions = () => {
           <span className="dark:text-white">
             You have created {pqs?.length} past questions
           </span>
+        </div>
+
+        <div className="mb-3 md:w-96">
+          <Input
+            placeholder="search by course code or name."
+            size="large"
+            allowClear
+            onChange={(e) => setKeyword(e.target.value)}
+          />
         </div>
 
         {/* For desktop  view */}
