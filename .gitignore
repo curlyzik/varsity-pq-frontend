@@ -6,6 +6,7 @@ facultyData.js
 uniData.js
 uniData2.js
 post-data.js
+storeDataToDB.js
 
 # dependencies
 /node_modules
