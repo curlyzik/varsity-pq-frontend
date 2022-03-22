@@ -118,6 +118,12 @@ const Users = () => {
       width: 100,
     },
     {
+      title: "User ID",
+      dataIndex: "id",
+      key: "id",
+      width: 50,
+    },
+    {
       title: "Email",
       dataIndex: "email",
       key: "email",
@@ -167,6 +173,7 @@ const Users = () => {
       full_name: (
         <h3 className="ml-2 font-bold dark:text-black">{user.full_name}</h3>
       ),
+      id: user.id,
       email: user.email,
       university: user.university,
       is_active: user.is_active ? (

@@ -25,15 +25,35 @@ const PQItems = ({ pq }) => {
         >
           {pq?.pq_details[0]?.university_type}
         </span>
-        <h2 className="!mt-3 !mb-2 text-xl font-bold dark:text-white">
+        <h2 className="!mb-1 mt-3 text-2xl font-bold dark:text-white">
           {pq?.pq_details[0]?.course_code}
         </h2>
-        <p className="!mb-3 text-sm text-gray-600">
-          <span className="font-semibold italic text-black dark:text-white">
-            University:
-          </span>{" "}
-          {pq?.pq_details[0]?.university}
-        </p>
+        <div className="mb-5 flex flex-col gap-y-2">
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold italic text-black dark:text-gray-400">
+              Course Name:
+            </span>{" "}
+            {pq?.pq_details[0]?.course}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold italic text-black dark:text-gray-400">
+              Session:
+            </span>{" "}
+            {pq?.pq_details[0]?.year}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold italic text-black dark:text-gray-400">
+              Semester:
+            </span>{" "}
+            {pq?.pq_details[0]?.semester}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold italic text-black dark:text-gray-400">
+              University:
+            </span>{" "}
+            {pq?.pq_details[0]?.university}
+          </p>
+        </div>
 
         <div className="grid grid-cols-[auto,auto] gap-x-3 lg:flex lg:flex-col lg:gap-y-2">
           <Link href={`${pq?.file}`}>

@@ -7,7 +7,12 @@ export const universityApi = createApi({
   }),
   endpoints: (builder) => ({
     getUniversities: builder.query({
-      query: () => "",
+      query: () => ({
+        url: "",
+        headers: {
+          Authorization: `Token ${process.env.NEXT_PUBLIC_TOKEN}`,
+        },
+      }),
     }),
   }),
 });
