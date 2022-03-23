@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { AppHeader, Btn, Item, Loader, InfiniteScrolling } from "../index";
 import { useGetUniversitiesQuery } from "../../src/services/university";
+import { useGetProdUniversitiesQuery } from "../../src/services/prodService/prodApis";
 
 const App = () => {
-  const { data, isLoading } = useGetUniversitiesQuery();
+  // Comment out this line while in development
+  const { data, isLoading } = useGetProdUniversitiesQuery();
+
+  console.log(process.env.NODE_ENV);
+  // Uncomment this line to use in development mode
+  // const { data, isLoading } = useGetUniversitiesQuery();
   const [keyword, setKeyword] = useState("");
   const [sort, setSort] = useState("");
   const [count, setCount] = useState(20);
