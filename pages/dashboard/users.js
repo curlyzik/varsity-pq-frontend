@@ -2,7 +2,11 @@ import { Button, Input, message, Switch } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
+import {
+  AiFillCloseCircle,
+  AiFillCheckCircle,
+  AiFillDelete,
+} from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Layout, Table } from "../../components";
 
@@ -67,6 +71,28 @@ const Users = () => {
       const { data } = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/users/update/${id}/`,
         { action },
+        {
+          headers: {
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+        }
+      );
+      setUser(data);
+      setTableLoading(false);
+      setSuccess(true);
+    } catch (error) {
+      console.log(error);
+      setTableLoading(false);
+      setSuccess(false);
+    }
+  };
+
+  // DELTE USERS
+  const deleteUser = async (id) => {
+    try {
+      setTableLoading(true);
+      const { data } = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/update/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${auth.accessToken}`,
@@ -193,7 +219,7 @@ const Users = () => {
         <AiFillCloseCircle fill="red" />
       ),
       action: (
-        <div className="!flex gap-x-2 text-center">
+        <div className="!flex items-center gap-x-2 text-center">
           <div>
             {user?.is_staff ? (
               <div className="text-xs">Remove Admin</div>
@@ -213,26 +239,31 @@ const Users = () => {
               onClick={() => handleAdminPermission(user)}
             />
           </div>
+          <div className="border-r border-gray-600 pr-2">
+            {user?.is_active ? (
+              <div className="text-xs">Deactivate Account</div>
+            ) : (
+              <div className="text-xs">Activate Account</div>
+            )}
+            <Switch
+              className="bg-gray-300"
+              unCheckedChildren={
+                <AiFillCheckCircle fill="green" className=" text-sm" />
+              }
+              checkedChildren={
+                <AiFillCloseCircle fill="red" className=" text-sm" />
+              }
+              checked={user?.is_active}
+              loading={tableLoading}
+              onClick={() => handleActivePermission(user)}
+            />
+          </div>
           <div>
-            <div>
-              {user?.is_active ? (
-                <div className="text-xs">Deactivate Account</div>
-              ) : (
-                <div className="text-xs">Activate Account</div>
-              )}
-              <Switch
-                className="bg-gray-300"
-                unCheckedChildren={
-                  <AiFillCheckCircle fill="green" className=" text-sm" />
-                }
-                checkedChildren={
-                  <AiFillCloseCircle fill="red" className=" text-sm" />
-                }
-                checked={user?.is_active}
-                loading={tableLoading}
-                onClick={() => handleActivePermission(user)}
-              />
-            </div>
+            <AiFillDelete
+              fill="red"
+              className="text-xl cursor-pointer"
+              onClick={() => deleteUser(user?.id)}
+            />
           </div>
         </div>
       ),
