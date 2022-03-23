@@ -4,7 +4,7 @@ import { Input, Spin } from "antd";
 import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
 
 const AllPastQuestions = () => {
-  const { data, isFetching } = useGetPastQuestionsQuery();
+  const { data, isLoading } = useGetPastQuestionsQuery();
 
   const [keyWord, setKeyword] = useState("");
 
@@ -24,7 +24,6 @@ const AllPastQuestions = () => {
 
   const pastQuestions = filterByKeyword(keyWord);
 
-  console.log(pastQuestions);
   return (
     <div className="dark:bg-[#111]">
       <div className="px-8 pt-6 md:!w-[40rem] lg:px-20">
@@ -40,13 +39,15 @@ const AllPastQuestions = () => {
       </div>
 
       <div className="flex grid-cols-4 flex-col items-stretch justify-center gap-6 overflow-hidden px-8 pt-6 !pb-10 lg:grid lg:px-20">
-        {isFetching ? (
+        {isLoading ? (
           <Spin />
         ) : (
           pastQuestions?.map((pq) => <PQItems key={pq.id} pq={pq} />)
         )}
 
-        {pastQuestions?.length === 0 && <div className="dark:text-white">No Past Question</div>}
+        {pastQuestions?.length === 0 && (
+          <div className="dark:text-white">No Past Question</div>
+        )}
       </div>
     </div>
   );

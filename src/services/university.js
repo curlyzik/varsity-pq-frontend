@@ -10,7 +10,6 @@ const urlConfigEnviron = (urlBase) => {
         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
       },
     });
-    console.log("Dev mode");
     return createQuery(urlBase);
   }
 
@@ -21,7 +20,6 @@ const urlConfigEnviron = (urlBase) => {
         Authorization: `Token ${process.env.NEXT_PUBLIC_PROD_TOKEN}`,
       },
     });
-    console.log("Production mode");
     return createQuery(urlBase);
   }
 
