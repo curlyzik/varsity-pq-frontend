@@ -28,7 +28,12 @@ const Users = () => {
   const fetchUsers = async () => {
     setTableLoading(true);
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/users/`
+      `${process.env.NEXT_PUBLIC_API_URL}/users/`,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.accessToken}`,
+        },
+      }
     );
     setUsers(data);
     setTableLoading(false);
@@ -162,12 +167,8 @@ const Users = () => {
     },
   ];
 
-  const excludeLoggedInUserFromList = newUsers?.filter((user) => {
-    return user.id !== auth?.account?.id;
-  });
-
   // get the mapped data
-  const mappedData = excludeLoggedInUserFromList?.map((user) => {
+  const mappedData = newUsers?.map((user) => {
     return {
       key: user.id,
       full_name: (
