@@ -158,7 +158,7 @@ const Header = () => {
                     <a
                       className="!text-white"
                       target={"_blank"}
-                      href="http://varsity-pq.herokuapp.com/"
+                      href="https://github.com/curlyzik/varsity-pq-backend"
                     >
                       API
                     </a>
