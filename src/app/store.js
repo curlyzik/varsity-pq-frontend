@@ -24,7 +24,6 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { prodApis } from "../services/prodService/prodApis";
 
 const rootReducer = combineReducers({
   auth: authSliceReducer,
@@ -52,7 +51,6 @@ const store = configureStore({
     [uniDetailApi.reducerPath]: uniDetailApi.reducer,
     [gitHubRepoApi.reducerPath]: gitHubRepoApi.reducer,
     [pastQuestionApi.reducerPath]: pastQuestionApi.reducer,
-    [prodApis.reducerPath]: prodApis.reducer,
     persistedReducer,
   },
 
@@ -71,7 +69,6 @@ const store = configureStore({
       uniDetailApi.middleware,
       gitHubRepoApi.middleware,
       pastQuestionApi.middleware,
-      prodApis.middleware
     ),
 });
 
