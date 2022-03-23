@@ -48,7 +48,7 @@ const University = () => {
   // });
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-black">
       <div className="bg-[#00044e] bg-opacity-60 p-6 dark:bg-[#111]">
         <Head>
           <title>{data?.name} - Varsity PQ</title>
