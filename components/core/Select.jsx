@@ -15,8 +15,9 @@ import { useGetSemesterQuery } from "../../src/services/semester";
 
 import { SearchFilter } from "./../utils/Search";
 import { useRouter } from "next/router";
+import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
 
-const Select = ({ pqData, uniData, width }) => {
+const Select = ({ uniData, width }) => {
   const router = useRouter();
 
   const [uniValue, setUniValue] = useState("");
@@ -27,6 +28,7 @@ const Select = ({ pqData, uniData, width }) => {
   const [semesterValue, setSemesterValue] = useState("");
   const [courseValue, setCourseValue] = useState("");
 
+  const { data: pqData } = useGetPastQuestionsQuery();
   const { data: universities } = useGetUniversitiesQuery();
   const { data: faculties } = useGetFacultiesQuery();
   const { data: departments } = useGetDepartmentsByFacultyQuery(facultyValue);
@@ -64,16 +66,18 @@ const Select = ({ pqData, uniData, width }) => {
 
   // Get past question  by course ID
   const setPq = (courseValue) => {
-    for (let pq of pqData) {
-      for (let details of pq.pq_details) {
-        for (let course of courses) {
-          if (
-            course.id === details.course_id &&
-            details.course_code === courseValue
-          ) {
-            setPqId(pq.id);
-          } else {
-            console.log("Not found");
+    if (pqData && pqData) {
+      for (let pq of pqData) {
+        for (let details of pq.pq_details) {
+          for (let course of courses) {
+            if (
+              course.id === details.course_id &&
+              details.course_code === courseValue
+            ) {
+              setPqId(pq.id);
+            } else {
+              console.log("Not found");
+            }
           }
         }
       }
