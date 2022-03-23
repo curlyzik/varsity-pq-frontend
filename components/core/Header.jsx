@@ -44,7 +44,7 @@ const Header = () => {
             <li>
               <a
                 className="!text-white"
-                href="http://varsity-pq.herokuapp.com/"
+                href="https://github.com/curlyzik/varsity-pq-backend"
                 target={"_blank"}
               >
                 API
