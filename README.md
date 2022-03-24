@@ -132,7 +132,7 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -
 - [React Icons](https://react-icons.github.io/react-icons): for icons
 
 - [Vercel](http://vercel.com/): for hosting
-[react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): for infinite scrolling
+- [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): for infinite scrolling
 - [react-ripples](https://github.com/rwu823/react-ripples): for ripple effects
 
 ## 🌈 What's next
