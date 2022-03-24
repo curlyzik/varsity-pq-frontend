@@ -54,12 +54,12 @@ Varsity PQ is a curated storehouse of past questions from various universities i
 > Varsity PQ features
 
 - 💯 **300+ Past Questions**
-- 🎩 **Filter by Federal University**
-- 👾 **Filter by State University**
-- 🔖 **Filter by Private University**
-- 📦 **Become a Volunteer**
-- 📦 **Volunteer Dashboard**
-- 📦 **Create Courses and Past Questions**
+- 🔎️ **Filter by Federal University**
+- 🔎️ **Filter by State University**
+- 🔎️ **Filter by Private University**
+- 👨‍💻️ **Become a Volunteer**
+- 📊️ **Volunteer Dashboard**
+- 📚️ **Create Courses and Past Questions**
 - 💻 **Fully Responsive**
 - 🍭 **Api Endpoints**
 - 🌘 **Dark mode**
