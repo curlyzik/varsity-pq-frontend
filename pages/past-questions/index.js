@@ -28,7 +28,7 @@ const AllPastQuestions = () => {
     <div className="dark:bg-[#111]">
       <div className="px-8 pt-6 md:!w-[40rem] lg:px-20">
         <span className=" text-xl font-bold dark:text-white">
-          Search Course
+          Search Past Question
         </span>
         <Input
           placeholder="e.g, CSC 221"
