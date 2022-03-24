@@ -253,7 +253,7 @@ const Select = ({ uniData, width }) => {
           disabled
           style={{ width: width }}
         >
-          No Available Past Question
+          No Available Past Question Yet
         </Button>
       )}
     </>
