@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://varsitypq.com/">
-    <img alt="Varsity PQ" src="public/Varsity PQ.png" width="125" />
+    <img alt="Varsity PQ" src="public/Varsity PQ.png"/>
   </a>
 </p>
 <h4 align="center">Store House of 300+ past questions</h4>
@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/github/license/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq licence" />
 </a>
 <a href="https://github.com/curlyzik/varsity-pq-frontend/fork" target="blank">
-<img src="https://img.shields.io/github/forks/curlyzik/varsity-pq-frontend/?style=flat-square" alt="varsitypq forks"/>
+<img src="https://img.shields.io/github/forks/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq forks"/>
 </a>
 <a href="https://github.com/curlyzik/varsity-pq-frontend/stargazers" target="blank">
 <img src="https://img.shields.io/github/stars/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq stars"/>
@@ -23,7 +23,7 @@
 </a>
 </p>
 
-<p align="center"><img src="public/varsitypq.gif" alt="varsitypq gif" width="550" /></p>
+<p align="center"><img src="public/varsitypq.gif" alt="varsitypq gif"/></p>
 
 <p align="center">
     <a href="https://varsitypq.com/" target="blank">Website</a>
