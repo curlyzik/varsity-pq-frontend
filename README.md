@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://varsitypq.com/">
-    <img alt="Varsity PQ" src="public/Varsity PQ.png" width="50%"/>
+    <img alt="Varsity PQ" src="public/Varsity PQ.png" width="30%"/>
   </a>
 </p>
 <h4 align="center">Store House of 300+ past questions</h4>
