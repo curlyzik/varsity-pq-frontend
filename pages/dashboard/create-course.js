@@ -59,7 +59,7 @@ const CreateCourse = () => {
 
   useEffect(() => {
     if (success) {
-      router.push("/dashboard/courses");
+      router.push("/dashboard/create-pastquestion");
     }
   });
 
