@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { BsLightning } from "react-icons/bs";
+import { BiUserCheck } from "react-icons/bi";
 import { FiGithub } from "react-icons/fi";
 
 import { Features, Btn } from "../index";
@@ -29,7 +30,7 @@ const Hero = () => {
               <div className="!mb-2 flex gap-x-3">
                 <Btn>
                   <Link href={"/past-questions"}>
-                    <a className="flex items-center justify-center rounded-md bg-blue-400 px-5 py-[10px] text-base text-black hover:text-black lg:text-lg">
+                    <a className="flex items-center justify-center rounded-md text-white bg-blue-500 px-3 py-[10px] text-base hover:text-black lg:px-5 lg:text-lg">
                       <span>Search Now</span>
                       <BsLightning className="ml-1" />
                     </a>
@@ -37,17 +38,15 @@ const Hero = () => {
                 </Btn>
 
                 <Btn>
-                  <a
-                    target={"_blank"}
-                    href="https://github.com/curlyzik/varsity-pq-frontend"
-                    className="flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base text-blue-200 lg:text-lg"
-                  >
-                    <span>Github Stars {starCount}</span>
-                    <FiGithub className="ml-1" />
-                  </a>
+                  <Link href="/volunteer/volunteer-request">
+                    <a className=" bg-blue-400 text-black flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base lg:text-lg">
+                      <span>Become a volunteer</span>
+                      <BiUserCheck className="ml-1 text-xl" />
+                    </a>
+                  </Link>
                 </Btn>
 
-                <Btn>
+                <Btn className="hidden md:block">
                   <a
                     target={"_blank"}
                     href="https://github.com/curlyzik/varsity-pq-frontend"
@@ -58,14 +57,18 @@ const Hero = () => {
                   </a>
                 </Btn>
               </div>
-              <span className="text-gray-600">
-                You want to upload a past question?{" "}
-                <Link href={"/volunteer/volunteer-request"}>
-                  <a className="!text-gray-400 transition-all duration-200 hover:!text-white ">
-                    Click here to become a volunteer
-                  </a>
-                </Link>
-              </span>
+
+              <Btn className={"block md:hidden"}>
+                <a
+                  target={"_blank"}
+                  href="https://github.com/curlyzik/varsity-pq-frontend"
+                  className="flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base text-blue-200 lg:text-lg"
+                >
+                  <span>Github Stars {starCount}</span>
+                  <FiGithub className="ml-1" />
+                </a>
+              </Btn>
+              {/* </div> */}
             </div>
             <div className="animate__animated animate__fadeInRight pt-14 lg:w-6/12 lg:pt-0">
               <img src="varsity-side-image.png" />
