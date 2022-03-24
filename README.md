@@ -144,9 +144,8 @@ Here are some idea that is coming really soon 👀
 - Volunteers Page **In Progress ⏳️**
 - Contributors Page **In Progress ⏳️**
 - PWA, **In Progress ⏳️**
-- Upload Past Qeustions as Images
+- Upload Past Questions as Images
 - AMP Support, **In Progress ⏳️**
-- Header description for posts, **In Progress ⏳️**
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
