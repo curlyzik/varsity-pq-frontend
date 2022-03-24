@@ -46,6 +46,17 @@ const Hero = () => {
                     <FiGithub className="ml-1" />
                   </a>
                 </Btn>
+
+                <Btn>
+                  <a
+                    target={"_blank"}
+                    href="https://github.com/curlyzik/varsity-pq-frontend"
+                    className="flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base text-blue-200 lg:text-lg"
+                  >
+                    <span>Github Stars {starCount}</span>
+                    <FiGithub className="ml-1" />
+                  </a>
+                </Btn>
               </div>
               <span className="text-gray-600">
                 You want to upload a past question?{" "}
@@ -62,7 +73,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="mx-5 mt-20 rounded-md border dark:border-gray-400 border-blue-400 bg-[#000] bg-opacity-30 px-5 py-9 dark:bg-[#111] lg:mx-10 lg:px-10 lg:py-16">
+        <div className="mx-5 mt-20 rounded-md border border-blue-400 bg-[#000] bg-opacity-30 px-5 py-9 dark:border-gray-400 dark:bg-[#111] lg:mx-10 lg:px-10 lg:py-16">
           <div className="flex flex-col items-center justify-center gap-y-10 lg:grid lg:grid-cols-5 lg:gap-y-16 lg:gap-x-5">
             {features.map((feature, index) => (
               <Features

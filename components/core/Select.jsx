@@ -249,7 +249,8 @@ const Select = ({ uniData, width }) => {
       ) : (
         <Button
           type="primary"
-          className="border border-black bg-white text-black hover:border hover:border-black hover:bg-white hover:text-black"
+            className="border border-black bg-white text-black hover:border hover:border-black hover:bg-white hover:text-black 
+                      dark:border dark:border-black dark:bg-white dark:text-black "
           disabled
           style={{ width: width }}
         >
