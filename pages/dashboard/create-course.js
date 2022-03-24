@@ -222,7 +222,7 @@ const CreateCourse = () => {
               loading={loading}
               className="text-black dark:text-white border-white"
             >
-              Submit Request
+              Create Course
             </Button>
           </Form>
         </div>
