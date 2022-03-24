@@ -1,113 +1,111 @@
 <p align="center">
-  <a href="https://codehouse.vercel.app/">
-    <img alt="Code House" src="public/icons/logo192.png" width="125" />
+  <a href="https://varsitypq.com/">
+    <img alt="Varsity PQ" src="public/Varsity PQ.png" width="125" />
   </a>
 </p>
-<p align="center">
-  <a href="https://codehouse.vercel.app/">
-    <img alt="Code House" src="public/readme/codehouse-text.png" width="300" />
-  </a>
-</p>
-<h4 align="center">Store House of 300+ Developer cheatsheets✨️</h4>
+<h4 align="center">Store House of 300+ past questions</h4>
 
 <p align="center">
-<a href="https://github.com/saviomartin/codehouse/blob/master/LICENSE" target="blank">
-<img src="https://img.shields.io/github/license/saviomartin/codehouse?style=flat-square" alt="codehouse licence" />
+<a href="https://github.com/curlyzik/varsity-pq-frontend/blob/master/LICENSE" target="blank">
+<img src="https://img.shields.io/github/license/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq licence" />
 </a>
-<a href="https://github.com/saviomartin/codehouse/fork" target="blank">
-<img src="https://img.shields.io/github/forks/saviomartin/codehouse?style=flat-square" alt="codehouse forks"/>
+<a href="https://github.com/curlyzik/varsity-pq-frontend/fork" target="blank">
+<img src="https://img.shields.io/github/forks/curlyzik/varsity-pq-frontend/?style=flat-square" alt="varsitypq forks"/>
 </a>
-<a href="https://github.com/saviomartin/codehouse/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/saviomartin/codehouse?style=flat-square" alt="codehouse stars"/>
+<a href="https://github.com/curlyzik/varsity-pq-frontend/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq stars"/>
 </a>
-<a href="https://github.com/saviomartin/codehouse/issues" target="blank">
-<img src="https://img.shields.io/github/issues/saviomartin/codehouse?style=flat-square" alt="codehouse issues"/>
+<a href="https://github.com/curlyzik/varsity-pq-frontend/issues" target="blank">
+<img src="https://img.shields.io/github/issues/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsitypq issues"/>
 </a>
-<a href="https://github.com/saviomartin/codehouse/pulls" target="blank">
-<img src="https://img.shields.io/github/issues-pr/saviomartin/codehouse?style=flat-square" alt="codehouse pull-requests"/>
+<a href="https://github.com/curlyzik/varsity-pq-frontend/pulls" target="blank">
+<img src="https://img.shields.io/github/issues-pr/curlyzik/varsity-pq-frontend?style=flat-square" alt="varsity pull-requests"/>
 </a>
-<a href="https://twitter.com/intent/tweet?text=Checkout%20codehouse.vercel.app%20by%20@SavioMartin7%0A%0AMore%20than%20300%20developer%20cheatsheets%20all%20in%20one%20place,%20with%20more%20amazing%20features.%20You%27ll%20love%20it!%F0%9F%94%A5%0A%0A%23DEVCommunity"><img src="https://img.shields.io/twitter/url?label=Share%20on%20Twitter&style=social&url=https%3A%2F%2Fgithub.com%2Fsaviomartin%2Fcodehouse"></a>
-
 </p>
 
-<p align="center"><img src="public/assets/codehouse.gif" alt="codehouse gif" width="550" /></p>
+<p align="center"><img src="public/varsitypq.gif" alt="varsitypq gif" width="550" /></p>
 
 <p align="center">
-    <a href="https://codehouse.vercel.app/" target="blank">View Demo</a>
+    <a href="https://varsitypq.com/" target="blank">Website</a>
     ·
-    <a href="https://github.com/saviomartin/codehouse/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/curlyzik/varsity-pq-frontend/issues/new/choose">Report Bug</a>
     ·
-    <a href="https://github.com/saviomartin/codehouse/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/curlyzik/varsity-pq-frontend/issues/new/choose">Request Feature</a>
 </p>
 
-### Introducing Code House ✌️
+### Introducing Varsity PQ ✌️
 
-Code House is the all in one storehouse for developer cheatsheets. Code House is made up of 300+ curated cheatsheets from 230+ sources. Filter by categories, or source, sort by time or popularity, dark mode, bookmark cheatsheets, add new cheatsheets, request feature, and much more features, make the app amazing! 🤟
+Varsity PQ is the all in one storehouse where students from various universities in Nigeria could find past questions to different courses of their discipline online. Varsity PQ is made up of over 300+ curated past questions from 160+ universites in Nigeria.
 
-[Read blog to understand better 📖](https://savio.xyz/introducing-code-house-a-whole-new-world-of-300-developer-cheatsheets)
+<!-- [Read about us to understand better 📖](https://varsitypq.com/about-us) -->
 
-## 🚀 Demo
+## 🚀 Varsity PQ
 
-<a href="https://codehouse.vercel.app/" target="blank">
-<img src="public/assets/codehouse-banner.png" />
+<a href="https://varsitypq.com/" target="blank">
+<img src="public/varsity-pq-banner.png" />
 </a>
 
-Try the App: [Code House](https://codehouse.vercel.app/)
+Start Searching: [Varsity PQ](https://varsitypq.com/)
 
 ## 🧐 Features
 
-Code House comes up with a whole bunch of amazing features to provide you the best experience, Here're some of our best features.
+Varsity PQ is a curated storehouse of past questions from various universities in Nigeria and has some nice features to help you find the right past question for your course.
 
-> I recommend you to bookmark code house, because it will become super handy one day!
-- 💯 **300+ Cheatsheets**
-- 🎩 **Filter by Category** (29 Cateogries)
-- 👾 **Filter By Source** (230+ Sources)
-- 🔖 **Bookmark Cheatsheets**
-- 📦 **Add new Cheatsheet** (on browser itself)
-- 🍭 **Seperate page for each Cheatsheet**
-- 🌱 **Request for Features**
-- 🥁 **API Support** [>> API Usage](API-usage.md)
-- 🧐 **Report Cheatsheet**
-- 🕊️ **GraphQL Playground**
-- 👨‍💻 **Contributors Page**[ >>Contributing](#-contributing)
-- 🕒 **Sort by time or popularity**
-- 🔎 **Search Filter**
-- 🗃️ **Toggle View** (List View or Grid View)
-- 🌘 **Dark mode**
-- 🔺 **Upvote/Comment on Cheatsheets**
-- 📬 **Newsletter** (once a week)
+> Varsity PQ features
+
+- 💯 **300+ Past Questions**
+- 🎩 **Filter by Federal University**
+- 👾 **Filter by State University**
+- 🔖 **Filter by Private University**
+- 📦 **Become a Volunteer**
+- 📦 **Volunteer Dashboard**
+- 📦 **Create Courses and Past Questions**
 - 💻 **Fully Responsive**
-- 🔤 **Reply to a comment**
-- 📩 **Create Collections with Bookmarks**
-- 📱  **Drag and Drop to arrange collections** 
+- 🍭 **Api Endpoints**
+- 🌘 **Dark mode**
 
-Code House is the next revolutionary app to hunt the best cheat sheets for all types ✨️
+Varsity PQ is the revolutionary app where Nigerian students can find past questions to different courses of their discipline online✨️
 
-## 🛠️ Installation Steps
+<!-- ## 🛠️ Contributing, Installation Steps
 
-1. Clone the repository
+1. Fork and Clone the repository
+
+Fork the [repository](https://github.com/curlyzik/varsity-pq-frontend) first and then clone it.
+
+2. Follow the [Contributing and Installation Steps](https://github.com/curlyzik/varsity-pq-backend) of the backend repository
+
+3. Change the working directory
 
 ```bash
-git clone https://github.com/saviomartin/codehouse.git
+cd varsity-pq-frontend
 ```
 
-2. Change the working directory
-
-```bash
-cd codehouse
-```
-
-3. Install dependencies
+4. Install dependencies
 
 ```bash
 npm install
 ```
 
-4. Create `.env` file in root and add your variables
+5. Create `.env` file in root and add your variables
 
 ```bash
-NEXT_PUBLIC_DB_URL= YOUR_HARPER_DB_DATABASE_URL
-NEXT_PUBLIC_DB_AUTHORIZATION= YOUR_HARPER_DB_AUTHORIZATION_ID
+NEXT_PUBLIC_RAPIDAPI_KEY=
+
+NEXT_PUBLIC_NEWS_API_HOST=google-search3.p.rapidapi.com
+NEXT_PUBLIC_NEWS_API_URL=https://google-search3.p.rapidapi.com/api/v1
+
+NEXT_PUBLIC_UNIVERSITY_API_HOST=nigeria-universites.p.rapidapi.com
+NEXT_PUBLIC_UNIVERSITY_API_URL=https://nigeria-universites.p.rapidapi.com
+
+NEXT_PUBLIC_PQ_API_HOST=nigeria-university-past-questions.p.rapidapi.com
+NEXT_PUBLIC_PQ_API_URL=https://nigeria-university-past-questions.p.rapidapi.com
+
+
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
+NEXT_PUBLIC_EMAILJS_USER_ID=
+
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
 5. Run the app
@@ -116,101 +114,66 @@ NEXT_PUBLIC_DB_AUTHORIZATION= YOUR_HARPER_DB_AUTHORIZATION_ID
 npm run dev
 ```
 
-You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
-
-## 🍰 Contributing
-
-Pull Requests are always welcome! You can add a cheatsheet on the browser (Anonymously or Singed In). Your cheatsheet will be reviewed and added to the app, also see yourself in contributors.
-
-If you wish to contribute using Github, you can work on any features [codehouse.vercel.app/feature-requests](https://codehouse.vercel.app/feature-requests) or create one on your own. After adding your code, send us a Pull Request.
-
-After your PR got merged, you'll be automatically appared on [contributors page](https://codehouse.vercel.app/contributors). Works through Github API.
-
-- Please contribute using [GitHub Flow](https://guides.github.com/introduction/flow). Create a branch, add commits, and [open a pull request](https://github.com/saviomartin/codehouse/compare).
-
-- Please read [`CONTRIBUTING`](CONTRIBUTING.md) for details on our [`CODE OF CONDUCT`](CODE_OF_CONDUCT.md), and the process for submitting pull requests to us.
+You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -->
 
 ## 💻 Built with
 
 - [Next JS](https://nextjs.org/)
-- [Harper DB](https://harperdb.io/): source for complete database
+- [Ant Design](https://ant.design): ui framework for building dashboard
+- [Email Js](https://harperdb.io/): Send Email Directly From JavaScript
 - [Tailwind](https://tailwindcss.com/): source for complete styling
-- [lodash](https://lodash.com/): for some functions
-- [CORS](https://www.npmjs.com/package/cors): for CORS support
-- [uuid](https://www.npmjs.com/package/uuid): for generating uuids
-- [react-icons](https://react-icons.github.io/react-icons/): for icons
-- [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): for infinite scrolling
-- [react-ripples](https://github.com/rwu823/react-ripples): for ripple effects
-- [nprogress](https://www.npmjs.com/package/nprogress): for slim progressbars
-- [parallax-js](http://matthew.wagerfield.com/parallax/): for parallax effects
-- [react-hot-toast](https://react-hot-toast.com/): for toasts
-- [firebase](https://firebase.google.com/): for authentication
-- [date-fns](https://date-fns.org/): for formatting dates
-- [Material UI](http://material-ui.com/): for components
+ [Axios](https://www.npmjs.com/package/axios): for data fetching
+- [Axios Auto Refresh](https://www.npmjs.com/package/axios-auth-refresh): for automatic refresh of jwt token
+- [Redux Toolkit](https://redux-toolkit.js.org/): for global state management
+- [Redux Persist](https://www.npmjs.com/package/redux-persist): Persist and rehydrate a redux store.
+- [React-PDF](https://www.npmjs.com/package/react-pdf): Display PDFs in your React app as easily as if they were images.
 - [Animate.css](https://animate.style/): for smooth Animations
 - [AOS](https://michalsnik.github.io/aos/): for scroll animations
-- [React Beautiful DND](https://react-beautiful-dnd.netlify.app/): For Drag and Drop support on Collections Page
+- [React Icons](https://react-icons.github.io/react-icons): for icons
+
 - [Vercel](http://vercel.com/): for hosting
+[react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): for infinite scrolling
+- [react-ripples](https://github.com/rwu823/react-ripples): for ripple effects
 
 ## 🌈 What's next
 
-Code House is the biggest ever project I have made till date, I have a big idea in my mind, and you can see a lot more features coming soon.
+Varsity PQ is the biggest project I have made till date and I have big ideas in my mind, and you can see a lot more features coming soon.
 
 Here are some idea that is coming really soon 👀
 
-- Profile Page
+- Volunteers Page **In Progress ⏳️**
+- Contributors Page **In Progress ⏳️**
 - PWA, **In Progress ⏳️**
-- Markdown support for feature requests
-- Twitter and Facebook Auth, **In Progress ⏳️**
-- Perform Operations with API
-- Featuring Cheatsheets on day basis
-- Generate Cover Image for missing ones
-- Settings page
-- Choose Secondary color
-- Notification tab
+- Upload Past Qeustions as Images
 - AMP Support, **In Progress ⏳️**
 - Hear description for posts, **In Progress ⏳️**
-
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
 
-## 🦄 Deploy
-
-<a href="https://vercel.com/new/project?template=https://github.com/saviomartin/codehouse">
-<img src="https://vercel.com/button" height="37.5px" />
-</a>
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/saviomartin/codehouse">
-<img src="https://www.netlify.com/img/deploy/button.svg" height="37.5px" />
-</a>
-<a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/saviomartin/codehouse">
-<img src="https://camo.githubusercontent.com/df21703b4229f8d44f76c2d56073657a4ab450ca4566ba5d24d05bf528c298f8/68747470733a2f2f7777772e6465706c6f79746f646f2e636f6d2f646f2d62746e2d626c75652e737667" height="37.5px" />
-</a>
-
 ## 👨‍💻 Author
 
-### 👤 Savio Martin
+### 👤 Isaac Nzekwe
 
-- Twitter: [@SavioMartin7](https://twitter.com/SavioMartin7)
-- Github: [@saviomartin](https://github.com/saviomartin)
-- Hashnode: [@saviomartin](https://hashnode.com/@saviomartin)
+- Twitter: [@curlyzik](https://twitter.com/curlyzik)
+- Github: [@curlyzik](https://github.com/curlyzik)
+- LinkedIn: [@nzekwe-isaac](https://www.linkedin.com/in/nzekwe-isaac/)
 
-## 💪 Thanks to the all Contributors
+<!-- ## 💪 Thanks to the all Contributors
 
-Thanks a lot for spending your time in helping code house grow and help many developers. Thanks a lot! Keep rocking 🍻
+Thanks a lot for spending your time in helping Varsity PQ grow and help many developers. Thanks a lot! Keep rocking 🍻
 
-Also, check them on [codehouse.vercel.app/contributors](https://codehouse.vercel.app/contributors)
+Also, check them on [varsitypq.com/contributors](https://varsitypq.com/contributors) -->
 
 ## 🙏 Support
 
-This project needs a ⭐️ from you. Don't forget to leave a star ⭐️
+This project needs a ⭐️ from you. Please don't forget to leave a star ⭐️
 
 If you found the app helpful, consider supporting me with a coffee.
 
-<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50px">
-
+<a href="https://www.buymeacoffee.com/curlyzik" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 ---
 
 <h3 align="center">
-Code House needs a ⭐️ from you
+Varsity PQ needs a ⭐️ from you
 </h3>
