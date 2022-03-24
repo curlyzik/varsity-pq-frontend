@@ -73,10 +73,12 @@ const CreateCourse = () => {
     <div>
       <Layout defaultSelectedKeys="2">
         <div>
-          <h2 className="border-b pb-2 text-4xl font-bold mb-6">Create Course</h2>
+          <h2 className="mb-6 border-b pb-2 text-4xl font-bold">
+            Create Course
+          </h2>
         </div>
 
-        <div className="rounded-md bg-white p-6 lg:p-10 dark:bg-black border dark:border-gray-400">
+        <div className="rounded-md border bg-white p-6 dark:border-gray-400 dark:bg-black lg:p-10">
           <Form layout="vertical" onFinish={onFinish} form={form}>
             <div className="mb-2 flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-10">
               <Form.Item
@@ -86,7 +88,20 @@ const CreateCourse = () => {
                   { required: true, message: "Please input course name!" },
                 ]}
               >
-                <Input placeholder="course name" className="capitalize placeholder:lowercase" />
+                <Input
+                  placeholder="course name"
+                  onChange={(e) => {
+                    let splitStr = e.target.value.toLowerCase().split(" ");
+                    for (let i = 0; i < splitStr.length; i++) {
+                      splitStr[i] =
+                        splitStr[i].charAt(0).toUpperCase() +
+                        splitStr[i].substring(1);
+                    }
+                    form.setFieldsValue({
+                      name: splitStr.join(" "),
+                    });
+                  }}
+                />
               </Form.Item>
 
               <Form.Item
@@ -220,7 +235,7 @@ const CreateCourse = () => {
               type="primary"
               htmlType="submit"
               loading={loading}
-              className="text-black dark:text-white border-white"
+              className="border-white text-black dark:text-white"
             >
               Create Course
             </Button>
