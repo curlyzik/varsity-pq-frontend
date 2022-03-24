@@ -86,7 +86,7 @@ const CreateCourse = () => {
                   { required: true, message: "Please input course name!" },
                 ]}
               >
-                <Input placeholder="course name" />
+                <Input placeholder="course name" className="capitalize placeholder:lowercase" />
               </Form.Item>
 
               <Form.Item
