@@ -122,7 +122,7 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -
 - [Ant Design](https://ant.design): ui framework for building dashboard
 - [Email Js](https://harperdb.io/): Send Email Directly From JavaScript
 - [Tailwind](https://tailwindcss.com/): source for complete styling
- [Axios](https://www.npmjs.com/package/axios): for data fetching
+- [Axios](https://www.npmjs.com/package/axios): for data fetching
 - [Axios Auto Refresh](https://www.npmjs.com/package/axios-auth-refresh): for automatic refresh of jwt token
 - [Redux Toolkit](https://redux-toolkit.js.org/): for global state management
 - [Redux Persist](https://www.npmjs.com/package/redux-persist): Persist and rehydrate a redux store.
@@ -146,7 +146,7 @@ Here are some idea that is coming really soon 👀
 - PWA, **In Progress ⏳️**
 - Upload Past Qeustions as Images
 - AMP Support, **In Progress ⏳️**
-- Hear description for posts, **In Progress ⏳️**
+- Header description for posts, **In Progress ⏳️**
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
