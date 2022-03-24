@@ -145,8 +145,8 @@ const Courses = () => {
       <Layout defaultSelectedKeys="3">
         <div className="!mb-4 border-b !pb-2">
           <h2 className="text-4xl font-bold">Courses</h2>
-          {courses?.length === 0 && (
-            <div>
+          {courses?.length === 0 ? (
+            <div className="dark:text-white">
               You have not created any course yet. Click{" "}
               <>
                 <Link href={"/dashboard/create-course"}>
@@ -155,6 +155,8 @@ const Courses = () => {
               </>{" "}
               to create
             </div>
+          ) : (
+            <div className="dark:text-white">You have {courses?.length} course(s)</div>
           )}
         </div>
         <div>

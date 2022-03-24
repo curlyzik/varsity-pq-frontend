@@ -58,7 +58,7 @@ const App = () => {
         setKeyword={setKeyword}
         sort={sort}
         setSort={setSort}
-        placeholder={`search over ${data?.length} universities`}
+        placeholder={data && `search over ${ data?.length} universities`}
       />
       {isLoading ? (
         <div className="grid place-items-center p-8">
