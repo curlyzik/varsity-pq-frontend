@@ -120,7 +120,7 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -
 
 - [Next JS](https://nextjs.org/)
 - [Ant Design](https://ant.design): ui framework for building dashboard
-- [Email Js](https://harperdb.io/): Send Email Directly From JavaScript
+- [Email Js](https://www.emailjs.com/): Send Email Directly From JavaScript
 - [Tailwind](https://tailwindcss.com/): source for complete styling
 - [Axios](https://www.npmjs.com/package/axios): for data fetching
 - [Axios Auto Refresh](https://www.npmjs.com/package/axios-auth-refresh): for automatic refresh of jwt token
@@ -130,7 +130,6 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -
 - [Animate.css](https://animate.style/): for smooth Animations
 - [AOS](https://michalsnik.github.io/aos/): for scroll animations
 - [React Icons](https://react-icons.github.io/react-icons): for icons
-
 - [Vercel](http://vercel.com/): for hosting
 - [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): for infinite scrolling
 - [react-ripples](https://github.com/rwu823/react-ripples): for ripple effects
@@ -146,6 +145,7 @@ Here are some idea that is coming really soon 👀
 - PWA, **In Progress ⏳️**
 - Upload Past Questions as Images
 - AMP Support, **In Progress ⏳️**
+
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
