@@ -4,7 +4,7 @@ import React from "react";
 const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
   return (
     <div className="px-5 lg:mx-10 lg:px-0">
-      <div className="flex flex-col-reverse items-center justify-between gap-y-3 rounded-md bg-white px-4 py-4 dark:bg-black lg:flex-row">
+      <div className="flex flex-col-reverse items-center justify-between gap-y-3 rounded-md bg-white px-6 py-4 dark:bg-black lg:flex-row">
         <div className="w-full lg:!w-[28rem]">
           <Input
             placeholder={placeholder}

@@ -164,7 +164,7 @@ const PastQuestions = () => {
         <div className="md:hidden">
           <div className="!flex !flex-col !gap-y-6">
             {tableLoading && <Spin />}
-            {pqs?.map((pq) => (
+            {newPqs?.map((pq) => (
               <Card className="!border dark:bg-black" key={pq.id}>
                 <h3 className="!text-2xl font-bold">
                   {pq.pq_details[0].course}
