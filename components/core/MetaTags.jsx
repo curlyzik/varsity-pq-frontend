@@ -22,7 +22,7 @@ const MetaTags = () => {
       />
       <meta
         name="keywords"
-        content="past questions, jamb, university, past questions, admission, universities, varsity pq by Isaac Nzekwe, varsitypq.com, varsity pq, exam past questions, past-questions, materials"
+        content="past questions, past questions in nigeria, nigerian universities, jamb, university, past questions, admission, universities, varsity pq by Isaac Nzekwe, varsitypq.com, varsity pq, exam past questions, past-questions, materials, varsitypq, varsity, varsities"
       />
       <link rel="canonical" href="http://varsitypq.com/" />
       <link rel="apple-touch-icon" href="/favicon.png" />
