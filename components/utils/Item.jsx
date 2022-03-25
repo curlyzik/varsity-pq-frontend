@@ -46,7 +46,7 @@ const Item = ({ university }) => {
               View Details
             </a>
           </Link>
-          <a
+          {/* <a
             className={`grid place-items-center rounded-md border px-1 py-2 text-sm font-bold text-white transition-all duration-300 hover:text-white ${
               university.type === "federal"
                 ? "bg-blue-400 hover:bg-blue-600"
@@ -56,7 +56,7 @@ const Item = ({ university }) => {
             }`}
           >
             Select Past Question
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
