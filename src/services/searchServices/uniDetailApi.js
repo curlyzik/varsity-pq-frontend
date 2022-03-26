@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const uniSearchApiHeaders = {
-  "x-rapidapi-host": process.env.NEXT_PUBLIC_HOST,
-  "x-rapidapi-key": process.env.NEXT_PUBLIC_KEY,
+  "x-rapidapi-host": process.env.NEXT_PUBLIC_NEWS_API_HOST,
+  "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_NEWS_API_URL;
 
 const createRequest = (url) => ({ url, headers: uniSearchApiHeaders });
 
