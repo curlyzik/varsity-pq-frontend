@@ -87,7 +87,7 @@ const University = () => {
                 <h3 className="text-2xl font-bold text-gray-400 dark:text-white">
                   Frequently Asked Questions
                 </h3>{" "}
-                {dataLoading ? (
+                {/* {dataLoading ? (
                   <div className="grid place-items-center pt-4">
                     <Loader />
                   </div>
@@ -104,14 +104,15 @@ const University = () => {
                       </a>
                     ))}
                   </div>
-                )}
+                )} */}
+                <p className="dark:text-white">Coming Soon</p>
               </div>
 
               <div className="mt-3 flex flex-col gap-y-2 pt-3">
                 <h3 className="text-2xl font-bold text-gray-400 dark:text-white">
                   News
                 </h3>
-                {newsLoading ? (
+                {/* {newsLoading ? (
                   <div className="grid place-items-center pt-4">
                     <Loader />
                   </div>
@@ -148,7 +149,8 @@ const University = () => {
                       ))}
                     </div>
                   </InfiniteScrolling>
-                )}
+                )} */}
+                <p className="dark:text-white">Coming Soon</p>
               </div>
             </>
           </div>
