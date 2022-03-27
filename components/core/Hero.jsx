@@ -25,7 +25,7 @@ const Hero = () => {
                 Varsity PQ is the all in one storehouse where students from
                 various universities could find past questions to different
                 courses of their discipline online. Varsity PQ is made up of
-                300+ curated past questions from 150+ universites in Nigeria.
+                300+ curated past questions from 160+ universites in Nigeria.
               </p>
               <div className="!mb-2 flex gap-x-3">
                 <Btn>
