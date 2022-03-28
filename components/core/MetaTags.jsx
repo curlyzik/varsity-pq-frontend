@@ -26,7 +26,7 @@ const MetaTags = () => {
           name="keywords"
           content="past questions, past questions in nigeria, nigerian universities, jamb, university, past questions, admission, universities, varsity pq by Isaac Nzekwe, varsitypq.com, varsity pq, exam past questions, past-questions, materials, varsitypq, varsity, varsities"
         />
-        <link rel="canonical" href="http://varsitypq.com/" />
+        <link rel="canonical" href="https://varsitypq.com/" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="icon" href="/favicon.png" />
 
@@ -42,7 +42,7 @@ const MetaTags = () => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://varsitypq.com/" />
+        <meta property="og:url" content="https://varsitypq.com/" />
         <meta
           property="og:title"
           content="Varsity PQ - Store House of 300+ Past Questions"
@@ -59,7 +59,7 @@ const MetaTags = () => {
         {/* Twitter */}
         <meta property="twitter:site" content="@VarsityPQ_" />
         <meta property="twitter:creator" content="@curlyzik" />
-        <meta property="twitter:url" content="http://varsitypq.com/" />
+        <meta property="twitter:url" content="https://varsitypq.com/" />
         <meta
           property="twitter:title"
           content="Varsity PQ - Store House of 300+ Past Questions"
