@@ -26,32 +26,32 @@ const UserDashboard = () => {
               <>
                 <div>
                   <h3 className="text-xl font-extrabold">Full Name</h3>
-                  <p className=" text-base">{user.full_name}</p>
+                  <p className=" text-base">{user?.full_name}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">University</h3>
-                  <p className=" text-base">{user.university}</p>
+                  <p className=" text-base">{user?.university}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">Faculty</h3>
-                  <p className=" text-base">{user.faculty}</p>
+                  <p className=" text-base">{user?.faculty}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">Department</h3>
-                  <p className=" text-base">{user.department}</p>
+                  <p className=" text-base">{user?.department}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">Year of Admission</h3>
-                  <p className=" text-base">{user.year}</p>
+                  <p className=" text-base">{user?.year}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">Email</h3>
-                  <p className=" text-base">{user.email}</p>
+                  <p className=" text-base">{user?.email}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold">Volunteer</h3>
                   <p className=" text-base">
-                    {user.is_volunteer ? (
+                    {user?.is_volunteer ? (
                       <span className="flex items-center gap-x-2">
                         verified volunteer
                         <AiFillCheckCircle fill="green" />
