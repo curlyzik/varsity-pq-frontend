@@ -50,8 +50,8 @@ function MyApp({ Component, pageProps, ...appProps }) {
     <div className="font-body">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <MetaTags />
           <ThemeProvider defaultTheme="light" attribute="class">
+            <MetaTags />
             {getContent()}
           </ThemeProvider>
         </PersistGate>
