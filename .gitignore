@@ -5,7 +5,7 @@ departmentData.ts
 facultyData.ts
 uniData.ts
 uniData2.ts
-post-data.ts
+post-data.tsx
 storeDataToDB.ts
 
 # dependencies
