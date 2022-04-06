@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removePastQuestion,
   removePqId,
-} from "../../src/features/pastquestions/pastQuestionSlice.js";
-import { Modal, Table, PQUpdateByPdfUpload } from "../index.js";
+} from "../../src/features/pastquestions/pastQuestionSlice";
+import { Modal, Table, PQUpdateByPdfUpload } from "../index";
 
 const PastQuestionUpdate = ({
   updateVisible,

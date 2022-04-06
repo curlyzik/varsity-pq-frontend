@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import React from "react";
 import { App, MainHeader } from "../components";
 
-const Container = () => {
+const Container: NextPage = () => {
   return (
     <div>
       <MainHeader />

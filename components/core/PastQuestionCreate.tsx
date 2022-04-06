@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, PQCreateByPdfUpload } from "../index.js";
+import { Modal, PQCreateByPdfUpload } from "../index";
 
 const PastQuestionCreate = ({
   showCreateModal,

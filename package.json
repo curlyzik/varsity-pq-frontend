@@ -29,6 +29,7 @@
     "swr": "^1.2.2"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",
     "autoprefixer": "^10.4.0",

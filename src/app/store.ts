@@ -68,9 +68,10 @@ const store = configureStore({
       semesterApi.middleware,
       uniDetailApi.middleware,
       gitHubRepoApi.middleware,
-      pastQuestionApi.middleware,
+      pastQuestionApi.middleware
     ),
 });
 
+export type RootState = ReturnType<typeof store.getState>;
 export const persistor = persistStore(store);
 export default store;

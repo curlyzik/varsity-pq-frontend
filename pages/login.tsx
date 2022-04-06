@@ -8,16 +8,27 @@ import { setAuth } from "../src/features/users/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { RootState } from "../src/app/store";
+import { NextPage } from "next";
 
-const Login = () => {
+interface LoginValues {
+  email: string;
+  password: string;
+}
+
+interface ErrorResponse {
+  error: { response: { data: { non_field_errors: [] } } };
+}
+
+const Login: NextPage = () => {
   const router = useRouter();
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const dispatch = useDispatch();
-  const [loginErrorMessage, setLoginErrorMessage] = useState("");
-  const [loginError, setLoginError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loginErrorMessage, setLoginErrorMessage] = useState<string>("");
+  const [loginError, setLoginError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const onFinish = async (values) => {
+  const onFinish = async (values: LoginValues): Promise<void> => {
     try {
       setLoading(true);
       const res = await axios.post(
@@ -57,7 +68,7 @@ const Login = () => {
 
   return (
     <div className="grid items-center justify-center gap-y-5 pt-24">
-      <div className="dark:bg-black p-8 border rounded-md">
+      <div className="rounded-md border p-8 dark:bg-black">
         <h2 className="mb-4 text-center text-4xl dark:text-white">Login</h2>
         <Form
           name="normal_login"
