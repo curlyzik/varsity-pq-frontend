@@ -3,8 +3,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Modal, Success } from "../components";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
-const PasswordReset = () => {
+const PasswordReset: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
@@ -15,13 +16,12 @@ const PasswordReset = () => {
     setVisible(true);
   };
 
-  const onPasswordResetFinish = async (values) => {
-    console.log(values.email);
+  const onPasswordResetFinish = async (values: { email: string }) => {
     try {
       setLoading(true);
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/users/reset_password/`,
-        { email: values.email },
+        values,
         {
           headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,23 @@
 import React from "react";
 import { Modal as AntModal, Button } from "antd";
 
-const Modal = ({
+interface ModalProps {
+  title?: string;
+  isModalVisible?: boolean | undefined;
+  handleOk?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  handleCancel?: (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => void | undefined;
+  confirmLoading?: boolean | undefined;
+  footer?: React.ReactNode;
+  closable?: boolean | undefined;
+  width?: string | number | undefined;
+  centered?: boolean | undefined;
+  key?: React.Key | number | undefined;
+  destroyOnClose?: boolean | undefined;
+}
+
+const Modal: React.FC<ModalProps> = ({
   title = "Select Past Question",
   children,
   isModalVisible,
