@@ -16,10 +16,6 @@ interface LoginValues {
   password: string;
 }
 
-interface ErrorResponse {
-  error: { response: { data: { non_field_errors: [] } } };
-}
-
 const Login: NextPage = () => {
   const router = useRouter();
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
