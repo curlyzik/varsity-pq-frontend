@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "next-themes";
 import { PersistGate } from "redux-persist/integration/react";
-import Script from "next/script";
 import store, { persistor } from "../src/app/store";
 import "../styles/globals.css";
 
@@ -16,8 +15,9 @@ import "aos/dist/aos.css";
 
 // for smooth animation
 import "animate.css";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps, ...appProps }) {
+function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   useEffect(() => {
     AOS.init();
   });
