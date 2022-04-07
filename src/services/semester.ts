@@ -6,7 +6,7 @@ export const semesterApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/semester/`,
   }),
   endpoints: (builder) => ({
-    getSemester: builder.query({
+    getSemester: builder.query<[], void>({
       query: () => "",
     }),
   }),

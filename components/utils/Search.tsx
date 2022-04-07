@@ -23,7 +23,10 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 }) => {
   return (
     <>
-      <Select<string | number, { value: string; children: string }>
+      <Select<
+        string | number,
+        { value: string; children: string; tolowerCase: number }
+      >
         showSearch
         style={{ width: width }}
         placeholder={description}
@@ -33,6 +36,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         }
         filterSort={(optionA, optionB) =>
           optionA &&
+          optionA.tolowerCase &&
           optionA.children
             .toLowerCase()
             .localeCompare(optionB.children.toLowerCase())

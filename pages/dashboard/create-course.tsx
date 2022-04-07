@@ -1,18 +1,33 @@
 import { Form, Input, InputNumber, message, Button, Select } from "antd";
 import axios from "axios";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Layout } from "../../components";
 import { SearchFilter } from "../../components/utils/Search";
+import { RootState } from "../../src/app/store";
 import { useGetLevelsQuery } from "../../src/services/level";
 import { useGetSemesterQuery } from "../../src/services/semester";
 
 const { Option } = Select;
 
-const CreateCourse = () => {
+interface CreateCourseValues {
+  name: string;
+  course_code: string;
+  university: string;
+  faculty: string;
+  department: string;
+  year: string | number;
+  level: string | number;
+  semester: string | number;
+}
+
+const CreateCourse: NextPage = () => {
   const [form] = Form.useForm();
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
+  const { account } = auth;
+  console.log(account);
   const router = useRouter();
 
   const [courseError, setCourseError] = useState(false);
@@ -22,15 +37,13 @@ const CreateCourse = () => {
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
-  const { account } = auth;
-
   useEffect(() => {
     if (!auth.accessToken || !auth) {
       router.push("/login");
     }
   }, []);
 
-  const onFinish = async (values) => {
+  const onFinish = async (values: CreateCourseValues) => {
     setLoading(true);
     try {
       const { data } = await axios.post(
@@ -131,9 +144,11 @@ const CreateCourse = () => {
               >
                 <Input
                   placeholder="university"
-                  onChange={form.setFieldsValue({
-                    university: account?.university,
-                  })}
+                  onChange={
+                    form.setFieldsValue({
+                      university: account?.university,
+                    })!
+                  }
                   type={"text"}
                   disabled
                 />
@@ -146,9 +161,11 @@ const CreateCourse = () => {
               >
                 <Input
                   placeholder="faculty"
-                  onChange={form.setFieldsValue({
-                    faculty: account?.faculty,
-                  })}
+                  onChange={
+                    form.setFieldsValue({
+                      faculty: account?.faculty,
+                    })!
+                  }
                   type={"text"}
                   disabled
                 />
@@ -163,9 +180,11 @@ const CreateCourse = () => {
               >
                 <Input
                   placeholder="department"
-                  onChange={form.setFieldsValue({
-                    department: account?.department,
-                  })}
+                  onChange={
+                    form.setFieldsValue({
+                      department: account?.department,
+                    })!
+                  }
                   type={"text"}
                   disabled
                 />
@@ -185,7 +204,7 @@ const CreateCourse = () => {
                       });
                     }
                   }}
-                  maxLength="4"
+                  maxLength={4}
                   placeholder="input year"
                 />
               </Form.Item>
@@ -200,13 +219,17 @@ const CreateCourse = () => {
                     form.setFieldsValue({ level: value });
                   }}
                   description="level"
-                  width
                 >
-                  {levels?.map((level) => (
-                    <Option key={level.id} value={level.level}>
-                      {level.level}
-                    </Option>
-                  ))}
+                  {levels?.map(
+                    (level: {
+                      id: string | number;
+                      level: string | number;
+                    }) => (
+                      <Option key={level.id} value={level.level}>
+                        {level.level}
+                      </Option>
+                    )
+                  )}
                 </SearchFilter>
               </Form.Item>
 
@@ -220,13 +243,14 @@ const CreateCourse = () => {
                     form.setFieldsValue({ semester: value });
                   }}
                   description="semester"
-                  width
                 >
-                  {semesters?.map((semester) => (
-                    <Option key={semester.id} value={semester.name}>
-                      {semester.name}
-                    </Option>
-                  ))}
+                  {semesters?.map(
+                    (semester: { id: string | number; name: string }) => (
+                      <Option key={semester.id} value={semester.name}>
+                        {semester.name}
+                      </Option>
+                    )
+                  )}
                 </SearchFilter>
               </Form.Item>
             </div>

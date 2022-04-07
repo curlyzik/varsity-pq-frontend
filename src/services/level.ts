@@ -6,7 +6,7 @@ export const levelApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/level/`,
   }),
   endpoints: (builder) => ({
-    getLevels: builder.query({
+    getLevels: builder.query<[], void>({
       query: () => "",
     }),
   }),

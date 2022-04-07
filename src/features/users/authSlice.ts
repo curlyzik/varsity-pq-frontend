@@ -1,6 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface AuthState {
+  accessToken: string | null;
+  refreshToken: string | null;
+  account?: {
+    department: string;
+    email: string;
+    faculty: string;
+    full_name: string;
+    id: string | number;
+    is_active: boolean;
+    is_staff: boolean;
+    is_volunteer: boolean;
+    university: string;
+    year: string | number;
+  } | null;
+}
+
+const initialState: AuthState = {
   accessToken: "",
   refreshToken: "",
   account: null,
@@ -17,8 +34,8 @@ export const authSlice = createSlice({
     },
 
     logout: (state) => {
-      state.accessToken = null;
-      state.refreshToken = null;
+      state.accessToken = "";
+      state.refreshToken = "";
       state.account = null;
     },
   },
