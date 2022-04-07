@@ -1,7 +1,19 @@
 import { Input, Switch } from "antd";
-import React from "react";
+import React, { FormEvent } from "react";
 
-const AppHeader = ({ setKeyword, sort, setSort, placeholder }) => {
+interface AppHeaderProps {
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  sort: string;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+  placeholder: string | undefined;
+}
+
+const AppHeader: React.FC<AppHeaderProps> = ({
+  setKeyword,
+  sort,
+  setSort,
+  placeholder,
+}) => {
   return (
     <div className="px-5 lg:mx-10 lg:px-0">
       <div className="flex flex-col-reverse items-center justify-between gap-y-3 rounded-md bg-white px-6 py-4 dark:bg-black lg:flex-row">
