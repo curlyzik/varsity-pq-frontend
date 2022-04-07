@@ -13,16 +13,20 @@ import {
   setPastQuestion,
   setPqId,
 } from "../../src/features/pastquestions/pastQuestionSlice";
+import { RootState } from "../../src/app/store";
+import { PastQuestionDetails } from "../../types";
 
 const PastQuestions = () => {
-  const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
+  const { auth, pastQuestion } = useSelector(
+    (state: RootState) => state.persistedReducer
+  );
   const dispatch = useDispatch();
 
   const [tableLoading, setTableLoading] = useState(false);
 
   const [keyWord, setKeyword] = useState("");
 
-  const [pqs, setPqs] = useState(null);
+  const [pqs, setPqs] = useState<PastQuestionDetails[]>([]);
   const [updateVisible, setUpdateVisible] = useState(false);
   const router = useRouter();
 
@@ -56,7 +60,7 @@ const PastQuestions = () => {
   }, [pastQuestion]);
 
   // filter courses by keyword
-  const filterByKeyword = (keyword) => {
+  const filterByKeyword = (keyword: string) => {
     const filteredData = pqs?.filter(
       (pq) =>
         pq?.pq_details[0]?.course_code
@@ -75,7 +79,7 @@ const PastQuestions = () => {
   const newPqs = filterByKeyword(keyWord);
 
   // fetch single past question
-  const fetchPastQuestion = async (id) => {
+  const fetchPastQuestion = async (id: string | number) => {
     try {
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/past-questions/${id}/`,
