@@ -1,7 +1,12 @@
 import React from "react";
 import { Result } from "antd";
 
-const Success = ({ title, extra }) => {
+interface SuccessProps {
+  title: string;
+  extra?: React.ReactNode;
+}
+
+const Success: React.FC<SuccessProps> = ({ title, extra }) => {
   return (
     <Result
       status="success"
