@@ -24,8 +24,8 @@ export const authSlice = createSlice({
     },
 
     logout: (state) => {
-      state.accessToken = "";
-      state.refreshToken = "";
+      state.accessToken = null;
+      state.refreshToken = null;
       state.account = null;
     },
   },
