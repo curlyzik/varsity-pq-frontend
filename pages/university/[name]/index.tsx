@@ -1,11 +1,12 @@
 import { Input, Spin } from "antd";
 import axios from "axios";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { PQItems } from "../../../components";
 import { useGetPastQuestionsQuery } from "../../../src/services/pastquestion";
 
-const UniPastQuestions = () => {
+const UniPastQuestions: NextPage = () => {
   const { data, isLoading } = useGetPastQuestionsQuery();
   const router = useRouter();
   const { query } = router;
@@ -44,7 +45,7 @@ const UniPastQuestions = () => {
         {isLoading ? (
           <Spin />
         ) : (
-          past_questions?.map((pq:any) => <PQItems key={pq.id} pq={pq} />)
+          past_questions?.map((pq: any) => <PQItems key={pq.id} pq={pq} />)
         )}
       </div>
     </div>

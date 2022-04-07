@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { Button, Form, Input, message } from "antd";
+import { NextPage } from "next";
 
 interface PasswordResetValues {
   new_password1: string;
@@ -10,7 +11,7 @@ interface PasswordResetValues {
   token: string;
 }
 
-const PasswordResetConfirm = () => {
+const PasswordResetConfirm: NextPage = () => {
   const router = useRouter();
   const { uid, token } = router.query;
 

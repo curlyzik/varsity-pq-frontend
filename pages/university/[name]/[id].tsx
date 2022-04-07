@@ -18,8 +18,9 @@ import {
 import { useGetUniversityQuery } from "../../../src/services/university";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
+import { NextPage } from "next";
 
-const University = () => {
+const University: NextPage = () => {
   const router = useRouter();
   const { query } = router;
 

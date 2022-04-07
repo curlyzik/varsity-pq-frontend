@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { AppHeader, MainHeader, PQItems } from "../../components";
 import { Input, Spin } from "antd";
 import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
+import { NextPage } from "next";
 
-const AllPastQuestions = () => {
+const AllPastQuestions: NextPage = () => {
   const { data, isLoading } = useGetPastQuestionsQuery();
   const [sort, setSort] = useState("");
   const [keyWord, setKeyword] = useState("");

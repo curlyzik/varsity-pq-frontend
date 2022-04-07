@@ -13,6 +13,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { RootState } from "../../src/app/store";
+import { NextPage } from "next";
 
 interface VolunteerValues {
   full_name: string;
@@ -33,7 +34,7 @@ interface MappedData {
   name: string;
 }
 
-const NewVolunteer = () => {
+const NewVolunteer: NextPage = () => {
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const router = useRouter();
 

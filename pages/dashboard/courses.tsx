@@ -10,14 +10,31 @@ import {
   setCourseId,
 } from "../../src/features/courses/courseDetailSlice";
 import Link from "next/link";
+import { RootState } from "../../src/app/store";
+import { NextPage } from "next";
 
-const Courses = () => {
-  const { auth, courseDetail } = useSelector((state) => state.persistedReducer);
+interface CourseDetails {
+  id: string | number;
+  course_code: string;
+  name: string;
+  course_details: {
+    year: string | number;
+    level: string | number;
+    semester: string | number;
+    faculty: string;
+    department: string;
+  }[];
+}
+
+const Courses: NextPage = () => {
+  const { auth, courseDetail } = useSelector(
+    (state: RootState) => state.persistedReducer
+  );
   const { courseId } = courseDetail;
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [courses, setCourses] = useState(null);
+  const [courses, setCourses] = useState<CourseDetails[]>([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
   const [keyWord, setKeyword] = useState("");
@@ -58,11 +75,11 @@ const Courses = () => {
   }, [courseDetail]);
 
   // filter courses by keyword
-  const filterByKeyword = (keyword) => {
+  const filterByKeyword = (keyword: string) => {
     const filteredData = courses?.filter(
       (course) =>
-        course?.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
-        course?.name.toLowerCase().includes(keyword.toLowerCase())
+        course.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
+        course.name.toLowerCase().includes(keyword.toLowerCase())
     );
     return filteredData;
   };
@@ -75,7 +92,7 @@ const Courses = () => {
   const newCourses = filterByKeyword(keyWord);
 
   // fetch single courses
-  const fetchCourse = async (id) => {
+  const fetchCourse = async (id: string | number) => {
     try {
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}/`,
@@ -156,7 +173,9 @@ const Courses = () => {
               to create
             </div>
           ) : (
-            <div className="dark:text-white">You have {courses?.length} course(s)</div>
+            <div className="dark:text-white">
+              You have {courses?.length} course(s)
+            </div>
           )}
         </div>
         <div>
