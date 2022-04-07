@@ -1,5 +1,6 @@
 import { Button, Input, message, Switch } from "antd";
 import axios from "axios";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,7 +13,7 @@ import { Layout, Table } from "../../components";
 import { RootState } from "../../src/app/store";
 import { UserDetails } from "../../types";
 
-const Users = () => {
+const Users: NextPage = () => {
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
   console.log(auth)
   const router = useRouter();
