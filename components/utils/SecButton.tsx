@@ -1,6 +1,11 @@
 import React from "react";
 
-const SecButton = ({ link, children, className }) => {
+interface SecButtonProps {
+  link?: string;
+  className?: string;
+}
+
+const SecButton: React.FC<SecButtonProps> = ({ link, children, className }) => {
   return (
     <a
       type="link"
