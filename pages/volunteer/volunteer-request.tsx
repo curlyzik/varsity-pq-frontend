@@ -5,8 +5,9 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 import { Btn, MainHeader } from "../../components/index";
+import { NextPage } from "next";
 
-const AdminRequest = () => {
+const AdminRequest: NextPage = () => {
   return (
     <div>
       <Head>

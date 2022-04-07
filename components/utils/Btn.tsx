@@ -1,7 +1,12 @@
 import React from "react";
 import Ripples from "react-ripples";
 
-const Btn = ({ children, onClick, className }) => {
+interface ButtonProps {
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
+  className?: string;
+}
+
+const Btn: React.FC<ButtonProps> = ({ children, onClick, className }) => {
   return (
     <div
       className={`cursor-pointer overflow-hidden font-semibold capitalize ${className}`}
