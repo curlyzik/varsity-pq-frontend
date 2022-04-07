@@ -1,7 +1,4 @@
 import { Select } from "antd";
-import { Input, Space } from "antd";
-
-const { Search } = Input;
 
 interface SearchFilterProps {
   handleChange?: (value: any) => void | undefined;
