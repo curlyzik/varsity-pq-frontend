@@ -5,9 +5,10 @@ import axios from "axios";
 import { setAuth } from "../../src/features/users/authSlice";
 import useSWR from "swr";
 import { fetcher } from "../../utils/axios";
+import { RootState } from "../../src/app/store";
 
-const ProfileUpdateForm = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+const ProfileUpdateForm: React.FC = () => {
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
 
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
 
@@ -17,7 +18,10 @@ const ProfileUpdateForm = () => {
   const dispatch = useDispatch();
 
   // UPDATE PROFILE LOGIC
-  const onUpdateProfileFinish = async (values) => {
+  const onUpdateProfileFinish = async (values: {
+    full_name: string;
+    year: string | number;
+  }) => {
     setLoading(true);
     try {
       const { data } = await axios.put(
@@ -97,7 +101,7 @@ const ProfileUpdateForm = () => {
         <Button
           htmlType="submit"
           loading={loading}
-          className="dark:hover:bg-black dark:focus:bg-black dark:text-white"
+          className="dark:text-white dark:hover:bg-black dark:focus:bg-black"
         >
           Update
         </Button>

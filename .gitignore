@@ -7,6 +7,8 @@ uniData.ts
 uniData2.ts
 post-data.tsx
 storeDataToDB.ts
+UploadImage.tsx
+Select.tsx
 
 # dependencies
 /node_modules
