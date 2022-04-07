@@ -3,18 +3,25 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { Button, Form, Input, message } from "antd";
 
+interface PasswordResetValues {
+  new_password1: string;
+  new_password2: string;
+  uid: string;
+  token: string;
+}
+
 const PasswordResetConfirm = () => {
   const router = useRouter();
   const { uid, token } = router.query;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [form] = Form.useForm();
 
-  const onPasswordResetConfirmFinish = async (values) => {
+  const onPasswordResetConfirmFinish = async (values: PasswordResetValues) => {
     try {
       setLoading(true);
       const { data } = await axios.post(
@@ -48,9 +55,13 @@ const PasswordResetConfirm = () => {
   };
 
   const messageSuccess = () => {
-    message.success(`${successMessage}. Redirecting to login page...`, 4, () => {
-      return setSuccessandRedirect();
-    });
+    message.success(
+      `${successMessage}. Redirecting to login page...`,
+      4,
+      () => {
+        return setSuccessandRedirect();
+      }
+    );
   };
 
   const messageError = () => {
