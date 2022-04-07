@@ -1,20 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserDetails } from "../../../types";
 
 interface AuthState {
   accessToken: string | null;
   refreshToken: string | null;
-  account?: {
-    department: string;
-    email: string;
-    faculty: string;
-    full_name: string;
-    id: string | number;
-    is_active: boolean;
-    is_staff: boolean;
-    is_volunteer: boolean;
-    university: string;
-    year: string | number;
-  } | null;
+  account?: UserDetails[] | null;
 }
 
 const initialState: AuthState = {
