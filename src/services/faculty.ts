@@ -8,7 +8,7 @@ export const facultyApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/faculty/`,
   }),
   endpoints: (builder) => ({
-    getFaculties: builder.query({
+    getFaculties: builder.query<[], void>({
       query: () => "",
     }),
   }),

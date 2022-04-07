@@ -12,9 +12,29 @@ import { Success } from "../../components";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { RootState } from "../../src/app/store";
+
+interface VolunteerValues {
+  full_name: string;
+  email: string;
+  faculty: string;
+  department: string;
+  university: string;
+  year: string | number;
+}
+
+interface VolunteerDetails {
+  data: { full_name: string; email: string };
+  password: string;
+}
+
+interface MappedData {
+  id: number | string;
+  name: string;
+}
 
 const NewVolunteer = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,9 +49,9 @@ const NewVolunteer = () => {
   const [facultyValue, setFacultyValue] = useState("");
   const [departmentValue, setDepartmentValue] = useState("");
   const [yearValue, setYearValue] = useState();
-  const [years, setYears] = useState([]);
+  const [years, setYears] = useState<number[]>([]);
 
-  const [volunteerDetails, setVolunteerDetails] = useState();
+  const [volunteerDetails, setVolunteerDetails] = useState<VolunteerDetails>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,14 +70,14 @@ const NewVolunteer = () => {
     }
   };
 
-  const onFinish = async (values) => {
+  const onFinish = async (values: VolunteerValues) => {
     setLoading(true);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/users/new-volunteer/`,
         values
       );
-      const { data } = await res;
+      const { data } = res;
       setVolunteerDetails(data);
       setSuccess(true);
       setLoading(false);
@@ -96,15 +116,15 @@ const NewVolunteer = () => {
   // SEND EMAIL TO VOLUNTEER WITH LOGIN CREDENTIALS
   const sendVolunteerCredentials = () => {
     const templateParams = {
-      to_email: volunteerDetails.data.email,
-      to_name: volunteerDetails.data.full_name,
+      to_email: volunteerDetails?.data.email,
+      to_name: volunteerDetails?.data.full_name,
       from_name: "Varsity PQ",
-      message: `Email: ${volunteerDetails.data.email} Password: ${volunteerDetails.password}`,
+      message: `Email: ${volunteerDetails?.data.email} Password: ${volunteerDetails?.password}`,
     };
     emailjs
       .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         templateParams,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID
       )
@@ -136,20 +156,24 @@ const NewVolunteer = () => {
           closable={false}
         >
           <Success
-            title={<div className="dark:text-white font-semibold">"Successfully Sent Volunteer Request!!!"</div>}
+            title={
+              <div className="font-semibold dark:text-white">
+                "Successfully Sent Volunteer Request!!!"
+              </div>
+            }
             extra={[
               <p className="mb-4 text-sm text-gray-500" key={"text"}>
                 Thank you for your interest in volunteering for us. We have sent
                 an email to{" "}
-                <span className="font-bold dark:text-white text-black">
-                  {volunteerDetails?.data?.email}
+                <span className="font-bold text-black dark:text-white">
+                  {volunteerDetails?.data.email}
                 </span>{" "}
                 Please check your mail for login credentials
               </p>,
               <Button
                 type="primary"
                 key="console"
-                className="font-bold !text-black dark:text-white border-white"
+                className="border-white font-bold !text-black dark:text-white"
                 onClick={() => router.push("/")}
               >
                 Go Home
@@ -199,9 +223,8 @@ const NewVolunteer = () => {
                     }}
                     value={uniValue}
                     description="university"
-                    width
                   >
-                    {universities?.map((university) => (
+                    {universities?.map((university: MappedData) => (
                       <Option key={university.id} value={university.name}>
                         {university.name}
                       </Option>
@@ -220,9 +243,8 @@ const NewVolunteer = () => {
                       setFacultyValue(value);
                     }}
                     description="faculty"
-                    width
                   >
-                    {faculties?.map((faculty) => (
+                    {faculties?.map((faculty: MappedData) => (
                       <Option key={faculty.id} value={faculty.name}>
                         {faculty.name}
                       </Option>
@@ -242,9 +264,8 @@ const NewVolunteer = () => {
                     }}
                     description="department"
                     value={departmentValue}
-                    width
                   >
-                    {departments?.map((department) => (
+                    {departments?.map((department: MappedData) => (
                       <Option key={department.id} value={department.name}>
                         {department.name}
                       </Option>
@@ -265,7 +286,6 @@ const NewVolunteer = () => {
                     }}
                     description="year"
                     value={yearValue}
-                    width
                   >
                     {years.map((year, index) => (
                       <Option key={index} value={year.toString()}>
@@ -275,15 +295,6 @@ const NewVolunteer = () => {
                   </SearchFilter>
                 </Form.Item>
               </div>
-
-              {/* <Btn className={"inline-block disabled:bg-black"}>
-                <button
-                  type="submit"
-                  className="rounded-md bg-blue-500 py-2 px-7 text-base font-bold text-white transition-all duration-300 hover:bg-blue-600"
-                >
-                  Submit Request
-                </button>
-              </Btn> */}
 
               <Button
                 type="primary"

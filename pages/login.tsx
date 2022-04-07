@@ -24,7 +24,7 @@ const Login: NextPage = () => {
   const [loginError, setLoginError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onFinish = async (values: LoginValues): Promise<void> => {
+  const onFinish = async (values: LoginValues) => {
     try {
       setLoading(true);
       const res = await axios.post(
