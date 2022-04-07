@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { UniversityDetails } from "../../types";
 
 // set url configuration based on environment
 const urlConfigEnviron = (urlBase: string) => {
@@ -45,7 +46,7 @@ export const universityApi = createApi({
     baseUrl: baseUrlConfig(),
   }),
   endpoints: (builder) => ({
-    getUniversities: builder.query<[], void>({
+    getUniversities: builder.query<UniversityDetails[], void>({
       query: () => urlConfigEnviron("/universities/"),
     }),
     getUniversity: builder.query({

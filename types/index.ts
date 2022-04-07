@@ -45,3 +45,11 @@ export interface UserDetails {
   university: string;
   year: string | number;
 }
+
+export interface UniversityDetails {
+  address: string;
+  id: string | number;
+  name: string;
+  type: string;
+  website: string;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AppHeader, Btn, Item, Loader, InfiniteScrolling } from "../index";
+import { AppHeader, Btn, Item, InfiniteScrolling } from "../index";
 import { useGetUniversitiesQuery } from "../../src/services/university";
 import { Spin } from "antd";
 

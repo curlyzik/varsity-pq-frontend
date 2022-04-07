@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { UniversityDetails } from "../../types";
 
-const Item = ({ university }) => {
+const Item: React.FC<{ university: UniversityDetails }> = ({ university }) => {
   return (
     <div
       data-aos="fade-left"
