@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AppHeader, Btn, Item, Loader, InfiniteScrolling } from "../index";
 import { useGetUniversitiesQuery } from "../../src/services/university";
+import { Spin } from "antd";
 
 const App = () => {
   const { data, isLoading } = useGetUniversitiesQuery();
@@ -58,11 +59,11 @@ const App = () => {
         setKeyword={setKeyword}
         sort={sort}
         setSort={setSort}
-        placeholder={data && `search over ${ data?.length} universities`}
+        placeholder={data && `search over ${data?.length} universities`}
       />
       {isLoading ? (
         <div className="grid place-items-center p-8">
-          <Loader />
+          <Spin />
         </div>
       ) : !keyword ? (
         <div>

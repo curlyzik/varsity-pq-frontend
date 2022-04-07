@@ -90,7 +90,7 @@ const University: NextPage = () => {
                 </h3>{" "}
                 {/* {dataLoading ? (
                   <div className="grid place-items-center pt-4">
-                    <Loader />
+                    <Spin />
                   </div>
                 ) : (
                   <div className="grid gap-3 lg:grid-cols-2">
@@ -115,7 +115,7 @@ const University: NextPage = () => {
                 </h3>
                 {/* {newsLoading ? (
                   <div className="grid place-items-center pt-4">
-                    <Loader />
+                    <Spin />
                   </div>
                 ) : count <= 12 ? (
                   <div>
