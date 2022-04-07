@@ -24,7 +24,6 @@ export { default as SecButton } from "./utils/SecButton";
 export { default as AppHeader } from "./utils/AppHeader";
 export { default as Item } from "./utils/Item";
 export { default as Features } from "./utils/Features";
-export { default as Loader } from "./utils/Loader";
 export { default as TwitterBtn } from "./utils/TwitterBtn";
 export { default as Success } from "./utils/Success";
 export { default as Layout } from "./utils/Layout";

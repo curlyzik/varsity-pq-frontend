@@ -18,11 +18,15 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import { Switch } from "antd";
+import { RootState } from "../../src/app/store";
 
-const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
+const DashboardLayout: React.FC<{ defaultSelectedKeys: string }> = ({
+  children,
+  defaultSelectedKeys = "1",
+}) => {
   const {
     auth: { account },
-  } = useSelector((state) => state.persistedReducer);
+  } = useSelector((state: RootState) => state.persistedReducer);
 
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
@@ -128,7 +132,7 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               </Menu.Item>
               <Menu.Item
                 key="3"
-                className="rounded-full hover:bg-transparent dark:hover:bg-transparent remove-bg"
+                className="remove-bg rounded-full hover:bg-transparent dark:hover:bg-transparent"
               >
                 <Switch
                   className="bg-[#cfcece] dark:bg-gray-800"
@@ -149,14 +153,6 @@ const DashboardLayout = ({ children, defaultSelectedKeys = "1" }) => {
               {children}
             </div>
           </Content>
-          {/* <Footer className="!fixed bottom-0 w-full lg:w-[calc(100%-200px)]">
-            <p className="flex justify-center gap-x-2">
-              <span className="font-bold">Varsity PQ ©2022 </span>{" "}
-              <span>
-                Created by <b>Isaac Nzekwe</b>
-              </span>
-            </p>
-          </Footer> */}
         </Layout>
       </Layout>
     </div>
