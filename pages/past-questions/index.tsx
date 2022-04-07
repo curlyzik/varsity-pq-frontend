@@ -9,8 +9,8 @@ const AllPastQuestions = () => {
   const [keyWord, setKeyword] = useState("");
 
   // filter data by keyword
-  const filterByKeyword = (keyword) => {
-    const filteredData = data?.filter((pq) =>
+  const filterByKeyword = (keyword: string) => {
+    const filteredData = data?.filter((pq: any) =>
       pq?.pq_details[0]?.course_code
         .toLowerCase()
         .includes(keyword.toLowerCase())
@@ -28,15 +28,15 @@ const AllPastQuestions = () => {
   const handleUniTypeFiltering = () => {
     if (sort === "federal") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "federal"
+        (pq: any) => pq.pq_details[0].university_type === "federal"
       );
     } else if (sort === "private") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "private"
+        (pq: any) => pq.pq_details[0].university_type === "private"
       );
     } else if (sort === "state") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "state"
+        (pq: any) => pq.pq_details[0].university_type === "state"
       );
     } else {
       return pastQuestions;
@@ -48,7 +48,7 @@ const AllPastQuestions = () => {
   return (
     <div className="dark:bg-[#111]">
       <div className="pt-8">
-        <div className="px-5 text-xl pb-3 font-bold dark:text-white lg:mx-10 lg:px-0">
+        <div className="px-5 pb-3 text-xl font-bold dark:text-white lg:mx-10 lg:px-0">
           Search Over ({data && data.length}) Availbale Past Questions
         </div>
         <AppHeader
@@ -62,7 +62,7 @@ const AllPastQuestions = () => {
         {isLoading ? (
           <Spin />
         ) : (
-          filteredPq?.map((pq) => <PQItems key={pq.id} pq={pq} />)
+          filteredPq?.map((pq: any) => <PQItems key={pq.id} pq={pq} />)
         )}
 
         {filteredPq?.length === 0 && (
