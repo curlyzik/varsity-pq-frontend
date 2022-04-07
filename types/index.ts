@@ -32,3 +32,16 @@ export interface PastQuestionDetails {
   }[];
   updated_at: string;
 }
+
+export interface UserDetails {
+  department: string;
+  email: string;
+  faculty: string;
+  full_name: string;
+  id: string | number;
+  is_active: boolean;
+  is_staff: boolean;
+  is_volunteer: boolean;
+  university: string;
+  year: string | number;
+}

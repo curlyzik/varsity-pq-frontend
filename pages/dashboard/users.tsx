@@ -9,14 +9,17 @@ import {
 } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Layout, Table } from "../../components";
+import { RootState } from "../../src/app/store";
+import { UserDetails } from "../../types";
 
 const Users = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const router = useRouter();
 
   const [tableLoading, setTableLoading] = useState(false);
-  const [users, setUsers] = useState(null);
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState<UserDetails[]>([]);
+  const [user, setUser] = useState<{ message: string }>();
+  console.log(user);
 
   const [keyWord, setKeyword] = useState("");
 
@@ -48,7 +51,7 @@ const Users = () => {
   }, [user]);
 
   // filter courses by keyword
-  const filterByKeyword = (keyword) => {
+  const filterByKeyword = (keyword: string) => {
     const filteredData = users?.filter(
       (user) =>
         user?.full_name?.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -65,7 +68,7 @@ const Users = () => {
   const newUsers = filterByKeyword(keyWord);
 
   // FETCH SINGLE USERS
-  const updateUser = async (id, action) => {
+  const updateUser = async (id: string | number, action: string) => {
     try {
       setTableLoading(true);
       const { data } = await axios.put(
@@ -88,7 +91,7 @@ const Users = () => {
   };
 
   // DELTE USERS
-  const deleteUser = async (id) => {
+  const deleteUser = async (id: string | number) => {
     try {
       setTableLoading(true);
       const { data } = await axios.delete(
@@ -110,7 +113,7 @@ const Users = () => {
   };
 
   // logic to handle user admin permission
-  const handleAdminPermission = (user) => {
+  const handleAdminPermission = (user: UserDetails) => {
     if (user?.is_staff) {
       updateUser(user?.id, "remove_admin");
     } else {
@@ -119,7 +122,7 @@ const Users = () => {
   };
 
   // logic to handle user active state
-  const handleActivePermission = (user) => {
+  const handleActivePermission = (user: UserDetails) => {
     if (user?.is_active) {
       updateUser(user?.id, "deactivate_user");
     } else {
@@ -261,7 +264,7 @@ const Users = () => {
           <div>
             <AiFillDelete
               fill="red"
-              className="text-xl cursor-pointer"
+              className="cursor-pointer text-xl"
               onClick={() => deleteUser(user?.id)}
             />
           </div>
