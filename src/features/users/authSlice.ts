@@ -4,7 +4,7 @@ import { UserDetails } from "../../../types";
 interface AuthState {
   accessToken: string | null;
   refreshToken: string | null;
-  account?: UserDetails[] | null;
+  account?: UserDetails | null;
 }
 
 const initialState: AuthState = {

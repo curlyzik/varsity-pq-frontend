@@ -14,12 +14,12 @@ import { UserDetails } from "../../types";
 
 const Users = () => {
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
+  console.log(auth)
   const router = useRouter();
 
   const [tableLoading, setTableLoading] = useState(false);
   const [users, setUsers] = useState<UserDetails[]>([]);
   const [user, setUser] = useState<{ message: string }>();
-  console.log(user);
 
   const [keyWord, setKeyword] = useState("");
 
