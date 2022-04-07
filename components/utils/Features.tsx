@@ -1,6 +1,10 @@
 import React from "react";
 
-const Features = ({ icon, name, description }) => {
+const Features: React.FC<{
+  icon: JSX.Element;
+  name: string;
+  description: string;
+}> = ({ icon, name, description }) => {
   return (
     <div
       className="flex flex-col flex-wrap items-center justify-center gap-y-2 text-center"
