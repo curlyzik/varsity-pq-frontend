@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -6,9 +7,10 @@ import {
   Layout,
   ProfileUpdateForm,
 } from "../../components";
+import { RootState } from "../../src/app/store";
 
-const Settings = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+const Settings: NextPage = () => {
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const router = useRouter();
 
   useEffect(() => {

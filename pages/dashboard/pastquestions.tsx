@@ -15,8 +15,9 @@ import {
 } from "../../src/features/pastquestions/pastQuestionSlice";
 import { RootState } from "../../src/app/store";
 import { PastQuestionDetails } from "../../types";
+import { NextPage } from "next";
 
-const PastQuestions = () => {
+const PastQuestions: NextPage = () => {
   const { auth, pastQuestion } = useSelector(
     (state: RootState) => state.persistedReducer
   );
