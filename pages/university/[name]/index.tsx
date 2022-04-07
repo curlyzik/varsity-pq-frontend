@@ -45,7 +45,7 @@ const UniPastQuestions: NextPage = () => {
         {isLoading ? (
           <Spin />
         ) : (
-          past_questions?.map((pq: any) => <PQItems key={pq.id} pq={pq} />)
+          past_questions?.map((pq) => <PQItems key={pq.id} pq={pq} />)
         )}
       </div>
     </div>

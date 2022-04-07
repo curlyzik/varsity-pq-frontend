@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { PastQuestionDetails } from "../../types";
 
-const PQItems = ({ pq }: any) => {
+const PQItems: React.FC<{ pq: PastQuestionDetails }> = ({ pq }) => {
   return (
     <div
       data-aos="fade-left"
