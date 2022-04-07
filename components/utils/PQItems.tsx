@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const PQItems = ({ pq }) => {
+const PQItems = ({ pq }: any) => {
   return (
     <div
       data-aos="fade-left"

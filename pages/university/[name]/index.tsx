@@ -12,7 +12,7 @@ const UniPastQuestions = () => {
 
   const filterPqByUniversity = () => {
     const filteredData = data?.filter(
-      (university) => university.pq_details[0]?.university === query.name
+      (university: any) => university.pq_details[0]?.university === query.name
     );
     return filteredData;
   };
@@ -27,7 +27,7 @@ const UniPastQuestions = () => {
           ) : (
             <>
               <div className="mb-3">
-                <span className=" font-normal mr-2">
+                <span className=" mr-2 font-normal">
                   Search Over ({past_questions && past_questions?.length})
                   Availbale Past Questions for
                 </span>
@@ -44,7 +44,7 @@ const UniPastQuestions = () => {
         {isLoading ? (
           <Spin />
         ) : (
-          past_questions?.map((pq) => <PQItems key={pq.id} pq={pq} />)
+          past_questions?.map((pq:any) => <PQItems key={pq.id} pq={pq} />)
         )}
       </div>
     </div>
