@@ -8,8 +8,9 @@ import axios from "axios";
 import { Button, Card, Input, Spin } from "antd";
 import { RootState } from "../../src/app/store";
 import { CourseDetails } from "../../types";
+import { NextPage } from "next";
 
-const CreatePastQuestion = () => {
+const CreatePastQuestion: NextPage = () => {
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
 
   const router = useRouter();
