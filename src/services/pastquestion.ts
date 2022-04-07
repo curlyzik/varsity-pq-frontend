@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { PastQuestionDetails } from "../../types";
 
 // set url configuration based on environment
 const urlConfigEnviron = (urlBase: string) => {
@@ -43,7 +44,7 @@ export const pastQuestionApi = createApi({
     baseUrl: baseUrlConfig(),
   }),
   endpoints: (builder) => ({
-    getPastQuestions: builder.query<[], void>({
+    getPastQuestions: builder.query<PastQuestionDetails[], void>({
       query: () => urlConfigEnviron("/past_question/"),
     }),
   }),

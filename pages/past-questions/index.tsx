@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AppHeader, MainHeader, PQItems } from "../../components";
-import { Input, Spin } from "antd";
+import { AppHeader, PQItems } from "../../components";
+import { Spin } from "antd";
 import { useGetPastQuestionsQuery } from "../../src/services/pastquestion";
 import { NextPage } from "next";
 
@@ -11,7 +11,7 @@ const AllPastQuestions: NextPage = () => {
 
   // filter data by keyword
   const filterByKeyword = (keyword: string) => {
-    const filteredData = data?.filter((pq: any) =>
+    const filteredData = data?.filter((pq) =>
       pq?.pq_details[0]?.course_code
         .toLowerCase()
         .includes(keyword.toLowerCase())
@@ -29,15 +29,15 @@ const AllPastQuestions: NextPage = () => {
   const handleUniTypeFiltering = () => {
     if (sort === "federal") {
       return pastQuestions?.filter(
-        (pq: any) => pq.pq_details[0].university_type === "federal"
+        (pq) => pq.pq_details[0].university_type === "federal"
       );
     } else if (sort === "private") {
       return pastQuestions?.filter(
-        (pq: any) => pq.pq_details[0].university_type === "private"
+        (pq) => pq.pq_details[0].university_type === "private"
       );
     } else if (sort === "state") {
       return pastQuestions?.filter(
-        (pq: any) => pq.pq_details[0].university_type === "state"
+        (pq) => pq.pq_details[0].university_type === "state"
       );
     } else {
       return pastQuestions;
@@ -63,7 +63,7 @@ const AllPastQuestions: NextPage = () => {
         {isLoading ? (
           <Spin />
         ) : (
-          filteredPq?.map((pq: any) => <PQItems key={pq.id} pq={pq} />)
+          filteredPq?.map((pq) => <PQItems key={pq.id} pq={pq} />)
         )}
 
         {filteredPq?.length === 0 && (
