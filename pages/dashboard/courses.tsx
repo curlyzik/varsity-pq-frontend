@@ -12,19 +12,7 @@ import {
 import Link from "next/link";
 import { RootState } from "../../src/app/store";
 import { NextPage } from "next";
-
-interface CourseDetails {
-  id: string | number;
-  course_code: string;
-  name: string;
-  course_details: {
-    year: string | number;
-    level: string | number;
-    semester: string | number;
-    faculty: string;
-    department: string;
-  }[];
-}
+import { CourseDetails } from "../../types";
 
 const Courses: NextPage = () => {
   const { auth, courseDetail } = useSelector(

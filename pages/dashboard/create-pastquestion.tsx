@@ -6,15 +6,17 @@ import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import { PastQuestionCreate } from "../../components";
 import axios from "axios";
 import { Button, Card, Input, Spin } from "antd";
+import { RootState } from "../../src/app/store";
+import { CourseDetails } from "../../types";
 
 const CreatePastQuestion = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
 
   const router = useRouter();
 
   const [tableLoading, setTableLoading] = useState(false);
 
-  const [courses, setCourses] = useState(null);
+  const [courses, setCourses] = useState<CourseDetails[]>([]);
 
   const [keyWord, setKeyword] = useState("");
 
@@ -47,7 +49,7 @@ const CreatePastQuestion = () => {
   }, []);
 
   // filter courses by keyword
-  const filterByKeyword = (keyword) => {
+  const filterByKeyword = (keyword: string) => {
     const filteredData = courses?.filter(
       (course) =>
         course?.course_code.toLowerCase().includes(keyword.toLowerCase()) ||
