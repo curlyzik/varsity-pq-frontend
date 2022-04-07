@@ -27,7 +27,6 @@ const CreateCourse: NextPage = () => {
   const [form] = Form.useForm();
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const { account } = auth;
-  console.log(account);
   const router = useRouter();
 
   const [courseError, setCourseError] = useState(false);
