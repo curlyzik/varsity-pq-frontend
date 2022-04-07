@@ -5,12 +5,12 @@ import { fetcher } from "../../utils/axios";
 import useSWR from "swr";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-const UserDashboard = () => {
+const UserDashboard: React.FC = () => {
   const { data: user, error } = useSWR("/dj-rest-auth/user/", fetcher);
 
   return (
     <div>
-      <Layout>
+      <Layout defaultSelectedKeys="1">
         <div className="h-screen">
           <div>
             <h2 className="border-b pb-2 text-4xl font-bold">
