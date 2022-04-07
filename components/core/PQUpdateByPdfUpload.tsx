@@ -8,21 +8,33 @@ import {
   removePastQuestion,
   removePqId,
 } from "../../src/features/pastquestions/pastQuestionSlice";
+import { RootState } from "../../src/app/store";
+import { UploadFile } from "antd/lib/upload/interface";
 
-const UploadPdf = ({ setUpdateVisible }) => {
-  const { auth, pastQuestion } = useSelector((state) => state.persistedReducer);
+interface UploadChangeParameter<T extends object = UploadFile> {
+  file: T;
+  fileList: UploadFile[];
+}
+
+const UploadPdf: React.FC<{
+  setUpdateVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ setUpdateVisible }) => {
+  const { auth, pastQuestion } = useSelector(
+    (state: RootState) => state.persistedReducer
+  );
   const dispatch = useDispatch();
+  console.log(pastQuestion);
 
-  const [pdfUrl, setPdfUrl] = useState(`${pastQuestion?.file}`);
+  const [pdfUrl, setPdfUrl] = useState<UploadFile | string>(
+    `${pastQuestion?.file}`
+  );
 
   useEffect(() => {
     setPdfUrl(`${pastQuestion?.file}`);
   }, [pastQuestion]);
 
-  console.log(pdfUrl);
-
-  const [fileList, setFileList] = useState([]);
-  const [file, setFile] = useState(null);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [file, setFile] = useState<UploadFile | null>();
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -30,35 +42,36 @@ const UploadPdf = ({ setUpdateVisible }) => {
   const [error, setError] = useState(false);
 
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState(1);
 
   /*When document gets loaded successfully*/
-  const onDocumentLoadSuccess = ({ numPages }) => {
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
-  const handleChange = async ({ fileList, file }) => {
-    setFile(file);
-    setFileList(fileList);
+  const handleChange = async (info: UploadChangeParameter) => {
+    console.log(info.file);
+    setFile(info.file);
+    setFileList(info.fileList);
 
-    setPdfUrl(fileList[0].originFileObj);
+    setPdfUrl(info.file);
   };
 
   const handleSubmit = async () => {
-    const isPdf = file.type === "application/pdf";
+    const isPdf = file?.type === "application/pdf";
     if (!isPdf) {
       return message.error("You can only upload pdf file!", 3);
     }
     // Ignore if pdf file is greater than 2mb
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M = file.size! / 1024 / 1024 < 2;
     if (!isLt2M) {
       return message.error(`${file.name} must smaller than 2MB!`);
     }
 
     const formData = new FormData();
-    formData.append("course", pastQuestion.pqId);
-    formData.append("file", fileList[0].originFileObj);
+    formData.append("course", pastQuestion.pqId!);
+    formData.append("file", fileList[0].originFileObj as Blob);
 
     // create past question
     try {
@@ -93,7 +106,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
 
   const messageSuccess = () => {
     message.success(
-      `${pastQuestion?.course_details?.course_code} past question updated successfully!`,
+      `${pastQuestion?.course_details.course_code} past question updated successfully!`,
       3,
       () => {
         return setSuccess(false);
@@ -139,9 +152,9 @@ const UploadPdf = ({ setUpdateVisible }) => {
           showUploadList={{ showPreviewIcon: false, showRemoveIcon: false }}
           defaultFileList={[
             {
-              uid: 1,
-              url: pastQuestion?.file,
-              name: pastQuestion?.course_details?.course,
+              uid: "1",
+              url: pastQuestion?.file!,
+              name: pastQuestion?.course_details.course!,
             },
           ]}
         >
@@ -156,7 +169,7 @@ const UploadPdf = ({ setUpdateVisible }) => {
                     dark:hover:text-white dark:focus:bg-black 
                     dark:focus:text-white"
         >
-          Update {pastQuestion?.course_details?.course_code} past question
+          Update {pastQuestion?.course_details.course_code} past question
         </Button>
       </div>
 
