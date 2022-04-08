@@ -1,7 +1,22 @@
 import React from "react";
 import { Modal, PQCreateByPdfUpload } from "../index";
 
-const PastQuestionCreate = ({
+export interface UploadPdfProps {
+  setCourseDetails: React.Dispatch<React.SetStateAction<{}>>;
+  setShowCreateModal: React.Dispatch<React.SetStateAction<boolean>>;
+  courseDetails: {
+    id?: string | number;
+    code?: string;
+    name?: string;
+    year?: string;
+    level?: string;
+    semester?: string | number;
+  };
+  fetchCourses: () => Promise<void>;
+  showCreateModal?: boolean;
+}
+
+const PastQuestionCreate: React.FC<UploadPdfProps> = ({
   showCreateModal,
   setShowCreateModal,
   setCourseDetails,
@@ -43,7 +58,6 @@ const PastQuestionCreate = ({
           <div>
             <h3 className="!mb-3 !text-lg font-bold">Upload Past Question</h3>
             <div>
-              {/* <UploadImage /> */}
               <PQCreateByPdfUpload
                 fetchCourses={fetchCourses}
                 courseDetails={courseDetails}

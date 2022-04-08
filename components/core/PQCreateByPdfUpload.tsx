@@ -4,17 +4,21 @@ import { AiOutlineUpload } from "react-icons/ai";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useSelector } from "react-redux";
+import { RootState } from "../../src/app/store";
+import { UploadFile } from "antd/lib/upload/interface";
+import { UploadChangeParameter } from "../../types";
+import { UploadPdfProps } from "./PastQuestionCreate";
 
-const UploadPdf = ({
+const UploadPdf: React.FC<UploadPdfProps> = ({
   courseDetails,
   setShowCreateModal,
   setCourseDetails,
   fetchCourses,
 }) => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
 
-  const [fileList, setFileList] = useState([]);
-  const [file, setFile] = useState(null);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [file, setFile] = useState<UploadFile | null>();
 
   console.log(fileList);
 
@@ -23,38 +27,38 @@ const UploadPdf = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
 
-  const [pdfUrl, setPdfUrl] = useState();
+  const [pdfUrl, setPdfUrl] = useState<UploadFile | string>();
 
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState(1);
 
   /*When document gets loaded successfully*/
-  const onDocumentLoadSuccess = ({ numPages }) => {
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
-  const handleChange = async ({ fileList, file }) => {
-    setFile(file);
-    setFileList(fileList);
+  const handleChange = async (info: UploadChangeParameter) => {
+    setFile(info.file);
+    setFileList(info.fileList);
 
-    setPdfUrl(fileList[0].originFileObj);
+    setPdfUrl(info.file);
   };
 
   const handleSubmit = async () => {
-    const isPdf = file.type === "application/pdf";
+    const isPdf = file?.type === "application/pdf";
     if (!isPdf) {
       return message.error("You can only upload pdf file!", 3);
     }
     // Ignore if pdf file is greater than 2mb
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M = file.size! / 1024 / 1024 < 2;
     if (!isLt2M) {
       return message.error(`${file.name} must smaller than 2MB!`);
     }
 
     const formData = new FormData();
-    formData.append("course", courseDetails.id);
-    formData.append("file", fileList[0].originFileObj);
+    formData.append("course", courseDetails.id as string);
+    formData.append("file", fileList[0].originFileObj as Blob);
 
     // create past question
     try {
