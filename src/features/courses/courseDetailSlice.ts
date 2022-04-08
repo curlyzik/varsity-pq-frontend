@@ -1,18 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  course_id: null,
-  course_name: null,
-  course_code: null,
-  course_university: null,
-  course_department: null,
-  course_faculty: null,
-  course_year: null,
-  course_level: null,
-  course_semester: null,
-  author_name: null,
+interface CourseDetailState {
+  course_id: string | null;
+  course_name: string | null;
+  course_code: string | null;
+  course_university: string | null;
+  course_department: string | null;
+  course_faculty: string | null;
+  course_year: string | null;
+  course_level: string | null;
+  course_semester: string | null;
+  author_name: string | null;
 
-  courseId: null,
+  courseId: string | null;
+}
+
+const initialState: CourseDetailState = {
+  course_id: "",
+  course_name: "",
+  course_code: "",
+  course_university: "",
+  course_department: "",
+  course_faculty: "",
+  course_year: "",
+  course_level: "",
+  course_semester: "",
+  author_name: "",
+
+  courseId: "",
 };
 
 export const courseDetailSlice = createSlice({

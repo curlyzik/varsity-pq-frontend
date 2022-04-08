@@ -15,11 +15,11 @@ axiosService.interceptors.request.use(async (config) => {
   const { accessToken } = store.getState().persistedReducer.auth;
 
   if (accessToken !== null) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
+    config.headers!.Authorization = `Bearer ${accessToken}`;
 
     console.debug(
       "[Request]",
-      config.baseURL + config.url,
+      config.baseURL + config.url!,
       JSON.stringify(accessToken)
     );
   }
@@ -30,7 +30,7 @@ axiosService.interceptors.response.use(
   (res) => {
     console.debug(
       "[Response]",
-      res.config.baseURL + res.config.url,
+      res.config.baseURL + res.config.url!,
       res.status,
       res.data
     );
@@ -47,6 +47,8 @@ axiosService.interceptors.response.use(
   }
 );
 
+
+// @ts-ignore
 const refreshAuthLogic = async (failedRequest) => {
   const { refreshToken, account } = store.getState().persistedReducer.auth;
 
@@ -81,7 +83,7 @@ const refreshAuthLogic = async (failedRequest) => {
 
 createAuthRefreshInterceptor(axiosService, refreshAuthLogic);
 
-export const fetcher = (url) => {
+export const fetcher = (url: string) => {
   return axiosService.get(url).then((res) => res.data);
 };
 

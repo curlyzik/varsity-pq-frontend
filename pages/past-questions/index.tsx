@@ -12,7 +12,7 @@ const AllPastQuestions: NextPage = () => {
   // filter data by keyword
   const filterByKeyword = (keyword: string) => {
     const filteredData = data?.filter((pq) =>
-      pq?.pq_details[0]?.course_code
+      pq?.pq_details![0]?.course_code
         .toLowerCase()
         .includes(keyword.toLowerCase())
     );
@@ -29,15 +29,15 @@ const AllPastQuestions: NextPage = () => {
   const handleUniTypeFiltering = () => {
     if (sort === "federal") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "federal"
+        (pq) => pq.pq_details![0].university_type === "federal"
       );
     } else if (sort === "private") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "private"
+        (pq) => pq.pq_details![0].university_type === "private"
       );
     } else if (sort === "state") {
       return pastQuestions?.filter(
-        (pq) => pq.pq_details[0].university_type === "state"
+        (pq) => pq.pq_details![0].university_type === "state"
       );
     } else {
       return pastQuestions;

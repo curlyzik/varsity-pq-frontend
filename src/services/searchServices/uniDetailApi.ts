@@ -7,7 +7,7 @@ const uniSearchApiHeaders = {
 
 const baseUrl = process.env.NEXT_PUBLIC_NEWS_API_URL;
 
-const createRequest = (url) => ({ url, headers: uniSearchApiHeaders });
+const createRequest = (url: string) => ({ url, headers: uniSearchApiHeaders });
 
 export const uniDetailApi = createApi({
   reducerPath: "uniDetailApi",

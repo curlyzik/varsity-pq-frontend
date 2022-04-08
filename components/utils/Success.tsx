@@ -2,7 +2,7 @@ import React from "react";
 import { Result } from "antd";
 
 interface SuccessProps {
-  title: string;
+  title: string | JSX.Element;
   extra?: React.ReactNode;
 }
 

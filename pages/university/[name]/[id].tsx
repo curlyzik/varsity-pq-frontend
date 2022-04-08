@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 
 import {
-  Btn,
-  Loader,
-  Select as PQSelect,
   InfiniteScrolling,
   SecButton,
-  Modal,
   NewsCard,
 } from "../../../components/index";
 
