@@ -1,8 +1,7 @@
-import Head from "next/head";
 import Script from "next/script";
 import { DefaultSeo } from "next-seo";
 
-const MetaTags = () => {
+const MetaTags: React.FC = () => {
   return (
     <>
       <DefaultSeo

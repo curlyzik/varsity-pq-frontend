@@ -3,12 +3,12 @@ import { FiBookOpen, FiGithub } from "react-icons/fi";
 import { Btn, TwitterBtn } from "..";
 import { useGetGitHubRepoQuery } from "../../src/services/gitHubRepoApi";
 
-const MainHeader = () => {
+const MainHeader: React.FC = () => {
   const { data } = useGetGitHubRepoQuery();
   const starCount = data?.stargazers_count;
   return (
-    <div className="bg-image dark:border-gray-600 dark:border">
-      <div className="flex flex-col p-10 text-white lg:place-items-center dark:bg-black lg:gap-y-2">
+    <div className="bg-image dark:border dark:border-gray-600">
+      <div className="flex flex-col p-10 text-white dark:bg-black lg:place-items-center lg:gap-y-2">
         <h2 className="mt-6 text-4xl font-bold text-white">Varsity PQ</h2>
 
         <p className="animate__animated animate__fadeInUp my-2 mb-2 w-10/12 text-left text-base lg:w-7/12">

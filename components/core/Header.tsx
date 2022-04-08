@@ -9,12 +9,13 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import { Switch } from "antd";
+import { RootState } from "../../src/app/store";
 
-const Header = () => {
+const Header: React.FC = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
 
   const { theme, setTheme } = useTheme();
   const handleDarkMode = theme === "dark" ? true : false;

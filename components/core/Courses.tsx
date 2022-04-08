@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Modal } from "..";
+import { RootState } from "../../src/app/store";
 import {
   removeCourseDetails,
   removeCourseId,
@@ -13,20 +14,48 @@ import { SearchFilter } from "../utils/Search";
 
 const { Option } = Select;
 
-const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
+interface CoursesProps {
+  data: any;
+  updateVisible: boolean;
+  updateSetVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  tableLoading: boolean;
+}
+
+interface CourseUpdateValue {
+  course_name: string;
+  course_course_code: string;
+  course_year: string | number;
+  course_level: string | number;
+  course_semester: string | number;
+  course_university: string;
+  course_faculty: string;
+  course_department: string;
+}
+
+const Courses: React.FC<CoursesProps> = ({
+  data,
+  updateVisible,
+  updateSetVisible,
+  tableLoading,
+}) => {
   const dispatch = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [form] = Form.useForm();
 
-  const { courseDetail, auth } = useSelector((state) => state.persistedReducer);
+  const { courseDetail, auth } = useSelector(
+    (state: RootState) => state.persistedReducer
+  );
   const { courseId } = courseDetail;
 
   const { data: levels } = useGetLevelsQuery();
   const { data: semesters } = useGetSemesterQuery();
 
   // UPDATE COURSE
-  const updateCourse = async (values, id) => {
+  const updateCourse = async (
+    values: CourseUpdateValue,
+    id: string | number
+  ) => {
     setConfirmLoading(true);
     try {
       const { data } = await axios.put(
@@ -60,9 +89,8 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
     }
   };
 
-  const onUpdateFinish = (values) => {
-    updateCourse(values, courseId);
-    console.log(values);
+  const onUpdateFinish = (values: CourseUpdateValue) => {
+    updateCourse(values, courseId!);
   };
 
   const handleUpdateCancel = () => {
@@ -171,7 +199,6 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
           handleCancel={handleUpdateCancel}
           handleOk={onUpdateFinish}
           confirmLoading={confirmLoading}
-          loading={confirmLoading}
           footer={[
             <Button
               key="back"
@@ -253,13 +280,17 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
                     form.setFieldsValue({ course_level: value });
                   }}
                   description="level"
-                  width
                 >
-                  {levels?.map((level) => (
-                    <Option key={level.id} value={level.level}>
-                      {level.level}
-                    </Option>
-                  ))}
+                  {levels?.map(
+                    (level: {
+                      id: string | number;
+                      level: string | number;
+                    }) => (
+                      <Option key={level.id} value={level.level}>
+                        {level.level}
+                      </Option>
+                    )
+                  )}
                 </SearchFilter>
               </Form.Item>
 
@@ -273,13 +304,14 @@ const Courses = ({ data, updateVisible, updateSetVisible, tableLoading }) => {
                     form.setFieldsValue({ course_semester: value });
                   }}
                   description="semester"
-                  width
                 >
-                  {semesters?.map((semester) => (
-                    <Option key={semester.id} value={semester.name}>
-                      {semester.name}
-                    </Option>
-                  ))}
+                  {semesters?.map(
+                    (semester: { id: string | number; name: string }) => (
+                      <Option key={semester.id} value={semester.name}>
+                        {semester.name}
+                      </Option>
+                    )
+                  )}
                 </SearchFilter>
               </Form.Item>
 

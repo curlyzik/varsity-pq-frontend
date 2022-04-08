@@ -6,7 +6,7 @@ export const gitHubRepoApi = createApi({
     baseUrl: "https://api.github.com/repos/curlyzik/varsity-pq-frontend",
   }),
   endpoints: (builder) => ({
-    getGitHubRepo: builder.query({
+    getGitHubRepo: builder.query<{ stargazers_count: string }, void>({
       query: () => "",
     }),
   }),

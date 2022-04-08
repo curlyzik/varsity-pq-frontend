@@ -4,9 +4,16 @@ import { Button, Form, Input, message } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { logout } from "../../src/features/users/authSlice";
+import { RootState } from "../../src/app/store";
+
+interface ChangePasswordValues {
+  old_password: string;
+  new_password1: string;
+  new_password2: string;
+}
 
 const ChangePasswordForm = () => {
-  const { auth } = useSelector((state) => state.persistedReducer);
+  const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -17,7 +24,7 @@ const ChangePasswordForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   // UPDATE PROFILE LOGIC
-  const onChangePasswordFinish = async (values) => {
+  const onChangePasswordFinish = async (values: ChangePasswordValues) => {
     setLoading(true);
     try {
       const { data } = await axios.post(

@@ -8,7 +8,7 @@ import { Features, Btn } from "../index";
 import { features } from "../features";
 import { useGetGitHubRepoQuery } from "../../src/services/gitHubRepoApi";
 
-const Hero = () => {
+const Hero: React.FC = () => {
   const { data } = useGetGitHubRepoQuery();
   const starCount = data?.stargazers_count;
 
@@ -30,7 +30,7 @@ const Hero = () => {
               <div className="!mb-2 flex gap-x-3">
                 <Btn>
                   <Link href={"/past-questions"}>
-                    <a className="flex items-center justify-center rounded-md text-white bg-blue-500 px-3 py-[10px] text-base hover:text-black lg:px-5 lg:text-lg">
+                    <a className="flex items-center justify-center rounded-md bg-blue-500 px-3 py-[10px] text-base text-white hover:text-black lg:px-5 lg:text-lg">
                       <span>Search Now</span>
                       <BsLightning className="ml-1" />
                     </a>
@@ -39,7 +39,7 @@ const Hero = () => {
 
                 <Btn>
                   <Link href="/volunteer/volunteer-request">
-                    <a className=" bg-blue-400 text-black flex items-center justify-center rounded-md border border-blue-400 py-[10px] px-5 text-base lg:text-lg">
+                    <a className=" flex items-center justify-center rounded-md border border-blue-400 bg-blue-400 py-[10px] px-5 text-base text-black lg:text-lg">
                       <span>Become a volunteer</span>
                       <BiUserCheck className="ml-1 text-xl" />
                     </a>
