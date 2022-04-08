@@ -7,7 +7,14 @@ import {
 } from "../../src/features/pastquestions/pastQuestionSlice";
 import { Modal, Table, PQUpdateByPdfUpload } from "../index";
 
-const PastQuestionUpdate = ({
+interface PastQuestionUpdateProps {
+  setUpdateVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  updateVisible: boolean;
+  data: {}[];
+  tableLoading: boolean;
+}
+
+const PastQuestionUpdate: React.FC<PastQuestionUpdateProps> = ({
   updateVisible,
   setUpdateVisible,
   data,
