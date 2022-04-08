@@ -23,7 +23,6 @@ const UploadPdf: React.FC<{
     (state: RootState) => state.persistedReducer
   );
   const dispatch = useDispatch();
-  console.log(pastQuestion);
 
   const [pdfUrl, setPdfUrl] = useState<UploadFile | string>(
     `${pastQuestion?.file}`
@@ -51,7 +50,6 @@ const UploadPdf: React.FC<{
   };
 
   const handleChange = async (info: UploadChangeParameter) => {
-    console.log(info.file);
     setFile(info.file);
     setFileList(info.fileList);
 
@@ -70,7 +68,7 @@ const UploadPdf: React.FC<{
     }
 
     const formData = new FormData();
-    formData.append("course", pastQuestion.pqId!);
+    formData.append("course", pastQuestion.pqId! as string);
     formData.append("file", fileList[0].originFileObj as Blob);
 
     // create past question
@@ -106,14 +104,14 @@ const UploadPdf: React.FC<{
 
   const messageSuccess = () => {
     message.success(
-      `${pastQuestion?.course_details.course_code} past question updated successfully!`,
+      `${pastQuestion?.course_details!?.course_code} past question updated successfully!`,
       3,
       () => {
         return setSuccess(false);
       }
     );
   };
-
+  pastQuestion;
   const messageError = () => {
     message.error(errorMessage, 3, () => {
       return setError(false);
@@ -154,7 +152,7 @@ const UploadPdf: React.FC<{
             {
               uid: "1",
               url: pastQuestion?.file!,
-              name: pastQuestion?.course_details.course!,
+              name: pastQuestion?.course_details!?.course_code,
             },
           ]}
         >
@@ -169,7 +167,7 @@ const UploadPdf: React.FC<{
                     dark:hover:text-white dark:focus:bg-black 
                     dark:focus:text-white"
         >
-          Update {pastQuestion?.course_details.course_code} past question
+          Update {pastQuestion?.course_details!?.course_code} past question
         </Button>
       </div>
 

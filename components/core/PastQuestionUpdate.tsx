@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../src/app/store";
 import {
   removePastQuestion,
   removePqId,
@@ -12,7 +13,9 @@ const PastQuestionUpdate = ({
   data,
   tableLoading,
 }) => {
-  const { pastQuestion } = useSelector((state) => state.persistedReducer);
+  const { pastQuestion } = useSelector(
+    (state: RootState) => state.persistedReducer
+  );
   const dispatch = useDispatch();
 
   const handleUpdateModalCancel = () => {

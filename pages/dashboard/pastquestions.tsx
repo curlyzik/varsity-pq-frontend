@@ -64,10 +64,10 @@ const PastQuestions: NextPage = () => {
   const filterByKeyword = (keyword: string) => {
     const filteredData = pqs?.filter(
       (pq) =>
-        pq?.pq_details[0]?.course_code
+        pq?.pq_details![0]?.course_code
           .toLowerCase()
           .includes(keyword.toLowerCase()) ||
-        pq?.pq_details[0]?.course.toLowerCase().includes(keyword.toLowerCase())
+        pq?.pq_details![0]?.course.toLowerCase().includes(keyword.toLowerCase())
     );
     return filteredData;
   };
@@ -113,13 +113,13 @@ const PastQuestions: NextPage = () => {
       key: pq.id,
       course_code: (
         <h3 className="ml-2 font-bold dark:text-black">
-          {pq.pq_details[0].course_code}
+          {pq.pq_details![0].course_code}
         </h3>
       ),
-      course_name: pq.pq_details[0].course,
-      year: pq.pq_details[0].year,
-      level: pq.pq_details[0].level,
-      semester: pq.pq_details[0].semester,
+      course_name: pq.pq_details![0].course,
+      year: pq.pq_details![0].year,
+      level: pq.pq_details![0].level,
+      semester: pq.pq_details![0].semester,
       action: (
         <Button
           key="button"
@@ -172,21 +172,21 @@ const PastQuestions: NextPage = () => {
             {newPqs?.map((pq) => (
               <Card className="!border dark:bg-black" key={pq.id}>
                 <h3 className="!text-2xl font-bold">
-                  {pq.pq_details[0].course}
+                  {pq.pq_details![0].course}
                 </h3>
                 <p className="!mb-2 text-lg italic">
-                  {pq.pq_details[0].course_code}
+                  {pq.pq_details![0].course_code}
                 </p>
                 <div className="text-base">
                   <p>
-                    <b>Year:</b> {pq.pq_details[0].year}
+                    <b>Year:</b> {pq.pq_details![0].year}
                   </p>
                   <p>
-                    <b>Level:</b> {pq.pq_details[0].level}
+                    <b>Level:</b> {pq.pq_details![0].level}
                   </p>
                   <p>
                     <b>Semester:</b>{" "}
-                    {pq.pq_details[0].semester === "2" ? "2nd" : "1st"}
+                    {pq.pq_details![0].semester === "2" ? "2nd" : "1st"}
                   </p>
                   <Button
                     key="button"

@@ -13,10 +13,10 @@ export interface CourseDetails {
 }
 
 export interface PastQuestionDetails {
-  created_at: string;
-  file: string;
-  id: string | number;
-  pq_details: {
+  created_at?: string;
+  file?: string | null;
+  id?: string | number | null;
+  pq_details?: {
     author: string;
     course: string;
     course_code: string;
@@ -29,8 +29,8 @@ export interface PastQuestionDetails {
     university: string;
     university_type: string;
     year: string | number;
-  }[];
-  updated_at: string;
+  }[] | null;
+  updated_at?: string;
 }
 
 export interface UserDetails {

@@ -2,7 +2,7 @@ import React from "react";
 import { Modal as AntModal } from "antd";
 
 interface ModalProps {
-  title?: string;
+  title?: JSX.Element | string;
   isModalVisible?: boolean | undefined;
   handleOk?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   handleCancel?: (

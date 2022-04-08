@@ -3,7 +3,7 @@ import { SpinProps, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 
 interface TableComponentProps {
-  columns: ColumnsType<any> | undefined;
+  columns: any;
   data: readonly any[] | undefined;
   scroll:
     | ({

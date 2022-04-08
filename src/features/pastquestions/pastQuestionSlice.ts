@@ -1,15 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface PQInitialState {
+  file: string | null;
+  course_details: {
+    course_code: string;
+    course: string;
+    year: string;
+    level: string;
+    semester: string;
+    faculty: string;
+    department: string;
+  } | null;
+
+  pqId: string | number | null;
+}
+
+const initialState: PQInitialState = {
   file: null,
   course_details: {
-    course_code: null,
-    course: null,
-    year: null,
-    level: null,
-    semester: null,
-    faculty: null,
-    department: null,
+    course_code: "",
+    course: "",
+    year: "",
+    level: "",
+    semester: "",
+    faculty: "",
+    department: "",
   },
 
   pqId: null,
