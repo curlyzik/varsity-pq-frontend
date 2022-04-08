@@ -1,12 +1,14 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # local files
-departmentData.js
-facultyData.js
-uniData.js
-uniData2.js
-post-data.js
-storeDataToDB.js
+departmentData.ts
+facultyData.ts
+uniData.ts
+uniData2.ts
+post-data.tsx
+storeDataToDB.ts
+UploadImage.tsx
+Select.tsx
 
 # dependencies
 /node_modules
