@@ -10,11 +10,7 @@ import {
 } from "../../src/features/pastquestions/pastQuestionSlice";
 import { RootState } from "../../src/app/store";
 import { UploadFile } from "antd/lib/upload/interface";
-
-interface UploadChangeParameter<T extends object = UploadFile> {
-  file: T;
-  fileList: UploadFile[];
-}
+import { UploadChangeParameter } from "../../types";
 
 const UploadPdf: React.FC<{
   setUpdateVisible: React.Dispatch<React.SetStateAction<boolean>>;
