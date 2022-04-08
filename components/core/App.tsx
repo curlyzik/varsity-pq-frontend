@@ -3,14 +3,14 @@ import { AppHeader, Btn, Item, InfiniteScrolling } from "../index";
 import { useGetUniversitiesQuery } from "../../src/services/university";
 import { Spin } from "antd";
 
-const App = () => {
+const App: React.FC = () => {
   const { data, isLoading } = useGetUniversitiesQuery();
   const [keyword, setKeyword] = useState("");
   const [sort, setSort] = useState("");
   const [count, setCount] = useState(20);
 
   // sort universites alphabetically
-  const compare = (a, b) => {
+  const compare = (a: { name: string }, b: { name: string }) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -73,7 +73,7 @@ const App = () => {
             ))}
           </div>
           <div className="grid place-items-center !pb-10">
-            <Btn classNames={"my-12 cursor-pointer"}>
+            <Btn className={"my-12 cursor-pointer"}>
               <div
                 onClick={() => setCount(count + 20)}
                 className="bg-blue-400 px-5 py-[10px] text-base font-semibold capitalize text-black lg:text-lg"

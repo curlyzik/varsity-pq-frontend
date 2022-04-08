@@ -12,7 +12,7 @@ interface ChangePasswordValues {
   new_password2: string;
 }
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm: React.FC = () => {
   const { auth } = useSelector((state: RootState) => state.persistedReducer);
   const dispatch = useDispatch();
   const router = useRouter();
