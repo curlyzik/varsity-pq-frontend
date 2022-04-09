@@ -9,7 +9,7 @@
 
 @layer base {
   body {
-    @apply font-body dark:bg-[#111];
+    @apply font-body bg-[#f5f6fa] dark:bg-[#111];
   }
   ul,
   p,

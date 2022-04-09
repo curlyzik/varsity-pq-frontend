@@ -1,10 +1,11 @@
 import { NextPage } from "next";
 import { BsBook } from "react-icons/bs";
-import { App, Hero } from "../components/index";
+import { Features } from "../components";
+import { features } from "../components/features";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-[#f5f6fa] px-28 font-poppins">
+    <div className="bg-[#f5f6fa] px-28 pt-36 font-poppins">
       <div className="grid grid-cols-2 items-center pb-36">
         <div className="flex flex-col gap-y-10">
           <h1 className="text-5xl font-semibold capitalize leading-[3.5rem] text-slate-900 md:text-6xl md:leading-[4.60rem]">
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-12 pb-36">
+      <div className="flex flex-col gap-y-20 pb-36">
         <div className="mx-auto max-w-[890px] pt-20 text-center">
           <h3 className="text-5xl font-bold text-slate-900 md:leading-[3.60rem]">
             Why students choose <span className="text-sky-600">Varsity PQ</span>{" "}
@@ -38,17 +39,14 @@ const Home: NextPage = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-4 gap-x-9">
-          <div className="flex flex-col gap-y-7">
-            <div>
-              <BsBook className="text-4xl text-sky-600" />
-            </div>
-            <div className="text-xl font-medium">300+ Past Questions</div>
-            <div className=" text-base leading-7 text-slate-600">
-              Students could find over 300+ past questions to different courses
-              of their discipline online.
-            </div>
-          </div>
+        <div className="grid grid-cols-4 gap-x-9 gap-y-16">
+          {features.map((feature) => (
+            <Features
+              icon={feature.icon}
+              name={feature.name}
+              description={feature.description}
+            />
+          ))}
         </div>
       </div>
     </div>
