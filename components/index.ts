@@ -1,6 +1,5 @@
 // core components
 export { default as App } from "./core/App";
-export { default as Hero } from "./core/Hero";
 export { default as InfiniteScrolling } from "./core/InfiniteScrolling";
 export { default as MetaTags } from "./core/MetaTags";
 export { default as MainHeader } from "./core/MainHeader";
