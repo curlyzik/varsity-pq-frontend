@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         "/dashboard/settings",
         "/dashboard/pastquestions",
         "/dashboard/users",
+        "/index2"
       ].includes(appProps.router.pathname)
     ) {
       return <Component {...pageProps} />;

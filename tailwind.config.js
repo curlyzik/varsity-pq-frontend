@@ -13,6 +13,7 @@ module.exports = {
     },
     fontFamily: {
       body: ["Josefin Sans", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
     },
   },
   plugins: [],
