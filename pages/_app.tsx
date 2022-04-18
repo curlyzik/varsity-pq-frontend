@@ -9,7 +9,7 @@ import "../styles/globals.css";
 // for cropper js
 import "cropperjs/dist/cropper.css";
 
-import { Header, MetaTags } from "../components/index";
+import { MetaTags, NavBar } from "../components/index";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         "/dashboard/settings",
         "/dashboard/pastquestions",
         "/dashboard/users",
+        "/index2",
       ].includes(appProps.router.pathname)
     ) {
       return <Component {...pageProps} />;
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
 
     return (
       <>
-        <Header />
+        <NavBar />
         <Component {...pageProps} />
       </>
     );

@@ -1,71 +1,55 @@
 import {
   FiBookmark,
+  FiBookOpen,
   FiCloudLightning,
   FiDatabase,
   FiFlag,
-  FiFolderPlus,
-  FiGithub,
   FiLayers,
-  FiMoon,
-  FiPackage,
-  FiPlay,
   FiRss,
   FiUsers,
 } from "react-icons/fi";
 
+import { FcAcceptDatabase, FcCollaboration, FcDepartment, FcHighPriority, FcHome, FcLibrary, FcManager } from "react-icons/fc";
+
 export const features = [
   {
     name: "300+ Past Questions",
-    description:
-      "Varsity PQ is huge enough to have more than 300+ past questions",
-    icon: <FiPackage className="text-2xl lg:text-4xl xl:text-4xl" />,
+    description: "Access to over 300+ past questions.",
+    icon: <FiBookOpen className="text-4xl text-sky-600" />,
   },
   {
-    name: "Filter by Private University",
-    description: "Feel free to filter down private universities",
-    icon: <FiLayers className="text-2xl lg:text-4xl xl:text-4xl" />,
+    name: "Sort by Private University",
+    description: "Feel free to sort by private universities.",
+    icon: <FcLibrary className="text-4xl text-sky-600" />,
   },
   {
-    name: "Filter by Federal Univesity",
-    description: "You can filter down federal universities",
-    icon: <FiRss className="text-2xl lg:text-4xl xl:text-4xl" />,
+    name: "Sort by Federal University",
+    description: "Students can sort by federal universities.",
+    icon: <FcHome className="text-4xl text-sky-600" />,
   },
   {
-    name: "Filter by State Univesity",
-    description: "You can also filter down state universities",
-    icon: <FiBookmark className="text-2xl lg:text-4xl xl:text-4xl" />,
+    name: "Sort by State University",
+    description: "Students can also sort by state universities.",
+    icon: <FcDepartment className="text-4xl text-sky-600" />,
   },
   {
     name: "Become a Volunteer",
-    description:
-      "We can't do it alone. You can help Varsity PQ become better by volunteering to add new past questions for us.",
-    icon: <FiCloudLightning className="text-2xl lg:text-4xl xl:text-4xl" />,
-  },
-  {
-    name: "Developer Contributors Page",
-    description:
-      "We proudly show developers who contributes to this project, there is a dedicated contributors page.",
-    icon: <FiUsers className="text-2xl lg:text-4xl xl:text-4xl" />,
+    description: "Students can volunteer to upload past questions.",
+    icon: <FcManager className="text-4xl text-sky-600" />,
   },
   {
     name: "Volunteer Page",
-    description:
-      "We proudly show students who volunteers to upload past questions, there is a dedicated volunteers page.",
-    icon: <FiUsers className="text-2xl lg:text-4xl xl:text-4xl" />,
+    description: "We proudly show volunteering students.",
+    icon: <FcCollaboration className="text-4xl text-sky-600" />,
   },
   {
     name: "Report Past Question",
-    description: "You can report a past question if you find it unhelpful",
-    icon: <FiFlag className="text-2xl lg:text-4xl xl:text-4xl" />,
+    description: "Report a past question if its unhelpful.",
+    icon: <FcHighPriority className="text-4xl text-sky-600" />,
   },
   {
     name: "API",
     description: "API endpoints to access Varsity PQ API",
-    icon: <FiDatabase className="text-2xl lg:text-4xl xl:text-4xl" />,
-  },
-  {
-    name: "Dark Mode",
-    description: "You might like dark mode, so you can enjoy it here too.",
-    icon: <FiMoon className="text-2xl lg:text-4xl xl:text-4xl" />,
+    icon: <FcAcceptDatabase className="text-4xl text-sky-600" />,
   },
 ];

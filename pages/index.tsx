@@ -1,11 +1,10 @@
 import { NextPage } from "next";
-import { App, Hero } from "../components/index";
+import HomePage from "../containers/HomePage";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex flex-col text-base">
-      <Hero />
-      <App />
+    <div className="bg-[#f5f6fa] px-28 pt-36 font-poppins">
+      <HomePage />
     </div>
   );
 };
